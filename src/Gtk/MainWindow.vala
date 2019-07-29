@@ -85,38 +85,30 @@ public class MainWindow : Gtk.Window{
 
 		tv_refresh();
 
-		switch (App.command){
-		case "install":
-		
-			LinuxKernel kern_requested = null;
-			foreach(var kern in LinuxKernel.kernel_list){
-				if (kern.name == App.requested_version){
-					kern_requested = kern;
-					break;
+		switch (App.command) {
+			case "install":
+				LinuxKernel kern_requested = null;
+				foreach(var kern in LinuxKernel.kernel_list) {
+					if (kern.name == App.requested_version) {
+						kern_requested = kern;
+						break;
+					}
 				}
-			}
 
-			if (kern_requested == null){
-				var msg = _("Could not find requested version");
-				msg += ": %s".printf(App.requested_version);
-				log_error(msg);
-				exit(1);
-			}
-			else{
-				install(kern_requested);
-			}
-			
-			break;
-			
-		case "notify":
+				if (kern_requested == null) {
+					var msg = _("Could not find requested version");
+					msg += ": %s".printf(App.requested_version);
+					log_error(msg);
+					exit(1);
+				}
+				else {
+					install(kern_requested);
+				}
+				break;
 
-			notify_user();
-			break;
-
-		default:
-
-			show_paid_version_message();
-			break;
+			case "notify":
+				notify_user();
+				break;
 		}
 
 		return false;
@@ -128,8 +120,7 @@ public class MainWindow : Gtk.Window{
 		init_infobar();
 	}
 	
-	private void init_treeview(){
-
+	private void init_treeview() {
 		// hbox
 		hbox_list = new Gtk.Box(Orientation.HORIZONTAL, 6);
 		//hbox.margin = 6;
@@ -232,7 +223,7 @@ public class MainWindow : Gtk.Window{
 		tv.set_tooltip_column(3);
 	}
 
-	private void tv_row_activated(TreePath path, TreeViewColumn column){
+	private void tv_row_activated(TreePath path, TreeViewColumn column) {
 		TreeIter iter;
 		tv.model.get_iter_from_string(out iter, path.to_string());
 		LinuxKernel kern;
@@ -241,7 +232,7 @@ public class MainWindow : Gtk.Window{
 		set_button_state();
 	}
 
-	private void tv_selection_changed(){
+	private void tv_selection_changed() {
 		var sel = tv.get_selection();
 
 		TreeModel model;
@@ -260,7 +251,7 @@ public class MainWindow : Gtk.Window{
 		set_button_state();
 	}
 
-	private void tv_refresh(){
+	private void tv_refresh() {
 		var model = new Gtk.ListStore(4, typeof(LinuxKernel), typeof(Gdk.Pixbuf), typeof(bool), typeof(string));
 
 		Gdk.Pixbuf pix_ubuntu = null;
@@ -840,17 +831,6 @@ public class MainWindow : Gtk.Window{
 		if (App.command != "list"){
 			Gtk.main_quit();
 			App.exit_app(0);
-		}
-	}
-
-	public void show_paid_version_message(){
-		
-		if (!App.message_shown){
-			
-			App.message_shown = true;
-			App.save_app_config();
-
-			var win = new VersionMessageWindow(this);
 		}
 	}
 }

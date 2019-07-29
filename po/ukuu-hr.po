@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-07-29 20:31+0100\n"
+"POT-Creation-Date: 2019-07-29 21:03+0100\n"
 "PO-Revision-Date: 2017-12-24 00:52+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "A paid version of Ukuu is now available, with more features and new UI"
 msgstr ""
 
-#: Gtk/MainWindow.vala:510
+#: Gtk/MainWindow.vala:501
 msgid "About"
 msgstr "O programu"
 
@@ -65,7 +65,7 @@ msgstr "Natrag"
 msgid "Become a Patron"
 msgstr ""
 
-#: Gtk/MainWindow.vala:836
+#: Gtk/MainWindow.vala:827
 msgid "Booting previous kernels"
 msgstr "Pokretanje prijašnjeg kernela"
 
@@ -79,7 +79,7 @@ msgstr ""
 msgid "Cancel"
 msgstr "Odustani"
 
-#: Gtk/MainWindow.vala:469
+#: Gtk/MainWindow.vala:460
 msgid "Changes"
 msgstr "Promjene"
 
@@ -128,7 +128,7 @@ msgstr "Prilozi"
 msgid "Could not find any kernels to remove"
 msgstr "Odaberi kernele za uklanjanje"
 
-#: Console/AppConsole.vala:303 Gtk/MainWindow.vala:100
+#: Console/AppConsole.vala:303 Gtk/MainWindow.vala:99
 msgid "Could not find requested version"
 msgstr "Nemoguće je pronaći zatraženu inačicu"
 
@@ -172,7 +172,7 @@ msgid "Documenters"
 msgstr "Autori dokumentacije"
 
 #: Utility/Gtk/DonationWindow.vala:43 Utility/Gtk/DonationWindow.vala:76
-#: Gtk/MainWindow.vala:501
+#: Gtk/MainWindow.vala:492
 msgid "Donate"
 msgstr "Donirajte"
 
@@ -307,7 +307,7 @@ msgstr "Sadržaj je osvježen"
 msgid "Index is stale"
 msgstr "Sadržaj je zastario"
 
-#: Gtk/MainWindow.vala:364 Gtk/UpdateNotificationWindow.vala:147
+#: Gtk/MainWindow.vala:355 Gtk/UpdateNotificationWindow.vala:147
 msgid "Install"
 msgstr "Instaliraj"
 
@@ -343,12 +343,12 @@ msgstr ""
 "Instalacija je završena. Potrebno je ponovno pokretanje računala kako bi se "
 "koristio novi kernel."
 
-#: Gtk/MainWindow.vala:213 Common/LinuxKernel.vala:1199
+#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1199
 msgid "Installed"
 msgstr "Instalirano"
 
-#: Utility/TeeJee.System.vala:288 Gtk/MainWindow.vala:355
-#: Gtk/MainWindow.vala:561 Gtk/MainWindow.vala:697
+#: Utility/TeeJee.System.vala:288 Gtk/MainWindow.vala:346
+#: Gtk/MainWindow.vala:552 Gtk/MainWindow.vala:688
 msgid "Internet connection is not active"
 msgstr "Internet povezivanje nije aktivno"
 
@@ -356,11 +356,11 @@ msgstr "Internet povezivanje nije aktivno"
 msgid "Issue Tracker"
 msgstr ""
 
-#: Gtk/MainWindow.vala:155
+#: Gtk/MainWindow.vala:146
 msgid "Kernel"
 msgstr "Kernel"
 
-#: Gtk/MainWindow.vala:545
+#: Gtk/MainWindow.vala:536
 msgid "Kernel upgrade utility for Ubuntu-based distributions"
 msgstr "Alat za nadogradnju kernela Ubuntu temeljenih distribucija"
 
@@ -387,7 +387,7 @@ msgstr "Prikaži sve kernele"
 msgid "List installed kernels"
 msgstr "Prikaži sve kernele"
 
-#: Gtk/MainWindow.vala:837
+#: Gtk/MainWindow.vala:828
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
 "drivers installed on your system. These issues include:\n"
@@ -427,7 +427,7 @@ msgstr "Ikone koje nedostaju"
 msgid "More Info"
 msgstr ""
 
-#: Gtk/MainWindow.vala:373
+#: Gtk/MainWindow.vala:364
 msgid "Multiple Kernels Selected"
 msgstr "Više kernela je odabrano"
 
@@ -443,7 +443,7 @@ msgstr ""
 msgid "No"
 msgstr "Ne"
 
-#: Gtk/MainWindow.vala:355 Gtk/MainWindow.vala:561 Gtk/MainWindow.vala:697
+#: Gtk/MainWindow.vala:346 Gtk/MainWindow.vala:552 Gtk/MainWindow.vala:688
 msgid "No Internet"
 msgstr "Nema pristupa internetu"
 
@@ -452,11 +452,11 @@ msgid "No kernels specified"
 msgstr ""
 
 #: Console/AppConsole.vala:366 Console/AppConsole.vala:446
-#: Gtk/MainWindow.vala:831 Common/LinuxKernel.vala:787
+#: Gtk/MainWindow.vala:822 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Nema pronađenih nadopuna"
 
-#: Gtk/MainWindow.vala:376 Gtk/MainWindow.vala:387
+#: Gtk/MainWindow.vala:367 Gtk/MainWindow.vala:378
 msgid "Not Selected"
 msgstr "Nije odabrano"
 
@@ -511,19 +511,19 @@ msgstr "Pripremanje uklanjanja odabranih kernela"
 msgid "Print debug information"
 msgstr "Ispiši informacije otklanjanja grešaka"
 
-#: Gtk/MainWindow.vala:430
+#: Gtk/MainWindow.vala:421
 msgid "Purge"
 msgstr ""
 
-#: Gtk/MainWindow.vala:348
+#: Gtk/MainWindow.vala:339
 msgid "Refresh"
 msgstr "Osvježi"
 
-#: Gtk/MainWindow.vala:580
+#: Gtk/MainWindow.vala:571
 msgid "Refreshing..."
 msgstr "Osvježavanje..."
 
-#: Gtk/MainWindow.vala:381
+#: Gtk/MainWindow.vala:372
 msgid "Remove"
 msgstr "Ukloni"
 
@@ -531,7 +531,7 @@ msgstr "Ukloni"
 msgid "Remove files from application cache"
 msgstr "Ukloni datoteke iz predmemorije aplikacije"
 
-#: Console/AppConsole.vala:93 Gtk/MainWindow.vala:431
+#: Console/AppConsole.vala:93 Gtk/MainWindow.vala:422
 msgid "Remove installed kernels older than running kernel"
 msgstr ""
 
@@ -556,19 +556,19 @@ msgstr "Pokrenite 'ukuu --list' i koristite izraz inačice u prvom stupcu"
 msgid "Run the application as admin with pkexec or sudo."
 msgstr "Pokreni aplikaciju kao administrator sa pkexec ili sudo."
 
-#: Gtk/MainWindow.vala:213 Common/LinuxKernel.vala:1199
+#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1199
 msgid "Running"
 msgstr "Pokrenuto"
 
-#: Gtk/MainWindow.vala:373
+#: Gtk/MainWindow.vala:364
 msgid "Select a single kernel to install"
 msgstr "Odaberi pojedni kernel za instalaciju"
 
-#: Gtk/MainWindow.vala:376
+#: Gtk/MainWindow.vala:367
 msgid "Select the kernel to install"
 msgstr "Odaberi kernel za instalaciju"
 
-#: Gtk/MainWindow.vala:387
+#: Gtk/MainWindow.vala:378
 msgid "Select the kernels to remove"
 msgstr "Odaberi kernele za uklanjanje"
 
@@ -584,7 +584,7 @@ msgstr ""
 msgid "Set GRUB menu timeout"
 msgstr ""
 
-#: Gtk/MainWindow.vala:480 Gtk/SettingsDialog.vala:57
+#: Gtk/MainWindow.vala:471 Gtk/SettingsDialog.vala:57
 msgid "Settings"
 msgstr "Postavke"
 
@@ -604,7 +604,7 @@ msgstr "Prikaži mjehurić obavijesti radne površine"
 msgid "Show notification dialog"
 msgstr "Prikaži dijalog obavijesti"
 
-#: Gtk/MainWindow.vala:201
+#: Gtk/MainWindow.vala:192
 msgid "Status"
 msgstr "Stanje"
 
@@ -638,7 +638,7 @@ msgid ""
 "project, by picking up items from issue tracker and submitting code changes."
 msgstr ""
 
-#: Gtk/MainWindow.vala:692 Common/LinuxKernel.vala:1270
+#: Gtk/MainWindow.vala:683 Common/LinuxKernel.vala:1270
 msgid "This kernel is already installed."
 msgstr "Ovaj kernel je već instaliran."
 
@@ -709,7 +709,7 @@ msgstr ""
 msgid "Updating GRUB menu"
 msgstr "Nadopuna GRUB izbornika"
 
-#: Gtk/MainWindow.vala:184
+#: Gtk/MainWindow.vala:175
 msgid "Version"
 msgstr "Inačica"
 
