@@ -57,6 +57,13 @@ public class AppConsole : GLib.Object {
 		
 		LOG_TIMESTAMP = false;
 
+        //check dependencies
+		string message;
+		if (!Main.check_dependencies(out message)) {
+		    log_msg(message);
+			exit(1);
+		}
+
 		App = new Main(args, false);
 		
 		var console =  new AppConsole();
