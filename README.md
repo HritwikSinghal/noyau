@@ -1,7 +1,4 @@
-> A [paid version of Ukuu](https://teejeetech.in/tag/ukuu/) is now available with more features and a new UI. This repository contains source code for v18.9 and previous versions.
-
 ### Ubuntu Kernel Update Utility (Ukuu)
-
 This is a tool for installing the latest mainline Linux kernel on Ubuntu-based distributions.
 
 ![](https://2.bp.blogspot.com/-76C_l3BcJyg/WNdzTpSoiKI/AAAAAAAAGKs/xOvB-LCH2cYiDpdbqWkeOLhY9I7TVACJwCLcB/s1600/ukuu_main_window.png)
@@ -25,11 +22,10 @@ _Console Options_
 
 ### Installation
 
-#### Ubuntu-based Distributions (Ubuntu, Linux Mint, Elementary, etc)  
+#### Ubuntu-based Distributions (Ubuntu, Linux Mint, Elementary, etc)
 Packages are available in Launchpad PPA for supported Ubuntu releases.
-Run the following commands in a terminal window:  
 
-    sudo apt-add-repository -y ppa:teejee2008/ppa
+    sudo apt-add-repository ppa:teejee2008/ppa
     sudo apt-get update
     sudo apt-get install ukuu
 
@@ -43,14 +39,13 @@ This application fetches kernels from [kernel.ubuntu.com](http://kernel.ubuntu.c
 ### Downloads & Source Code 
 Ukuu is written using Vala and GTK3 toolkit. Source code and binaries are available from the [GitHub project page](https://github.com/teejee2008/ukuu).
 
-### Build instruction
+### Build Instructions
 
-#### Ubuntu-based Distributions (Ubuntu, Linux Mint, Elementary, etc)  
+#### Ubuntu-based Distributions (Ubuntu, Linux Mint, Elementary, etc.)
 
- in a terminal window:  
-
-    sudo apt-get install libgee-0.8-dev libjson-glib-dev libvte-2.91-dev valac
+    sudo apt-get install libgee-0.8-dev libjson-glib-dev libvte-2.91-dev valac aria2 aptitude curl
     git clone https://github.com/teejee2008/ukuu.git
     cd ukuu
     make all
     sudo make install
+
