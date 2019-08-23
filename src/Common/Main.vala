@@ -91,7 +91,7 @@ public class Main : GLib.Object{
 	
 	public static bool check_dependencies(out string msg) {
 		
-		string[] dependencies = { "aptitude", "apt-get", "aria2c", "dpkg", "uname", "lsb_release", "ping" };
+		string[] dependencies = { "aptitude", "apt-get", "aria2c", "dpkg", "uname", "lsb_release", "ping", "curl" };
 
 		msg = "";
 		

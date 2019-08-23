@@ -56,18 +56,18 @@ public class MainWindow : Gtk.Window{
 	public MainWindow() {
 		
 		title = AppName; //"%s (Ukuu) v%s".printf(AppName, AppVersion);
-        window_position = WindowPosition.CENTER;
-        icon = get_app_icon(16,".svg");
+		window_position = WindowPosition.CENTER;
+		icon = get_app_icon(16,".svg");
 
-        // vbox_main
-        vbox_main = new Gtk.Box(Orientation.VERTICAL, 6);
-        vbox_main.margin = 6;
-        vbox_main.set_size_request(window_width, window_height);
-        add (vbox_main);
+		// vbox_main
+		vbox_main = new Gtk.Box(Orientation.VERTICAL, 6);
+		vbox_main.margin = 6;
+		vbox_main.set_size_request(window_width, window_height);
+		add (vbox_main);
 
 		selected_kernels = new Gee.ArrayList<LinuxKernel>();
-		
-        init_ui();
+
+		init_ui();
 
 		tmr_init = Timeout.add(100, init_delayed);
 	}
