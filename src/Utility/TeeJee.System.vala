@@ -291,36 +291,6 @@ namespace TeeJee.System{
 	    return (status == 0);
 	}
 
-	public bool check_internet_connectivity_test1(){
-
-		// Deprecated: 'ping' may be disabled on enterprise systems
-
-		string std_err, std_out;
-
-		string cmd = "ping -q -w 1 -c 1 `ip r | grep default | cut -d ' ' -f 3`\n";
-		
-		cmd += "exit $?";
-		
-		int status = exec_script_sync(cmd, out std_out, out std_err, false);
-
-	    return (status == 0);
-	}
-
-	public bool check_internet_connectivity_test2(){
-
-		// Deprecated: 'ping' may be disabled on enterprise systems
-		
-		string std_err, std_out;
-
-		string cmd = "ping -q -w 1 -c 1 google.com\n";
-		
-		cmd += "exit $?";
-		
-		int status = exec_script_sync(cmd, out std_out, out std_err, false);
-
-	    return (status == 0);
-	}
-
 	public bool shutdown (){
 
 		/* Shutdown the system immediately */

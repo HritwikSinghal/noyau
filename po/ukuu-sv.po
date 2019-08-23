@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu 2.2\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-07-29 21:03+0100\n"
+"POT-Creation-Date: 2019-08-23 13:21-0700\n"
 "PO-Revision-Date: 2018-01-13 16:56+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "A paid version of Ukuu is now available, with more features and new UI"
 msgstr ""
 
-#: Gtk/MainWindow.vala:501
+#: Gtk/MainWindow.vala:492
 msgid "About"
 msgstr "Om"
 
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Authors"
 msgstr "Utvecklare"
 
-#: Common/LinuxKernel.vala:1182
+#: Common/LinuxKernel.vala:1155
 msgid "Available Kernels"
 msgstr "Tillgängliga kärnor"
 
@@ -61,11 +61,7 @@ msgstr "Tillgängliga kärnor"
 msgid "Back"
 msgstr "Tillbaka"
 
-#: Utility/Gtk/DonationWindow.vala:79
-msgid "Become a Patron"
-msgstr ""
-
-#: Gtk/MainWindow.vala:827
+#: Gtk/MainWindow.vala:818
 msgid "Booting previous kernels"
 msgstr "Startar föregående kärnor"
 
@@ -73,7 +69,7 @@ msgstr "Startar föregående kärnor"
 msgid "Cache"
 msgstr ""
 
-#: Utility/Gtk/GtkHelper.vala:122 Utility/Gtk/CustomMessageDialog.vala:172
+#: Utility/Gtk/CustomMessageDialog.vala:172 Utility/Gtk/GtkHelper.vala:122
 #: Gtk/ProgressWindow.vala:144 Gtk/TerminalWindow.vala:168
 #: Gtk/UpdateNotificationWindow.vala:167
 msgid "Cancel"
@@ -96,8 +92,7 @@ msgstr "Sök efter kärnuppdateringar"
 msgid "Check for kernel updates and notify current user"
 msgstr "Sök efter kärnuppdateringar"
 
-#: Utility/Gtk/AboutWindow.vala:305 Utility/Gtk/DonationWindow.vala:117
-#: Gtk/TerminalWindow.vala:178
+#: Utility/Gtk/AboutWindow.vala:305 Gtk/TerminalWindow.vala:178
 msgid "Close"
 msgstr "Stäng"
 
@@ -171,11 +166,6 @@ msgstr "Distribution"
 msgid "Documenters"
 msgstr "Dokumentalister"
 
-#: Utility/Gtk/DonationWindow.vala:43 Utility/Gtk/DonationWindow.vala:76
-#: Gtk/MainWindow.vala:492
-msgid "Donate"
-msgstr "Donera"
-
 #: Utility/Gtk/AboutWindow.vala:372
 #, c-format
 msgid "Donations"
@@ -185,7 +175,7 @@ msgstr "Donationer"
 msgid "Download packages for specified kernel"
 msgstr "Ladda ner paket för specificerad kärna"
 
-#: Common/LinuxKernel.vala:1228
+#: Common/LinuxKernel.vala:1201
 #, c-format
 msgid "Downloading"
 msgstr "Laddar ner"
@@ -194,7 +184,7 @@ msgstr "Laddar ner"
 msgid "E"
 msgstr "F"
 
-#: Common/LinuxKernel.vala:1256
+#: Common/LinuxKernel.vala:1229
 #, c-format
 msgid "ERROR"
 msgstr "FEL"
@@ -226,10 +216,6 @@ msgstr "Kunde inte läsa filen"
 #: Utility/TeeJee.FileSystem.vala:197
 msgid "Failed to write file"
 msgstr "Kunde inte skriva filen"
-
-#: Utility/Gtk/DonationWindow.vala:105
-msgid "Feature Requests"
-msgstr ""
 
 #: Common/LinuxKernel.vala:399
 msgid "Fetching index from kernel.ubuntu.com..."
@@ -290,12 +276,6 @@ msgstr "Dölj instabila- och RC-publiceringar"
 msgid "Hour(s)"
 msgstr "Timma(r)"
 
-#: Utility/Gtk/DonationWindow.vala:70
-msgid ""
-"If you find this application useful, consider making a donation to support "
-"the development."
-msgstr ""
-
 #: Gtk/UpdateNotificationWindow.vala:168
 msgid "Ignore this update"
 msgstr "Undanta denna uppdatering"
@@ -334,32 +314,28 @@ msgstr "Installera specificerad kärna"
 msgid "Install this kernel"
 msgstr "Installera denna kärna"
 
-#: Common/LinuxKernel.vala:1304
+#: Common/LinuxKernel.vala:1277
 msgid "Installation completed with errors"
 msgstr "Installation slutförd med fel"
 
-#: Common/LinuxKernel.vala:1301
+#: Common/LinuxKernel.vala:1274
 msgid "Installation completed. A reboot is required to use the new kernel."
 msgstr "Installation slutförd. Omstart krävs för att tillämpa den nya kärnan."
 
-#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1199
+#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1172
 msgid "Installed"
 msgstr "Installerad"
 
 #: Utility/TeeJee.System.vala:288 Gtk/MainWindow.vala:346
-#: Gtk/MainWindow.vala:552 Gtk/MainWindow.vala:688
+#: Gtk/MainWindow.vala:543 Gtk/MainWindow.vala:679
 msgid "Internet connection is not active"
 msgstr "Internetuppkopplingen är inte aktiv"
-
-#: Utility/Gtk/DonationWindow.vala:94
-msgid "Issue Tracker"
-msgstr ""
 
 #: Gtk/MainWindow.vala:146
 msgid "Kernel"
 msgstr "Kärna"
 
-#: Gtk/MainWindow.vala:536
+#: Gtk/MainWindow.vala:527
 msgid "Kernel upgrade utility for Ubuntu-based distributions"
 msgstr "Kärnuppgraderingsverktyg för Ubuntu-baserade distributioner"
 
@@ -386,7 +362,7 @@ msgstr "Lista tillgängliga kärnor"
 msgid "List installed kernels"
 msgstr "Lista tillgängliga kärnor"
 
-#: Gtk/MainWindow.vala:828
+#: Gtk/MainWindow.vala:819
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
 "drivers installed on your system. These issues include:\n"
@@ -442,7 +418,7 @@ msgstr ""
 msgid "No"
 msgstr "Nej"
 
-#: Gtk/MainWindow.vala:346 Gtk/MainWindow.vala:552 Gtk/MainWindow.vala:688
+#: Gtk/MainWindow.vala:346 Gtk/MainWindow.vala:543 Gtk/MainWindow.vala:679
 msgid "No Internet"
 msgstr "Inget internet"
 
@@ -451,7 +427,7 @@ msgid "No kernels specified"
 msgstr ""
 
 #: Console/AppConsole.vala:366 Console/AppConsole.vala:446
-#: Gtk/MainWindow.vala:822 Common/LinuxKernel.vala:787
+#: Gtk/MainWindow.vala:813 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Inga uppdateringar hittades"
 
@@ -471,9 +447,9 @@ msgstr "Meddela om en ny (stor) uppdatering finns tillgänglig"
 msgid "Notify if a point release is available"
 msgstr "Meddela om en ny (mindre) uppdatering finns tillgänglig"
 
-#: Utility/Gtk/GtkHelper.vala:121 Utility/Gtk/CustomMessageDialog.vala:167
-#: Utility/Gtk/CustomMessageDialog.vala:171 Gtk/VersionMessageWindow.vala:139
-#: Common/LinuxKernel.vala:1247
+#: Utility/Gtk/CustomMessageDialog.vala:167
+#: Utility/Gtk/CustomMessageDialog.vala:171 Utility/Gtk/GtkHelper.vala:121
+#: Gtk/VersionMessageWindow.vala:139 Common/LinuxKernel.vala:1220
 #, c-format
 msgid "OK"
 msgstr "OK"
@@ -492,17 +468,11 @@ msgstr "Tillgängliga paket (DEB)"
 msgid "Packages Installed"
 msgstr "Installerade paket"
 
-#: Utility/Gtk/DonationWindow.vala:88
-msgid ""
-"Please avoid reporting issues by email. Use the issue tracker for reporting "
-"issues, requesting features, and asking questions."
-msgstr ""
-
 #: Common/Main.vala:108
 msgid "Please install required packages and try again"
 msgstr "Installera nödvändiga paket och försök igen"
 
-#: Common/LinuxKernel.vala:1325
+#: Common/LinuxKernel.vala:1298
 msgid "Preparing to remove selected kernels"
 msgstr "Förbereder borttagning av markerade kärnor"
 
@@ -518,7 +488,7 @@ msgstr "Rensa"
 msgid "Refresh"
 msgstr "Uppdatera"
 
-#: Gtk/MainWindow.vala:571
+#: Gtk/MainWindow.vala:562
 msgid "Refreshing..."
 msgstr "Uppdaterar ..."
 
@@ -557,7 +527,7 @@ msgstr ""
 msgid "Run the application as admin with pkexec or sudo."
 msgstr "Kör programmet som administratör, med pkexec eller sudo."
 
-#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1199
+#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1172
 msgid "Running"
 msgstr "Körs"
 
@@ -573,7 +543,7 @@ msgstr "Välj kärna för installation"
 msgid "Select the kernels to remove"
 msgstr "Välj kärnor för borttagning"
 
-#: Common/LinuxKernel.vala:1320
+#: Common/LinuxKernel.vala:1293
 msgid ""
 "Selected kernel is currently running and cannot be removed.\n"
 " Install another kernel before removing this one."
@@ -613,10 +583,6 @@ msgstr "Status"
 msgid "Stopped"
 msgstr "Stoppad"
 
-#: Utility/Gtk/DonationWindow.vala:84
-msgid "Support"
-msgstr ""
-
 #: Console/AppConsole.vala:81 Gtk/AppGtk.vala:180
 msgid "Syntax"
 msgstr "Syntax"
@@ -630,33 +596,17 @@ msgstr ""
 msgid "Third Party Tools"
 msgstr "Tredjepartsverktyg"
 
-#: Utility/Gtk/DonationWindow.vala:109
-msgid ""
-"This application was created for my own use in my spare time. It's not "
-"practical for me to work for free, on every change that is requested. If you "
-"need new features or changes to the application, consider making a donation "
-"to sponsor the work. If you are a developer, consider contributing to the "
-"project, by picking up items from issue tracker and submitting code changes."
-msgstr ""
-
-#: Gtk/MainWindow.vala:683 Common/LinuxKernel.vala:1270
+#: Gtk/MainWindow.vala:674 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "Denna kärna är redan installerad"
 
-#: Common/LinuxKernel.vala:1378
+#: Common/LinuxKernel.vala:1351
 msgid ""
 "This kernel is currently running and cannot be removed.\n"
 " Install another kernel before removing this one."
 msgstr ""
 "Denna kärna används för tillfället och kan inte tas bort.\n"
 "Installera en annan kärna innan du tar bort den här."
-
-#: Utility/Gtk/DonationWindow.vala:66
-msgid ""
-"This software is free for personal and commercial use. It is distributed in "
-"the hope that it is useful but without any warranty. See the GNU General "
-"Public License v2 or later for more information"
-msgstr ""
 
 #: Gtk/SettingsDialog.vala:223
 msgid ""
@@ -675,11 +625,11 @@ msgstr ""
 msgid "Translators"
 msgstr "Översättare"
 
-#: Common/LinuxKernel.vala:1362 Common/LinuxKernel.vala:1420
+#: Common/LinuxKernel.vala:1335 Common/LinuxKernel.vala:1393
 msgid "Un-install completed"
 msgstr "Avinstallation slutförd"
 
-#: Common/LinuxKernel.vala:1365 Common/LinuxKernel.vala:1423
+#: Common/LinuxKernel.vala:1338 Common/LinuxKernel.vala:1396
 msgid "Un-install completed with errors"
 msgstr "Avinstallation slutförd med fel"
 
@@ -706,7 +656,7 @@ msgstr ""
 "0 = Visa ingen meny\n"
 "-1 = Visa menyn oavbrutet tills användaren väljer"
 
-#: Common/LinuxKernel.vala:1491
+#: Common/LinuxKernel.vala:1464
 msgid "Updating GRUB menu"
 msgstr "Uppdaterar GRUB-menyn"
 
@@ -722,10 +672,6 @@ msgstr "V"
 msgid "Week(s)"
 msgstr "Veckor"
 
-#: Utility/Gtk/DonationWindow.vala:99
-msgid "Wiki"
-msgstr ""
-
 #: Utility/Gtk/CustomMessageDialog.vala:176
 msgid "Yes"
 msgstr "Ja"
@@ -733,6 +679,9 @@ msgstr "Ja"
 #: Utility/AppLock.vala:56
 msgid "[Warning] Deleted invalid lock"
 msgstr "[Varning] Tog bort ogiltigt lås"
+
+#~ msgid "Donate"
+#~ msgstr "Donera"
 
 #~ msgid ""
 #~ "Did you find this software useful?\n"

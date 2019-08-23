@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-07-29 21:03+0100\n"
+"POT-Creation-Date: 2019-08-23 13:21-0700\n"
 "PO-Revision-Date: 2018-03-30 20:59+0300\n"
 "Last-Translator: Gökhan Gökkaya <gokhanlnx@gmail.com>\n"
 "Language-Team: Turkish\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "A paid version of Ukuu is now available, with more features and new UI"
 msgstr ""
 
-#: Gtk/MainWindow.vala:501
+#: Gtk/MainWindow.vala:492
 msgid "About"
 msgstr "Hakkında"
 
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Authors"
 msgstr "Yazar"
 
-#: Common/LinuxKernel.vala:1182
+#: Common/LinuxKernel.vala:1155
 msgid "Available Kernels"
 msgstr "Mevcut Çekirdekler"
 
@@ -61,11 +61,7 @@ msgstr "Mevcut Çekirdekler"
 msgid "Back"
 msgstr "Geri"
 
-#: Utility/Gtk/DonationWindow.vala:79
-msgid "Become a Patron"
-msgstr ""
-
-#: Gtk/MainWindow.vala:827
+#: Gtk/MainWindow.vala:818
 msgid "Booting previous kernels"
 msgstr "Önceki çekirdeklerin önyüklenmesi"
 
@@ -73,7 +69,7 @@ msgstr "Önceki çekirdeklerin önyüklenmesi"
 msgid "Cache"
 msgstr ""
 
-#: Utility/Gtk/GtkHelper.vala:122 Utility/Gtk/CustomMessageDialog.vala:172
+#: Utility/Gtk/CustomMessageDialog.vala:172 Utility/Gtk/GtkHelper.vala:122
 #: Gtk/ProgressWindow.vala:144 Gtk/TerminalWindow.vala:168
 #: Gtk/UpdateNotificationWindow.vala:167
 msgid "Cancel"
@@ -96,8 +92,7 @@ msgstr "Çekirdek güncellemelerini kontrol et"
 msgid "Check for kernel updates and notify current user"
 msgstr "Çekirdek güncellemelerini kontrol et"
 
-#: Utility/Gtk/AboutWindow.vala:305 Utility/Gtk/DonationWindow.vala:117
-#: Gtk/TerminalWindow.vala:178
+#: Utility/Gtk/AboutWindow.vala:305 Gtk/TerminalWindow.vala:178
 msgid "Close"
 msgstr "Kapat"
 
@@ -171,11 +166,6 @@ msgstr "Dağıtım"
 msgid "Documenters"
 msgstr "Belgelendirenler"
 
-#: Utility/Gtk/DonationWindow.vala:43 Utility/Gtk/DonationWindow.vala:76
-#: Gtk/MainWindow.vala:492
-msgid "Donate"
-msgstr "Bağış"
-
 #: Utility/Gtk/AboutWindow.vala:372
 #, c-format
 msgid "Donations"
@@ -185,7 +175,7 @@ msgstr "Bağışlar"
 msgid "Download packages for specified kernel"
 msgstr "Belirtilen çekirdek için paketleri indir"
 
-#: Common/LinuxKernel.vala:1228
+#: Common/LinuxKernel.vala:1201
 #, c-format
 msgid "Downloading"
 msgstr "İndiriliyor"
@@ -194,7 +184,7 @@ msgstr "İndiriliyor"
 msgid "E"
 msgstr "H"
 
-#: Common/LinuxKernel.vala:1256
+#: Common/LinuxKernel.vala:1229
 #, c-format
 msgid "ERROR"
 msgstr "HATA"
@@ -226,10 +216,6 @@ msgstr "Dosya okuma başarısız"
 #: Utility/TeeJee.FileSystem.vala:197
 msgid "Failed to write file"
 msgstr "Dosya yazma başarısız"
-
-#: Utility/Gtk/DonationWindow.vala:105
-msgid "Feature Requests"
-msgstr ""
 
 #: Common/LinuxKernel.vala:399
 msgid "Fetching index from kernel.ubuntu.com..."
@@ -289,12 +275,6 @@ msgstr "Kararsız ve RC sürümleri gizle"
 msgid "Hour(s)"
 msgstr "Saat"
 
-#: Utility/Gtk/DonationWindow.vala:70
-msgid ""
-"If you find this application useful, consider making a donation to support "
-"the development."
-msgstr ""
-
 #: Gtk/UpdateNotificationWindow.vala:168
 msgid "Ignore this update"
 msgstr "Bu güncellemeyi yoksay"
@@ -333,33 +313,29 @@ msgstr "Belirtilen mainline çekirdeğini kur"
 msgid "Install this kernel"
 msgstr "Bu çekirdeği kur"
 
-#: Common/LinuxKernel.vala:1304
+#: Common/LinuxKernel.vala:1277
 msgid "Installation completed with errors"
 msgstr "Kurulum hatalarla tamamlandı"
 
-#: Common/LinuxKernel.vala:1301
+#: Common/LinuxKernel.vala:1274
 msgid "Installation completed. A reboot is required to use the new kernel."
 msgstr ""
 "Kurulum tamamlandı. Yeni çekirdeği kullanmak için yeniden başlatma gerekiyor."
 
-#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1199
+#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1172
 msgid "Installed"
 msgstr "Kurulu"
 
 #: Utility/TeeJee.System.vala:288 Gtk/MainWindow.vala:346
-#: Gtk/MainWindow.vala:552 Gtk/MainWindow.vala:688
+#: Gtk/MainWindow.vala:543 Gtk/MainWindow.vala:679
 msgid "Internet connection is not active"
 msgstr "İnternet bağlantısı aktif değil"
-
-#: Utility/Gtk/DonationWindow.vala:94
-msgid "Issue Tracker"
-msgstr ""
 
 #: Gtk/MainWindow.vala:146
 msgid "Kernel"
 msgstr "Çekirdek"
 
-#: Gtk/MainWindow.vala:536
+#: Gtk/MainWindow.vala:527
 msgid "Kernel upgrade utility for Ubuntu-based distributions"
 msgstr "Ubuntu tabanlı dağıtımlar için çekirdek güncelleme aracı"
 
@@ -386,7 +362,7 @@ msgstr "Tüm çekirdekleri listele"
 msgid "List installed kernels"
 msgstr "Tüm çekirdekleri listele"
 
-#: Gtk/MainWindow.vala:828
+#: Gtk/MainWindow.vala:819
 #, fuzzy
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
@@ -445,7 +421,7 @@ msgstr ""
 msgid "No"
 msgstr "Hayır"
 
-#: Gtk/MainWindow.vala:346 Gtk/MainWindow.vala:552 Gtk/MainWindow.vala:688
+#: Gtk/MainWindow.vala:346 Gtk/MainWindow.vala:543 Gtk/MainWindow.vala:679
 msgid "No Internet"
 msgstr "İnternet Yok"
 
@@ -454,7 +430,7 @@ msgid "No kernels specified"
 msgstr ""
 
 #: Console/AppConsole.vala:366 Console/AppConsole.vala:446
-#: Gtk/MainWindow.vala:822 Common/LinuxKernel.vala:787
+#: Gtk/MainWindow.vala:813 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Güncelleme bulunamadı"
 
@@ -474,9 +450,9 @@ msgstr "Ana sürüm mevcutsa bildir"
 msgid "Notify if a point release is available"
 msgstr "Ara sürüm mevcutsa bildir"
 
-#: Utility/Gtk/GtkHelper.vala:121 Utility/Gtk/CustomMessageDialog.vala:167
-#: Utility/Gtk/CustomMessageDialog.vala:171 Gtk/VersionMessageWindow.vala:139
-#: Common/LinuxKernel.vala:1247
+#: Utility/Gtk/CustomMessageDialog.vala:167
+#: Utility/Gtk/CustomMessageDialog.vala:171 Utility/Gtk/GtkHelper.vala:121
+#: Gtk/VersionMessageWindow.vala:139 Common/LinuxKernel.vala:1220
 #, c-format
 msgid "OK"
 msgstr "TAMAM"
@@ -495,17 +471,11 @@ msgstr "Mevcut Paketler (DEB)"
 msgid "Packages Installed"
 msgstr "Paketler Kuruldu"
 
-#: Utility/Gtk/DonationWindow.vala:88
-msgid ""
-"Please avoid reporting issues by email. Use the issue tracker for reporting "
-"issues, requesting features, and asking questions."
-msgstr ""
-
 #: Common/Main.vala:108
 msgid "Please install required packages and try again"
 msgstr "Lütfen gerekli paketleri yükleyin ve tekrar deneyin"
 
-#: Common/LinuxKernel.vala:1325
+#: Common/LinuxKernel.vala:1298
 msgid "Preparing to remove selected kernels"
 msgstr "Seçilen çekirdekleri kaldırmak için hazırlanıyor"
 
@@ -521,7 +491,7 @@ msgstr ""
 msgid "Refresh"
 msgstr "Yenile"
 
-#: Gtk/MainWindow.vala:571
+#: Gtk/MainWindow.vala:562
 msgid "Refreshing..."
 msgstr "Yenileniyor..."
 
@@ -560,7 +530,7 @@ msgstr ""
 msgid "Run the application as admin with pkexec or sudo."
 msgstr "Bu uygulamayı pkexec yada sudo ile yönetici haklarıyla çalıştırın."
 
-#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1199
+#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1172
 msgid "Running"
 msgstr "Çalışıyor"
 
@@ -576,7 +546,7 @@ msgstr "Kurulum için çekirdek seçin"
 msgid "Select the kernels to remove"
 msgstr "Kaldırma için çekirdek seçin"
 
-#: Common/LinuxKernel.vala:1320
+#: Common/LinuxKernel.vala:1293
 msgid ""
 "Selected kernel is currently running and cannot be removed.\n"
 " Install another kernel before removing this one."
@@ -616,10 +586,6 @@ msgstr "Durum"
 msgid "Stopped"
 msgstr "Durduruldu"
 
-#: Utility/Gtk/DonationWindow.vala:84
-msgid "Support"
-msgstr ""
-
 #: Console/AppConsole.vala:81 Gtk/AppGtk.vala:180
 msgid "Syntax"
 msgstr "Sözdizimi"
@@ -633,33 +599,17 @@ msgstr ""
 msgid "Third Party Tools"
 msgstr "Üçüncü Parti Araçlar"
 
-#: Utility/Gtk/DonationWindow.vala:109
-msgid ""
-"This application was created for my own use in my spare time. It's not "
-"practical for me to work for free, on every change that is requested. If you "
-"need new features or changes to the application, consider making a donation "
-"to sponsor the work. If you are a developer, consider contributing to the "
-"project, by picking up items from issue tracker and submitting code changes."
-msgstr ""
-
-#: Gtk/MainWindow.vala:683 Common/LinuxKernel.vala:1270
+#: Gtk/MainWindow.vala:674 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "Bu çekirdek zaten kurulu."
 
-#: Common/LinuxKernel.vala:1378
+#: Common/LinuxKernel.vala:1351
 msgid ""
 "This kernel is currently running and cannot be removed.\n"
 " Install another kernel before removing this one."
 msgstr ""
 "Bu çekirdek şu anda çalışıyor ve bu sebeple kaldırılamaz.\n"
 "Bunu kaldırmadan önce başka bir çekirdek yükleyin."
-
-#: Utility/Gtk/DonationWindow.vala:66
-msgid ""
-"This software is free for personal and commercial use. It is distributed in "
-"the hope that it is useful but without any warranty. See the GNU General "
-"Public License v2 or later for more information"
-msgstr ""
 
 #: Gtk/SettingsDialog.vala:223
 msgid ""
@@ -678,11 +628,11 @@ msgstr ""
 msgid "Translators"
 msgstr "Çevirenler"
 
-#: Common/LinuxKernel.vala:1362 Common/LinuxKernel.vala:1420
+#: Common/LinuxKernel.vala:1335 Common/LinuxKernel.vala:1393
 msgid "Un-install completed"
 msgstr "Kaldırma tamamlandı"
 
-#: Common/LinuxKernel.vala:1365 Common/LinuxKernel.vala:1423
+#: Common/LinuxKernel.vala:1338 Common/LinuxKernel.vala:1396
 msgid "Un-install completed with errors"
 msgstr "Kaldırma hatalarla tamamlandı"
 
@@ -709,7 +659,7 @@ msgstr ""
 "0 = Menüyü gösterme\n"
 "-1 = Kullanıcı seçimine kadar süresiz göster"
 
-#: Common/LinuxKernel.vala:1491
+#: Common/LinuxKernel.vala:1464
 msgid "Updating GRUB menu"
 msgstr "GRUB menüsü güncelleniyor"
 
@@ -725,10 +675,6 @@ msgstr "U"
 msgid "Week(s)"
 msgstr "Hafta"
 
-#: Utility/Gtk/DonationWindow.vala:99
-msgid "Wiki"
-msgstr ""
-
 #: Utility/Gtk/CustomMessageDialog.vala:176
 msgid "Yes"
 msgstr "Evet"
@@ -736,6 +682,9 @@ msgstr "Evet"
 #: Utility/AppLock.vala:56
 msgid "[Warning] Deleted invalid lock"
 msgstr "[Uyarı] Geçersiz kilit silindi"
+
+#~ msgid "Donate"
+#~ msgstr "Bağış"
 
 #~ msgid ""
 #~ "Did you find this software useful?\n"

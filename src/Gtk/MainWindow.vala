@@ -488,15 +488,6 @@ public class MainWindow : Gtk.Window{
 			tv_refresh();
 		});
 
-		// donate
-		button = new Gtk.Button.with_label (_("Donate"));
-		hbox.pack_start (button, true, true, 0);
-
-		button.clicked.connect(() => {
-			var dlg = new DonationWindow(this);
-			dlg.show_all();
-		});
-
 		// about
 		button = new Gtk.Button.with_label (_("About"));
 		hbox.pack_start (button, true, true, 0);

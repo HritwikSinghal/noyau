@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu 2.2\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-07-29 21:03+0100\n"
+"POT-Creation-Date: 2019-08-23 13:21-0700\n"
 "PO-Revision-Date: 2017-04-30 11:50+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: \n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "A paid version of Ukuu is now available, with more features and new UI"
 msgstr ""
 
-#: Gtk/MainWindow.vala:501
+#: Gtk/MainWindow.vala:492
 msgid "About"
 msgstr "Over"
 
@@ -54,7 +54,7 @@ msgstr ""
 msgid "Authors"
 msgstr "Auteurs"
 
-#: Common/LinuxKernel.vala:1182
+#: Common/LinuxKernel.vala:1155
 msgid "Available Kernels"
 msgstr "Beschikbare kernels"
 
@@ -62,11 +62,7 @@ msgstr "Beschikbare kernels"
 msgid "Back"
 msgstr "Terug"
 
-#: Utility/Gtk/DonationWindow.vala:79
-msgid "Become a Patron"
-msgstr ""
-
-#: Gtk/MainWindow.vala:827
+#: Gtk/MainWindow.vala:818
 msgid "Booting previous kernels"
 msgstr "Opstarten van vorige kernels"
 
@@ -74,7 +70,7 @@ msgstr "Opstarten van vorige kernels"
 msgid "Cache"
 msgstr ""
 
-#: Utility/Gtk/GtkHelper.vala:122 Utility/Gtk/CustomMessageDialog.vala:172
+#: Utility/Gtk/CustomMessageDialog.vala:172 Utility/Gtk/GtkHelper.vala:122
 #: Gtk/ProgressWindow.vala:144 Gtk/TerminalWindow.vala:168
 #: Gtk/UpdateNotificationWindow.vala:167
 msgid "Cancel"
@@ -97,8 +93,7 @@ msgstr "Controleren op kernel-updates"
 msgid "Check for kernel updates and notify current user"
 msgstr "Controleren op kernel-updates"
 
-#: Utility/Gtk/AboutWindow.vala:305 Utility/Gtk/DonationWindow.vala:117
-#: Gtk/TerminalWindow.vala:178
+#: Utility/Gtk/AboutWindow.vala:305 Gtk/TerminalWindow.vala:178
 msgid "Close"
 msgstr "Sluiten"
 
@@ -172,11 +167,6 @@ msgstr "Distributie"
 msgid "Documenters"
 msgstr "Documenteerders"
 
-#: Utility/Gtk/DonationWindow.vala:43 Utility/Gtk/DonationWindow.vala:76
-#: Gtk/MainWindow.vala:492
-msgid "Donate"
-msgstr "Doneren"
-
 #: Utility/Gtk/AboutWindow.vala:372
 #, c-format
 msgid "Donations"
@@ -186,7 +176,7 @@ msgstr "Donaties"
 msgid "Download packages for specified kernel"
 msgstr "Pakketten downloaden voor opgegeven kernel"
 
-#: Common/LinuxKernel.vala:1228
+#: Common/LinuxKernel.vala:1201
 #, c-format
 msgid "Downloading"
 msgstr "Bezig met downloaden"
@@ -195,7 +185,7 @@ msgstr "Bezig met downloaden"
 msgid "E"
 msgstr "E"
 
-#: Common/LinuxKernel.vala:1256
+#: Common/LinuxKernel.vala:1229
 #, c-format
 msgid "ERROR"
 msgstr "FOUT"
@@ -227,10 +217,6 @@ msgstr "Lezen van bestand is mislukt"
 #: Utility/TeeJee.FileSystem.vala:197
 msgid "Failed to write file"
 msgstr "Schrijven naar bestand is mislukt"
-
-#: Utility/Gtk/DonationWindow.vala:105
-msgid "Feature Requests"
-msgstr ""
 
 #: Common/LinuxKernel.vala:399
 msgid "Fetching index from kernel.ubuntu.com..."
@@ -290,12 +276,6 @@ msgstr "Instabiele en RC-uitgaven verbergen"
 msgid "Hour(s)"
 msgstr "uur"
 
-#: Utility/Gtk/DonationWindow.vala:70
-msgid ""
-"If you find this application useful, consider making a donation to support "
-"the development."
-msgstr ""
-
 #: Gtk/UpdateNotificationWindow.vala:168
 msgid "Ignore this update"
 msgstr "Deze update negeren"
@@ -334,34 +314,30 @@ msgstr "Opgegeven mainline-kernel installeren"
 msgid "Install this kernel"
 msgstr "Deze kernel installeren"
 
-#: Common/LinuxKernel.vala:1304
+#: Common/LinuxKernel.vala:1277
 msgid "Installation completed with errors"
 msgstr "De installatie is foutloos voltooid"
 
-#: Common/LinuxKernel.vala:1301
+#: Common/LinuxKernel.vala:1274
 msgid "Installation completed. A reboot is required to use the new kernel."
 msgstr ""
 "De installatie is voltooid. Herstart de computer om de nieuwe kernel te "
 "gebruiken."
 
-#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1199
+#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1172
 msgid "Installed"
 msgstr "Geïnstalleerd"
 
 #: Utility/TeeJee.System.vala:288 Gtk/MainWindow.vala:346
-#: Gtk/MainWindow.vala:552 Gtk/MainWindow.vala:688
+#: Gtk/MainWindow.vala:543 Gtk/MainWindow.vala:679
 msgid "Internet connection is not active"
 msgstr "U bent niet verbonden met het internet"
-
-#: Utility/Gtk/DonationWindow.vala:94
-msgid "Issue Tracker"
-msgstr ""
 
 #: Gtk/MainWindow.vala:146
 msgid "Kernel"
 msgstr "Kernel"
 
-#: Gtk/MainWindow.vala:536
+#: Gtk/MainWindow.vala:527
 msgid "Kernel upgrade utility for Ubuntu-based distributions"
 msgstr "Kernel-upgradehulpmiddel voor op Ubuntu-gebaseerde distributies"
 
@@ -389,7 +365,7 @@ msgstr "Alle beschikbare mainline-kernels weergeven"
 msgid "List installed kernels"
 msgstr "Alle beschikbare mainline-kernels weergeven"
 
-#: Gtk/MainWindow.vala:828
+#: Gtk/MainWindow.vala:819
 #, fuzzy
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
@@ -449,7 +425,7 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: Gtk/MainWindow.vala:346 Gtk/MainWindow.vala:552 Gtk/MainWindow.vala:688
+#: Gtk/MainWindow.vala:346 Gtk/MainWindow.vala:543 Gtk/MainWindow.vala:679
 msgid "No Internet"
 msgstr "Geen internetverbinding"
 
@@ -458,7 +434,7 @@ msgid "No kernels specified"
 msgstr ""
 
 #: Console/AppConsole.vala:366 Console/AppConsole.vala:446
-#: Gtk/MainWindow.vala:822 Common/LinuxKernel.vala:787
+#: Gtk/MainWindow.vala:813 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Geen updates gevonden"
 
@@ -478,9 +454,9 @@ msgstr "Melding weergeven als er een grote update beschikbaar is"
 msgid "Notify if a point release is available"
 msgstr "Melding weergeven als er een puntupdate beschikbaar is"
 
-#: Utility/Gtk/GtkHelper.vala:121 Utility/Gtk/CustomMessageDialog.vala:167
-#: Utility/Gtk/CustomMessageDialog.vala:171 Gtk/VersionMessageWindow.vala:139
-#: Common/LinuxKernel.vala:1247
+#: Utility/Gtk/CustomMessageDialog.vala:167
+#: Utility/Gtk/CustomMessageDialog.vala:171 Utility/Gtk/GtkHelper.vala:121
+#: Gtk/VersionMessageWindow.vala:139 Common/LinuxKernel.vala:1220
 #, c-format
 msgid "OK"
 msgstr "Oké"
@@ -499,17 +475,11 @@ msgstr "Beschikbare pakketten (DEB)"
 msgid "Packages Installed"
 msgstr "Geïnstalleerde pakketten"
 
-#: Utility/Gtk/DonationWindow.vala:88
-msgid ""
-"Please avoid reporting issues by email. Use the issue tracker for reporting "
-"issues, requesting features, and asking questions."
-msgstr ""
-
 #: Common/Main.vala:108
 msgid "Please install required packages and try again"
 msgstr "Installeer de vereiste pakketten en probeer het opnieuw"
 
-#: Common/LinuxKernel.vala:1325
+#: Common/LinuxKernel.vala:1298
 msgid "Preparing to remove selected kernels"
 msgstr "Bezig met voorbereiden van verwijderen van geselecteerde kernels"
 
@@ -525,7 +495,7 @@ msgstr ""
 msgid "Refresh"
 msgstr "Verversen"
 
-#: Gtk/MainWindow.vala:571
+#: Gtk/MainWindow.vala:562
 msgid "Refreshing..."
 msgstr "Bezig met verversen..."
 
@@ -565,7 +535,7 @@ msgstr ""
 msgid "Run the application as admin with pkexec or sudo."
 msgstr "Draai de applicatie als root of m.b.v. gksu/sudo."
 
-#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1199
+#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1172
 msgid "Running"
 msgstr "Bezig met draaien"
 
@@ -581,7 +551,7 @@ msgstr "Selecteer de te installeren kernel"
 msgid "Select the kernels to remove"
 msgstr "Selecteer de te verwijderen kernels"
 
-#: Common/LinuxKernel.vala:1320
+#: Common/LinuxKernel.vala:1293
 msgid ""
 "Selected kernel is currently running and cannot be removed.\n"
 " Install another kernel before removing this one."
@@ -622,10 +592,6 @@ msgstr "Status"
 msgid "Stopped"
 msgstr "Gestopt"
 
-#: Utility/Gtk/DonationWindow.vala:84
-msgid "Support"
-msgstr ""
-
 #: Console/AppConsole.vala:81 Gtk/AppGtk.vala:180
 msgid "Syntax"
 msgstr "Syntax"
@@ -639,33 +605,17 @@ msgstr ""
 msgid "Third Party Tools"
 msgstr "Externe hulpmiddelen"
 
-#: Utility/Gtk/DonationWindow.vala:109
-msgid ""
-"This application was created for my own use in my spare time. It's not "
-"practical for me to work for free, on every change that is requested. If you "
-"need new features or changes to the application, consider making a donation "
-"to sponsor the work. If you are a developer, consider contributing to the "
-"project, by picking up items from issue tracker and submitting code changes."
-msgstr ""
-
-#: Gtk/MainWindow.vala:683 Common/LinuxKernel.vala:1270
+#: Gtk/MainWindow.vala:674 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "Deze kernel is al geïnstalleerd."
 
-#: Common/LinuxKernel.vala:1378
+#: Common/LinuxKernel.vala:1351
 msgid ""
 "This kernel is currently running and cannot be removed.\n"
 " Install another kernel before removing this one."
 msgstr ""
 "Deze kernel is momenteel in gebruik en kan daarom niet worden verwijderd.\n"
 " Installeer een andere kernel voordat u deze verwijdert."
-
-#: Utility/Gtk/DonationWindow.vala:66
-msgid ""
-"This software is free for personal and commercial use. It is distributed in "
-"the hope that it is useful but without any warranty. See the GNU General "
-"Public License v2 or later for more information"
-msgstr ""
 
 #: Gtk/SettingsDialog.vala:223
 msgid ""
@@ -684,11 +634,11 @@ msgstr ""
 msgid "Translators"
 msgstr "Vertalers"
 
-#: Common/LinuxKernel.vala:1362 Common/LinuxKernel.vala:1420
+#: Common/LinuxKernel.vala:1335 Common/LinuxKernel.vala:1393
 msgid "Un-install completed"
 msgstr "Deïnstalleren voltooid"
 
-#: Common/LinuxKernel.vala:1365 Common/LinuxKernel.vala:1423
+#: Common/LinuxKernel.vala:1338 Common/LinuxKernel.vala:1396
 msgid "Un-install completed with errors"
 msgstr "Deïnstalleren voltooid, maar met fouten"
 
@@ -715,7 +665,7 @@ msgstr ""
 "0 = Menu niet weergeven\n"
 "-1 = Menu weergeven totdat de gebruiker een selectie maakt"
 
-#: Common/LinuxKernel.vala:1491
+#: Common/LinuxKernel.vala:1464
 msgid "Updating GRUB menu"
 msgstr "Bezig met bijwerken van GRUB-menu"
 
@@ -731,10 +681,6 @@ msgstr "W"
 msgid "Week(s)"
 msgstr "we(e)k(en)"
 
-#: Utility/Gtk/DonationWindow.vala:99
-msgid "Wiki"
-msgstr ""
-
 #: Utility/Gtk/CustomMessageDialog.vala:176
 msgid "Yes"
 msgstr ""
@@ -742,6 +688,9 @@ msgstr ""
 #: Utility/AppLock.vala:56
 msgid "[Warning] Deleted invalid lock"
 msgstr "[Waarschuwing] Ongeldige lock verwijderd"
+
+#~ msgid "Donate"
+#~ msgstr "Doneren"
 
 #~ msgid ""
 #~ "Did you find this software useful?\n"

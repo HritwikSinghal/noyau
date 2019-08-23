@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-07-29 21:03+0100\n"
+"POT-Creation-Date: 2019-08-23 13:21-0700\n"
 "PO-Revision-Date: 2017-08-12 15:26+0200\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "A paid version of Ukuu is now available, with more features and new UI"
 msgstr ""
 
-#: Gtk/MainWindow.vala:501
+#: Gtk/MainWindow.vala:492
 msgid "About"
 msgstr "O programie"
 
@@ -51,7 +51,7 @@ msgstr ""
 msgid "Authors"
 msgstr "Аutorzy"
 
-#: Common/LinuxKernel.vala:1182
+#: Common/LinuxKernel.vala:1155
 msgid "Available Kernels"
 msgstr "Dostępne jądra"
 
@@ -59,11 +59,7 @@ msgstr "Dostępne jądra"
 msgid "Back"
 msgstr "Wstecz"
 
-#: Utility/Gtk/DonationWindow.vala:79
-msgid "Become a Patron"
-msgstr ""
-
-#: Gtk/MainWindow.vala:827
+#: Gtk/MainWindow.vala:818
 msgid "Booting previous kernels"
 msgstr "Uruchamianie poprzednich jąder"
 
@@ -71,7 +67,7 @@ msgstr "Uruchamianie poprzednich jąder"
 msgid "Cache"
 msgstr ""
 
-#: Utility/Gtk/GtkHelper.vala:122 Utility/Gtk/CustomMessageDialog.vala:172
+#: Utility/Gtk/CustomMessageDialog.vala:172 Utility/Gtk/GtkHelper.vala:122
 #: Gtk/ProgressWindow.vala:144 Gtk/TerminalWindow.vala:168
 #: Gtk/UpdateNotificationWindow.vala:167
 msgid "Cancel"
@@ -94,8 +90,7 @@ msgstr "Sprawdź nowe wersje jądra"
 msgid "Check for kernel updates and notify current user"
 msgstr "Sprawdź nowe wersje jądra"
 
-#: Utility/Gtk/AboutWindow.vala:305 Utility/Gtk/DonationWindow.vala:117
-#: Gtk/TerminalWindow.vala:178
+#: Utility/Gtk/AboutWindow.vala:305 Gtk/TerminalWindow.vala:178
 msgid "Close"
 msgstr "Zamknij"
 
@@ -169,11 +164,6 @@ msgstr "Dystrybucja"
 msgid "Documenters"
 msgstr "Dokumentujący"
 
-#: Utility/Gtk/DonationWindow.vala:43 Utility/Gtk/DonationWindow.vala:76
-#: Gtk/MainWindow.vala:492
-msgid "Donate"
-msgstr "Wesprzyj"
-
 #: Utility/Gtk/AboutWindow.vala:372
 #, c-format
 msgid "Donations"
@@ -183,7 +173,7 @@ msgstr "Wsparcie"
 msgid "Download packages for specified kernel"
 msgstr "Pobierz pakiety dla wybranego jądra"
 
-#: Common/LinuxKernel.vala:1228
+#: Common/LinuxKernel.vala:1201
 #, c-format
 msgid "Downloading"
 msgstr "Pobieranie"
@@ -192,7 +182,7 @@ msgstr "Pobieranie"
 msgid "E"
 msgstr "E"
 
-#: Common/LinuxKernel.vala:1256
+#: Common/LinuxKernel.vala:1229
 #, c-format
 msgid "ERROR"
 msgstr "BŁĄD"
@@ -224,10 +214,6 @@ msgstr "Nie udało się odczytać pliku"
 #: Utility/TeeJee.FileSystem.vala:197
 msgid "Failed to write file"
 msgstr "Nie udało się zapisać pliku"
-
-#: Utility/Gtk/DonationWindow.vala:105
-msgid "Feature Requests"
-msgstr ""
 
 #: Common/LinuxKernel.vala:399
 msgid "Fetching index from kernel.ubuntu.com..."
@@ -287,12 +273,6 @@ msgstr "Ukryj wydania niestabilne i RC"
 msgid "Hour(s)"
 msgstr "Godzin(y)"
 
-#: Utility/Gtk/DonationWindow.vala:70
-msgid ""
-"If you find this application useful, consider making a donation to support "
-"the development."
-msgstr ""
-
 #: Gtk/UpdateNotificationWindow.vala:168
 msgid "Ignore this update"
 msgstr "Zignoruj tę aktualizację"
@@ -331,34 +311,30 @@ msgstr "Zainstaluj wybrane jądro"
 msgid "Install this kernel"
 msgstr "Zainstaluj to jądro"
 
-#: Common/LinuxKernel.vala:1304
+#: Common/LinuxKernel.vala:1277
 msgid "Installation completed with errors"
 msgstr "Instalacja zakończona z błędami"
 
-#: Common/LinuxKernel.vala:1301
+#: Common/LinuxKernel.vala:1274
 msgid "Installation completed. A reboot is required to use the new kernel."
 msgstr ""
 "Instalacja zakończona. Aby korzystać z nowego jądra, konieczne jest ponowne "
 "uruchomienie."
 
-#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1199
+#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1172
 msgid "Installed"
 msgstr "Zainstalowany"
 
 #: Utility/TeeJee.System.vala:288 Gtk/MainWindow.vala:346
-#: Gtk/MainWindow.vala:552 Gtk/MainWindow.vala:688
+#: Gtk/MainWindow.vala:543 Gtk/MainWindow.vala:679
 msgid "Internet connection is not active"
 msgstr "Brak połączenia z internetem"
-
-#: Utility/Gtk/DonationWindow.vala:94
-msgid "Issue Tracker"
-msgstr ""
 
 #: Gtk/MainWindow.vala:146
 msgid "Kernel"
 msgstr "Jądro"
 
-#: Gtk/MainWindow.vala:536
+#: Gtk/MainWindow.vala:527
 msgid "Kernel upgrade utility for Ubuntu-based distributions"
 msgstr "Narzędzie uaktualniania jądra dla dystrybucji z rodziny Ubuntu"
 
@@ -386,7 +362,7 @@ msgstr "Pokaż wszystkie dostępne jądra"
 msgid "List installed kernels"
 msgstr "Pokaż wszystkie dostępne jądra"
 
-#: Gtk/MainWindow.vala:828
+#: Gtk/MainWindow.vala:819
 #, fuzzy
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
@@ -443,7 +419,7 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: Gtk/MainWindow.vala:346 Gtk/MainWindow.vala:552 Gtk/MainWindow.vala:688
+#: Gtk/MainWindow.vala:346 Gtk/MainWindow.vala:543 Gtk/MainWindow.vala:679
 msgid "No Internet"
 msgstr "Brak internetu"
 
@@ -452,7 +428,7 @@ msgid "No kernels specified"
 msgstr ""
 
 #: Console/AppConsole.vala:366 Console/AppConsole.vala:446
-#: Gtk/MainWindow.vala:822 Common/LinuxKernel.vala:787
+#: Gtk/MainWindow.vala:813 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Nie znaleziono aktualizacji"
 
@@ -472,9 +448,9 @@ msgstr "Powiadom, jeśli pojawi się główna wersja"
 msgid "Notify if a point release is available"
 msgstr "Powiadom, jeśli pojawi się wersja punktowa"
 
-#: Utility/Gtk/GtkHelper.vala:121 Utility/Gtk/CustomMessageDialog.vala:167
-#: Utility/Gtk/CustomMessageDialog.vala:171 Gtk/VersionMessageWindow.vala:139
-#: Common/LinuxKernel.vala:1247
+#: Utility/Gtk/CustomMessageDialog.vala:167
+#: Utility/Gtk/CustomMessageDialog.vala:171 Utility/Gtk/GtkHelper.vala:121
+#: Gtk/VersionMessageWindow.vala:139 Common/LinuxKernel.vala:1220
 #, c-format
 msgid "OK"
 msgstr "OK"
@@ -493,17 +469,11 @@ msgstr "Dostępne pakiety (DEB)"
 msgid "Packages Installed"
 msgstr "Pakiety zainstalowane"
 
-#: Utility/Gtk/DonationWindow.vala:88
-msgid ""
-"Please avoid reporting issues by email. Use the issue tracker for reporting "
-"issues, requesting features, and asking questions."
-msgstr ""
-
 #: Common/Main.vala:108
 msgid "Please install required packages and try again"
 msgstr "Zainstaluj wymagane pakiety i spróbuj ponownie"
 
-#: Common/LinuxKernel.vala:1325
+#: Common/LinuxKernel.vala:1298
 msgid "Preparing to remove selected kernels"
 msgstr "Przygotowanie do usunięcia wybranych jąder"
 
@@ -519,7 +489,7 @@ msgstr ""
 msgid "Refresh"
 msgstr "Odśwież"
 
-#: Gtk/MainWindow.vala:571
+#: Gtk/MainWindow.vala:562
 msgid "Refreshing..."
 msgstr "Odświeżam..."
 
@@ -557,7 +527,7 @@ msgstr "Uruchom 'ukuu --list' i użyj wersji wyświetlonej w pierwszej kolumnie"
 msgid "Run the application as admin with pkexec or sudo."
 msgstr "Uruchom aplikację jako root albo użyj gksu/sudo."
 
-#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1199
+#: Gtk/MainWindow.vala:204 Common/LinuxKernel.vala:1172
 msgid "Running"
 msgstr "Uruchomiony"
 
@@ -573,7 +543,7 @@ msgstr "Wybierz pojedyncze do instalacji"
 msgid "Select the kernels to remove"
 msgstr "Wybierz jądro do usunięcia"
 
-#: Common/LinuxKernel.vala:1320
+#: Common/LinuxKernel.vala:1293
 msgid ""
 "Selected kernel is currently running and cannot be removed.\n"
 " Install another kernel before removing this one."
@@ -613,10 +583,6 @@ msgstr "Status"
 msgid "Stopped"
 msgstr "Zatrzymany"
 
-#: Utility/Gtk/DonationWindow.vala:84
-msgid "Support"
-msgstr ""
-
 #: Console/AppConsole.vala:81 Gtk/AppGtk.vala:180
 msgid "Syntax"
 msgstr "Składnia"
@@ -630,33 +596,17 @@ msgstr ""
 msgid "Third Party Tools"
 msgstr "Narzędzia osób trzecich"
 
-#: Utility/Gtk/DonationWindow.vala:109
-msgid ""
-"This application was created for my own use in my spare time. It's not "
-"practical for me to work for free, on every change that is requested. If you "
-"need new features or changes to the application, consider making a donation "
-"to sponsor the work. If you are a developer, consider contributing to the "
-"project, by picking up items from issue tracker and submitting code changes."
-msgstr ""
-
-#: Gtk/MainWindow.vala:683 Common/LinuxKernel.vala:1270
+#: Gtk/MainWindow.vala:674 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "To jądro jest już zainstalowane."
 
-#: Common/LinuxKernel.vala:1378
+#: Common/LinuxKernel.vala:1351
 msgid ""
 "This kernel is currently running and cannot be removed.\n"
 " Install another kernel before removing this one."
 msgstr ""
 "To jądro aktualnie działa i nie może zostać usunięte.\n"
 " Zainstaluj inne jądro przed usunięciem tego."
-
-#: Utility/Gtk/DonationWindow.vala:66
-msgid ""
-"This software is free for personal and commercial use. It is distributed in "
-"the hope that it is useful but without any warranty. See the GNU General "
-"Public License v2 or later for more information"
-msgstr ""
 
 #: Gtk/SettingsDialog.vala:223
 msgid ""
@@ -675,11 +625,11 @@ msgstr ""
 msgid "Translators"
 msgstr "Tłumacze"
 
-#: Common/LinuxKernel.vala:1362 Common/LinuxKernel.vala:1420
+#: Common/LinuxKernel.vala:1335 Common/LinuxKernel.vala:1393
 msgid "Un-install completed"
 msgstr "De-instalacja zakończona"
 
-#: Common/LinuxKernel.vala:1365 Common/LinuxKernel.vala:1423
+#: Common/LinuxKernel.vala:1338 Common/LinuxKernel.vala:1396
 msgid "Un-install completed with errors"
 msgstr "De-instalacja zakończona z błędami"
 
@@ -706,7 +656,7 @@ msgstr ""
 "0 = Nie pokazuj\n"
 "-1 = Wyświetlaj do momentu wybrania przez użytkownika"
 
-#: Common/LinuxKernel.vala:1491
+#: Common/LinuxKernel.vala:1464
 msgid "Updating GRUB menu"
 msgstr "Aktualizacja menu GRUB"
 
@@ -722,10 +672,6 @@ msgstr "W"
 msgid "Week(s)"
 msgstr "Tygodni"
 
-#: Utility/Gtk/DonationWindow.vala:99
-msgid "Wiki"
-msgstr ""
-
 #: Utility/Gtk/CustomMessageDialog.vala:176
 msgid "Yes"
 msgstr ""
@@ -733,6 +679,9 @@ msgstr ""
 #: Utility/AppLock.vala:56
 msgid "[Warning] Deleted invalid lock"
 msgstr "[Ostrzeżenie] Usunięto nieprawidłową blokadę"
+
+#~ msgid "Donate"
+#~ msgstr "Wesprzyj"
 
 #~ msgid ""
 #~ "Did you find this software useful?\n"
