@@ -34,11 +34,6 @@ using TeeJee.System;
 using TeeJee.Misc;
 
 public Main App;
-public const string AppName = "Ubuntu Kernel Update Utility";
-public const string AppShortName = "ukuu";
-public const string AppVersion = "18.9.3";
-public const string AppAuthor = "Tony George";
-public const string AppAuthorEmail = "teejeetech@gmail.com";
 
 const string GETTEXT_PACKAGE = "";
 const string LOCALE_DIR = "/usr/share/locale";
@@ -46,10 +41,9 @@ const string LOCALE_DIR = "/usr/share/locale";
 public class AppConsole : GLib.Object {
 
 	public static int main (string[] args) {
-		
 		set_locale();
 
-		log_msg("%s v%s".printf(AppShortName, AppVersion));
+		log_msg("%s v%s".printf(Main.AppShortName, Main.AppVersion));
 
 		init_tmp("ukuu");
 
@@ -83,7 +77,7 @@ public class AppConsole : GLib.Object {
 
 	private static string help_message() {
 		
-		string msg = "\n" + AppName + " v" + AppVersion + " by Tony George (teejeetech@gmail.com)" + "\n";
+		string msg = "\n" + Main.AppName + " v" + Main.AppVersion + " by Tony George (teejeetech@gmail.com)" + "\n";
 		msg += "\n";
 		msg += _("Syntax") + ": ukuu <command> [options]\n";
 		msg += "\n";
@@ -112,24 +106,22 @@ public class AppConsole : GLib.Object {
 	}
 
 	private static void check_if_admin(){
-		
 		if (get_user_id_effective() != 0) {
-
 			log_msg(string.nfill(70,'-'));
-			
+
 			string msg = _("Admin access is required for running this application.");
 			log_error(msg);
-			
+
 			msg = _("Run the application as admin with pkexec or sudo.");
 			log_error(msg);
-			
+
 			exit(1);
 		}
 	}
 
 	public bool parse_arguments(string[] args) {
-
 		string txt = "ukuu ";
+
 		for (int k = 1; k < args.length; k++) {
 			txt += "'%s' ".printf(args[k]);
 		}
@@ -441,7 +433,7 @@ public class AppConsole : GLib.Object {
 		if (App.notify_dialog){
 			
 			var win = new UpdateNotificationWindow(
-					AppName,
+					Main.AppName,
 					"<span size=\"large\" weight=\"bold\">%s</span>\n\n%s".printf(title, message),
 					null);
 					
@@ -464,6 +456,5 @@ public class AppConsole : GLib.Object {
 			}
 		}
 	}
-
 }
 

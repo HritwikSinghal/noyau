@@ -230,7 +230,7 @@ namespace TeeJee.GtkHelper{
 	// icon ----------------------------------------------
 	
 	public Gdk.Pixbuf? get_app_icon(int icon_size, string format = ".png"){
-		var img_icon = get_shared_icon(AppShortName, AppShortName + format,icon_size,"pixmaps");
+		var img_icon = get_shared_icon(Main.AppShortName, Main.AppShortName + format,icon_size,"pixmaps");
 		if (img_icon != null){
 			return img_icon.pixbuf;
 		}
@@ -243,7 +243,7 @@ namespace TeeJee.GtkHelper{
 		string icon_name,
 		string fallback_icon_file_name,
 		int icon_size,
-		string icon_directory = AppShortName + "/images"){
+		string icon_directory = Main.AppShortName + "/images"){
 			
 		Gdk.Pixbuf pix_icon = null;
 		Gtk.Image img_icon = null;
@@ -281,7 +281,7 @@ namespace TeeJee.GtkHelper{
 	public Gdk.Pixbuf? get_shared_icon_pixbuf(string icon_name,
 		string fallback_file_name,
 		int icon_size,
-		string icon_directory = AppShortName + "/images"){
+		string icon_directory = Main.AppShortName + "/images"){
 			
 		var img = get_shared_icon(icon_name, fallback_file_name, icon_size, icon_directory);
 		var pixbuf = (img == null) ? null : img.pixbuf;

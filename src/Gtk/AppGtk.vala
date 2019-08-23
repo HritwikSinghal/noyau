@@ -35,11 +35,6 @@ using TeeJee.System;
 using TeeJee.Misc;
 
 public Main App;
-public const string AppName = "Ubuntu Kernel Update Utility";
-public const string AppShortName = "ukuu";
-public const string AppVersion = "18.9.3";
-public const string AppAuthor = "Tony George";
-public const string AppAuthorEmail = "teejeetech@gmail.com";
 
 const string GETTEXT_PACKAGE = "";
 const string LOCALE_DIR = "/usr/share/locale";
@@ -47,10 +42,9 @@ const string LOCALE_DIR = "/usr/share/locale";
 public class AppGtk : GLib.Object {
 
 	public static int main (string[] args) {
-		
 		set_locale();
 
-		log_msg("%s v%s".printf(AppShortName, AppVersion));
+		log_msg("%s v%s".printf(Main.AppShortName, Main.AppVersion));
 
 		Gtk.init(ref args);
 
@@ -175,7 +169,7 @@ public class AppGtk : GLib.Object {
 
 	public static string help_message() {
 		
-		string msg = "\n" + AppName + " v" + AppVersion + " by Tony George (teejeetech@gmail.com)" + "\n";
+		string msg = "\n" + Main.AppName + " v" + Main.AppVersion + " by Tony George (teejeetech@gmail.com)" + "\n";
 		msg += "\n";
 		msg += _("Syntax") + ": ukuu-gtk [options]\n";
 		msg += "\n";

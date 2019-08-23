@@ -32,8 +32,7 @@ using TeeJee.GtkHelper;
 using TeeJee.System;
 using TeeJee.Misc;
 
-public class MainWindow : Gtk.Window{
-	
+public class MainWindow : Gtk.Window {
 	private Gtk.Box vbox_main;
 	private Gtk.Box hbox_list;
 	
@@ -55,7 +54,7 @@ public class MainWindow : Gtk.Window{
 	
 	public MainWindow() {
 		
-		title = AppName; //"%s (Ukuu) v%s".printf(AppName, AppVersion);
+		title = Main.AppName; //"%s (Ukuu) v%s".printf(Main.AppName, Main.AppVersion);
 		window_position = WindowPosition.CENTER;
 		icon = get_app_icon(16,".svg");
 
@@ -523,10 +522,10 @@ public class MainWindow : Gtk.Window{
 		dialog.artists = null;
 		dialog.donations = null;
 
-		dialog.program_name = AppName;
+		dialog.program_name = Main.AppName;
 		dialog.comments = _("Kernel upgrade utility for Ubuntu-based distributions");
-		dialog.copyright = "Copyright © 2012-17 Tony George (%s)".printf(AppAuthorEmail);
-		dialog.version = AppVersion;
+		dialog.copyright = "Copyright © 2012-17 Tony George (%s)".printf(Main.AppAuthorEmail);
+		dialog.version = Main.AppVersion;
 		dialog.logo = get_app_icon(128);
 
 		dialog.license = "This program is free for personal and commercial use and comes with absolutely no warranty. You use this program entirely at your own risk. The author will not be liable for any damages arising from the use of this program.";
@@ -737,7 +736,7 @@ public class MainWindow : Gtk.Window{
 			if (App.notify_dialog){
 				
 				var win = new UpdateNotificationWindow(
-					AppName,
+					Main.AppName,
 					"<span size=\"large\" weight=\"bold\">%s</span>\n\n%s".printf(title, message),
 					null,
 					kern);
@@ -770,7 +769,7 @@ public class MainWindow : Gtk.Window{
 			if (App.notify_dialog){
 				
 				var win = new UpdateNotificationWindow(
-					AppName,
+					Main.AppName,
 					"<span size=\"large\" weight=\"bold\">%s</span>\n\n%s".printf(title, message),
 					this,
 					kern);
@@ -801,7 +800,7 @@ public class MainWindow : Gtk.Window{
 		if (App.notify_dialog){
 			
 			var win = new UpdateNotificationWindow(
-					AppName,
+					Main.AppName,
 					"<span size=\"large\" weight=\"bold\">%s</span>\n\n%s".printf(title, message),
 					null);
 					

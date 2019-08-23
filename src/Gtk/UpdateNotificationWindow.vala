@@ -75,7 +75,7 @@ public class UpdateNotificationWindow : Gtk.Window {
 
 	public void init_window () {
 		
-		title = AppName;
+		title = Main.AppName;
 		window_position = WindowPosition.CENTER_ON_PARENT;
 		icon = get_app_icon(16);
 		resizable = false;

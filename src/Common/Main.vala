@@ -37,7 +37,12 @@ extern void exit(int exit_code);
 public class Main : GLib.Object{
 
 	// constants ----------
-	
+	public static string AppName = "Ubuntu Kernel Update Utility";
+	public static string AppShortName = "ukuu";
+	public static string AppVersion = "18.9.3";
+	public static string AppAuthor = "Tony George";
+	public static string AppAuthorEmail = "teejeetech@gmail.com";
+
 	public string APP_CONFIG_FILE = "";
 	public string STARTUP_SCRIPT_FILE = "";
 	public string STARTUP_DESKTOP_FILE = "";

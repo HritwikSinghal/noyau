@@ -55,12 +55,11 @@ public class ProgressWindow : Gtk.Window {
 	// init
 	
 	public ProgressWindow.with_parent(Window parent, string message, bool allow_cancel = false) {
-		
 		set_transient_for(parent);
 		set_modal(true);
 		set_skip_taskbar_hint(true);
 		set_skip_pager_hint(true);
-		//set_type_hint(Gdk.WindowTypeHint.DIALOG);
+		set_type_hint(Gdk.WindowTypeHint.DIALOG);
 		window_position = WindowPosition.CENTER;
 
 		set_default_size(def_width, def_height);
@@ -93,7 +92,6 @@ public class ProgressWindow : Gtk.Window {
 	}
 	
 	public void init_window () {
-		
 		title = "";
 		icon = get_app_icon(16);
 		resizable = false;
