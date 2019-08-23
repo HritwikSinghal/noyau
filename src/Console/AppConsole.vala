@@ -57,10 +57,10 @@ public class AppConsole : GLib.Object {
 		
 		LOG_TIMESTAMP = false;
 
-        //check dependencies
+		//check dependencies
 		string message;
 		if (!Main.check_dependencies(out message)) {
-		    log_msg(message);
+			log_error(message);
 			exit(1);
 		}
 
