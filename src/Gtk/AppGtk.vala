@@ -36,9 +36,6 @@ using TeeJee.Misc;
 
 public Main App;
 
-const string GETTEXT_PACKAGE = "";
-const string LOCALE_DIR = "/usr/share/locale";
-
 public class AppGtk : GLib.Object {
 
 	public static int main (string[] args) {
@@ -94,9 +91,9 @@ public class AppGtk : GLib.Object {
 
 	private static void set_locale() {
 		Intl.setlocale(GLib.LocaleCategory.MESSAGES, "ukuu");
-		Intl.textdomain(GETTEXT_PACKAGE);
-		Intl.bind_textdomain_codeset(GETTEXT_PACKAGE, "utf-8");
-		Intl.bindtextdomain(GETTEXT_PACKAGE, LOCALE_DIR);
+		Intl.textdomain(Main.GETTEXT_PACKAGE);
+		Intl.bind_textdomain_codeset(Main.GETTEXT_PACKAGE, "utf-8");
+		Intl.bindtextdomain(Main.GETTEXT_PACKAGE, Main.LOCALE_DIR);
 	}
 
 	public static bool parse_arguments(string[] args) {

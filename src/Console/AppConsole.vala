@@ -35,9 +35,6 @@ using TeeJee.Misc;
 
 public Main App;
 
-const string GETTEXT_PACKAGE = "";
-const string LOCALE_DIR = "/usr/share/locale";
-
 public class AppConsole : GLib.Object {
 
 	public static int main (string[] args) {
@@ -70,13 +67,12 @@ public class AppConsole : GLib.Object {
 
 	private static void set_locale() {
 		Intl.setlocale(GLib.LocaleCategory.MESSAGES, "ukuu");
-		Intl.textdomain(GETTEXT_PACKAGE);
-		Intl.bind_textdomain_codeset(GETTEXT_PACKAGE, "utf-8");
-		Intl.bindtextdomain(GETTEXT_PACKAGE, LOCALE_DIR);
+		Intl.textdomain(Main.GETTEXT_PACKAGE);
+		Intl.bind_textdomain_codeset(Main.GETTEXT_PACKAGE, "utf-8");
+		Intl.bindtextdomain(Main.GETTEXT_PACKAGE, Main.LOCALE_DIR);
 	}
 
 	private static string help_message() {
-		
 		string msg = "\n" + Main.AppName + " v" + Main.AppVersion + " by Tony George (teejeetech@gmail.com)" + "\n";
 		msg += "\n";
 		msg += _("Syntax") + ": ukuu <command> [options]\n";
