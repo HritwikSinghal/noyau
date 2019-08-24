@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu 2.2\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-08-24 14:49+0100\n"
+"POT-Creation-Date: 2019-08-24 15:07+0100\n"
 "PO-Revision-Date: 2018-01-13 16:56+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -47,7 +47,7 @@ msgstr ""
 msgid "Available Kernels"
 msgstr "Tillgängliga kärnor"
 
-#: Gtk/MainWindow.vala:788
+#: Gtk/MainWindow.vala:787
 msgid "Booting previous kernels"
 msgstr "Startar föregående kärnor"
 
@@ -294,7 +294,7 @@ msgstr "Installation slutförd. Omstart krävs för att tillämpa den nya kärna
 msgid "Installed"
 msgstr "Installerad"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:648
 #: Utility/TeeJee.System.vala:288
 msgid "Internet connection is not active"
 msgstr "Internetuppkopplingen är inte aktiv"
@@ -326,7 +326,7 @@ msgstr "Lista tillgängliga kärnor"
 msgid "List installed kernels"
 msgstr "Lista tillgängliga kärnor"
 
-#: Gtk/MainWindow.vala:789
+#: Gtk/MainWindow.vala:788
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
 "drivers installed on your system. These issues include:\n"
@@ -374,7 +374,7 @@ msgstr "Flera kärnor valda för installation. Välj endast en."
 msgid "No"
 msgstr "Nej"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:648
 msgid "No Internet"
 msgstr "Inget internet"
 
@@ -382,7 +382,7 @@ msgstr "Inget internet"
 msgid "No kernels specified"
 msgstr ""
 
-#: Gtk/MainWindow.vala:783 Console/AppConsole.vala:365
+#: Gtk/MainWindow.vala:782 Console/AppConsole.vala:365
 #: Console/AppConsole.vala:445 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Inga uppdateringar hittades"
@@ -439,7 +439,7 @@ msgstr "Skriv ut felsökningsinformation"
 msgid "Refresh"
 msgstr "Uppdatera"
 
-#: Gtk/MainWindow.vala:532
+#: Gtk/MainWindow.vala:531
 msgid "Refreshing..."
 msgstr "Uppdaterar ..."
 
@@ -552,7 +552,7 @@ msgstr "Syntax"
 msgid "Temp"
 msgstr ""
 
-#: Gtk/MainWindow.vala:644 Common/LinuxKernel.vala:1243
+#: Gtk/MainWindow.vala:643 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "Denna kärna är redan installerad"
 
@@ -631,7 +631,7 @@ msgstr "Ja"
 msgid "[Warning] Deleted invalid lock"
 msgstr "[Varning] Tog bort ogiltigt lås"
 
-#: Utility/Gtk/AboutWindow.vala:48
+#: Utility/Gtk/AboutWindow.vala:51
 #, fuzzy
 msgid "translator-credits"
 msgstr "Översättare"

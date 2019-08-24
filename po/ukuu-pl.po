@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-08-24 14:49+0100\n"
+"POT-Creation-Date: 2019-08-24 15:07+0100\n"
 "PO-Revision-Date: 2017-08-12 15:26+0200\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
@@ -45,7 +45,7 @@ msgstr ""
 msgid "Available Kernels"
 msgstr "Dostępne jądra"
 
-#: Gtk/MainWindow.vala:788
+#: Gtk/MainWindow.vala:787
 msgid "Booting previous kernels"
 msgstr "Uruchamianie poprzednich jąder"
 
@@ -293,7 +293,7 @@ msgstr ""
 msgid "Installed"
 msgstr "Zainstalowany"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:648
 #: Utility/TeeJee.System.vala:288
 msgid "Internet connection is not active"
 msgstr "Brak połączenia z internetem"
@@ -326,7 +326,7 @@ msgstr "Pokaż wszystkie dostępne jądra"
 msgid "List installed kernels"
 msgstr "Pokaż wszystkie dostępne jądra"
 
-#: Gtk/MainWindow.vala:789
+#: Gtk/MainWindow.vala:788
 #, fuzzy
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
@@ -375,7 +375,7 @@ msgstr "Wybrano kilka jąder do instalacji. Wybierz tylko jedno."
 msgid "No"
 msgstr ""
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:648
 msgid "No Internet"
 msgstr "Brak internetu"
 
@@ -383,7 +383,7 @@ msgstr "Brak internetu"
 msgid "No kernels specified"
 msgstr ""
 
-#: Gtk/MainWindow.vala:783 Console/AppConsole.vala:365
+#: Gtk/MainWindow.vala:782 Console/AppConsole.vala:365
 #: Console/AppConsole.vala:445 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Nie znaleziono aktualizacji"
@@ -440,7 +440,7 @@ msgstr "Wypisz informacje debugujące"
 msgid "Refresh"
 msgstr "Odśwież"
 
-#: Gtk/MainWindow.vala:532
+#: Gtk/MainWindow.vala:531
 msgid "Refreshing..."
 msgstr "Odświeżam..."
 
@@ -551,7 +551,7 @@ msgstr "Składnia"
 msgid "Temp"
 msgstr ""
 
-#: Gtk/MainWindow.vala:644 Common/LinuxKernel.vala:1243
+#: Gtk/MainWindow.vala:643 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "To jądro jest już zainstalowane."
 
@@ -630,7 +630,7 @@ msgstr ""
 msgid "[Warning] Deleted invalid lock"
 msgstr "[Ostrzeżenie] Usunięto nieprawidłową blokadę"
 
-#: Utility/Gtk/AboutWindow.vala:48
+#: Utility/Gtk/AboutWindow.vala:51
 #, fuzzy
 msgid "translator-credits"
 msgstr "Tłumacze"

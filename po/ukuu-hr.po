@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-08-24 14:49+0100\n"
+"POT-Creation-Date: 2019-08-24 15:07+0100\n"
 "PO-Revision-Date: 2017-12-24 00:52+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -47,7 +47,7 @@ msgstr ""
 msgid "Available Kernels"
 msgstr "Dostupni kerneli"
 
-#: Gtk/MainWindow.vala:788
+#: Gtk/MainWindow.vala:787
 msgid "Booting previous kernels"
 msgstr "Pokretanje prijašnjeg kernela"
 
@@ -295,7 +295,7 @@ msgstr ""
 msgid "Installed"
 msgstr "Instalirano"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:648
 #: Utility/TeeJee.System.vala:288
 msgid "Internet connection is not active"
 msgstr "Internet povezivanje nije aktivno"
@@ -327,7 +327,7 @@ msgstr "Prikaži sve kernele"
 msgid "List installed kernels"
 msgstr "Prikaži sve kernele"
 
-#: Gtk/MainWindow.vala:789
+#: Gtk/MainWindow.vala:788
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
 "drivers installed on your system. These issues include:\n"
@@ -375,7 +375,7 @@ msgstr "Više kernela je odabrano za instalaciju. odaberite samo jedan."
 msgid "No"
 msgstr "Ne"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:648
 msgid "No Internet"
 msgstr "Nema pristupa internetu"
 
@@ -383,7 +383,7 @@ msgstr "Nema pristupa internetu"
 msgid "No kernels specified"
 msgstr ""
 
-#: Gtk/MainWindow.vala:783 Console/AppConsole.vala:365
+#: Gtk/MainWindow.vala:782 Console/AppConsole.vala:365
 #: Console/AppConsole.vala:445 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Nema pronađenih nadopuna"
@@ -440,7 +440,7 @@ msgstr "Ispiši informacije otklanjanja grešaka"
 msgid "Refresh"
 msgstr "Osvježi"
 
-#: Gtk/MainWindow.vala:532
+#: Gtk/MainWindow.vala:531
 msgid "Refreshing..."
 msgstr "Osvježavanje..."
 
@@ -550,7 +550,7 @@ msgstr "Sintaksa"
 msgid "Temp"
 msgstr ""
 
-#: Gtk/MainWindow.vala:644 Common/LinuxKernel.vala:1243
+#: Gtk/MainWindow.vala:643 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "Ovaj kernel je već instaliran."
 
@@ -629,7 +629,7 @@ msgstr "Da"
 msgid "[Warning] Deleted invalid lock"
 msgstr "[Upozorenje] Obrisano je neispravno zaključavanje"
 
-#: Utility/Gtk/AboutWindow.vala:48
+#: Utility/Gtk/AboutWindow.vala:51
 #, fuzzy
 msgid "translator-credits"
 msgstr "Prevoditelji"

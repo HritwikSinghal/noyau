@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-08-24 14:49+0100\n"
+"POT-Creation-Date: 2019-08-24 15:07+0100\n"
 "PO-Revision-Date: 2018-03-30 20:59+0300\n"
 "Last-Translator: Gökhan Gökkaya <gokhanlnx@gmail.com>\n"
 "Language-Team: Turkish\n"
@@ -47,7 +47,7 @@ msgstr ""
 msgid "Available Kernels"
 msgstr "Mevcut Çekirdekler"
 
-#: Gtk/MainWindow.vala:788
+#: Gtk/MainWindow.vala:787
 msgid "Booting previous kernels"
 msgstr "Önceki çekirdeklerin önyüklenmesi"
 
@@ -294,7 +294,7 @@ msgstr ""
 msgid "Installed"
 msgstr "Kurulu"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:648
 #: Utility/TeeJee.System.vala:288
 msgid "Internet connection is not active"
 msgstr "İnternet bağlantısı aktif değil"
@@ -326,7 +326,7 @@ msgstr "Tüm çekirdekleri listele"
 msgid "List installed kernels"
 msgstr "Tüm çekirdekleri listele"
 
-#: Gtk/MainWindow.vala:789
+#: Gtk/MainWindow.vala:788
 #, fuzzy
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
@@ -377,7 +377,7 @@ msgstr "Kurulum için çoklu çekirdek seçildi. Sadece bir tane seçiniz."
 msgid "No"
 msgstr "Hayır"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:648
 msgid "No Internet"
 msgstr "İnternet Yok"
 
@@ -385,7 +385,7 @@ msgstr "İnternet Yok"
 msgid "No kernels specified"
 msgstr ""
 
-#: Gtk/MainWindow.vala:783 Console/AppConsole.vala:365
+#: Gtk/MainWindow.vala:782 Console/AppConsole.vala:365
 #: Console/AppConsole.vala:445 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Güncelleme bulunamadı"
@@ -442,7 +442,7 @@ msgstr "Hata ayıklama bilgisini yazdır"
 msgid "Refresh"
 msgstr "Yenile"
 
-#: Gtk/MainWindow.vala:532
+#: Gtk/MainWindow.vala:531
 msgid "Refreshing..."
 msgstr "Yenileniyor..."
 
@@ -554,7 +554,7 @@ msgstr "Sözdizimi"
 msgid "Temp"
 msgstr ""
 
-#: Gtk/MainWindow.vala:644 Common/LinuxKernel.vala:1243
+#: Gtk/MainWindow.vala:643 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "Bu çekirdek zaten kurulu."
 
@@ -633,7 +633,7 @@ msgstr "Evet"
 msgid "[Warning] Deleted invalid lock"
 msgstr "[Uyarı] Geçersiz kilit silindi"
 
-#: Utility/Gtk/AboutWindow.vala:48
+#: Utility/Gtk/AboutWindow.vala:51
 #, fuzzy
 msgid "translator-credits"
 msgstr "Çevirenler"

@@ -36,21 +36,22 @@ public class AboutWindow : AboutDialog {
 		this.title = Main.AppName;
 		this.program_name = Main.AppName;
 		this.comments = _("A graphical utility for managing kernels on Ubuntu.");
-		//this.logo_icon_name = get_app_icon(128);
 		this.version = Main.AppVersion;
 		this.website = "https://joshuadowding.github.io";
 
+		this.logo = get_app_icon(64);
+		this.modal = true;
+		this.destroy_with_parent = true;
+
 		this.authors = {
-			"Joshua Dowding:joshuadowding@outlook.com",
-			"Tony George:teejeetech@gmail.com"
+			"Joshua Dowding (joshuadowding@outlook.com)",
+			"Tony George (teejeetech@gmail.com)"
 		};
 
 		this.translator_credits = _("translator-credits");
 		this.copyright = "Copyright © 2019 Joshua Dowding (%s)".printf(Main.AppAuthorEmail);
 		this.license_type = Gtk.License.GPL_3_0;
-
-		this.destroy_with_parent = true;
-		this.modal = true;
+		this.wrap_license = true;
 
 		this.response.connect (() => {
 			this.destroy ();

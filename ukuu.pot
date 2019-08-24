@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu 1.6\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-08-24 14:49+0100\n"
+"POT-Creation-Date: 2019-08-24 15:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgstr ""
 msgid "Available Kernels"
 msgstr ""
 
-#: Gtk/MainWindow.vala:788
+#: Gtk/MainWindow.vala:787
 msgid "Booting previous kernels"
 msgstr ""
 
@@ -286,7 +286,7 @@ msgstr ""
 msgid "Installed"
 msgstr ""
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:648
 #: Utility/TeeJee.System.vala:288
 msgid "Internet connection is not active"
 msgstr ""
@@ -317,7 +317,7 @@ msgstr ""
 msgid "List installed kernels"
 msgstr ""
 
-#: Gtk/MainWindow.vala:789
+#: Gtk/MainWindow.vala:788
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
 "drivers installed on your system. These issues include:\n"
@@ -351,7 +351,7 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:648
 msgid "No Internet"
 msgstr ""
 
@@ -359,7 +359,7 @@ msgstr ""
 msgid "No kernels specified"
 msgstr ""
 
-#: Gtk/MainWindow.vala:783 Console/AppConsole.vala:365
+#: Gtk/MainWindow.vala:782 Console/AppConsole.vala:365
 #: Console/AppConsole.vala:445 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr ""
@@ -416,7 +416,7 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
-#: Gtk/MainWindow.vala:532
+#: Gtk/MainWindow.vala:531
 msgid "Refreshing..."
 msgstr ""
 
@@ -522,7 +522,7 @@ msgstr ""
 msgid "Temp"
 msgstr ""
 
-#: Gtk/MainWindow.vala:644 Common/LinuxKernel.vala:1243
+#: Gtk/MainWindow.vala:643 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr ""
 
@@ -587,6 +587,6 @@ msgstr ""
 msgid "[Warning] Deleted invalid lock"
 msgstr ""
 
-#: Utility/Gtk/AboutWindow.vala:48
+#: Utility/Gtk/AboutWindow.vala:51
 msgid "translator-credits"
 msgstr ""

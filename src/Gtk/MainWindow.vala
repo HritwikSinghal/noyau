@@ -521,7 +521,6 @@ public class MainWindow : Gtk.Window {
 			LinuxKernel.query(false);
 
 			while (LinuxKernel.task_is_running) {
-				
 				sleep(200);
 				gtk_do_events();
 			}
