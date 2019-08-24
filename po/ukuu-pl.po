@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-08-23 16:32-0700\n"
+"POT-Creation-Date: 2019-08-24 05:07-0700\n"
 "PO-Revision-Date: 2017-08-12 15:26+0200\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
@@ -20,11 +20,11 @@ msgstr ""
 msgid "A paid version of Ukuu is now available, with more features and new UI"
 msgstr ""
 
-#: Gtk/MainWindow.vala:491
+#: Gtk/MainWindow.vala:443
 msgid "About"
 msgstr "O programie"
 
-#: Console/AppConsole.vala:112
+#: Console/AppConsole.vala:113
 msgid "Admin access is required for running this application."
 msgstr "Aby uruchomić tę aplikację niezbędne są prawa administratora."
 
@@ -42,7 +42,7 @@ msgstr "Architektura systemu"
 msgid "Artists"
 msgstr "Artyści"
 
-#: Console/AppConsole.vala:101
+#: Console/AppConsole.vala:102
 msgid "Assume Yes for all prompts (non-interactive mode)"
 msgstr ""
 
@@ -59,21 +59,22 @@ msgstr "Dostępne jądra"
 msgid "Back"
 msgstr "Wstecz"
 
-#: Gtk/MainWindow.vala:817
+#: Gtk/MainWindow.vala:824
 msgid "Booting previous kernels"
 msgstr "Uruchamianie poprzednich jąder"
 
-#: Console/AppConsole.vala:197 Gtk/AppGtk.vala:105
+#: Console/AppConsole.vala:201 Gtk/AppGtk.vala:103
 msgid "Cache"
 msgstr ""
 
 #: Utility/Gtk/CustomMessageDialog.vala:172 Utility/Gtk/GtkHelper.vala:122
-#: Gtk/ProgressWindow.vala:145 Gtk/TerminalWindow.vala:168
+#: Gtk/ProgressWindow.vala:141 Gtk/TerminalWindow.vala:168
 #: Gtk/UpdateNotificationWindow.vala:167
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: Gtk/MainWindow.vala:459
+#: Gtk/MainWindow.vala:408
+#, fuzzy
 msgid "Changes"
 msgstr "Zmiany"
 
@@ -94,7 +95,7 @@ msgstr "Sprawdź nowe wersje jądra"
 msgid "Close"
 msgstr "Zamknij"
 
-#: Console/AppConsole.vala:334
+#: Console/AppConsole.vala:338
 msgid "Command not specified"
 msgstr ""
 
@@ -121,7 +122,7 @@ msgstr "Wkład"
 msgid "Could not find any kernels to remove"
 msgstr "Wybierz jądro do usunięcia"
 
-#: Console/AppConsole.vala:302 Gtk/MainWindow.vala:98
+#: Console/AppConsole.vala:306 Gtk/MainWindow.vala:102
 msgid "Could not find requested version"
 msgstr "Nie można odnaleźć żądanej wersji"
 
@@ -285,7 +286,7 @@ msgstr "Indeks jest aktualny"
 msgid "Index is stale"
 msgstr "Indeks jest nieaktualny"
 
-#: Gtk/MainWindow.vala:354 Gtk/UpdateNotificationWindow.vala:147
+#: Gtk/MainWindow.vala:338 Gtk/UpdateNotificationWindow.vala:147
 msgid "Install"
 msgstr "Zainstaluj"
 
@@ -321,29 +322,29 @@ msgstr ""
 "Instalacja zakończona. Aby korzystać z nowego jądra, konieczne jest ponowne "
 "uruchomienie."
 
-#: Gtk/MainWindow.vala:203 Common/LinuxKernel.vala:1172
+#: Gtk/MainWindow.vala:207 Common/LinuxKernel.vala:1172
 msgid "Installed"
 msgstr "Zainstalowany"
 
-#: Utility/TeeJee.System.vala:288 Gtk/MainWindow.vala:345
-#: Gtk/MainWindow.vala:542 Gtk/MainWindow.vala:678
+#: Utility/TeeJee.System.vala:288 Gtk/MainWindow.vala:493
+#: Gtk/MainWindow.vala:549 Gtk/MainWindow.vala:685
 msgid "Internet connection is not active"
 msgstr "Brak połączenia z internetem"
 
-#: Gtk/MainWindow.vala:145
+#: Gtk/MainWindow.vala:149
 msgid "Kernel"
 msgstr "Jądro"
 
-#: Gtk/MainWindow.vala:526
+#: Gtk/MainWindow.vala:533
 msgid "Kernel upgrade utility for Ubuntu-based distributions"
 msgstr "Narzędzie uaktualniania jądra dla dystrybucji z rodziny Ubuntu"
 
-#: Console/AppConsole.vala:360 Common/LinuxKernel.vala:779
+#: Console/AppConsole.vala:364 Common/LinuxKernel.vala:779
 #, c-format
 msgid "Latest point update"
 msgstr ""
 
-#: Console/AppConsole.vala:353 Common/LinuxKernel.vala:768
+#: Console/AppConsole.vala:357 Common/LinuxKernel.vala:768
 #, c-format
 msgid "Latest update"
 msgstr ""
@@ -362,7 +363,7 @@ msgstr "Pokaż wszystkie dostępne jądra"
 msgid "List installed kernels"
 msgstr "Pokaż wszystkie dostępne jądra"
 
-#: Gtk/MainWindow.vala:818
+#: Gtk/MainWindow.vala:825
 #, fuzzy
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
@@ -403,11 +404,11 @@ msgstr "Brakująca ikona"
 msgid "More Info"
 msgstr ""
 
-#: Gtk/MainWindow.vala:363
+#: Gtk/MainWindow.vala:345
 msgid "Multiple Kernels Selected"
 msgstr "Wybrano kilka jąder"
 
-#: Console/AppConsole.vala:284
+#: Console/AppConsole.vala:288
 msgid "Multiple kernels selected for installation. Select only one."
 msgstr "Wybrano kilka jąder do instalacji. Wybierz tylko jedno."
 
@@ -419,20 +420,20 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: Gtk/MainWindow.vala:345 Gtk/MainWindow.vala:542 Gtk/MainWindow.vala:678
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:549 Gtk/MainWindow.vala:685
 msgid "No Internet"
 msgstr "Brak internetu"
 
-#: Console/AppConsole.vala:278 Console/AppConsole.vala:315
+#: Console/AppConsole.vala:282 Console/AppConsole.vala:319
 msgid "No kernels specified"
 msgstr ""
 
-#: Console/AppConsole.vala:365 Console/AppConsole.vala:445
-#: Gtk/MainWindow.vala:812 Common/LinuxKernel.vala:787
+#: Console/AppConsole.vala:369 Console/AppConsole.vala:449
+#: Gtk/MainWindow.vala:819 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Nie znaleziono aktualizacji"
 
-#: Gtk/MainWindow.vala:366 Gtk/MainWindow.vala:377
+#: Gtk/MainWindow.vala:348 Gtk/MainWindow.vala:361
 msgid "Not Selected"
 msgstr "Nie wybrany"
 
@@ -455,7 +456,7 @@ msgstr "Powiadom, jeśli pojawi się wersja punktowa"
 msgid "OK"
 msgstr "OK"
 
-#: Console/AppConsole.vala:98 Gtk/AppGtk.vala:176
+#: Console/AppConsole.vala:99 Gtk/AppGtk.vala:174
 msgid "Options"
 msgstr "Opcje"
 
@@ -477,32 +478,32 @@ msgstr "Zainstaluj wymagane pakiety i spróbuj ponownie"
 msgid "Preparing to remove selected kernels"
 msgstr "Przygotowanie do usunięcia wybranych jąder"
 
-#: Gtk/AppGtk.vala:178
+#: Gtk/AppGtk.vala:176
 msgid "Print debug information"
 msgstr "Wypisz informacje debugujące"
 
-#: Gtk/MainWindow.vala:420
-msgid "Purge"
-msgstr ""
-
-#: Gtk/MainWindow.vala:338
+#: Gtk/MainWindow.vala:488
 msgid "Refresh"
 msgstr "Odśwież"
 
-#: Gtk/MainWindow.vala:561
+#: Gtk/MainWindow.vala:568
 msgid "Refreshing..."
 msgstr "Odświeżam..."
 
-#: Gtk/MainWindow.vala:371
+#: Gtk/MainWindow.vala:357
 msgid "Remove"
 msgstr "Usuń"
 
-#: Console/AppConsole.vala:96 Console/AppConsole.vala:100
+#: Console/AppConsole.vala:96 Console/AppConsole.vala:101
 msgid "Remove files from application cache"
 msgstr "Usuń pliki z pamięci podręcznej aplikacji"
 
-#: Console/AppConsole.vala:94 Gtk/MainWindow.vala:421
+#: Console/AppConsole.vala:94
 msgid "Remove installed kernels older than running kernel"
+msgstr ""
+
+#: Gtk/MainWindow.vala:449
+msgid "Remove installed kernels older than the running kernel"
 msgstr ""
 
 #: Console/AppConsole.vala:93
@@ -510,36 +511,36 @@ msgstr ""
 msgid "Remove specified kernel"
 msgstr "Usuń wybrane jądro"
 
-#: Console/AppConsole.vala:335
+#: Console/AppConsole.vala:339
 msgid "Run 'ukuu --help' to list all commands"
 msgstr ""
 
-#: Console/AppConsole.vala:192
+#: Console/AppConsole.vala:196
 msgid "Run 'ukuu --help' to list all options"
 msgstr ""
 
-#: Console/AppConsole.vala:306
+#: Console/AppConsole.vala:310
 msgid "Run 'ukuu --list' and use the version string listed in first column"
 msgstr "Uruchom 'ukuu --list' i użyj wersji wyświetlonej w pierwszej kolumnie"
 
-#: Console/AppConsole.vala:115
+#: Console/AppConsole.vala:116
 #, fuzzy
 msgid "Run the application as admin with pkexec or sudo."
 msgstr "Uruchom aplikację jako root albo użyj gksu/sudo."
 
-#: Gtk/MainWindow.vala:203 Common/LinuxKernel.vala:1172
+#: Gtk/MainWindow.vala:207 Common/LinuxKernel.vala:1172
 msgid "Running"
 msgstr "Uruchomiony"
 
-#: Gtk/MainWindow.vala:363
+#: Gtk/MainWindow.vala:345
 msgid "Select a single kernel to install"
 msgstr "Wybierz pojedyncze jądro do instalacji"
 
-#: Gtk/MainWindow.vala:366
+#: Gtk/MainWindow.vala:348
 msgid "Select the kernel to install"
 msgstr "Wybierz pojedyncze do instalacji"
 
-#: Gtk/MainWindow.vala:377
+#: Gtk/MainWindow.vala:361
 msgid "Select the kernels to remove"
 msgstr "Wybierz jądro do usunięcia"
 
@@ -555,7 +556,7 @@ msgstr ""
 msgid "Set GRUB menu timeout"
 msgstr ""
 
-#: Gtk/MainWindow.vala:470 Gtk/SettingsDialog.vala:57
+#: Gtk/MainWindow.vala:421 Gtk/SettingsDialog.vala:57
 msgid "Settings"
 msgstr "Ustawienia"
 
@@ -563,7 +564,7 @@ msgstr "Ustawienia"
 msgid "Show"
 msgstr ""
 
-#: Gtk/AppGtk.vala:179
+#: Gtk/AppGtk.vala:177
 msgid "Show all options"
 msgstr "Pokaż wszystkie opcje"
 
@@ -575,7 +576,12 @@ msgstr "Pokaż powiadomienia na pulpicie"
 msgid "Show notification dialog"
 msgstr "Pokaż okno powiadomień"
 
-#: Gtk/MainWindow.vala:191
+#: Console/AppConsole.vala:97
+#, fuzzy
+msgid "Show unstable and RC releases"
+msgstr "Ukryj wydania niestabilne i RC"
+
+#: Gtk/MainWindow.vala:195
 msgid "Status"
 msgstr "Status"
 
@@ -583,11 +589,11 @@ msgstr "Status"
 msgid "Stopped"
 msgstr "Zatrzymany"
 
-#: Console/AppConsole.vala:82 Gtk/AppGtk.vala:174
+#: Console/AppConsole.vala:82 Gtk/AppGtk.vala:172
 msgid "Syntax"
 msgstr "Składnia"
 
-#: Console/AppConsole.vala:198 Gtk/AppGtk.vala:106
+#: Console/AppConsole.vala:202 Gtk/AppGtk.vala:104
 msgid "Temp"
 msgstr ""
 
@@ -596,7 +602,7 @@ msgstr ""
 msgid "Third Party Tools"
 msgstr "Narzędzia osób trzecich"
 
-#: Gtk/MainWindow.vala:673 Common/LinuxKernel.vala:1243
+#: Gtk/MainWindow.vala:680 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "To jądro jest już zainstalowane."
 
@@ -633,7 +639,7 @@ msgstr "De-instalacja zakończona"
 msgid "Un-install completed with errors"
 msgstr "De-instalacja zakończona z błędami"
 
-#: Console/AppConsole.vala:191 Gtk/AppGtk.vala:161
+#: Console/AppConsole.vala:195 Gtk/AppGtk.vala:159
 msgid "Unknown option"
 msgstr "Nieznana opcja"
 
@@ -660,7 +666,7 @@ msgstr ""
 msgid "Updating GRUB menu"
 msgstr "Aktualizacja menu GRUB"
 
-#: Gtk/MainWindow.vala:174
+#: Gtk/MainWindow.vala:178
 msgid "Version"
 msgstr "Wersja"
 
@@ -679,6 +685,30 @@ msgstr ""
 #: Utility/AppLock.vala:56
 msgid "[Warning] Deleted invalid lock"
 msgstr "[Ostrzeżenie] Usunięto nieprawidłową blokadę"
+
+#, fuzzy
+#~ msgid "Install kernel"
+#~ msgstr "Zainstaluj to jądro"
+
+#, fuzzy
+#~ msgid "Refresh the kernel list"
+#~ msgstr "Wybierz pojedyncze do instalacji"
+
+#, fuzzy
+#~ msgid "Remove kernel"
+#~ msgstr "Usuń wybrane jądro"
+
+#, fuzzy
+#~ msgid "About ukuu."
+#~ msgstr "O programie"
+
+#, fuzzy
+#~ msgid "Install selected kernel."
+#~ msgstr "Zainstaluj to jądro"
+
+#, fuzzy
+#~ msgid "Remove selected installed kernel."
+#~ msgstr "Usuń wybrane jądro"
 
 #~ msgid "Donate"
 #~ msgstr "Wesprzyj"

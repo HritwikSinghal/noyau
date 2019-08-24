@@ -93,7 +93,6 @@ public class AppGtk : GLib.Object {
 	}
 
 	private static void set_locale() {
-		
 		Intl.setlocale(GLib.LocaleCategory.MESSAGES, "ukuu");
 		Intl.textdomain(GETTEXT_PACKAGE);
 		Intl.bind_textdomain_codeset(GETTEXT_PACKAGE, "utf-8");
@@ -101,7 +100,6 @@ public class AppGtk : GLib.Object {
 	}
 
 	public static bool parse_arguments(string[] args) {
-
 		log_msg(_("Cache") + ": %s".printf(LinuxKernel.CACHE_DIR));
 		log_msg(_("Temp") + ": %s".printf(TEMP_DIR));
 

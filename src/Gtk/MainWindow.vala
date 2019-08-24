@@ -43,6 +43,7 @@ public class MainWindow : Gtk.Window {
 	private Gtk.Button btn_purge;
 	private Gtk.Button btn_changes;
 	private Gtk.Label lbl_info;
+	private Gtk.HeaderBar header_bar;
 	
 	// helper members
 
@@ -53,10 +54,14 @@ public class MainWindow : Gtk.Window {
 	private Gee.ArrayList<LinuxKernel> selected_kernels;
 	
 	public MainWindow() {
-		
 		title = Main.AppName; //"%s (Ukuu) v%s".printf(Main.AppName, Main.AppVersion);
 		window_position = WindowPosition.CENTER;
 		icon = get_app_icon(16,".svg");
+
+		header_bar = new Gtk.HeaderBar();
+		header_bar.show_close_button = true;
+		header_bar.title = Main.AppName;
+		this.set_titlebar(header_bar);
 
 		// vbox_main
 		vbox_main = new Gtk.Box(Orientation.VERTICAL, 6);
@@ -72,7 +77,6 @@ public class MainWindow : Gtk.Window {
 	}
 
 	private bool init_delayed() {
-		
 		/* any actions that need to run after window has been displayed */
 		
 		if (tmr_init > 0) {
@@ -330,32 +334,10 @@ public class MainWindow : Gtk.Window {
 	}
 
 	private void init_actions(){
+		var button_install = new Gtk.Button.from_icon_name("system-software-install-symbolic", IconSize.SMALL_TOOLBAR);
+		button_install.set_tooltip_text(_("Install"));
 
-		var hbox = new Gtk.Box(Orientation.VERTICAL, 6);
-		hbox_list.add (hbox);
-
-		// refresh
-		var button = new Gtk.Button.with_label (_("Refresh"));
-		hbox.pack_start (button, true, true, 0);
-		btn_refresh = button;
-		
-		button.clicked.connect(() => {
-
-			if (!check_internet_connectivity()){
-				gtk_messagebox(_("No Internet"), _("Internet connection is not active"), this, true);
-				return;
-			}
-		
-			refresh_cache();
-			tv_refresh();
-		});
-		
-		// install
-		button = new Gtk.Button.with_label (_("Install"));
-		hbox.pack_start (button, true, true, 0);
-		btn_install = button;
-		
-		button.clicked.connect(() => {
+		button_install.clicked.connect(() => {
 			if (selected_kernels.size == 1){
 				install(selected_kernels[0]);
 			}
@@ -367,24 +349,26 @@ public class MainWindow : Gtk.Window {
 			}
 		});
 
+		header_bar.pack_start(button_install);
+		btn_install = button_install;
+
 		// remove
-		button = new Gtk.Button.with_label (_("Remove"));
-		hbox.pack_start (button, true, true, 0);
-		btn_remove = button;
-		
-		button.clicked.connect(() => {
-			if (selected_kernels.size == 0){
+		var button_remove = new Gtk.Button.from_icon_name("list-remove-symbolic", IconSize.SMALL_TOOLBAR);
+		button_remove.set_tooltip_text(_("Remove"));
+
+		button_remove.clicked.connect(() => {
+			if (selected_kernels.size == 0) {
 				gtk_messagebox(_("Not Selected"),_("Select the kernels to remove"), this, true);
 			}
-			else if (selected_kernels.size > 0){
+			else if (selected_kernels.size > 0) {
 				
 				var term = new TerminalWindow.with_parent(this, false, true);
 				
-				term.script_complete.connect(()=>{
+				term.script_complete.connect(() => {
 					term.allow_window_close();
 				});
 				
-				term.destroy.connect(()=>{
+				term.destroy.connect(() => {
 					this.present();
 					refresh_cache();
 					tv_refresh();
@@ -393,12 +377,12 @@ public class MainWindow : Gtk.Window {
 				string sh = "";
 				sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY "; 
 				sh += "ukuu --user %s".printf(App.user_login);
-				if (LOG_DEBUG){
+				if (LOG_DEBUG) {
 					sh += " --debug";
 				}
 
 				string names = "";
-				foreach(var kern in selected_kernels){
+				foreach(var kern in selected_kernels) {
 					if (names.length > 0){
 						names += ",";
 					}
@@ -416,21 +400,62 @@ public class MainWindow : Gtk.Window {
 			}
 		});
 
-		// purge
-		button = new Gtk.Button.with_label (_("Purge"));
-		button.set_tooltip_text(_("Remove installed kernels older than running kernel"));
-		hbox.pack_start (button, true, true, 0);
-		btn_purge = button;
-		
-		button.clicked.connect(() => {
+		header_bar.pack_start(button_remove);
+		btn_remove = button_remove;
 
+		// changes
+		var button_changes = new Gtk.Button.from_icon_name("dialog-information-symbolic", IconSize.SMALL_TOOLBAR);
+		button_changes.set_tooltip_text(_("Changes"));
+
+		button_changes.clicked.connect(() => {
+			if ((selected_kernels.size == 1) && file_exists(selected_kernels[0].changes_file)) {
+				xdg_open(selected_kernels[0].changes_file);
+			}
+		});
+
+		header_bar.pack_start(button_changes);
+		btn_changes = button_changes;
+
+		// settings
+		var button_settings = new Gtk.Button.from_icon_name("emblem-system-symbolic", IconSize.SMALL_TOOLBAR);
+		button_settings.set_tooltip_text(_("Settings"));
+
+		button_settings.clicked.connect(() => {
+			bool prev_hide_older = LinuxKernel.hide_older;
+			bool prev_hide_unstable = LinuxKernel.hide_unstable;
+
+			var dlg = new SettingsDialog.with_parent(this);
+			dlg.run();
+			dlg.destroy();
+
+			if (((prev_hide_older == true) && (LinuxKernel.hide_older == false))
+				|| ((prev_hide_unstable == true) && (LinuxKernel.hide_unstable == false))) {
+				refresh_cache();
+			}
+
+			tv_refresh();
+		});
+
+		header_bar.pack_end(button_settings);
+
+		// about
+		var button_about = new Gtk.Button.from_icon_name("help-about-symbolic", IconSize.SMALL_TOOLBAR);
+		button_about.set_tooltip_text(_("About"));
+		button_about.clicked.connect(btn_about_clicked);
+		header_bar.pack_end(button_about);
+
+		// purge
+		var button_purge = new Gtk.Button.from_icon_name("list-remove-all-symbolic", IconSize.SMALL_TOOLBAR);
+		button_purge.set_tooltip_text(_("Remove installed kernels older than the running kernel"));
+
+		button_purge.clicked.connect(() => {
 			var term = new TerminalWindow.with_parent(this, false, true);
 			
-			term.script_complete.connect(()=>{
+			term.script_complete.connect(() => {
 				term.allow_window_close();
 			});
 			
-			term.destroy.connect(()=>{
+			term.destroy.connect(() => {
 				this.present();
 				refresh_cache();
 				tv_refresh();
@@ -439,7 +464,7 @@ public class MainWindow : Gtk.Window {
 			string sh = "";
 			sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY "; 
 			sh += "ukuu --user %s".printf(App.user_login);
-			if (LOG_DEBUG){
+			if (LOG_DEBUG) {
 				sh += " --debug";
 			}
 
@@ -455,47 +480,29 @@ public class MainWindow : Gtk.Window {
 			term.execute_script(save_bash_script_temp(sh));
 		});
 
-		// changes
-		button = new Gtk.Button.with_label (_("Changes"));
-		hbox.pack_start (button, true, true, 0);
-		btn_changes = button;
-		
-		button.clicked.connect(() => {
-			if ((selected_kernels.size == 1) && file_exists(selected_kernels[0].changes_file)){
-				xdg_open(selected_kernels[0].changes_file);
+		header_bar.pack_end(button_purge);
+		btn_purge = button_purge;
+
+		// refresh
+		var button_refresh = new Gtk.Button.from_icon_name("view-refresh-symbolic", IconSize.SMALL_TOOLBAR);
+		button_refresh.set_tooltip_text(_("Refresh"));
+
+		button_refresh.clicked.connect(() => {
+
+			if (!check_internet_connectivity()) {
+				gtk_messagebox(_("No Internet"), _("Internet connection is not active"), this, true);
+				return;
 			}
-		});
 
-		// settings
-		button = new Gtk.Button.with_label (_("Settings"));
-		hbox.pack_start (button, true, true, 0);
-
-		button.clicked.connect(() => {
-
-			bool prev_hide_older = LinuxKernel.hide_older;
-			bool prev_hide_unstable = LinuxKernel.hide_unstable;
-			
-			var dlg = new SettingsDialog.with_parent(this);
-			dlg.run();
-			dlg.destroy();
-
-			if (((prev_hide_older == true) && (LinuxKernel.hide_older == false))
-				|| ((prev_hide_unstable == true) && (LinuxKernel.hide_unstable == false))){
-				refresh_cache();
-			}
-			
+			refresh_cache();
 			tv_refresh();
 		});
 
-		// about
-		button = new Gtk.Button.with_label (_("About"));
-		hbox.pack_start (button, true, true, 0);
-
-		button.clicked.connect(btn_about_clicked);
+		header_bar.pack_end(button_refresh);
+		btn_refresh = button_refresh;
 	}
 
-	private void btn_about_clicked () {
-		
+	private void btn_about_clicked() {
 		var dialog = new AboutWindow();
 		dialog.set_transient_for (this);
 
