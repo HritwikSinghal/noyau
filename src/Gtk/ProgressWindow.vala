@@ -63,13 +63,11 @@ public class ProgressWindow : Gtk.Dialog {
 
 		this.set_default_size(def_width, def_height);
 
-		icon = get_app_icon(16,".svg");
-
 		App.status_line = "";
 		App.progress_count = 0;
 		App.progress_total = 0;
-		
-		this.status_message = message;
+
+		status_message = message;
 		this.allow_cancel = allow_cancel;
 
 		App.cancelled = false;
@@ -111,7 +109,7 @@ public class ProgressWindow : Gtk.Dialog {
 		hbox_status.add(spinner);
 
 		//lbl_msg
-		lbl_msg = new Gtk.Label (status_message);
+		lbl_msg = new Gtk.Label(status_message);
 		lbl_msg.halign = Align.START;
 		lbl_msg.ellipsize = Pango.EllipsizeMode.END;
 		lbl_msg.max_width_chars = 40;
@@ -128,7 +126,7 @@ public class ProgressWindow : Gtk.Dialog {
 		hbox.add(progressbar);
 
 		//lbl_status
-		lbl_status = new Gtk.Label ("");
+		lbl_status = new Gtk.Label("");
 		lbl_status.halign = Align.START;
 		lbl_status.ellipsize = Pango.EllipsizeMode.END;
 		lbl_status.max_width_chars = 40;
