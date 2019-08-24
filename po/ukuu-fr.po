@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-08-24 15:07+0100\n"
+"POT-Creation-Date: 2019-08-24 13:40-0700\n"
 "PO-Revision-Date: 2018-08-05 15:50+0200\n"
 "Last-Translator: Yolateng0 <yo@yo.nohost.me>\n"
 "Language-Team: French\n"
@@ -20,10 +20,6 @@ msgstr ""
 #: Utility/Gtk/AboutWindow.vala:38
 msgid "A graphical utility for managing kernels on Ubuntu."
 msgstr ""
-
-#: Gtk/MainWindow.vala:443
-msgid "About"
-msgstr "À propos"
 
 #: Console/AppConsole.vala:109
 msgid "Admin access is required for running this application."
@@ -46,21 +42,21 @@ msgstr ""
 msgid "Available Kernels"
 msgstr "Noyaux disponibles"
 
-#: Gtk/MainWindow.vala:787
+#: Gtk/MainWindow.vala:803
 msgid "Booting previous kernels"
 msgstr "Démarrer sur un noyau précédent"
 
-#: Gtk/AppGtk.vala:100 Console/AppConsole.vala:197
+#: Console/AppConsole.vala:197 Gtk/AppGtk.vala:100
 msgid "Cache"
 msgstr ""
 
-#: Gtk/UpdateNotificationWindow.vala:167 Gtk/TerminalWindow.vala:168
-#: Gtk/ProgressWindow.vala:141 Utility/Gtk/CustomMessageDialog.vala:172
-#: Utility/Gtk/GtkHelper.vala:122
+#: Utility/Gtk/CustomMessageDialog.vala:172 Utility/Gtk/GtkHelper.vala:122
+#: Gtk/ProgressWindow.vala:141 Gtk/TerminalWindow.vala:168
+#: Gtk/UpdateNotificationWindow.vala:167
 msgid "Cancel"
 msgstr "Annuler"
 
-#: Gtk/MainWindow.vala:408
+#: Gtk/MainWindow.vala:406
 #, fuzzy
 msgid "Changes"
 msgstr "Changements"
@@ -105,7 +101,7 @@ msgstr ""
 msgid "Could not find any kernels to remove"
 msgstr "Sélectionnez les noyaux à supprimer"
 
-#: Gtk/MainWindow.vala:102 Console/AppConsole.vala:302
+#: Console/AppConsole.vala:302 Gtk/MainWindow.vala:101
 msgid "Could not find requested version"
 msgstr "Impossible de trouver la version demandée"
 
@@ -255,7 +251,7 @@ msgstr "L'index est à jour"
 msgid "Index is stale"
 msgstr "L'index est obsolète"
 
-#: Gtk/UpdateNotificationWindow.vala:147 Gtk/MainWindow.vala:338
+#: Gtk/MainWindow.vala:337 Gtk/UpdateNotificationWindow.vala:147
 msgid "Install"
 msgstr "Installer"
 
@@ -291,16 +287,16 @@ msgstr ""
 "Installation complétée. Un redémarrage est nécessaire pour utiliser le "
 "nouveau noyau."
 
-#: Gtk/MainWindow.vala:207 Common/LinuxKernel.vala:1172
+#: Gtk/MainWindow.vala:206 Common/LinuxKernel.vala:1172
 msgid "Installed"
 msgstr "Installé"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:648
-#: Utility/TeeJee.System.vala:288
+#: Utility/TeeJee.System.vala:288 Gtk/MainWindow.vala:431
+#: Gtk/MainWindow.vala:529 Gtk/MainWindow.vala:664
 msgid "Internet connection is not active"
 msgstr "Connexion internet inexistante"
 
-#: Gtk/MainWindow.vala:149
+#: Gtk/MainWindow.vala:148
 msgid "Kernel"
 msgstr "Noyau"
 
@@ -327,7 +323,7 @@ msgstr "Lister les noyaux disponibles"
 msgid "List installed kernels"
 msgstr "Lister les noyaux disponibles"
 
-#: Gtk/MainWindow.vala:788
+#: Gtk/MainWindow.vala:804
 #, fuzzy
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
@@ -364,7 +360,7 @@ msgstr ""
 msgid "Missing Icon"
 msgstr "Icône introuvable"
 
-#: Gtk/MainWindow.vala:345
+#: Gtk/MainWindow.vala:344
 msgid "Multiple Kernels Selected"
 msgstr "Plusieurs noyaux sélectionnés"
 
@@ -378,7 +374,7 @@ msgstr ""
 msgid "No"
 msgstr "Non"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:648
+#: Gtk/MainWindow.vala:431 Gtk/MainWindow.vala:529 Gtk/MainWindow.vala:664
 msgid "No Internet"
 msgstr "Pas d'Internet"
 
@@ -386,12 +382,12 @@ msgstr "Pas d'Internet"
 msgid "No kernels specified"
 msgstr ""
 
-#: Gtk/MainWindow.vala:782 Console/AppConsole.vala:365
-#: Console/AppConsole.vala:445 Common/LinuxKernel.vala:787
+#: Console/AppConsole.vala:365 Console/AppConsole.vala:445
+#: Gtk/MainWindow.vala:798 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Aucune mise à jour disponible"
 
-#: Gtk/MainWindow.vala:348 Gtk/MainWindow.vala:361
+#: Gtk/MainWindow.vala:347 Gtk/MainWindow.vala:360
 msgid "Not Selected"
 msgstr "Non selectionné"
 
@@ -407,13 +403,14 @@ msgstr "Notifier si une version stable majeure est disponible"
 msgid "Notify if a point release is available"
 msgstr "Notifier si une version stable mineure est disponible"
 
-#: Common/LinuxKernel.vala:1220 Utility/Gtk/CustomMessageDialog.vala:167
+#: Utility/Gtk/CustomMessageDialog.vala:167
 #: Utility/Gtk/CustomMessageDialog.vala:171 Utility/Gtk/GtkHelper.vala:121
+#: Common/LinuxKernel.vala:1220
 #, c-format
 msgid "OK"
 msgstr "OK"
 
-#: Gtk/AppGtk.vala:171 Console/AppConsole.vala:95
+#: Console/AppConsole.vala:95 Gtk/AppGtk.vala:171
 msgid "Options"
 msgstr "Options"
 
@@ -439,15 +436,11 @@ msgstr "Préparation à la suppression des noyaux sélectionnés"
 msgid "Print debug information"
 msgstr "Afficher les informations de débogage"
 
-#: Gtk/MainWindow.vala:488
-msgid "Refresh"
-msgstr "Actualiser"
-
-#: Gtk/MainWindow.vala:531
+#: Gtk/MainWindow.vala:547
 msgid "Refreshing..."
 msgstr "Actualisation..."
 
-#: Gtk/MainWindow.vala:357
+#: Gtk/MainWindow.vala:356
 msgid "Remove"
 msgstr "Supprimer"
 
@@ -459,7 +452,7 @@ msgstr "Supprimer les fichiers du cache de l'application"
 msgid "Remove installed kernels older than running kernel"
 msgstr ""
 
-#: Gtk/MainWindow.vala:449
+#: Gtk/MainWindow.vala:483
 msgid "Remove installed kernels older than the running kernel"
 msgstr ""
 
@@ -486,19 +479,19 @@ msgstr ""
 msgid "Run the application as admin with pkexec or sudo."
 msgstr "Exécutez l'application en tant qu'admin avec pkexec or sudo."
 
-#: Gtk/MainWindow.vala:207 Common/LinuxKernel.vala:1172
+#: Gtk/MainWindow.vala:206 Common/LinuxKernel.vala:1172
 msgid "Running"
 msgstr "En cours"
 
-#: Gtk/MainWindow.vala:345
+#: Gtk/MainWindow.vala:344
 msgid "Select a single kernel to install"
 msgstr "Sélectionnez un seul noyau à installer"
 
-#: Gtk/MainWindow.vala:348
+#: Gtk/MainWindow.vala:347
 msgid "Select the kernel to install"
 msgstr "Sélectionnez le noyau à installer"
 
-#: Gtk/MainWindow.vala:361
+#: Gtk/MainWindow.vala:360
 msgid "Select the kernels to remove"
 msgstr "Sélectionnez les noyaux à supprimer"
 
@@ -514,7 +507,7 @@ msgstr ""
 msgid "Set GRUB menu timeout"
 msgstr ""
 
-#: Gtk/SettingsDialog.vala:57 Gtk/MainWindow.vala:421
+#: Gtk/SettingsDialog.vala:57
 msgid "Settings"
 msgstr "Paramètres"
 
@@ -539,7 +532,7 @@ msgstr "Afficher les notifications"
 msgid "Show unstable and RC releases"
 msgstr "Cacher les versions instables et RC"
 
-#: Gtk/MainWindow.vala:195
+#: Gtk/MainWindow.vala:194
 msgid "Status"
 msgstr "Statut"
 
@@ -547,15 +540,15 @@ msgstr "Statut"
 msgid "Stopped"
 msgstr "Arrêté"
 
-#: Gtk/AppGtk.vala:169 Console/AppConsole.vala:78
+#: Console/AppConsole.vala:78 Gtk/AppGtk.vala:169
 msgid "Syntax"
 msgstr "Syntaxe"
 
-#: Gtk/AppGtk.vala:101 Console/AppConsole.vala:198
+#: Console/AppConsole.vala:198 Gtk/AppGtk.vala:101
 msgid "Temp"
 msgstr ""
 
-#: Gtk/MainWindow.vala:643 Common/LinuxKernel.vala:1243
+#: Gtk/MainWindow.vala:659 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "Ce noyau est déjà installé."
 
@@ -587,7 +580,7 @@ msgstr "Désinstallation complète"
 msgid "Un-install completed with errors"
 msgstr "Désinstallation terminée avec des erreurs"
 
-#: Gtk/AppGtk.vala:156 Console/AppConsole.vala:191
+#: Console/AppConsole.vala:191 Gtk/AppGtk.vala:156
 msgid "Unknown option"
 msgstr "Option inconnue"
 
@@ -613,7 +606,7 @@ msgstr ""
 msgid "Updating GRUB menu"
 msgstr "Mise à jour du menu GRUB"
 
-#: Gtk/MainWindow.vala:178
+#: Gtk/MainWindow.vala:177
 msgid "Version"
 msgstr "Version"
 
@@ -637,6 +630,12 @@ msgstr "[Attention] Verrou invalide supprimé"
 #, fuzzy
 msgid "translator-credits"
 msgstr "Traducteurs"
+
+#~ msgid "Refresh"
+#~ msgstr "Actualiser"
+
+#~ msgid "About"
+#~ msgstr "À propos"
 
 #~ msgid "Artists"
 #~ msgstr "Artistes"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu 2.2\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-08-24 15:07+0100\n"
+"POT-Creation-Date: 2019-08-24 13:40-0700\n"
 "PO-Revision-Date: 2018-01-13 16:56+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -21,10 +21,6 @@ msgstr ""
 #: Utility/Gtk/AboutWindow.vala:38
 msgid "A graphical utility for managing kernels on Ubuntu."
 msgstr ""
-
-#: Gtk/MainWindow.vala:443
-msgid "About"
-msgstr "Om"
 
 #: Console/AppConsole.vala:109
 msgid "Admin access is required for running this application."
@@ -47,21 +43,21 @@ msgstr ""
 msgid "Available Kernels"
 msgstr "Tillgängliga kärnor"
 
-#: Gtk/MainWindow.vala:787
+#: Gtk/MainWindow.vala:803
 msgid "Booting previous kernels"
 msgstr "Startar föregående kärnor"
 
-#: Gtk/AppGtk.vala:100 Console/AppConsole.vala:197
+#: Console/AppConsole.vala:197 Gtk/AppGtk.vala:100
 msgid "Cache"
 msgstr ""
 
-#: Gtk/UpdateNotificationWindow.vala:167 Gtk/TerminalWindow.vala:168
-#: Gtk/ProgressWindow.vala:141 Utility/Gtk/CustomMessageDialog.vala:172
-#: Utility/Gtk/GtkHelper.vala:122
+#: Utility/Gtk/CustomMessageDialog.vala:172 Utility/Gtk/GtkHelper.vala:122
+#: Gtk/ProgressWindow.vala:141 Gtk/TerminalWindow.vala:168
+#: Gtk/UpdateNotificationWindow.vala:167
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: Gtk/MainWindow.vala:408
+#: Gtk/MainWindow.vala:406
 #, fuzzy
 msgid "Changes"
 msgstr "Ändringar"
@@ -105,7 +101,7 @@ msgstr ""
 msgid "Could not find any kernels to remove"
 msgstr "Välj kärnor för borttagning"
 
-#: Gtk/MainWindow.vala:102 Console/AppConsole.vala:302
+#: Console/AppConsole.vala:302 Gtk/MainWindow.vala:101
 msgid "Could not find requested version"
 msgstr "Kunde inte hitta efterfrågad version"
 
@@ -256,7 +252,7 @@ msgstr "Index är uppdaterat"
 msgid "Index is stale"
 msgstr "Index är inaktuellt"
 
-#: Gtk/UpdateNotificationWindow.vala:147 Gtk/MainWindow.vala:338
+#: Gtk/MainWindow.vala:337 Gtk/UpdateNotificationWindow.vala:147
 msgid "Install"
 msgstr "Installera"
 
@@ -290,16 +286,16 @@ msgstr "Installation slutförd med fel"
 msgid "Installation completed. A reboot is required to use the new kernel."
 msgstr "Installation slutförd. Omstart krävs för att tillämpa den nya kärnan."
 
-#: Gtk/MainWindow.vala:207 Common/LinuxKernel.vala:1172
+#: Gtk/MainWindow.vala:206 Common/LinuxKernel.vala:1172
 msgid "Installed"
 msgstr "Installerad"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:648
-#: Utility/TeeJee.System.vala:288
+#: Utility/TeeJee.System.vala:288 Gtk/MainWindow.vala:431
+#: Gtk/MainWindow.vala:529 Gtk/MainWindow.vala:664
 msgid "Internet connection is not active"
 msgstr "Internetuppkopplingen är inte aktiv"
 
-#: Gtk/MainWindow.vala:149
+#: Gtk/MainWindow.vala:148
 msgid "Kernel"
 msgstr "Kärna"
 
@@ -326,7 +322,7 @@ msgstr "Lista tillgängliga kärnor"
 msgid "List installed kernels"
 msgstr "Lista tillgängliga kärnor"
 
-#: Gtk/MainWindow.vala:788
+#: Gtk/MainWindow.vala:804
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
 "drivers installed on your system. These issues include:\n"
@@ -362,7 +358,7 @@ msgstr ""
 msgid "Missing Icon"
 msgstr "Saknad ikon"
 
-#: Gtk/MainWindow.vala:345
+#: Gtk/MainWindow.vala:344
 msgid "Multiple Kernels Selected"
 msgstr "Flera kärnor markerade"
 
@@ -374,7 +370,7 @@ msgstr "Flera kärnor valda för installation. Välj endast en."
 msgid "No"
 msgstr "Nej"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:648
+#: Gtk/MainWindow.vala:431 Gtk/MainWindow.vala:529 Gtk/MainWindow.vala:664
 msgid "No Internet"
 msgstr "Inget internet"
 
@@ -382,12 +378,12 @@ msgstr "Inget internet"
 msgid "No kernels specified"
 msgstr ""
 
-#: Gtk/MainWindow.vala:782 Console/AppConsole.vala:365
-#: Console/AppConsole.vala:445 Common/LinuxKernel.vala:787
+#: Console/AppConsole.vala:365 Console/AppConsole.vala:445
+#: Gtk/MainWindow.vala:798 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Inga uppdateringar hittades"
 
-#: Gtk/MainWindow.vala:348 Gtk/MainWindow.vala:361
+#: Gtk/MainWindow.vala:347 Gtk/MainWindow.vala:360
 msgid "Not Selected"
 msgstr "Inte vald"
 
@@ -403,13 +399,14 @@ msgstr "Meddela om en ny (stor) uppdatering finns tillgänglig"
 msgid "Notify if a point release is available"
 msgstr "Meddela om en ny (mindre) uppdatering finns tillgänglig"
 
-#: Common/LinuxKernel.vala:1220 Utility/Gtk/CustomMessageDialog.vala:167
+#: Utility/Gtk/CustomMessageDialog.vala:167
 #: Utility/Gtk/CustomMessageDialog.vala:171 Utility/Gtk/GtkHelper.vala:121
+#: Common/LinuxKernel.vala:1220
 #, c-format
 msgid "OK"
 msgstr "OK"
 
-#: Gtk/AppGtk.vala:171 Console/AppConsole.vala:95
+#: Console/AppConsole.vala:95 Gtk/AppGtk.vala:171
 msgid "Options"
 msgstr "Alternativ"
 
@@ -435,15 +432,11 @@ msgstr "Förbereder borttagning av markerade kärnor"
 msgid "Print debug information"
 msgstr "Skriv ut felsökningsinformation"
 
-#: Gtk/MainWindow.vala:488
-msgid "Refresh"
-msgstr "Uppdatera"
-
-#: Gtk/MainWindow.vala:531
+#: Gtk/MainWindow.vala:547
 msgid "Refreshing..."
 msgstr "Uppdaterar ..."
 
-#: Gtk/MainWindow.vala:357
+#: Gtk/MainWindow.vala:356
 msgid "Remove"
 msgstr "Ta bort"
 
@@ -455,7 +448,7 @@ msgstr "Ta bort filer från program-cachen"
 msgid "Remove installed kernels older than running kernel"
 msgstr "Ta bort installerade kärnor äldre än den som körs"
 
-#: Gtk/MainWindow.vala:449
+#: Gtk/MainWindow.vala:483
 #, fuzzy
 msgid "Remove installed kernels older than the running kernel"
 msgstr "Ta bort installerade kärnor äldre än den som körs"
@@ -483,19 +476,19 @@ msgstr ""
 msgid "Run the application as admin with pkexec or sudo."
 msgstr "Kör programmet som administratör, med pkexec eller sudo."
 
-#: Gtk/MainWindow.vala:207 Common/LinuxKernel.vala:1172
+#: Gtk/MainWindow.vala:206 Common/LinuxKernel.vala:1172
 msgid "Running"
 msgstr "Körs"
 
-#: Gtk/MainWindow.vala:345
+#: Gtk/MainWindow.vala:344
 msgid "Select a single kernel to install"
 msgstr "Välj en enstaka kärna att installera"
 
-#: Gtk/MainWindow.vala:348
+#: Gtk/MainWindow.vala:347
 msgid "Select the kernel to install"
 msgstr "Välj kärna för installation"
 
-#: Gtk/MainWindow.vala:361
+#: Gtk/MainWindow.vala:360
 msgid "Select the kernels to remove"
 msgstr "Välj kärnor för borttagning"
 
@@ -511,7 +504,7 @@ msgstr ""
 msgid "Set GRUB menu timeout"
 msgstr ""
 
-#: Gtk/SettingsDialog.vala:57 Gtk/MainWindow.vala:421
+#: Gtk/SettingsDialog.vala:57
 msgid "Settings"
 msgstr "Inställningar"
 
@@ -536,7 +529,7 @@ msgstr "Visa aviseringsdialog"
 msgid "Show unstable and RC releases"
 msgstr "Dölj instabila- och RC-publiceringar"
 
-#: Gtk/MainWindow.vala:195
+#: Gtk/MainWindow.vala:194
 msgid "Status"
 msgstr "Status"
 
@@ -544,15 +537,15 @@ msgstr "Status"
 msgid "Stopped"
 msgstr "Stoppad"
 
-#: Gtk/AppGtk.vala:169 Console/AppConsole.vala:78
+#: Console/AppConsole.vala:78 Gtk/AppGtk.vala:169
 msgid "Syntax"
 msgstr "Syntax"
 
-#: Gtk/AppGtk.vala:101 Console/AppConsole.vala:198
+#: Console/AppConsole.vala:198 Gtk/AppGtk.vala:101
 msgid "Temp"
 msgstr ""
 
-#: Gtk/MainWindow.vala:643 Common/LinuxKernel.vala:1243
+#: Gtk/MainWindow.vala:659 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "Denna kärna är redan installerad"
 
@@ -584,7 +577,7 @@ msgstr "Avinstallation slutförd"
 msgid "Un-install completed with errors"
 msgstr "Avinstallation slutförd med fel"
 
-#: Gtk/AppGtk.vala:156 Console/AppConsole.vala:191
+#: Console/AppConsole.vala:191 Gtk/AppGtk.vala:156
 msgid "Unknown option"
 msgstr "Okänt alternativ"
 
@@ -611,7 +604,7 @@ msgstr ""
 msgid "Updating GRUB menu"
 msgstr "Uppdaterar GRUB-menyn"
 
-#: Gtk/MainWindow.vala:178
+#: Gtk/MainWindow.vala:177
 msgid "Version"
 msgstr "Version"
 
@@ -635,6 +628,12 @@ msgstr "[Varning] Tog bort ogiltigt lås"
 #, fuzzy
 msgid "translator-credits"
 msgstr "Översättare"
+
+#~ msgid "Refresh"
+#~ msgstr "Uppdatera"
+
+#~ msgid "About"
+#~ msgstr "Om"
 
 #~ msgid "Artists"
 #~ msgstr "Artister"

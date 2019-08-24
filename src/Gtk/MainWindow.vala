@@ -37,7 +37,6 @@ public class MainWindow : Gtk.Window {
 	private Gtk.Box hbox_list;
 	
 	private Gtk.TreeView tv;
-	private Gtk.Button btn_refresh;
 	private Gtk.Button btn_install;
 	private Gtk.Button btn_remove;
 	private Gtk.Button btn_purge;
@@ -361,7 +360,6 @@ public class MainWindow : Gtk.Window {
 				gtk_messagebox(_("Not Selected"),_("Select the kernels to remove"), this, true);
 			}
 			else if (selected_kernels.size > 0) {
-				
 				var term = new TerminalWindow.with_parent(this, false, true);
 				
 				term.script_complete.connect(() => {
@@ -416,10 +414,32 @@ public class MainWindow : Gtk.Window {
 		header_bar.pack_start(button_changes);
 		btn_changes = button_changes;
 
-		// settings
-		var button_settings = new Gtk.Button.from_icon_name("emblem-system-symbolic", IconSize.SMALL_TOOLBAR);
-		button_settings.set_tooltip_text(_("Settings"));
+		var button_menu = new Gtk.MenuButton();
+		button_menu.set_image(new Gtk.Image.from_icon_name("open-menu-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
 
+		var menu_popover = new Gtk.Popover(button_menu);
+		menu_popover.position = Gtk.PositionType.BOTTOM;
+		menu_popover.width_request = 128;
+		menu_popover.modal = false;
+
+		var button_refresh = new Gtk.ModelButton();
+		button_refresh.role = Gtk.ButtonRole.NORMAL;
+		button_refresh.text = "Refresh";
+		button_refresh.centered = true;
+		button_refresh.clicked.connect(() => {
+			if (!check_internet_connectivity()) {
+				gtk_messagebox(_("No Internet"), _("Internet connection is not active"), this, true);
+				return;
+			}
+
+			refresh_cache();
+			tv_refresh();
+		});
+
+		var button_settings = new Gtk.ModelButton();
+		button_settings.role = Gtk.ButtonRole.NORMAL;
+		button_settings.text = "Settings";
+		button_settings.centered = true;
 		button_settings.clicked.connect(() => {
 			bool prev_hide_older = LinuxKernel.hide_older;
 			bool prev_hide_unstable = LinuxKernel.hide_unstable;
@@ -436,13 +456,27 @@ public class MainWindow : Gtk.Window {
 			tv_refresh();
 		});
 
-		header_bar.pack_end(button_settings);
-
-		// about
-		var button_about = new Gtk.Button.from_icon_name("help-about-symbolic", IconSize.SMALL_TOOLBAR);
-		button_about.set_tooltip_text(_("About"));
+		var button_about = new Gtk.ModelButton();
+		button_about.role = Gtk.ButtonRole.NORMAL;
+		button_about.text = "About";
+		button_about.centered = true;
 		button_about.clicked.connect(btn_about_clicked);
-		header_bar.pack_end(button_about);
+
+		var popover_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 4);
+		popover_box.set_border_width(8);
+		popover_box.pack_start(button_refresh);
+		popover_box.pack_start(button_settings);
+		popover_box.pack_start(button_about);
+		menu_popover.add(popover_box);
+
+		menu_popover.set_relative_to(button_menu);
+
+		button_menu.set_popover(menu_popover);
+		button_menu.clicked.connect(() => {
+			menu_popover.show_all();
+		});
+
+		header_bar.pack_end(button_menu);
 
 		// purge
 		var button_purge = new Gtk.Button.from_icon_name("list-remove-all-symbolic", IconSize.SMALL_TOOLBAR);
@@ -482,24 +516,6 @@ public class MainWindow : Gtk.Window {
 
 		header_bar.pack_end(button_purge);
 		btn_purge = button_purge;
-
-		// refresh
-		var button_refresh = new Gtk.Button.from_icon_name("view-refresh-symbolic", IconSize.SMALL_TOOLBAR);
-		button_refresh.set_tooltip_text(_("Refresh"));
-
-		button_refresh.clicked.connect(() => {
-
-			if (!check_internet_connectivity()) {
-				gtk_messagebox(_("No Internet"), _("Internet connection is not active"), this, true);
-				return;
-			}
-
-			refresh_cache();
-			tv_refresh();
-		});
-
-		header_bar.pack_end(button_refresh);
-		btn_refresh = button_refresh;
 	}
 
 	private void btn_about_clicked() {
