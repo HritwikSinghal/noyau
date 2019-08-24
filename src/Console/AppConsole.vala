@@ -94,6 +94,7 @@ public class AppConsole : GLib.Object {
 		msg += "  --purge-old-kernels " + _("Remove installed kernels older than running kernel") + "\n";
 		msg += "  --download <name>   " + _("Download packages for specified kernel") + "\n";
 		msg += "  --clean-cache       " + _("Remove files from application cache") + "\n";
+		msg += "  --show-unstable     " + _("Show unstable and RC releases") + "\n";
 		msg += "\n";
 		msg += _("Options") + ":\n";
 		msg += "\n";
@@ -169,7 +170,10 @@ public class AppConsole : GLib.Object {
 			case "--clean-cache":
 				cmd = args[k].down();
 				break;
-			
+			case "--show-unstable":
+				LinuxKernel.hide_unstable = false;
+				break;
+
 			case "--download":
 			case "--install":
 			case "--remove":
