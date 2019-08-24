@@ -1,24 +1,19 @@
 ### Ubuntu Kernel Update Utility (Ukuu)
 A graphical utility for managing kernels on Ubuntu.
 
-![](https://2.bp.blogspot.com/-76C_l3BcJyg/WNdzTpSoiKI/AAAAAAAAGKs/xOvB-LCH2cYiDpdbqWkeOLhY9I7TVACJwCLcB/s1600/ukuu_main_window.png)
-
 ### Features
 
 *   Fetches list of kernels from [kernel.ubuntu.com](http://kernel.ubuntu.com/~kernel-ppa/mainline/)
 *   Displays notifications when a new kernel update is available.
 *   Downloads and installs packages automatically
 
-### Screenshots
+### Screenshot
+#### Ubuntu (Yaru)
+![screenshot-2](https://raw.githubusercontent.com/joshuadowding/ukuu/master/src/share/ukuu/screenshots/main-ubuntu-1.png)
 
-![](https://2.bp.blogspot.com/-76C_l3BcJyg/WNdzTpSoiKI/AAAAAAAAGKs/xOvB-LCH2cYiDpdbqWkeOLhY9I7TVACJwCLcB/s1600/ukuu_main_window.png)
-_Main Window_
+#### GNOME (Adwaita)
+![screenshot-1](https://raw.githubusercontent.com/joshuadowding/ukuu/master/src/share/ukuu/screenshots/main-gnome-1.png)
 
-![](https://2.bp.blogspot.com/-ATv4vsOVOnc/WNdztEZHJNI/AAAAAAAAGKw/1pOIuyu8ITo4z8mnMK6MfCZ3T_Nd4gQNQCLcB/s1600/ukuu_settings.png)
-_Settings Window_
-
-![](https://4.bp.blogspot.com/-Y-1zhHcpk1M/WNd42_ybTyI/AAAAAAAAGLE/gLaBdWpoh54OGrvF81Ka1bCVJjZ0WqKrQCLcB/s1600/ukuu_console_options.png)
-_Console Options_
 
 ### Installation
 
