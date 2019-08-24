@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-08-24 06:21-0700\n"
+"POT-Creation-Date: 2019-08-24 14:49+0100\n"
 "PO-Revision-Date: 2018-03-30 20:59+0300\n"
 "Last-Translator: Gökhan Gökkaya <gokhanlnx@gmail.com>\n"
 "Language-Team: Turkish\n"
@@ -18,8 +18,8 @@ msgstr ""
 "X-Generator: Poedit 1.8.7.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: Gtk/VersionMessageWindow.vala:60
-msgid "A paid version of Ukuu is now available, with more features and new UI"
+#: Utility/Gtk/AboutWindow.vala:38
+msgid "A graphical utility for managing kernels on Ubuntu."
 msgstr ""
 
 #: Gtk/MainWindow.vala:443
@@ -39,29 +39,15 @@ msgstr "Bu uygulamanın başka bir örneği çalışıyor"
 msgid "Architecture"
 msgstr "Sistem mimarisi"
 
-#: Utility/Gtk/AboutWindow.vala:348
-#, c-format
-msgid "Artists"
-msgstr "Sanatçılar"
-
 #: Console/AppConsole.vala:98
 msgid "Assume Yes for all prompts (non-interactive mode)"
 msgstr ""
-
-#: Utility/Gtk/AboutWindow.vala:324
-#, c-format
-msgid "Authors"
-msgstr "Yazar"
 
 #: Common/LinuxKernel.vala:1155
 msgid "Available Kernels"
 msgstr "Mevcut Çekirdekler"
 
-#: Utility/Gtk/AboutWindow.vala:295
-msgid "Back"
-msgstr "Geri"
-
-#: Gtk/MainWindow.vala:824
+#: Gtk/MainWindow.vala:788
 msgid "Booting previous kernels"
 msgstr "Önceki çekirdeklerin önyüklenmesi"
 
@@ -93,7 +79,7 @@ msgstr "Çekirdek güncellemelerini kontrol et"
 msgid "Check for kernel updates and notify current user"
 msgstr "Çekirdek güncellemelerini kontrol et"
 
-#: Gtk/TerminalWindow.vala:178 Utility/Gtk/AboutWindow.vala:305
+#: Gtk/TerminalWindow.vala:178
 msgid "Close"
 msgstr "Kapat"
 
@@ -105,7 +91,7 @@ msgstr ""
 msgid "Commands"
 msgstr ""
 
-#: Common/Main.vala:115
+#: Common/Main.vala:114
 msgid "Commands listed below are not available on this system"
 msgstr "Aşağıda listelenen komutlar bu sistemde mevcut değil"
 
@@ -113,11 +99,6 @@ msgstr "Aşağıda listelenen komutlar bu sistemde mevcut değil"
 #, c-format
 msgid "Continue ?"
 msgstr ""
-
-#: Utility/Gtk/AboutWindow.vala:332
-#, c-format
-msgid "Contributions"
-msgstr "Destek verenler"
 
 #: Common/LinuxKernel.vala:724
 #, fuzzy
@@ -138,10 +119,6 @@ msgstr "İstenen sürüm bulunamadı"
 msgid "Created directory"
 msgstr "Dizin oluşturuldu"
 
-#: Utility/Gtk/AboutWindow.vala:282 Utility/Gtk/AboutWindow.vala:299
-msgid "Credits"
-msgstr "Katkı sağlayanlar"
-
 #: Gtk/SettingsDialog.vala:155
 msgid "Day(s)"
 msgstr "Gün"
@@ -161,16 +138,6 @@ msgstr "Gösterim"
 #: Common/LinuxKernel.vala:94
 msgid "Distribution"
 msgstr "Dağıtım"
-
-#: Utility/Gtk/AboutWindow.vala:364
-#, c-format
-msgid "Documenters"
-msgstr "Belgelendirenler"
-
-#: Utility/Gtk/AboutWindow.vala:372
-#, c-format
-msgid "Donations"
-msgstr "Bağışlar"
 
 #: Console/AppConsole.vala:91
 msgid "Download packages for specified kernel"
@@ -327,7 +294,7 @@ msgstr ""
 msgid "Installed"
 msgstr "Kurulu"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:549 Gtk/MainWindow.vala:685
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
 #: Utility/TeeJee.System.vala:288
 msgid "Internet connection is not active"
 msgstr "İnternet bağlantısı aktif değil"
@@ -335,10 +302,6 @@ msgstr "İnternet bağlantısı aktif değil"
 #: Gtk/MainWindow.vala:149
 msgid "Kernel"
 msgstr "Çekirdek"
-
-#: Gtk/MainWindow.vala:533
-msgid "Kernel upgrade utility for Ubuntu-based distributions"
-msgstr "Ubuntu tabanlı dağıtımlar için çekirdek güncelleme aracı"
 
 #: Console/AppConsole.vala:360 Common/LinuxKernel.vala:779
 #, c-format
@@ -363,7 +326,7 @@ msgstr "Tüm çekirdekleri listele"
 msgid "List installed kernels"
 msgstr "Tüm çekirdekleri listele"
 
-#: Gtk/MainWindow.vala:825
+#: Gtk/MainWindow.vala:789
 #, fuzzy
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
@@ -402,10 +365,6 @@ msgstr ""
 msgid "Missing Icon"
 msgstr "Eksik Simge"
 
-#: Gtk/VersionMessageWindow.vala:126
-msgid "More Info"
-msgstr ""
-
 #: Gtk/MainWindow.vala:345
 msgid "Multiple Kernels Selected"
 msgstr "Çoklu Çekirdek Seçildi"
@@ -414,15 +373,11 @@ msgstr "Çoklu Çekirdek Seçildi"
 msgid "Multiple kernels selected for installation. Select only one."
 msgstr "Kurulum için çoklu çekirdek seçildi. Sadece bir tane seçiniz."
 
-#: Gtk/VersionMessageWindow.vala:58
-msgid "New Version Available"
-msgstr ""
-
 #: Utility/Gtk/CustomMessageDialog.vala:177
 msgid "No"
 msgstr "Hayır"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:549 Gtk/MainWindow.vala:685
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
 msgid "No Internet"
 msgstr "İnternet Yok"
 
@@ -430,7 +385,7 @@ msgstr "İnternet Yok"
 msgid "No kernels specified"
 msgstr ""
 
-#: Gtk/MainWindow.vala:819 Console/AppConsole.vala:365
+#: Gtk/MainWindow.vala:783 Console/AppConsole.vala:365
 #: Console/AppConsole.vala:445 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Güncelleme bulunamadı"
@@ -451,8 +406,7 @@ msgstr "Ana sürüm mevcutsa bildir"
 msgid "Notify if a point release is available"
 msgstr "Ara sürüm mevcutsa bildir"
 
-#: Gtk/VersionMessageWindow.vala:138 Common/LinuxKernel.vala:1220
-#: Utility/Gtk/CustomMessageDialog.vala:167
+#: Common/LinuxKernel.vala:1220 Utility/Gtk/CustomMessageDialog.vala:167
 #: Utility/Gtk/CustomMessageDialog.vala:171 Utility/Gtk/GtkHelper.vala:121
 #, c-format
 msgid "OK"
@@ -472,7 +426,7 @@ msgstr "Mevcut Paketler (DEB)"
 msgid "Packages Installed"
 msgstr "Paketler Kuruldu"
 
-#: Common/Main.vala:116
+#: Common/Main.vala:115
 msgid "Please install required packages and try again"
 msgstr "Lütfen gerekli paketleri yükleyin ve tekrar deneyin"
 
@@ -488,7 +442,7 @@ msgstr "Hata ayıklama bilgisini yazdır"
 msgid "Refresh"
 msgstr "Yenile"
 
-#: Gtk/MainWindow.vala:568
+#: Gtk/MainWindow.vala:532
 msgid "Refreshing..."
 msgstr "Yenileniyor..."
 
@@ -600,12 +554,7 @@ msgstr "Sözdizimi"
 msgid "Temp"
 msgstr ""
 
-#: Utility/Gtk/AboutWindow.vala:340
-#, c-format
-msgid "Third Party Tools"
-msgstr "Üçüncü Parti Araçlar"
-
-#: Gtk/MainWindow.vala:680 Common/LinuxKernel.vala:1243
+#: Gtk/MainWindow.vala:644 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "Bu çekirdek zaten kurulu."
 
@@ -628,11 +577,6 @@ msgstr ""
 "\n"
 "0 = Menüyü gösterme\n"
 "-1 = Kullanıcı seçimine kadar süresiz göster"
-
-#: Utility/Gtk/AboutWindow.vala:356
-#, c-format
-msgid "Translators"
-msgstr "Çevirenler"
 
 #: Common/LinuxKernel.vala:1335 Common/LinuxKernel.vala:1393
 msgid "Un-install completed"
@@ -688,6 +632,38 @@ msgstr "Evet"
 #: Utility/AppLock.vala:56
 msgid "[Warning] Deleted invalid lock"
 msgstr "[Uyarı] Geçersiz kilit silindi"
+
+#: Utility/Gtk/AboutWindow.vala:48
+#, fuzzy
+msgid "translator-credits"
+msgstr "Çevirenler"
+
+#~ msgid "Artists"
+#~ msgstr "Sanatçılar"
+
+#~ msgid "Authors"
+#~ msgstr "Yazar"
+
+#~ msgid "Back"
+#~ msgstr "Geri"
+
+#~ msgid "Contributions"
+#~ msgstr "Destek verenler"
+
+#~ msgid "Credits"
+#~ msgstr "Katkı sağlayanlar"
+
+#~ msgid "Documenters"
+#~ msgstr "Belgelendirenler"
+
+#~ msgid "Donations"
+#~ msgstr "Bağışlar"
+
+#~ msgid "Kernel upgrade utility for Ubuntu-based distributions"
+#~ msgstr "Ubuntu tabanlı dağıtımlar için çekirdek güncelleme aracı"
+
+#~ msgid "Third Party Tools"
+#~ msgstr "Üçüncü Parti Araçlar"
 
 #, fuzzy
 #~ msgid "Install kernel"

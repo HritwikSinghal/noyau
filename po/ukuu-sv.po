@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu 2.2\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-08-24 06:21-0700\n"
+"POT-Creation-Date: 2019-08-24 14:49+0100\n"
 "PO-Revision-Date: 2018-01-13 16:56+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "X-Generator: Poedit 1.8.7.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: Gtk/VersionMessageWindow.vala:60
-msgid "A paid version of Ukuu is now available, with more features and new UI"
+#: Utility/Gtk/AboutWindow.vala:38
+msgid "A graphical utility for managing kernels on Ubuntu."
 msgstr ""
 
 #: Gtk/MainWindow.vala:443
@@ -39,29 +39,15 @@ msgstr "En annan instans av programmet körs redan"
 msgid "Architecture"
 msgstr "Systemarkitektur"
 
-#: Utility/Gtk/AboutWindow.vala:348
-#, c-format
-msgid "Artists"
-msgstr "Artister"
-
 #: Console/AppConsole.vala:98
 msgid "Assume Yes for all prompts (non-interactive mode)"
 msgstr ""
-
-#: Utility/Gtk/AboutWindow.vala:324
-#, c-format
-msgid "Authors"
-msgstr "Utvecklare"
 
 #: Common/LinuxKernel.vala:1155
 msgid "Available Kernels"
 msgstr "Tillgängliga kärnor"
 
-#: Utility/Gtk/AboutWindow.vala:295
-msgid "Back"
-msgstr "Tillbaka"
-
-#: Gtk/MainWindow.vala:824
+#: Gtk/MainWindow.vala:788
 msgid "Booting previous kernels"
 msgstr "Startar föregående kärnor"
 
@@ -93,7 +79,7 @@ msgstr "Sök efter kärnuppdateringar"
 msgid "Check for kernel updates and notify current user"
 msgstr "Sök efter kärnuppdateringar"
 
-#: Gtk/TerminalWindow.vala:178 Utility/Gtk/AboutWindow.vala:305
+#: Gtk/TerminalWindow.vala:178
 msgid "Close"
 msgstr "Stäng"
 
@@ -105,7 +91,7 @@ msgstr ""
 msgid "Commands"
 msgstr ""
 
-#: Common/Main.vala:115
+#: Common/Main.vala:114
 msgid "Commands listed below are not available on this system"
 msgstr "Kommandon listade nedan, finns inte tillgängliga i detta system."
 
@@ -113,11 +99,6 @@ msgstr "Kommandon listade nedan, finns inte tillgängliga i detta system."
 #, c-format
 msgid "Continue ?"
 msgstr ""
-
-#: Utility/Gtk/AboutWindow.vala:332
-#, c-format
-msgid "Contributions"
-msgstr "Bidrag"
 
 #: Common/LinuxKernel.vala:724
 #, fuzzy
@@ -138,10 +119,6 @@ msgstr "Kunde inte hitta efterfrågad version"
 msgid "Created directory"
 msgstr "Skapade mapp"
 
-#: Utility/Gtk/AboutWindow.vala:282 Utility/Gtk/AboutWindow.vala:299
-msgid "Credits"
-msgstr "Tack"
-
 #: Gtk/SettingsDialog.vala:155
 msgid "Day(s)"
 msgstr "Dag(ar)"
@@ -161,16 +138,6 @@ msgstr "Visa"
 #: Common/LinuxKernel.vala:94
 msgid "Distribution"
 msgstr "Distribution"
-
-#: Utility/Gtk/AboutWindow.vala:364
-#, c-format
-msgid "Documenters"
-msgstr "Dokumentalister"
-
-#: Utility/Gtk/AboutWindow.vala:372
-#, c-format
-msgid "Donations"
-msgstr "Donationer"
 
 #: Console/AppConsole.vala:91
 msgid "Download packages for specified kernel"
@@ -327,7 +294,7 @@ msgstr "Installation slutförd. Omstart krävs för att tillämpa den nya kärna
 msgid "Installed"
 msgstr "Installerad"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:549 Gtk/MainWindow.vala:685
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
 #: Utility/TeeJee.System.vala:288
 msgid "Internet connection is not active"
 msgstr "Internetuppkopplingen är inte aktiv"
@@ -335,10 +302,6 @@ msgstr "Internetuppkopplingen är inte aktiv"
 #: Gtk/MainWindow.vala:149
 msgid "Kernel"
 msgstr "Kärna"
-
-#: Gtk/MainWindow.vala:533
-msgid "Kernel upgrade utility for Ubuntu-based distributions"
-msgstr "Kärnuppgraderingsverktyg för Ubuntu-baserade distributioner"
 
 #: Console/AppConsole.vala:360 Common/LinuxKernel.vala:779
 #, c-format
@@ -363,7 +326,7 @@ msgstr "Lista tillgängliga kärnor"
 msgid "List installed kernels"
 msgstr "Lista tillgängliga kärnor"
 
-#: Gtk/MainWindow.vala:825
+#: Gtk/MainWindow.vala:789
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
 "drivers installed on your system. These issues include:\n"
@@ -399,10 +362,6 @@ msgstr ""
 msgid "Missing Icon"
 msgstr "Saknad ikon"
 
-#: Gtk/VersionMessageWindow.vala:126
-msgid "More Info"
-msgstr ""
-
 #: Gtk/MainWindow.vala:345
 msgid "Multiple Kernels Selected"
 msgstr "Flera kärnor markerade"
@@ -411,15 +370,11 @@ msgstr "Flera kärnor markerade"
 msgid "Multiple kernels selected for installation. Select only one."
 msgstr "Flera kärnor valda för installation. Välj endast en."
 
-#: Gtk/VersionMessageWindow.vala:58
-msgid "New Version Available"
-msgstr ""
-
 #: Utility/Gtk/CustomMessageDialog.vala:177
 msgid "No"
 msgstr "Nej"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:549 Gtk/MainWindow.vala:685
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
 msgid "No Internet"
 msgstr "Inget internet"
 
@@ -427,7 +382,7 @@ msgstr "Inget internet"
 msgid "No kernels specified"
 msgstr ""
 
-#: Gtk/MainWindow.vala:819 Console/AppConsole.vala:365
+#: Gtk/MainWindow.vala:783 Console/AppConsole.vala:365
 #: Console/AppConsole.vala:445 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Inga uppdateringar hittades"
@@ -448,8 +403,7 @@ msgstr "Meddela om en ny (stor) uppdatering finns tillgänglig"
 msgid "Notify if a point release is available"
 msgstr "Meddela om en ny (mindre) uppdatering finns tillgänglig"
 
-#: Gtk/VersionMessageWindow.vala:138 Common/LinuxKernel.vala:1220
-#: Utility/Gtk/CustomMessageDialog.vala:167
+#: Common/LinuxKernel.vala:1220 Utility/Gtk/CustomMessageDialog.vala:167
 #: Utility/Gtk/CustomMessageDialog.vala:171 Utility/Gtk/GtkHelper.vala:121
 #, c-format
 msgid "OK"
@@ -469,7 +423,7 @@ msgstr "Tillgängliga paket (DEB)"
 msgid "Packages Installed"
 msgstr "Installerade paket"
 
-#: Common/Main.vala:116
+#: Common/Main.vala:115
 msgid "Please install required packages and try again"
 msgstr "Installera nödvändiga paket och försök igen"
 
@@ -485,7 +439,7 @@ msgstr "Skriv ut felsökningsinformation"
 msgid "Refresh"
 msgstr "Uppdatera"
 
-#: Gtk/MainWindow.vala:568
+#: Gtk/MainWindow.vala:532
 msgid "Refreshing..."
 msgstr "Uppdaterar ..."
 
@@ -598,12 +552,7 @@ msgstr "Syntax"
 msgid "Temp"
 msgstr ""
 
-#: Utility/Gtk/AboutWindow.vala:340
-#, c-format
-msgid "Third Party Tools"
-msgstr "Tredjepartsverktyg"
-
-#: Gtk/MainWindow.vala:680 Common/LinuxKernel.vala:1243
+#: Gtk/MainWindow.vala:644 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "Denna kärna är redan installerad"
 
@@ -626,11 +575,6 @@ msgstr ""
 "\n"
 "0 = Visa ingen meny\n"
 "-1 = Visa oavbrutet tills användaren väljer"
-
-#: Utility/Gtk/AboutWindow.vala:356
-#, c-format
-msgid "Translators"
-msgstr "Översättare"
 
 #: Common/LinuxKernel.vala:1335 Common/LinuxKernel.vala:1393
 msgid "Un-install completed"
@@ -686,6 +630,38 @@ msgstr "Ja"
 #: Utility/AppLock.vala:56
 msgid "[Warning] Deleted invalid lock"
 msgstr "[Varning] Tog bort ogiltigt lås"
+
+#: Utility/Gtk/AboutWindow.vala:48
+#, fuzzy
+msgid "translator-credits"
+msgstr "Översättare"
+
+#~ msgid "Artists"
+#~ msgstr "Artister"
+
+#~ msgid "Authors"
+#~ msgstr "Utvecklare"
+
+#~ msgid "Back"
+#~ msgstr "Tillbaka"
+
+#~ msgid "Contributions"
+#~ msgstr "Bidrag"
+
+#~ msgid "Credits"
+#~ msgstr "Tack"
+
+#~ msgid "Documenters"
+#~ msgstr "Dokumentalister"
+
+#~ msgid "Donations"
+#~ msgstr "Donationer"
+
+#~ msgid "Kernel upgrade utility for Ubuntu-based distributions"
+#~ msgstr "Kärnuppgraderingsverktyg för Ubuntu-baserade distributioner"
+
+#~ msgid "Third Party Tools"
+#~ msgstr "Tredjepartsverktyg"
 
 #, fuzzy
 #~ msgid "Install kernel"

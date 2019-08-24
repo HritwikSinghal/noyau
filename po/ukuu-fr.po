@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-08-24 06:21-0700\n"
+"POT-Creation-Date: 2019-08-24 14:49+0100\n"
 "PO-Revision-Date: 2018-08-05 15:50+0200\n"
 "Last-Translator: Yolateng0 <yo@yo.nohost.me>\n"
 "Language-Team: French\n"
@@ -17,8 +17,8 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-13 11:48+0000\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: Gtk/VersionMessageWindow.vala:60
-msgid "A paid version of Ukuu is now available, with more features and new UI"
+#: Utility/Gtk/AboutWindow.vala:38
+msgid "A graphical utility for managing kernels on Ubuntu."
 msgstr ""
 
 #: Gtk/MainWindow.vala:443
@@ -38,29 +38,15 @@ msgstr "Une autre instance de l'application est en cours d'exécution"
 msgid "Architecture"
 msgstr "Architecture du système"
 
-#: Utility/Gtk/AboutWindow.vala:348
-#, c-format
-msgid "Artists"
-msgstr "Artistes"
-
 #: Console/AppConsole.vala:98
 msgid "Assume Yes for all prompts (non-interactive mode)"
 msgstr ""
-
-#: Utility/Gtk/AboutWindow.vala:324
-#, c-format
-msgid "Authors"
-msgstr "Auteurs"
 
 #: Common/LinuxKernel.vala:1155
 msgid "Available Kernels"
 msgstr "Noyaux disponibles"
 
-#: Utility/Gtk/AboutWindow.vala:295
-msgid "Back"
-msgstr "Retour"
-
-#: Gtk/MainWindow.vala:824
+#: Gtk/MainWindow.vala:788
 msgid "Booting previous kernels"
 msgstr "Démarrer sur un noyau précédent"
 
@@ -92,7 +78,7 @@ msgstr "Vérifier les mises à jour des noyaux"
 msgid "Check for kernel updates and notify current user"
 msgstr "Vérifier les mises à jour des noyaux"
 
-#: Gtk/TerminalWindow.vala:178 Utility/Gtk/AboutWindow.vala:305
+#: Gtk/TerminalWindow.vala:178
 msgid "Close"
 msgstr "Fermer"
 
@@ -105,7 +91,7 @@ msgstr "Impossible de trouver le fichier"
 msgid "Commands"
 msgstr ""
 
-#: Common/Main.vala:115
+#: Common/Main.vala:114
 msgid "Commands listed below are not available on this system"
 msgstr "Les commandes listées ne sont pas valables pour ce système"
 
@@ -113,11 +99,6 @@ msgstr "Les commandes listées ne sont pas valables pour ce système"
 #, c-format
 msgid "Continue ?"
 msgstr ""
-
-#: Utility/Gtk/AboutWindow.vala:332
-#, c-format
-msgid "Contributions"
-msgstr "Contributions"
 
 #: Common/LinuxKernel.vala:724
 #, fuzzy
@@ -138,10 +119,6 @@ msgstr "Impossible de trouver la version demandée"
 msgid "Created directory"
 msgstr "Dossier créé"
 
-#: Utility/Gtk/AboutWindow.vala:282 Utility/Gtk/AboutWindow.vala:299
-msgid "Credits"
-msgstr "Crédits"
-
 #: Gtk/SettingsDialog.vala:155
 msgid "Day(s)"
 msgstr "Jour(s)"
@@ -161,16 +138,6 @@ msgstr "Afficher"
 #: Common/LinuxKernel.vala:94
 msgid "Distribution"
 msgstr "Distribution"
-
-#: Utility/Gtk/AboutWindow.vala:364
-#, c-format
-msgid "Documenters"
-msgstr "Documentalistes"
-
-#: Utility/Gtk/AboutWindow.vala:372
-#, c-format
-msgid "Donations"
-msgstr "Donations"
 
 #: Console/AppConsole.vala:91
 msgid "Download packages for specified kernel"
@@ -328,7 +295,7 @@ msgstr ""
 msgid "Installed"
 msgstr "Installé"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:549 Gtk/MainWindow.vala:685
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
 #: Utility/TeeJee.System.vala:288
 msgid "Internet connection is not active"
 msgstr "Connexion internet inexistante"
@@ -336,12 +303,6 @@ msgstr "Connexion internet inexistante"
 #: Gtk/MainWindow.vala:149
 msgid "Kernel"
 msgstr "Noyau"
-
-#: Gtk/MainWindow.vala:533
-msgid "Kernel upgrade utility for Ubuntu-based distributions"
-msgstr ""
-"Utilitaire de mise à niveau des noyaux pour les distributions basées pour "
-"Ubuntu"
 
 #: Console/AppConsole.vala:360 Common/LinuxKernel.vala:779
 #, c-format
@@ -366,7 +327,7 @@ msgstr "Lister les noyaux disponibles"
 msgid "List installed kernels"
 msgstr "Lister les noyaux disponibles"
 
-#: Gtk/MainWindow.vala:825
+#: Gtk/MainWindow.vala:789
 #, fuzzy
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
@@ -403,10 +364,6 @@ msgstr ""
 msgid "Missing Icon"
 msgstr "Icône introuvable"
 
-#: Gtk/VersionMessageWindow.vala:126
-msgid "More Info"
-msgstr ""
-
 #: Gtk/MainWindow.vala:345
 msgid "Multiple Kernels Selected"
 msgstr "Plusieurs noyaux sélectionnés"
@@ -417,15 +374,11 @@ msgstr ""
 "Plusieurs noyaux sélectionnés pour être installés. Sélectionnez en seulement "
 "un."
 
-#: Gtk/VersionMessageWindow.vala:58
-msgid "New Version Available"
-msgstr ""
-
 #: Utility/Gtk/CustomMessageDialog.vala:177
 msgid "No"
 msgstr "Non"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:549 Gtk/MainWindow.vala:685
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
 msgid "No Internet"
 msgstr "Pas d'Internet"
 
@@ -433,7 +386,7 @@ msgstr "Pas d'Internet"
 msgid "No kernels specified"
 msgstr ""
 
-#: Gtk/MainWindow.vala:819 Console/AppConsole.vala:365
+#: Gtk/MainWindow.vala:783 Console/AppConsole.vala:365
 #: Console/AppConsole.vala:445 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Aucune mise à jour disponible"
@@ -454,8 +407,7 @@ msgstr "Notifier si une version stable majeure est disponible"
 msgid "Notify if a point release is available"
 msgstr "Notifier si une version stable mineure est disponible"
 
-#: Gtk/VersionMessageWindow.vala:138 Common/LinuxKernel.vala:1220
-#: Utility/Gtk/CustomMessageDialog.vala:167
+#: Common/LinuxKernel.vala:1220 Utility/Gtk/CustomMessageDialog.vala:167
 #: Utility/Gtk/CustomMessageDialog.vala:171 Utility/Gtk/GtkHelper.vala:121
 #, c-format
 msgid "OK"
@@ -475,7 +427,7 @@ msgstr "Paquets disponibles (DEB)"
 msgid "Packages Installed"
 msgstr "Paquets installés"
 
-#: Common/Main.vala:116
+#: Common/Main.vala:115
 msgid "Please install required packages and try again"
 msgstr "Veuillez installer les paquets requis et réessayer"
 
@@ -491,7 +443,7 @@ msgstr "Afficher les informations de débogage"
 msgid "Refresh"
 msgstr "Actualiser"
 
-#: Gtk/MainWindow.vala:568
+#: Gtk/MainWindow.vala:532
 msgid "Refreshing..."
 msgstr "Actualisation..."
 
@@ -603,12 +555,7 @@ msgstr "Syntaxe"
 msgid "Temp"
 msgstr ""
 
-#: Utility/Gtk/AboutWindow.vala:340
-#, c-format
-msgid "Third Party Tools"
-msgstr "Outils tiers"
-
-#: Gtk/MainWindow.vala:680 Common/LinuxKernel.vala:1243
+#: Gtk/MainWindow.vala:644 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "Ce noyau est déjà installé."
 
@@ -631,11 +578,6 @@ msgstr ""
 "\n"
 "0 = Ne pas afficher de menu\n"
 "-1 = Afficher indéfiniment le menu jusqu'au choix de l'utilisateur"
-
-#: Utility/Gtk/AboutWindow.vala:356
-#, c-format
-msgid "Translators"
-msgstr "Traducteurs"
 
 #: Common/LinuxKernel.vala:1335 Common/LinuxKernel.vala:1393
 msgid "Un-install completed"
@@ -690,6 +632,40 @@ msgstr "Oui"
 #: Utility/AppLock.vala:56
 msgid "[Warning] Deleted invalid lock"
 msgstr "[Attention] Verrou invalide supprimé"
+
+#: Utility/Gtk/AboutWindow.vala:48
+#, fuzzy
+msgid "translator-credits"
+msgstr "Traducteurs"
+
+#~ msgid "Artists"
+#~ msgstr "Artistes"
+
+#~ msgid "Authors"
+#~ msgstr "Auteurs"
+
+#~ msgid "Back"
+#~ msgstr "Retour"
+
+#~ msgid "Contributions"
+#~ msgstr "Contributions"
+
+#~ msgid "Credits"
+#~ msgstr "Crédits"
+
+#~ msgid "Documenters"
+#~ msgstr "Documentalistes"
+
+#~ msgid "Donations"
+#~ msgstr "Donations"
+
+#~ msgid "Kernel upgrade utility for Ubuntu-based distributions"
+#~ msgstr ""
+#~ "Utilitaire de mise à niveau des noyaux pour les distributions basées pour "
+#~ "Ubuntu"
+
+#~ msgid "Third Party Tools"
+#~ msgstr "Outils tiers"
 
 #, fuzzy
 #~ msgid "Install kernel"

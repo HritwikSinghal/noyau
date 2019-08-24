@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-08-24 06:21-0700\n"
+"POT-Creation-Date: 2019-08-24 14:49+0100\n"
 "PO-Revision-Date: 2016-12-13 16:46+0300\n"
 "Last-Translator: Faust3000 <slavusik1988@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "X-Launchpad-Export-Date: 2016-12-13 11:48+0000\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
-#: Gtk/VersionMessageWindow.vala:60
-msgid "A paid version of Ukuu is now available, with more features and new UI"
+#: Utility/Gtk/AboutWindow.vala:38
+msgid "A graphical utility for managing kernels on Ubuntu."
 msgstr ""
 
 #: Gtk/MainWindow.vala:443
@@ -39,29 +39,15 @@ msgstr "Запущен другой экземпляр программы"
 msgid "Architecture"
 msgstr "Системная архитектура"
 
-#: Utility/Gtk/AboutWindow.vala:348
-#, c-format
-msgid "Artists"
-msgstr "Художники"
-
 #: Console/AppConsole.vala:98
 msgid "Assume Yes for all prompts (non-interactive mode)"
 msgstr ""
-
-#: Utility/Gtk/AboutWindow.vala:324
-#, c-format
-msgid "Authors"
-msgstr "Авторы"
 
 #: Common/LinuxKernel.vala:1155
 msgid "Available Kernels"
 msgstr "Доступные ядра"
 
-#: Utility/Gtk/AboutWindow.vala:295
-msgid "Back"
-msgstr "Назад"
-
-#: Gtk/MainWindow.vala:824
+#: Gtk/MainWindow.vala:788
 msgid "Booting previous kernels"
 msgstr ""
 
@@ -93,7 +79,7 @@ msgstr "Проверить обновления ядра"
 msgid "Check for kernel updates and notify current user"
 msgstr "Проверить обновления ядра"
 
-#: Gtk/TerminalWindow.vala:178 Utility/Gtk/AboutWindow.vala:305
+#: Gtk/TerminalWindow.vala:178
 msgid "Close"
 msgstr "Закрыть"
 
@@ -105,7 +91,7 @@ msgstr ""
 msgid "Commands"
 msgstr ""
 
-#: Common/Main.vala:115
+#: Common/Main.vala:114
 msgid "Commands listed below are not available on this system"
 msgstr "Команды перечисленные ниже недоступны на этой системе"
 
@@ -113,11 +99,6 @@ msgstr "Команды перечисленные ниже недоступны 
 #, c-format
 msgid "Continue ?"
 msgstr ""
-
-#: Utility/Gtk/AboutWindow.vala:332
-#, c-format
-msgid "Contributions"
-msgstr "Взносы"
 
 #: Common/LinuxKernel.vala:724
 #, fuzzy
@@ -139,10 +120,6 @@ msgstr "Не удалось найти запрошенную версию"
 msgid "Created directory"
 msgstr "Используемая кэш-папка"
 
-#: Utility/Gtk/AboutWindow.vala:282 Utility/Gtk/AboutWindow.vala:299
-msgid "Credits"
-msgstr "Создатели"
-
 #: Gtk/SettingsDialog.vala:155
 msgid "Day(s)"
 msgstr "День(дней)"
@@ -162,16 +139,6 @@ msgstr "Вид"
 #: Common/LinuxKernel.vala:94
 msgid "Distribution"
 msgstr "Дистрибутив"
-
-#: Utility/Gtk/AboutWindow.vala:364
-#, c-format
-msgid "Documenters"
-msgstr "Составители документации"
-
-#: Utility/Gtk/AboutWindow.vala:372
-#, c-format
-msgid "Donations"
-msgstr "Спонсоры"
 
 #: Console/AppConsole.vala:91
 msgid "Download packages for specified kernel"
@@ -333,7 +300,7 @@ msgstr ""
 msgid "Installed"
 msgstr "Установлено"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:549 Gtk/MainWindow.vala:685
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
 #: Utility/TeeJee.System.vala:288
 msgid "Internet connection is not active"
 msgstr "Интернет соединение не активно"
@@ -341,10 +308,6 @@ msgstr "Интернет соединение не активно"
 #: Gtk/MainWindow.vala:149
 msgid "Kernel"
 msgstr "Ядро"
-
-#: Gtk/MainWindow.vala:533
-msgid "Kernel upgrade utility for Ubuntu-based distributions"
-msgstr "Программа обновления ядра для дистрибутивов на базе Ubuntu"
 
 #: Console/AppConsole.vala:360 Common/LinuxKernel.vala:779
 #, c-format
@@ -370,7 +333,7 @@ msgstr "Список всех доступных основных ядер"
 msgid "List installed kernels"
 msgstr "Список всех доступных основных ядер"
 
-#: Gtk/MainWindow.vala:825
+#: Gtk/MainWindow.vala:789
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
 "drivers installed on your system. These issues include:\n"
@@ -392,10 +355,6 @@ msgstr ""
 msgid "Missing Icon"
 msgstr "Значок отсутствует"
 
-#: Gtk/VersionMessageWindow.vala:126
-msgid "More Info"
-msgstr ""
-
 #: Gtk/MainWindow.vala:345
 msgid "Multiple Kernels Selected"
 msgstr ""
@@ -404,15 +363,11 @@ msgstr ""
 msgid "Multiple kernels selected for installation. Select only one."
 msgstr ""
 
-#: Gtk/VersionMessageWindow.vala:58
-msgid "New Version Available"
-msgstr ""
-
 #: Utility/Gtk/CustomMessageDialog.vala:177
 msgid "No"
 msgstr ""
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:549 Gtk/MainWindow.vala:685
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
 msgid "No Internet"
 msgstr ""
 
@@ -420,7 +375,7 @@ msgstr ""
 msgid "No kernels specified"
 msgstr ""
 
-#: Gtk/MainWindow.vala:819 Console/AppConsole.vala:365
+#: Gtk/MainWindow.vala:783 Console/AppConsole.vala:365
 #: Console/AppConsole.vala:445 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Обновлений не найдено"
@@ -441,8 +396,7 @@ msgstr "Уведомлять, если доступно крупное обно�
 msgid "Notify if a point release is available"
 msgstr "Уведомлять, если доступно небольшое обновление"
 
-#: Gtk/VersionMessageWindow.vala:138 Common/LinuxKernel.vala:1220
-#: Utility/Gtk/CustomMessageDialog.vala:167
+#: Common/LinuxKernel.vala:1220 Utility/Gtk/CustomMessageDialog.vala:167
 #: Utility/Gtk/CustomMessageDialog.vala:171 Utility/Gtk/GtkHelper.vala:121
 #, c-format
 msgid "OK"
@@ -462,7 +416,7 @@ msgstr ""
 msgid "Packages Installed"
 msgstr "Установлено"
 
-#: Common/Main.vala:116
+#: Common/Main.vala:115
 msgid "Please install required packages and try again"
 msgstr "Установить необходимые пакеты и попробуйте снова"
 
@@ -478,7 +432,7 @@ msgstr "Распечатать отладочную информацию"
 msgid "Refresh"
 msgstr "Обновить"
 
-#: Gtk/MainWindow.vala:568
+#: Gtk/MainWindow.vala:532
 msgid "Refreshing..."
 msgstr "Обновление..."
 
@@ -591,12 +545,7 @@ msgstr "Синтаксис"
 msgid "Temp"
 msgstr ""
 
-#: Utility/Gtk/AboutWindow.vala:340
-#, c-format
-msgid "Third Party Tools"
-msgstr "Сторонние инструменты"
-
-#: Gtk/MainWindow.vala:680 Common/LinuxKernel.vala:1243
+#: Gtk/MainWindow.vala:644 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "Это ядро уже установлено."
 
@@ -619,11 +568,6 @@ msgstr ""
 "\n"
 "0 = Не отображать меню\n"
 "-1 = Отображать до выбора пользователя"
-
-#: Utility/Gtk/AboutWindow.vala:356
-#, c-format
-msgid "Translators"
-msgstr "Переводчики"
 
 #: Common/LinuxKernel.vala:1335 Common/LinuxKernel.vala:1393
 msgid "Un-install completed"
@@ -678,6 +622,38 @@ msgstr ""
 #: Utility/AppLock.vala:56
 msgid "[Warning] Deleted invalid lock"
 msgstr "[Внимание] Удалена неправильная блокировка"
+
+#: Utility/Gtk/AboutWindow.vala:48
+#, fuzzy
+msgid "translator-credits"
+msgstr "Переводчики"
+
+#~ msgid "Artists"
+#~ msgstr "Художники"
+
+#~ msgid "Authors"
+#~ msgstr "Авторы"
+
+#~ msgid "Back"
+#~ msgstr "Назад"
+
+#~ msgid "Contributions"
+#~ msgstr "Взносы"
+
+#~ msgid "Credits"
+#~ msgstr "Создатели"
+
+#~ msgid "Documenters"
+#~ msgstr "Составители документации"
+
+#~ msgid "Donations"
+#~ msgstr "Спонсоры"
+
+#~ msgid "Kernel upgrade utility for Ubuntu-based distributions"
+#~ msgstr "Программа обновления ядра для дистрибутивов на базе Ubuntu"
+
+#~ msgid "Third Party Tools"
+#~ msgstr "Сторонние инструменты"
 
 #, fuzzy
 #~ msgid "Install kernel"

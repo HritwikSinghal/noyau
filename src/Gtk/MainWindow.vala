@@ -504,38 +504,7 @@ public class MainWindow : Gtk.Window {
 
 	private void btn_about_clicked() {
 		var dialog = new AboutWindow();
-		dialog.set_transient_for (this);
-
-		dialog.authors = {
-			"Joshua Dowding:joshuadowding@outlook.com",
-			"Tony George:teejeetech@gmail.com"
-		};
-
-		dialog.translators = {
-			"Åke Engelbrektson (Swedish):eson@svenskasprakfiler.se",
-			"Иннусик (Russian):slavusik1988@gmail.com",
-			"Waldemar Konik (Polish):valdi74@github",
-			"gogo (Croatian):trebelnik2@gmail.com",
-			"Adolfo Jayme Barrientos (Spanish):fitojb@ubuntu.com",
-            "yolateng0 (French):github.com/yolateng0",
-            "Hugo Posnic (French):hugo.posnic@gmail.com"
-		};
-
-		dialog.documenters = null;
-		dialog.artists = null;
-		dialog.donations = null;
-
-		dialog.program_name = Main.AppName;
-		dialog.comments = _("Kernel upgrade utility for Ubuntu-based distributions");
-		dialog.copyright = "Copyright © 2019 Joshua Dowding (%s)".printf(Main.AppAuthorEmail);
-		dialog.version = Main.AppVersion;
-		dialog.logo = get_app_icon(128);
-
-		dialog.license = "This program is free for personal and commercial use and comes with absolutely no warranty. You use this program entirely at your own risk. The author will not be liable for any damages arising from the use of this program.";
-		dialog.website = "http://teejeetech.in";
-		dialog.website_label = "http://teejeetech.blogspot.in";
-
-		dialog.initialize();
+		dialog.set_transient_for(this);
 		dialog.show_all();
 	}
 

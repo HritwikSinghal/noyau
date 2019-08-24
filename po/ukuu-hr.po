@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-08-24 06:21-0700\n"
+"POT-Creation-Date: 2019-08-24 14:49+0100\n"
 "PO-Revision-Date: 2017-12-24 00:52+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-12-23 23:36+0000\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
-#: Gtk/VersionMessageWindow.vala:60
-msgid "A paid version of Ukuu is now available, with more features and new UI"
+#: Utility/Gtk/AboutWindow.vala:38
+msgid "A graphical utility for managing kernels on Ubuntu."
 msgstr ""
 
 #: Gtk/MainWindow.vala:443
@@ -39,29 +39,15 @@ msgstr "Drugi primjerak ove aplikacije je pokrenut"
 msgid "Architecture"
 msgstr "Arhitektura sustava"
 
-#: Utility/Gtk/AboutWindow.vala:348
-#, c-format
-msgid "Artists"
-msgstr "Dizajneri"
-
 #: Console/AppConsole.vala:98
 msgid "Assume Yes for all prompts (non-interactive mode)"
 msgstr ""
-
-#: Utility/Gtk/AboutWindow.vala:324
-#, c-format
-msgid "Authors"
-msgstr "Autori"
 
 #: Common/LinuxKernel.vala:1155
 msgid "Available Kernels"
 msgstr "Dostupni kerneli"
 
-#: Utility/Gtk/AboutWindow.vala:295
-msgid "Back"
-msgstr "Natrag"
-
-#: Gtk/MainWindow.vala:824
+#: Gtk/MainWindow.vala:788
 msgid "Booting previous kernels"
 msgstr "Pokretanje prijašnjeg kernela"
 
@@ -93,7 +79,7 @@ msgstr "Provjeri nadopune kernela"
 msgid "Check for kernel updates and notify current user"
 msgstr "Provjeri nadopune kernela"
 
-#: Gtk/TerminalWindow.vala:178 Utility/Gtk/AboutWindow.vala:305
+#: Gtk/TerminalWindow.vala:178
 msgid "Close"
 msgstr "Zatvori"
 
@@ -105,7 +91,7 @@ msgstr ""
 msgid "Commands"
 msgstr ""
 
-#: Common/Main.vala:115
+#: Common/Main.vala:114
 msgid "Commands listed below are not available on this system"
 msgstr "Naredbe navedene ispod nisu dostupne na ovom sustavu"
 
@@ -113,11 +99,6 @@ msgstr "Naredbe navedene ispod nisu dostupne na ovom sustavu"
 #, c-format
 msgid "Continue ?"
 msgstr ""
-
-#: Utility/Gtk/AboutWindow.vala:332
-#, c-format
-msgid "Contributions"
-msgstr "Prilozi"
 
 #: Common/LinuxKernel.vala:724
 #, fuzzy
@@ -138,10 +119,6 @@ msgstr "Nemoguće je pronaći zatraženu inačicu"
 msgid "Created directory"
 msgstr "Stvoren direktorij"
 
-#: Utility/Gtk/AboutWindow.vala:282 Utility/Gtk/AboutWindow.vala:299
-msgid "Credits"
-msgstr "Zasluge"
-
 #: Gtk/SettingsDialog.vala:155
 msgid "Day(s)"
 msgstr "Dan(a)"
@@ -161,16 +138,6 @@ msgstr "Prikaz"
 #: Common/LinuxKernel.vala:94
 msgid "Distribution"
 msgstr "Distribucija"
-
-#: Utility/Gtk/AboutWindow.vala:364
-#, c-format
-msgid "Documenters"
-msgstr "Autori dokumentacije"
-
-#: Utility/Gtk/AboutWindow.vala:372
-#, c-format
-msgid "Donations"
-msgstr "Donacije"
 
 #: Console/AppConsole.vala:91
 msgid "Download packages for specified kernel"
@@ -328,7 +295,7 @@ msgstr ""
 msgid "Installed"
 msgstr "Instalirano"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:549 Gtk/MainWindow.vala:685
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
 #: Utility/TeeJee.System.vala:288
 msgid "Internet connection is not active"
 msgstr "Internet povezivanje nije aktivno"
@@ -336,10 +303,6 @@ msgstr "Internet povezivanje nije aktivno"
 #: Gtk/MainWindow.vala:149
 msgid "Kernel"
 msgstr "Kernel"
-
-#: Gtk/MainWindow.vala:533
-msgid "Kernel upgrade utility for Ubuntu-based distributions"
-msgstr "Alat za nadogradnju kernela Ubuntu temeljenih distribucija"
 
 #: Console/AppConsole.vala:360 Common/LinuxKernel.vala:779
 #, c-format
@@ -364,7 +327,7 @@ msgstr "Prikaži sve kernele"
 msgid "List installed kernels"
 msgstr "Prikaži sve kernele"
 
-#: Gtk/MainWindow.vala:825
+#: Gtk/MainWindow.vala:789
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
 "drivers installed on your system. These issues include:\n"
@@ -400,10 +363,6 @@ msgstr ""
 msgid "Missing Icon"
 msgstr "Ikone koje nedostaju"
 
-#: Gtk/VersionMessageWindow.vala:126
-msgid "More Info"
-msgstr ""
-
 #: Gtk/MainWindow.vala:345
 msgid "Multiple Kernels Selected"
 msgstr "Više kernela je odabrano"
@@ -412,15 +371,11 @@ msgstr "Više kernela je odabrano"
 msgid "Multiple kernels selected for installation. Select only one."
 msgstr "Više kernela je odabrano za instalaciju. odaberite samo jedan."
 
-#: Gtk/VersionMessageWindow.vala:58
-msgid "New Version Available"
-msgstr ""
-
 #: Utility/Gtk/CustomMessageDialog.vala:177
 msgid "No"
 msgstr "Ne"
 
-#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:549 Gtk/MainWindow.vala:685
+#: Gtk/MainWindow.vala:493 Gtk/MainWindow.vala:513 Gtk/MainWindow.vala:649
 msgid "No Internet"
 msgstr "Nema pristupa internetu"
 
@@ -428,7 +383,7 @@ msgstr "Nema pristupa internetu"
 msgid "No kernels specified"
 msgstr ""
 
-#: Gtk/MainWindow.vala:819 Console/AppConsole.vala:365
+#: Gtk/MainWindow.vala:783 Console/AppConsole.vala:365
 #: Console/AppConsole.vala:445 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Nema pronađenih nadopuna"
@@ -449,8 +404,7 @@ msgstr "Obavijesti kada je glavno izdanje dostupno"
 msgid "Notify if a point release is available"
 msgstr "Obavijesti kada je pojedino izdanje dostupno"
 
-#: Gtk/VersionMessageWindow.vala:138 Common/LinuxKernel.vala:1220
-#: Utility/Gtk/CustomMessageDialog.vala:167
+#: Common/LinuxKernel.vala:1220 Utility/Gtk/CustomMessageDialog.vala:167
 #: Utility/Gtk/CustomMessageDialog.vala:171 Utility/Gtk/GtkHelper.vala:121
 #, c-format
 msgid "OK"
@@ -470,7 +424,7 @@ msgstr "Dostupni paketi (DEB)"
 msgid "Packages Installed"
 msgstr "Instalirani paketi"
 
-#: Common/Main.vala:116
+#: Common/Main.vala:115
 msgid "Please install required packages and try again"
 msgstr "Instalirajte potrebni paket i pokušajte ponovno"
 
@@ -486,7 +440,7 @@ msgstr "Ispiši informacije otklanjanja grešaka"
 msgid "Refresh"
 msgstr "Osvježi"
 
-#: Gtk/MainWindow.vala:568
+#: Gtk/MainWindow.vala:532
 msgid "Refreshing..."
 msgstr "Osvježavanje..."
 
@@ -596,12 +550,7 @@ msgstr "Sintaksa"
 msgid "Temp"
 msgstr ""
 
-#: Utility/Gtk/AboutWindow.vala:340
-#, c-format
-msgid "Third Party Tools"
-msgstr "Alati treće strane"
-
-#: Gtk/MainWindow.vala:680 Common/LinuxKernel.vala:1243
+#: Gtk/MainWindow.vala:644 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "Ovaj kernel je već instaliran."
 
@@ -624,11 +573,6 @@ msgstr ""
 "\n"
 "0 = Ne prikazuj izbornik\n"
 "-1 = Prikaži izbornik sve do korisnikovog odabira"
-
-#: Utility/Gtk/AboutWindow.vala:356
-#, c-format
-msgid "Translators"
-msgstr "Prevoditelji"
 
 #: Common/LinuxKernel.vala:1335 Common/LinuxKernel.vala:1393
 msgid "Un-install completed"
@@ -684,6 +628,38 @@ msgstr "Da"
 #: Utility/AppLock.vala:56
 msgid "[Warning] Deleted invalid lock"
 msgstr "[Upozorenje] Obrisano je neispravno zaključavanje"
+
+#: Utility/Gtk/AboutWindow.vala:48
+#, fuzzy
+msgid "translator-credits"
+msgstr "Prevoditelji"
+
+#~ msgid "Artists"
+#~ msgstr "Dizajneri"
+
+#~ msgid "Authors"
+#~ msgstr "Autori"
+
+#~ msgid "Back"
+#~ msgstr "Natrag"
+
+#~ msgid "Contributions"
+#~ msgstr "Prilozi"
+
+#~ msgid "Credits"
+#~ msgstr "Zasluge"
+
+#~ msgid "Documenters"
+#~ msgstr "Autori dokumentacije"
+
+#~ msgid "Donations"
+#~ msgstr "Donacije"
+
+#~ msgid "Kernel upgrade utility for Ubuntu-based distributions"
+#~ msgstr "Alat za nadogradnju kernela Ubuntu temeljenih distribucija"
+
+#~ msgid "Third Party Tools"
+#~ msgstr "Alati treće strane"
 
 #, fuzzy
 #~ msgid "Install kernel"
