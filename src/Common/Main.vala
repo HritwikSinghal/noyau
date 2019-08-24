@@ -39,9 +39,9 @@ public class Main : GLib.Object {
 	// constants ----------
 	public static string AppName = "Ubuntu Kernel Update Utility";
 	public static string AppShortName = "ukuu";
-	public static string AppVersion = "18.9.3";
-	public static string AppAuthor = "Tony George";
-	public static string AppAuthorEmail = "teejeetech@gmail.com";
+	public static string AppVersion = "18.10";
+	public static string AppAuthor = "Joshua Dowding";
+	public static string AppAuthorEmail = "joshuadowding@outlook.com";
 
 	public static string GETTEXT_PACKAGE = "";
 	public static string LOCALE_DIR = "/usr/share/locale";
@@ -98,7 +98,6 @@ public class Main : GLib.Object {
 	// helpers ------------
 	
 	public static bool check_dependencies(out string msg) {
-		
 		string[] dependencies = { "aptitude", "apt-get", "aria2c", "dpkg", "uname", "lsb_release", "ping", "curl" };
 
 		msg = "";

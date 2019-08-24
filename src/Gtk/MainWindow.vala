@@ -293,8 +293,8 @@ public class MainWindow : Gtk.Window {
 			model.append(out iter);
 			model.set (iter, 0, kern);
 
-			if (kern.is_mainline){
-				if (kern.is_unstable){
+			if (kern.is_mainline) {
+				if (kern.is_unstable) {
 					model.set (iter, 1, pix_mainline_rc);
 				}
 				else{
@@ -318,7 +318,7 @@ public class MainWindow : Gtk.Window {
 		set_infobar();
 	}
 
-	private void set_button_state(){
+	private void set_button_state() {
 		if (selected_kernels.size == 0){
 			btn_install.sensitive = false;
 			btn_remove.sensitive = false;
@@ -333,7 +333,7 @@ public class MainWindow : Gtk.Window {
 		}
 	}
 
-	private void init_actions(){
+	private void init_actions() {
 		var button_install = new Gtk.Button.from_icon_name("system-software-install-symbolic", IconSize.SMALL_TOOLBAR);
 		button_install.set_tooltip_text(_("Install"));
 
@@ -507,14 +507,10 @@ public class MainWindow : Gtk.Window {
 		dialog.set_transient_for (this);
 
 		dialog.authors = {
+			"Joshua Dowding:joshuadowding@outlook.com",
 			"Tony George:teejeetech@gmail.com"
 		};
 
-		dialog.third_party = {
-			"Elementary project (various icons):github.com/elementary/icons",
-			"Tango project (various icons):tango.freedesktop.org/Tango_Desktop_Project"
-		};
-		
 		dialog.translators = {
 			"Åke Engelbrektson (Swedish):eson@svenskasprakfiler.se",
 			"Иннусик (Russian):slavusik1988@gmail.com",
@@ -531,7 +527,7 @@ public class MainWindow : Gtk.Window {
 
 		dialog.program_name = Main.AppName;
 		dialog.comments = _("Kernel upgrade utility for Ubuntu-based distributions");
-		dialog.copyright = "Copyright © 2012-17 Tony George (%s)".printf(Main.AppAuthorEmail);
+		dialog.copyright = "Copyright © 2019 Joshua Dowding (%s)".printf(Main.AppAuthorEmail);
 		dialog.version = Main.AppVersion;
 		dialog.logo = get_app_icon(128);
 
@@ -543,8 +539,7 @@ public class MainWindow : Gtk.Window {
 		dialog.show_all();
 	}
 
-	private void refresh_cache(bool download_index = true){
-
+	private void refresh_cache(bool download_index = true) {
 		if (!check_internet_connectivity()){
 			gtk_messagebox(_("No Internet"), _("Internet connection is not active"), this, true);
 			return;
