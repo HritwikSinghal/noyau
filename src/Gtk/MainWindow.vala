@@ -415,7 +415,7 @@ public class MainWindow : Gtk.Window {
 		btn_changes = button_changes;
 
 		var button_menu = new Gtk.MenuButton();
-		button_menu.set_image(new Gtk.Image.from_icon_name("open-menu-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
+		button_menu.set_image(new Gtk.Image.from_icon_name("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR));
 
 		var menu_popover = new Gtk.Popover(button_menu);
 		menu_popover.position = Gtk.PositionType.BOTTOM;

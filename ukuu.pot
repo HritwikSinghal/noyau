@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu 1.6\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-08-24 13:40-0700\n"
+"POT-Creation-Date: 2019-09-08 07:49-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,8 +50,8 @@ msgid "Cache"
 msgstr ""
 
 #: Utility/Gtk/CustomMessageDialog.vala:172 Utility/Gtk/GtkHelper.vala:122
-#: Gtk/ProgressWindow.vala:141 Gtk/TerminalWindow.vala:168
-#: Gtk/UpdateNotificationWindow.vala:167
+#: Gtk/UpdateNotificationWindow.vala:167 Gtk/TerminalWindow.vala:168
+#: Gtk/ProgressWindow.vala:141
 msgid "Cancel"
 msgstr ""
 
@@ -245,7 +245,7 @@ msgstr ""
 msgid "Index is stale"
 msgstr ""
 
-#: Gtk/MainWindow.vala:337 Gtk/UpdateNotificationWindow.vala:147
+#: Gtk/UpdateNotificationWindow.vala:147 Gtk/MainWindow.vala:337
 msgid "Install"
 msgstr ""
 
