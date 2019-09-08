@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu 2.2\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-09-08 07:45-0700\n"
+"POT-Creation-Date: 2019-09-08 09:23-0700\n"
 "PO-Revision-Date: 2017-04-30 11:50+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: \n"
@@ -44,7 +44,7 @@ msgstr ""
 msgid "Available Kernels"
 msgstr "Beschikbare kernels"
 
-#: Gtk/MainWindow.vala:803
+#: Gtk/MainWindow.vala:840
 msgid "Booting previous kernels"
 msgstr "Opstarten van vorige kernels"
 
@@ -58,7 +58,7 @@ msgstr ""
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: Gtk/MainWindow.vala:406
+#: Gtk/MainWindow.vala:414
 #, fuzzy
 msgid "Changes"
 msgstr "Wijzigingen"
@@ -102,7 +102,7 @@ msgstr ""
 msgid "Could not find any kernels to remove"
 msgstr "Selecteer de te verwijderen kernels"
 
-#: Console/AppConsole.vala:302 Gtk/MainWindow.vala:101
+#: Console/AppConsole.vala:302 Gtk/MainWindow.vala:102
 msgid "Could not find requested version"
 msgstr "De vereiste versie kan niet worden gevonden"
 
@@ -252,7 +252,7 @@ msgstr "De index is up-to-date"
 msgid "Index is stale"
 msgstr "De index is verouderd"
 
-#: Gtk/UpdateNotificationWindow.vala:147 Gtk/MainWindow.vala:337
+#: Gtk/UpdateNotificationWindow.vala:147 Gtk/MainWindow.vala:400
 msgid "Install"
 msgstr "Installeren"
 
@@ -288,16 +288,16 @@ msgstr ""
 "De installatie is voltooid. Herstart de computer om de nieuwe kernel te "
 "gebruiken."
 
-#: Gtk/MainWindow.vala:206 Common/LinuxKernel.vala:1172
+#: Gtk/MainWindow.vala:207 Common/LinuxKernel.vala:1172
 msgid "Installed"
 msgstr "Geïnstalleerd"
 
-#: Utility/TeeJee.System.vala:288 Gtk/MainWindow.vala:431
-#: Gtk/MainWindow.vala:529 Gtk/MainWindow.vala:664
+#: Utility/TeeJee.System.vala:288 Gtk/MainWindow.vala:433
+#: Gtk/MainWindow.vala:569 Gtk/MainWindow.vala:701
 msgid "Internet connection is not active"
 msgstr "U bent niet verbonden met het internet"
 
-#: Gtk/MainWindow.vala:148
+#: Gtk/MainWindow.vala:149
 msgid "Kernel"
 msgstr "Kernel"
 
@@ -325,7 +325,7 @@ msgstr "Alle beschikbare mainline-kernels weergeven"
 msgid "List installed kernels"
 msgstr "Alle beschikbare mainline-kernels weergeven"
 
-#: Gtk/MainWindow.vala:804
+#: Gtk/MainWindow.vala:841
 #, fuzzy
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
@@ -363,7 +363,7 @@ msgstr ""
 msgid "Missing Icon"
 msgstr "Ontbrekend pictogram"
 
-#: Gtk/MainWindow.vala:344
+#: Gtk/MainWindow.vala:342
 msgid "Multiple Kernels Selected"
 msgstr "Meerdere kernels geselecteerd"
 
@@ -377,7 +377,7 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: Gtk/MainWindow.vala:431 Gtk/MainWindow.vala:529 Gtk/MainWindow.vala:664
+#: Gtk/MainWindow.vala:433 Gtk/MainWindow.vala:569 Gtk/MainWindow.vala:701
 msgid "No Internet"
 msgstr "Geen internetverbinding"
 
@@ -386,11 +386,11 @@ msgid "No kernels specified"
 msgstr ""
 
 #: Console/AppConsole.vala:365 Console/AppConsole.vala:445
-#: Gtk/MainWindow.vala:798 Common/LinuxKernel.vala:787
+#: Gtk/MainWindow.vala:835 Common/LinuxKernel.vala:787
 msgid "No updates found"
 msgstr "Geen updates gevonden"
 
-#: Gtk/MainWindow.vala:347 Gtk/MainWindow.vala:360
+#: Gtk/MainWindow.vala:345 Gtk/MainWindow.vala:351
 msgid "Not Selected"
 msgstr "Niet geselecteerd"
 
@@ -439,11 +439,12 @@ msgstr "Bezig met voorbereiden van verwijderen van geselecteerde kernels"
 msgid "Print debug information"
 msgstr "Foutopsporingsinformatie printen"
 
-#: Gtk/MainWindow.vala:547
-msgid "Refreshing..."
+#: Gtk/MainWindow.vala:587
+#, fuzzy
+msgid "Refreshing."
 msgstr "Bezig met verversen..."
 
-#: Gtk/MainWindow.vala:356
+#: Gtk/MainWindow.vala:407
 msgid "Remove"
 msgstr "Verwijderen"
 
@@ -455,7 +456,7 @@ msgstr "Bestanden verwijderen uit applicatie-cache"
 msgid "Remove installed kernels older than running kernel"
 msgstr ""
 
-#: Gtk/MainWindow.vala:483
+#: Gtk/MainWindow.vala:485
 msgid "Remove installed kernels older than the running kernel"
 msgstr ""
 
@@ -483,19 +484,19 @@ msgstr ""
 msgid "Run the application as admin with pkexec or sudo."
 msgstr "Draai de applicatie als root of m.b.v. gksu/sudo."
 
-#: Gtk/MainWindow.vala:206 Common/LinuxKernel.vala:1172
+#: Gtk/MainWindow.vala:207 Common/LinuxKernel.vala:1172
 msgid "Running"
 msgstr "Bezig met draaien"
 
-#: Gtk/MainWindow.vala:344
+#: Gtk/MainWindow.vala:342
 msgid "Select a single kernel to install"
 msgstr "Selecteer een enkele te installeren kernel"
 
-#: Gtk/MainWindow.vala:347
+#: Gtk/MainWindow.vala:345
 msgid "Select the kernel to install"
 msgstr "Selecteer de te installeren kernel"
 
-#: Gtk/MainWindow.vala:360
+#: Gtk/MainWindow.vala:351
 msgid "Select the kernels to remove"
 msgstr "Selecteer de te verwijderen kernels"
 
@@ -537,7 +538,7 @@ msgstr "Meldingsvenster weergeven"
 msgid "Show unstable and RC releases"
 msgstr "Instabiele en RC-uitgaven verbergen"
 
-#: Gtk/MainWindow.vala:194
+#: Gtk/MainWindow.vala:195
 msgid "Status"
 msgstr "Status"
 
@@ -553,7 +554,7 @@ msgstr "Syntax"
 msgid "Temp"
 msgstr ""
 
-#: Gtk/MainWindow.vala:659 Common/LinuxKernel.vala:1243
+#: Gtk/MainWindow.vala:696 Common/LinuxKernel.vala:1243
 msgid "This kernel is already installed."
 msgstr "Deze kernel is al geïnstalleerd."
 
@@ -612,7 +613,7 @@ msgstr ""
 msgid "Updating GRUB menu"
 msgstr "Bezig met bijwerken van GRUB-menu"
 
-#: Gtk/MainWindow.vala:177
+#: Gtk/MainWindow.vala:178
 msgid "Version"
 msgstr "Versie"
 

@@ -22,6 +22,7 @@
  */
 
 using Gtk;
+using Gdk;
 using Gee;
 
 using TeeJee.Logging;
@@ -242,7 +243,8 @@ public class MainWindow : Gtk.Window {
 		var paths = sel.get_selected_rows (out model);
 
 		selected_kernels.clear();
-		foreach(var path in paths){
+
+		foreach(var path in paths) {
 			LinuxKernel kern;
 			model.get_iter(out iter, path);
 			model.get (iter, 0, out kern, -1);
@@ -332,85 +334,85 @@ public class MainWindow : Gtk.Window {
 		}
 	}
 
+	private void button_install_click() {
+		if (selected_kernels.size == 1){
+			install(selected_kernels[0]);
+		}
+		else if (selected_kernels.size > 1){
+			gtk_messagebox(_("Multiple Kernels Selected"),_("Select a single kernel to install"), this, true);
+		}
+		else{
+			gtk_messagebox(_("Not Selected"),_("Select the kernel to install"), this, true);
+		}
+	}
+
+	private void button_remove_click() {
+		if (selected_kernels.size == 0) {
+			gtk_messagebox(_("Not Selected"),_("Select the kernels to remove"), this, true);
+		}
+		else if (selected_kernels.size > 0) {
+			var term = new TerminalWindow.with_parent(this, false, true);
+
+			term.script_complete.connect(() => {
+				term.allow_window_close();
+			});
+
+			term.destroy.connect(() => {
+				this.present();
+				refresh_cache();
+				tv_refresh();
+			});
+
+			string sh = "";
+			sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ";
+			sh += "ukuu --user %s".printf(App.user_login);
+			if (LOG_DEBUG) {
+				sh += " --debug";
+			}
+
+			string names = "";
+			foreach(var kern in selected_kernels) {
+				if (names.length > 0){
+					names += ",";
+				}
+				names += "%s".printf(kern.name);
+			}
+
+			sh += " --remove %s\n".printf(names);
+
+			sh += "echo ''\n";
+			sh += "echo 'Close window to exit...'\n";
+
+			this.hide();
+
+			term.execute_script(save_bash_script_temp(sh));
+		}
+	}
+
+	private void button_changes_click() {
+		if ((selected_kernels.size == 1) && file_exists(selected_kernels[0].changes_file)) {
+			xdg_open(selected_kernels[0].changes_file);
+		}
+	}
+
 	private void init_actions() {
-		var button_install = new Gtk.Button.from_icon_name("system-software-install-symbolic", IconSize.SMALL_TOOLBAR);
+		var button_install = new Gtk.Button.from_icon_name("list-add-symbolic", IconSize.SMALL_TOOLBAR);
 		button_install.set_tooltip_text(_("Install"));
-
-		button_install.clicked.connect(() => {
-			if (selected_kernels.size == 1){
-				install(selected_kernels[0]);
-			}
-			else if (selected_kernels.size > 1){
-				gtk_messagebox(_("Multiple Kernels Selected"),_("Select a single kernel to install"), this, true);
-			}
-			else{
-				gtk_messagebox(_("Not Selected"),_("Select the kernel to install"), this, true);
-			}
-		});
-
+		button_install.clicked.connect(button_install_click);
 		header_bar.pack_start(button_install);
 		btn_install = button_install;
 
 		// remove
 		var button_remove = new Gtk.Button.from_icon_name("list-remove-symbolic", IconSize.SMALL_TOOLBAR);
 		button_remove.set_tooltip_text(_("Remove"));
-
-		button_remove.clicked.connect(() => {
-			if (selected_kernels.size == 0) {
-				gtk_messagebox(_("Not Selected"),_("Select the kernels to remove"), this, true);
-			}
-			else if (selected_kernels.size > 0) {
-				var term = new TerminalWindow.with_parent(this, false, true);
-				
-				term.script_complete.connect(() => {
-					term.allow_window_close();
-				});
-				
-				term.destroy.connect(() => {
-					this.present();
-					refresh_cache();
-					tv_refresh();
-				});
-
-				string sh = "";
-				sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY "; 
-				sh += "ukuu --user %s".printf(App.user_login);
-				if (LOG_DEBUG) {
-					sh += " --debug";
-				}
-
-				string names = "";
-				foreach(var kern in selected_kernels) {
-					if (names.length > 0){
-						names += ",";
-					}
-					names += "%s".printf(kern.name);
-				}
-
-				sh += " --remove %s\n".printf(names);
-				
-				sh += "echo ''\n";
-				sh += "echo 'Close window to exit...'\n";
-
-				this.hide();
-				
-				term.execute_script(save_bash_script_temp(sh));
-			}
-		});
-
+		button_remove.clicked.connect(button_remove_click);
 		header_bar.pack_start(button_remove);
 		btn_remove = button_remove;
 
 		// changes
 		var button_changes = new Gtk.Button.from_icon_name("dialog-information-symbolic", IconSize.SMALL_TOOLBAR);
 		button_changes.set_tooltip_text(_("Changes"));
-
-		button_changes.clicked.connect(() => {
-			if ((selected_kernels.size == 1) && file_exists(selected_kernels[0].changes_file)) {
-				xdg_open(selected_kernels[0].changes_file);
-			}
-		});
-
+		button_changes.clicked.connect(button_changes_click);
 		header_bar.pack_start(button_changes);
 		btn_changes = button_changes;
 
@@ -516,6 +518,44 @@ public class MainWindow : Gtk.Window {
 
 		header_bar.pack_end(button_purge);
 		btn_purge = button_purge;
+
+		tv.button_press_event.connect((event) => {
+			if (event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) {
+				TreePath path;
+				TreeViewColumn column;
+				int cell_x;
+				int cell_y;
+
+				// Based on: https://stackoverflow.com/questions/28097636/python-gtk3-treeview-right-click-not-select-the-correct-selection/49649532
+				tv.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
+				tv.grab_focus();
+				tv.set_cursor(path, column, false);
+
+				tv_selection_changed();
+
+				var menu = new Gtk.Menu();
+				var menu_install = new Gtk.MenuItem.with_label("Install");
+				menu_install.activate.connect(button_install_click);
+
+				var menu_remove = new Gtk.MenuItem.with_label("Remove");
+				menu_remove.activate.connect(button_remove_click);
+
+				var menu_changes = new Gtk.MenuItem.with_label("Changes");
+				menu_changes.activate.connect(button_changes_click);
+
+				menu.attach_to_widget(tv, null);
+				menu.add(menu_install);
+				menu.add(menu_remove);
+				menu.add(menu_changes);
+				menu.show_all();
+				menu.popup(null, null, null, event.button, event.time);
+
+				return true;
+			}
+			else {
+				return false;
+			}
+		});
 	}
 
 	private void btn_about_clicked() {
@@ -544,7 +584,7 @@ public class MainWindow : Gtk.Window {
 			return;
 		}
 		
-		string message = _("Refreshing...");
+		string message = _("Refreshing.");
 		var dlg = new ProgressWindow.with_parent(this, message, true);
 		dlg.show_all();
 		gtk_do_events();
@@ -602,12 +642,9 @@ public class MainWindow : Gtk.Window {
 	}
 
 
-	private void init_infobar(){
-		
-		// scrolled
+	private void init_infobar() {
 		var scrolled = new ScrolledWindow(null, null);
 		scrolled.set_shadow_type (ShadowType.ETCHED_IN);
-		//scrolled.margin = 6;
 		scrolled.margin_top = 0;
 		scrolled.hscrollbar_policy = Gtk.PolicyType.NEVER;
 		scrolled.vscrollbar_policy = Gtk.PolicyType.NEVER;
@@ -615,13 +652,13 @@ public class MainWindow : Gtk.Window {
 
 		// hbox
 		var hbox = new Gtk.Box(Orientation.HORIZONTAL, 6);
-		//hbox.margin = 6;
+		hbox.margin = 6;
 		scrolled.add(hbox);
 
-		var img_status = new Gtk.Image();
-		img_status.pixbuf = get_shared_icon_pixbuf("", "tux.svg", 64);
-		img_status.margin = 6;
-        hbox.add(img_status);
+		//var img_status = new Gtk.Image();
+		//img_status.pixbuf = get_shared_icon_pixbuf("", "tux.svg", 64);
+		//img_status.margin = 6;
+		//hbox.add(img_status);
 
 		lbl_info = new Gtk.Label("");
 		lbl_info.margin = 6;
