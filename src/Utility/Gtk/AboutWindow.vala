@@ -32,41 +32,41 @@ using TeeJee.System;
 using TeeJee.Misc;
 
 public class AboutWindow : AboutDialog {
-	public AboutWindow() {
-		this.title = Main.AppName;
-		this.program_name = Main.AppName;
-		this.comments = _("A graphical utility for managing kernels on Ubuntu.");
-		this.version = Main.AppVersion;
-		this.website = "https://joshuadowding.github.io";
+    public AboutWindow () {
+        this.title = Main.AppName;
+        this.program_name = Main.AppName;
+        this.comments = _("A graphical utility for managing kernels on Ubuntu.");
+        this.version = Main.AppVersion;
+        this.website = "https://joshuadowding.github.io";
 
-		this.logo = get_app_icon(64);
-		this.modal = true;
-		this.destroy_with_parent = true;
+        this.logo = get_app_icon (64);
+        this.modal = true;
+        this.destroy_with_parent = true;
 
-		this.authors = {
-			"Joshua Dowding (joshuadowding@outlook.com)",
-			"Tony George (teejeetech@gmail.com)"
-		};
+        this.authors = {
+            "Joshua Dowding (joshuadowding@outlook.com)",
+            "Tony George (teejeetech@gmail.com)"
+        };
 
-		this.translator_credits = _("translator-credits");
-		this.copyright = "Copyright © 2019 Joshua Dowding (%s)".printf(Main.AppAuthorEmail);
-		this.license_type = Gtk.License.GPL_3_0;
-		this.wrap_license = true;
+        this.translator_credits = _("translator-credits");
+        this.copyright = "Copyright © 2019 Joshua Dowding (%s)".printf (Main.AppAuthorEmail);
+        this.license_type = Gtk.License.GPL_3_0;
+        this.wrap_license = true;
 
-		this.response.connect (() => {
-			this.destroy ();
-		});
-	}
+        this.response.connect (() => {
+            this.destroy ();
+        });
+    }
 }
 
 /*
- * 	Translators:
- * 	"Åke Engelbrektson (Swedish):eson@svenskasprakfiler.se",
-	"Иннусик (Russian):slavusik1988@gmail.com",
-	"Waldemar Konik (Polish):valdi74@github",
-	"gogo (Croatian):trebelnik2@gmail.com",
-	"Adolfo Jayme Barrientos (Spanish):fitojb@ubuntu.com",
-	"yolateng0 (French):github.com/yolateng0",
-	"Hugo Posnic (French):hugo.posnic@gmail.com"
+ *  Translators:
+ *  "Åke Engelbrektson (Swedish):eson@svenskasprakfiler.se",
+        "Иннусик (Russian):slavusik1988@gmail.com",
+        "Waldemar Konik (Polish):valdi74@github",
+        "gogo (Croatian):trebelnik2@gmail.com",
+        "Adolfo Jayme Barrientos (Spanish):fitojb@ubuntu.com",
+        "yolateng0 (French):github.com/yolateng0",
+        "Hugo Posnic (French):hugo.posnic@gmail.com"
  */
 

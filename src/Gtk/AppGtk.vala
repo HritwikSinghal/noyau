@@ -38,142 +38,140 @@ public Main App;
 
 public class AppGtk : GLib.Object {
 
-	public static int main (string[] args) {
-		set_locale();
+    public static int main (string[] args) {
+        set_locale ();
 
-		log_msg("%s v%s".printf(Main.AppShortName, Main.AppVersion));
+        log_msg ("%s v%s".printf (Main.AppShortName, Main.AppVersion));
 
-		Gtk.init(ref args);
+        Gtk.init (ref args);
 
-		init_tmp("ukuu-gtk");
-		
-		//check_if_admin();
+        init_tmp ("ukuu-gtk");
 
-		LOG_TIMESTAMP = false;
+        // check_if_admin();
 
-		//check dependencies
-		string message;
-		if (!Main.check_dependencies(out message)) {
-			gtk_messagebox("", message, null, true);
-			exit(0);
-		}
+        LOG_TIMESTAMP = false;
 
-		App = new Main(args, true);
-		parse_arguments(args);
+        // check dependencies
+        string message;
+        if (!Main.check_dependencies (out message)) {
+            gtk_messagebox ("", message, null, true);
+            exit (0);
+        }
 
-		// create main window --------------------------------------
+        App = new Main (args, true);
+        parse_arguments (args);
 
-		var window = new MainWindow ();
-		
-		window.destroy.connect(()=>{
-			log_debug("MainWindow destroyed");
-			Gtk.main_quit();
-		});
-		
-		window.delete_event.connect((event)=>{
-			log_debug("MainWindow closed");
-			Gtk.main_quit();
-			return true;
-		});
+        // create main window --------------------------------------
 
-		if (App.command == "list"){
-			window.show_all();
-		}
+        var window = new MainWindow ();
 
-		//start event loop -------------------------------------
-		
-		Gtk.main();
+        window.destroy.connect (() => {
+            log_debug ("MainWindow destroyed");
+            Gtk.main_quit ();
+        });
 
-		App.save_app_config();
+        window.delete_event.connect ((event) => {
+            log_debug ("MainWindow closed");
+            Gtk.main_quit ();
+            return true;
+        });
 
-		return 0;
-	}
+        if (App.command == "list") {
+            window.show_all ();
+        }
 
-	private static void set_locale() {
-		Intl.setlocale(GLib.LocaleCategory.MESSAGES, "ukuu");
-		Intl.textdomain(Main.GETTEXT_PACKAGE);
-		Intl.bind_textdomain_codeset(Main.GETTEXT_PACKAGE, "utf-8");
-		Intl.bindtextdomain(Main.GETTEXT_PACKAGE, Main.LOCALE_DIR);
-	}
+        // start event loop -------------------------------------
 
-	public static bool parse_arguments(string[] args) {
-		log_msg(_("Cache") + ": %s".printf(LinuxKernel.CACHE_DIR));
-		log_msg(_("Temp") + ": %s".printf(TEMP_DIR));
+        Gtk.main ();
 
-		App.command = "list";
-		
-		//parse options
-		for (int k = 1; k < args.length; k++) // Oth arg is app path
-		{
-			switch (args[k].down()) {
-				
-			case "--debug":
-				LOG_DEBUG = true;
-				break;
+        App.save_app_config ();
 
-			case "--help":
-			case "--h":
-			case "-h":
-				log_msg(help_message());
-				exit(0);
-				return true;
-			}
-		}
+        return 0;
+    }
 
-		for (int k = 1; k < args.length; k++) // Oth arg is app path
-		{
-			switch (args[k].down()) {
+    private static void set_locale () {
+        Intl.setlocale (GLib.LocaleCategory.MESSAGES, "ukuu");
+        Intl.textdomain (Main.GETTEXT_PACKAGE);
+        Intl.bind_textdomain_codeset (Main.GETTEXT_PACKAGE, "utf-8");
+        Intl.bindtextdomain (Main.GETTEXT_PACKAGE, Main.LOCALE_DIR);
+    }
 
-			// commands ------------------------------------
+    public static bool parse_arguments (string[] args) {
+        log_msg (_("Cache") + ": %s".printf (LinuxKernel.CACHE_DIR));
+        log_msg (_("Temp") + ": %s".printf (TEMP_DIR));
 
-			case "--install":
-				App.command = "install";
-				App.requested_version = args[++k];
-				break;
+        App.command = "list";
 
-			case "--notify":
-				App.command = "notify";
-				break;
-				
-			// options without argument --------------------------
-			
-			case "--help":
-			case "--h":
-			case "-h":
-			case "--debug":
-				// already handled - do nothing
-				break;
+        // parse options
+        for (int k = 1; k < args.length; k++) { // Oth arg is app path
+            switch (args[k].down ()) {
 
-			// options with argument --------------------------
+                case "--debug":
+                    LOG_DEBUG = true;
+                    break;
 
-			case "--user":
-				k += 1;
-				// already handled - do nothing
-				break;
+                case "--help":
+                case "--h":
+                case "-h":
+                    log_msg (help_message ());
+                    exit (0);
+                    return true;
+            }
+        }
 
-			default:
-				//unknown option - show help and exit
-				log_error(_("Unknown option") + ": %s".printf(args[k]));
-				log_msg(help_message());
-				return false;
-			}
-		}
+        for (int k = 1; k < args.length; k++) { // Oth arg is app path
+            switch (args[k].down ()) {
 
-		return true;
-	}
+                // commands ------------------------------------
 
-	public static string help_message() {
-		
-		string msg = "\n" + Main.AppName + " v" + Main.AppVersion + " by Tony George (teejeetech@gmail.com)" + "\n";
-		msg += "\n";
-		msg += _("Syntax") + ": ukuu-gtk [options]\n";
-		msg += "\n";
-		msg += _("Options") + ":\n";
-		msg += "\n";
-		msg += "  --debug      " + _("Print debug information") + "\n";
-		msg += "  --h[elp]     " + _("Show all options") + "\n";
-		msg += "\n";
-		return msg;
-	}
+                case "--install":
+                    App.command = "install";
+                    App.requested_version = args[++k];
+                    break;
+
+                case "--notify":
+                    App.command = "notify";
+                    break;
+
+                // options without argument --------------------------
+
+                case "--help":
+                case "--h":
+                case "-h":
+                case "--debug":
+                    // already handled - do nothing
+                    break;
+
+                // options with argument --------------------------
+
+                case "--user":
+                    k += 1;
+                    // already handled - do nothing
+                    break;
+
+                default:
+                    // unknown option - show help and exit
+                    log_error (_("Unknown option") + ": %s".printf (args[k]));
+                    log_msg (help_message ());
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static string help_message () {
+
+        string msg = "\n" + Main.AppName + " v" + Main.AppVersion + " by Tony George (teejeetech@gmail.com)" + "\n";
+        msg += "\n";
+        msg += _("Syntax") + ": ukuu-gtk [options]\n";
+        msg += "\n";
+        msg += _("Options") + ":\n";
+        msg += "\n";
+        msg += "  --debug      " + _("Print debug information") + "\n";
+        msg += "  --h[elp]     " + _("Show all options") + "\n";
+        msg += "\n";
+        return msg;
+    }
 }
 

@@ -21,70 +21,65 @@
  *
  *
  */
- 
+
 using TeeJee.Logging;
 using TeeJee.FileSystem;
 using TeeJee.ProcessHelper;
 using TeeJee.Misc;
- 
+
 public class AppLock : GLib.Object {
-	
-	public string lock_file = "";
-	public string lock_message = "";
-	
-	public bool create(string app_name, string message){
 
-		var lock_dir = "/var/run/lock/%s".printf(app_name);
-		dir_create(lock_dir);
-		lock_file = path_combine(lock_dir, "lock");
-		
-		try{
-			var file = File.new_for_path(lock_file);
-			if (file.query_exists()) {
+    public string lock_file = "";
+    public string lock_message = "";
 
-				string txt = file_read(lock_file);
-				string process_id = txt.split(";")[0].strip();
-				lock_message = txt.split(";")[1].strip();
-				long pid = long.parse(process_id);
+    public bool create (string app_name, string message) {
 
-				if (process_is_running(pid)){
-					log_msg(_("Another instance of this application is running")
-						+ " (PID=%ld)".printf(pid));
-					return false;
-				}
-				else{
-					log_msg(_("[Warning] Deleted invalid lock"));
-					file.delete();
-					write_lock_file(message);
-					return true;
-				}
-			}
-			else{
-				write_lock_file(message);
-				return true;
-			}
-		}
-		catch (Error e) {
-			log_error (e.message);
-			return false;
-		}
-	}
+        var lock_dir = "/var/run/lock/%s".printf (app_name);
+        dir_create (lock_dir);
+        lock_file = path_combine (lock_dir, "lock");
 
-	private void write_lock_file(string message){
-		string current_pid = ((long) Posix.getpid()).to_string();
-		file_write(lock_file, "%s;%s".printf(current_pid, message));
-	}
-	
-	public void remove(){
-		try{
-			var file = File.new_for_path (lock_file);
-			if (file.query_exists()) {
-				file.delete();
-			}
-		}
-		catch (Error e) {
-			log_error (e.message);
-		}
-	}
+        try {
+            var file = File.new_for_path (lock_file);
+            if (file.query_exists ()) {
 
+                string txt = file_read (lock_file);
+                string process_id = txt.split (";")[0].strip ();
+                lock_message = txt.split (";")[1].strip ();
+                long pid = long.parse (process_id);
+
+                if (process_is_running (pid)) {
+                    log_msg (_("Another instance of this application is running")
+                             + " (PID=%ld)".printf (pid));
+                    return false;
+                } else {
+                    log_msg (_("[Warning] Deleted invalid lock"));
+                    file.delete ();
+                    write_lock_file (message);
+                    return true;
+                }
+            } else {
+                write_lock_file (message);
+                return true;
+            }
+        } catch (Error e) {
+            log_error (e.message);
+            return false;
+        }
+    }
+
+    private void write_lock_file (string message) {
+        string current_pid = ((long) Posix.getpid ()).to_string ();
+        file_write (lock_file, "%s;%s".printf (current_pid, message));
+    }
+
+    public void remove () {
+        try {
+            var file = File.new_for_path (lock_file);
+            if (file.query_exists ()) {
+                file.delete ();
+            }
+        } catch (Error e) {
+            log_error (e.message);
+        }
+    }
 }

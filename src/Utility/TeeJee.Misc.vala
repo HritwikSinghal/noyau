@@ -21,328 +21,324 @@
  *
  *
  */
- 
+
 namespace TeeJee.Misc {
 
-	/* Various utility functions */
+    /* Various utility functions */
 
-	using TeeJee.Logging;
-	using TeeJee.FileSystem;
-	using TeeJee.ProcessHelper;
+    using TeeJee.Logging;
+    using TeeJee.FileSystem;
+    using TeeJee.ProcessHelper;
 
-	// localization --------------------
+    // localization --------------------
 
-	public void set_numeric_locale(string type){
-		Intl.setlocale(GLib.LocaleCategory.NUMERIC, type);
-	    Intl.setlocale(GLib.LocaleCategory.COLLATE, type);
-	    Intl.setlocale(GLib.LocaleCategory.TIME, type);
-	}
-	
-	// timestamp ----------------
-	
-	public string timestamp (bool show_millis = false){
+    public void set_numeric_locale (string type) {
+        Intl.setlocale (GLib.LocaleCategory.NUMERIC, type);
+        Intl.setlocale (GLib.LocaleCategory.COLLATE, type);
+        Intl.setlocale (GLib.LocaleCategory.TIME, type);
+    }
 
-		/* Returns a formatted timestamp string */
+    // timestamp ----------------
 
-		// NOTE: format() does not support milliseconds
+    public string timestamp (bool show_millis = false) {
 
-		DateTime now = new GLib.DateTime.now_local();
-		
-		if (show_millis){
-			var msec = now.get_microsecond () / 1000;
-			return "%s.%03d".printf(now.format("%H:%M:%S"), msec);
-		}
-		else{
-			return now.format ("%H:%M:%S");
-		}
-	}
+        /* Returns a formatted timestamp string */
 
-	public string timestamp_numeric (){
+        // NOTE: format() does not support milliseconds
 
-		/* Returns a numeric timestamp string */
+        DateTime now = new GLib.DateTime.now_local ();
 
-		return "%ld".printf((long) time_t ());
-	}
+        if (show_millis) {
+            var msec = now.get_microsecond () / 1000;
+            return "%s.%03d".printf (now.format ("%H:%M:%S"), msec);
+        } else {
+            return now.format ("%H:%M:%S");
+        }
+    }
 
-	public string timestamp_for_path (){
+    public string timestamp_numeric () {
 
-		/* Returns a formatted timestamp string */
+        /* Returns a numeric timestamp string */
 
-		Time t = Time.local (time_t ());
-		return t.format ("%Y-%d-%m_%H-%M-%S");
-	}
+        return "%ld".printf ((long) time_t ());
+    }
 
-	// string formatting -------------------------------------------------
+    public string timestamp_for_path () {
 
-	public string format_date(DateTime date){
-		return date.format ("%Y-%m-%d %H:%M");
-	}
-	
-	public string format_date_12_hour(DateTime date){
-		return date.format ("%Y-%m-%d %I:%M %p");
-	}
-	
-	public string format_duration (long millis){
+        /* Returns a formatted timestamp string */
 
-		/* Converts time in milliseconds to format '00:00:00.0' */
+        Time t = Time.local (time_t ());
+        return t.format ("%Y-%d-%m_%H-%M-%S");
+    }
 
-	    double time = millis / 1000.0; // time in seconds
+    // string formatting -------------------------------------------------
 
-	    double hr = Math.floor(time / (60.0 * 60));
-	    time = time - (hr * 60 * 60);
-	    double min = Math.floor(time / 60.0);
-	    time = time - (min * 60);
-	    double sec = Math.floor(time);
+    public string format_date (DateTime date) {
+        return date.format ("%Y-%m-%d %H:%M");
+    }
+
+    public string format_date_12_hour (DateTime date) {
+        return date.format ("%Y-%m-%d %I:%M %p");
+    }
+
+    public string format_duration (long millis) {
+
+        /* Converts time in milliseconds to format '00:00:00.0' */
+
+        double time = millis / 1000.0;     // time in seconds
+
+        double hr = Math.floor (time / (60.0 * 60));
+        time = time - (hr * 60 * 60);
+        double min = Math.floor (time / 60.0);
+        time = time - (min * 60);
+        double sec = Math.floor (time);
 
         return "%02.0lf:%02.0lf:%02.0lf".printf (hr, min, sec);
-	}
+    }
 
-	public string format_time_left(int64 millis){
-		double mins = (millis * 1.0) / 60000;
-		double secs = ((millis * 1.0) % 60000) / 1000;
-		string txt = "";
-		if (mins >= 1){
-			txt += "%.0fm ".printf(mins);
-		}
-		txt += "%.0fs".printf(secs);
-		return txt;
-	}
-	
-	public double parse_time (string time){
+    public string format_time_left (int64 millis) {
+        double mins = (millis * 1.0) / 60000;
+        double secs = ((millis * 1.0) % 60000) / 1000;
+        string txt = "";
+        if (mins >= 1) {
+            txt += "%.0fm ".printf (mins);
+        }
+        txt += "%.0fs".printf (secs);
+        return txt;
+    }
 
-		/* Converts time in format '00:00:00.0' to milliseconds */
+    public double parse_time (string time) {
 
-		string[] arr = time.split (":");
-		double millis = 0;
-		if (arr.length >= 3){
-			millis += double.parse(arr[0]) * 60 * 60;
-			millis += double.parse(arr[1]) * 60;
-			millis += double.parse(arr[2]);
-		}
-		return millis;
-	}
+        /* Converts time in format '00:00:00.0' to milliseconds */
 
-	public string string_replace(string str, string search, string replacement, int count = -1){
-		string[] arr = str.split(search);
-		string new_txt = "";
-		bool first = true;
-		
-		foreach(string part in arr){
-			if (first){
-				new_txt += part;
-			}
-			else{
-				if (count == 0){
-					new_txt += search;
-					new_txt += part;
-				}
-				else{
-					new_txt += replacement;
-					new_txt += part;
-					count--;
-				}
-			}
-			first = false;
-		}
+        string[] arr = time.split (":");
+        double millis = 0;
+        if (arr.length >= 3) {
+            millis += double.parse (arr[0]) * 60 * 60;
+            millis += double.parse (arr[1]) * 60;
+            millis += double.parse (arr[2]);
+        }
+        return millis;
+    }
 
-		return new_txt;
-	}
-	
-	public string escape_html(string html, bool pango_markup = true){
-		string txt = html;
+    public string string_replace (string str, string search, string replacement, int count = -1) {
+        string[] arr = str.split (search);
+        string new_txt = "";
+        bool first = true;
 
-		if (pango_markup){
-			txt = txt
-				.replace("\\u00", "")
-				.replace("\\x"  , ""); 
-		}
-		else{
-			txt = txt
-				.replace(" ", "&nbsp;");  //pango markup throws an error with &nbsp;
-		}
-		
-		txt = txt
-				.replace("&" , "&amp;")
-				.replace("\"", "&quot;")
-				.replace("<" , "&lt;")
-				.replace(">" , "&gt;")
-				;
+        foreach (string part in arr) {
+            if (first) {
+                new_txt += part;
+            } else {
+                if (count == 0) {
+                    new_txt += search;
+                    new_txt += part;
+                } else {
+                    new_txt += replacement;
+                    new_txt += part;
+                    count--;
+                }
+            }
+            first = false;
+        }
 
-		return txt;
-	}
+        return new_txt;
+    }
 
-	public string unescape_html(string html){
-		return html
-		.replace("&amp;","&")
-		.replace("&quot;","\"")
-		//.replace("&nbsp;"," ") //pango markup throws an error with &nbsp;
-		.replace("&lt;","<")
-		.replace("&gt;",">")
-		;
-	}
+    public string escape_html (string html, bool pango_markup = true) {
+        string txt = html;
 
-	public string uri_encode(string path, bool encode_forward_slash){
-		string uri = Uri.escape_string(path);
-		if (!encode_forward_slash){
-			uri = uri.replace("%2F","/");
-		}
-		return uri;
-	}
+        if (pango_markup) {
+            txt = txt
+                   .replace ("\\u00", "")
+                   .replace ("\\x", "");
+        } else {
+            txt = txt
+                   .replace (" ", "&nbsp;");              // pango markup throws an error with &nbsp;
+        }
 
-	public string uri_decode(string path){
-		return Uri.unescape_string(path);
-	}
+        txt = txt
+               .replace ("&", "&amp;")
+               .replace ("\"", "&quot;")
+               .replace ("<", "&lt;")
+               .replace (">", "&gt;")
+        ;
 
-	public DateTime datetime_from_string (string date_time_string){
+        return txt;
+    }
 
-		/* Converts date time string to DateTime
-		 * 
-		 * Supported inputs:
-		 * 'yyyy-MM-dd'
-		 * 'yyyy-MM-dd HH'
-		 * 'yyyy-MM-dd HH:mm'
-		 * 'yyyy-MM-dd HH:mm:ss'
-		 * */
+    public string unescape_html (string html) {
+        return html
+                .replace ("&amp;", "&")
+                .replace ("&quot;", "\"")
+               // .replace("&nbsp;"," ") //pango markup throws an error with &nbsp;
+                .replace ("&lt;", "<")
+                .replace ("&gt;", ">")
+        ;
+    }
 
-		string[] arr = date_time_string.replace(":"," ").replace("-"," ").strip().split(" ");
+    public string uri_encode (string path, bool encode_forward_slash) {
+        string uri = Uri.escape_string (path);
+        if (!encode_forward_slash) {
+            uri = uri.replace ("%2F", "/");
+        }
+        return uri;
+    }
 
-		int year  = (arr.length >= 3) ? int.parse(arr[0]) : 0;
-		int month = (arr.length >= 3) ? int.parse(arr[1]) : 0;
-		int day   = (arr.length >= 3) ? int.parse(arr[2]) : 0;
-		int hour  = (arr.length >= 4) ? int.parse(arr[3]) : 0;
-		int min   = (arr.length >= 5) ? int.parse(arr[4]) : 0;
-		int sec   = (arr.length >= 6) ? int.parse(arr[5]) : 0;
+    public string uri_decode (string path) {
+        return Uri.unescape_string (path);
+    }
 
-		return new DateTime.utc(year,month,day,hour,min,sec);
-	}
+    public DateTime datetime_from_string (string date_time_string) {
 
-	public string break_string_by_word(string input_text){
-		string text = "";
-		string line = "";
-		foreach(string part in input_text.split(" ")){
-			line += part + " ";
-			if (line.length > 50){
-				text += line.strip() + "\n";
-				line = "";
-			}
-		}
-		if (line.length > 0){
-			text += line;
-		}
-		if (text.has_suffix("\n")){
-			text = text[0:text.length-1].strip();
-		}
-		return text;
-	}
+        /* Converts date time string to DateTime
+         *
+         * Supported inputs:
+         * 'yyyy-MM-dd'
+         * 'yyyy-MM-dd HH'
+         * 'yyyy-MM-dd HH:mm'
+         * 'yyyy-MM-dd HH:mm:ss'
+         * */
 
-	public string[] array_concat(string[] a, string[] b){
-		string[] c = {};
-		foreach(string str in a){ c += str; }
-		foreach(string str in b){ c += str; }
-		return c;
-	}
+        string[] arr = date_time_string.replace (":", " ").replace ("-", " ").strip ().split (" ");
 
-	public string random_string(int length = 8, string charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"){
-		string random = "";
+        int year = (arr.length >= 3) ? int.parse (arr[0]) : 0;
+        int month = (arr.length >= 3) ? int.parse (arr[1]) : 0;
+        int day = (arr.length >= 3) ? int.parse (arr[2]) : 0;
+        int hour = (arr.length >= 4) ? int.parse (arr[3]) : 0;
+        int min = (arr.length >= 5) ? int.parse (arr[4]) : 0;
+        int sec = (arr.length >= 6) ? int.parse (arr[5]) : 0;
 
-		for(int i=0;i<length;i++){
-			int random_index = Random.int_range(0,charset.length);
-			string ch = charset.get_char(charset.index_of_nth_char(random_index)).to_string();
-			random += ch;
-		}
+        return new DateTime.utc (year, month, day, hour, min, sec);
+    }
 
-		return random;
-	}
+    public string break_string_by_word (string input_text) {
+        string text = "";
+        string line = "";
+        foreach (string part in input_text.split (" ")) {
+            line += part + " ";
+            if (line.length > 50) {
+                text += line.strip () + "\n";
+                line = "";
+            }
+        }
+        if (line.length > 0) {
+            text += line;
+        }
+        if (text.has_suffix ("\n")) {
+            text = text[0 : text.length - 1].strip ();
+        }
+        return text;
+    }
 
-	public bool is_numeric(string text){
-		for (int i = 0; i < text.length; i++){
-			if (!text[i].isdigit()){
-				return false;
-			}
-		}
-		return true;
-	}
+    public string[] array_concat (string[] a, string[] b) {
+        string[] c = {};
+        foreach (string str in a) {
+            c += str;
+        }
+        foreach (string str in b) {
+            c += str;
+        }
+        return c;
+    }
 
-	public MatchInfo? regex_match(string expression, string line){
+    public string random_string (int length = 8, string charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890") {
+        string random = "";
 
-		Regex regex = null;
+        for (int i = 0; i < length; i++) {
+            int random_index = Random.int_range (0, charset.length);
+            string ch = charset.get_char (charset.index_of_nth_char (random_index)).to_string ();
+            random += ch;
+        }
 
-		try {
-			regex = new Regex(expression);
-		}
-		catch (Error e) {
-			log_error (e.message);
-			return null;
-		}
+        return random;
+    }
 
-		MatchInfo match;
-		if (regex.match(line, 0, out match)) {
-			return match;
-		}
-		else{
-			return null;
-		}
-	}
+    public bool is_numeric (string text) {
+        for (int i = 0; i < text.length; i++) {
+            if (!text[i].isdigit ()) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-	private static void print_progress_bar_start(string message){
+    public MatchInfo ? regex_match (string expression, string line) {
 
-		log_msg("\n%s\n".printf(message));
-	}
+        Regex regex = null;
 
-	private static void print_progress_bar(double fraction){
+        try {
+            regex = new Regex (expression);
+        } catch (Error e) {
+            log_error (e.message);
+            return null;
+        }
 
-		string txt = "";
+        MatchInfo match;
+        if (regex.match (line, 0, out match)) {
+            return match;
+        } else {
+            return null;
+        }
+    }
 
-		double length = 30.0;
+    private static void print_progress_bar_start (string message) {
 
-		double length_complete = fraction * length;
+        log_msg ("\n%s\n".printf (message));
+    }
 
-		double length_remaining = length - length_complete;
+    private static void print_progress_bar (double fraction) {
 
-		double length_partial = length - length_remaining - Math.floor(length_complete);
+        string txt = "";
 
-		double length_char = 1.0 / length;
+        double length = 30.0;
 
-		var partial_chars = new string[] { " ", "▏","▎","▍","▌","▋","▊","▉","█" };
+        double length_complete = fraction * length;
 
-		int partial_index = (int) (length_partial * 8.0);
+        double length_remaining = length - length_complete;
 
-		if (partial_index < 0){
-			partial_index = 0;
-		}
-		else if (partial_index > 8){
-			partial_index = 8;
-		}
-		
-		var char_partial = partial_chars[partial_index];
+        double length_partial = length - length_remaining - Math.floor (length_complete);
 
-		if (length_complete > 0){
-			for(int i = 0; i < length_complete; i++){
-				txt += "▓";
-			}
-		}
+        double length_char = 1.0 / length;
 
-		if (length_remaining > 0){
-			for(int i = 0; i < length_remaining; i++){
-				txt += "░";
-			}
-		}
+        var partial_chars = new string[] { " ", "▏", "▎", "▍", "▌", "▋", "▊", "▉", "█" };
 
-		txt += " %0.0f %% ".printf(fraction * 100.0);
-		
-		stdout.printf("\r%s".printf(txt));
+        int partial_index = (int) (length_partial * 8.0);
 
-		//stdout.printf("com: %f, rem: %f, part: %f, char_partial='%s', index=%d".printf(
-			//length_complete, length_remaining, length_partial, char_partial, partial_index));
-			
-		stdout.flush();
-	}
+        if (partial_index < 0) {
+            partial_index = 0;
+        } else if (partial_index > 8) {
+            partial_index = 8;
+        }
 
-	private static void print_progress_bar_finish(){
+        var char_partial = partial_chars[partial_index];
 
-		print_progress_bar(1.0);
-		stdout.printf("\n\n");
-		stdout.flush();
-	}
+        if (length_complete > 0) {
+            for (int i = 0; i < length_complete; i++) {
+                txt += "▓";
+            }
+        }
 
+        if (length_remaining > 0) {
+            for (int i = 0; i < length_remaining; i++) {
+                txt += "░";
+            }
+        }
+
+        txt += " %0.0f %% ".printf (fraction * 100.0);
+
+        stdout.printf ("\r%s".printf (txt));
+
+        // stdout.printf("com: %f, rem: %f, part: %f, char_partial='%s', index=%d".printf(
+        // length_complete, length_remaining, length_partial, char_partial, partial_index));
+
+        stdout.flush ();
+    }
+
+    private static void print_progress_bar_finish () {
+
+        print_progress_bar (1.0);
+        stdout.printf ("\n\n");
+        stdout.flush ();
+    }
 }

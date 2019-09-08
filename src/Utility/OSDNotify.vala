@@ -28,53 +28,51 @@ using TeeJee.ProcessHelper;
 
 // dep: notify-send
 public class OSDNotify : GLib.Object {
-	private static DateTime dt_last_notification = null;
-	public const int NOTIFICATION_INTERVAL = 3;
-	
-	public static int notify_send (
-		string title, string message, int durationMillis,
-		string urgency = "low", // low, normal, critical
-		string dialog_type = "info" //error, info, warning
-		){ 
+    private static DateTime dt_last_notification = null;
+    public const int NOTIFICATION_INTERVAL = 3;
 
-		/* Displays notification bubble on the desktop */
+    public static int notify_send (string title, string message, int durationMillis,
+                                   string urgency = "low", // low, normal, critical
+                                   string dialog_type = "info" // error, info, warning
+    ) {
 
-		int retVal = 0;
+        /* Displays notification bubble on the desktop */
 
-		switch (dialog_type){
-			case "error":
-			case "info":
-			case "warning":
-				//ok
-				break;
-			default:
-				dialog_type = "info";
-				break;
-		}
+        int retVal = 0;
 
-		long seconds = 9999;
-		if (dt_last_notification != null){
-			DateTime dt_end = new DateTime.now_local();
-			TimeSpan elapsed = dt_end.difference(dt_last_notification);
-			seconds = (long)(elapsed * 1.0 / TimeSpan.SECOND);
-		}
+        switch (dialog_type) {
+            case "error":
+            case "info":
+            case "warning":
+                // ok
+                break;
+            default:
+                dialog_type = "info";
+                break;
+        }
 
-		if (seconds > NOTIFICATION_INTERVAL){
-			string s = "notify-send -t %d -u %s -i %s \"%s\" \"%s\"".printf(durationMillis, urgency, "gtk-dialog-" + dialog_type, title, message);
-			retVal = exec_sync (s, null, null);
-			dt_last_notification = new DateTime.now_local();
-		}
+        long seconds = 9999;
+        if (dt_last_notification != null) {
+            DateTime dt_end = new DateTime.now_local ();
+            TimeSpan elapsed = dt_end.difference (dt_last_notification);
+            seconds = (long) (elapsed * 1.0 / TimeSpan.SECOND);
+        }
 
-		return retVal;
-	}
+        if (seconds > NOTIFICATION_INTERVAL) {
+            string s = "notify-send -t %d -u %s -i %s \"%s\" \"%s\"".printf (durationMillis, urgency, "gtk-dialog-" + dialog_type, title, message);
+            retVal = exec_sync (s, null, null);
+            dt_last_notification = new DateTime.now_local ();
+        }
 
-	public static bool is_supported(){
-		string path = get_cmd_path ("notify-send");
-		if ((path != null) && (path.length > 0)){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
+        return retVal;
+    }
+
+    public static bool is_supported () {
+        string path = get_cmd_path ("notify-send");
+        if ((path != null) && (path.length > 0)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

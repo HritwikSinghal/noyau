@@ -21,137 +21,139 @@
  *
  *
  */
- 
-namespace TeeJee.Logging{
 
-	/* Functions for logging messages to console and log files */
+namespace TeeJee.Logging {
 
-	using TeeJee.Misc;
+    /* Functions for logging messages to console and log files */
 
-	public DataOutputStream dos_log;
-	public string err_log;
-	public bool LOG_ENABLE = true;
-	public bool LOG_TIMESTAMP = false;
-	public bool LOG_COLORS = true;
-	public bool LOG_DEBUG = false;
-	public bool LOG_COMMANDS = false;
+    using TeeJee.Misc;
 
-	public void log_msg (string message, bool highlight = false){
+    public DataOutputStream dos_log;
+    public string err_log;
+    public bool LOG_ENABLE = true;
+    public bool LOG_TIMESTAMP = false;
+    public bool LOG_COLORS = true;
+    public bool LOG_DEBUG = false;
+    public bool LOG_COMMANDS = false;
 
-		if (!LOG_ENABLE) { return; }
+    public void log_msg (string message, bool highlight = false) {
 
-		string msg = "";
+        if (!LOG_ENABLE) {
+            return;
+        }
 
-		if (highlight && LOG_COLORS){
-			msg += "\033[1;38;5;34m";
-		}
+        string msg = "";
 
-		if (LOG_TIMESTAMP){
-			msg += "[" + timestamp(true) +  "] ";
-		}
+        if (highlight && LOG_COLORS) {
+            msg += "\033[1;38;5;34m";
+        }
 
-		msg += message;
+        if (LOG_TIMESTAMP) {
+            msg += "[" + timestamp (true) + "] ";
+        }
 
-		if (highlight && LOG_COLORS){
-			msg += "\033[0m";
-		}
+        msg += message;
 
-		msg += "\n";
+        if (highlight && LOG_COLORS) {
+            msg += "\033[0m";
+        }
 
-		stdout.printf (msg);
-		stdout.flush();
+        msg += "\n";
 
-		try {
-			if (dos_log != null){
-				dos_log.put_string ("[%s] %s\n".printf(timestamp(), message));
-			}
-		}
-		catch (Error e) {
-			stdout.printf (e.message);
-		}
-	}
+        stdout.printf (msg);
+        stdout.flush ();
 
-	public void log_error (string message, bool highlight = false,
-		bool is_warning = false){
-			
-		if (!LOG_ENABLE) { return; }
+        try {
+            if (dos_log != null) {
+                dos_log.put_string ("[%s] %s\n".printf (timestamp (), message));
+            }
+        } catch (Error e) {
+            stdout.printf (e.message);
+        }
+    }
 
-		string msg = "";
+    public void log_error (string message, bool highlight = false,
+                           bool is_warning = false) {
 
-		if (highlight && LOG_COLORS){
-			msg += "\033[1;38;5;160m";
-		}
+        if (!LOG_ENABLE) {
+            return;
+        }
 
-		if (LOG_TIMESTAMP){
-			msg += "[" + timestamp(true) +  "] ";
-		}
+        string msg = "";
 
-		string prefix = (is_warning) ? _("W") : _("E");
+        if (highlight && LOG_COLORS) {
+            msg += "\033[1;38;5;160m";
+        }
 
-		msg += prefix + ": " + message;
+        if (LOG_TIMESTAMP) {
+            msg += "[" + timestamp (true) + "] ";
+        }
 
-		if (highlight && LOG_COLORS){
-			msg += "\033[0m";
-		}
+        string prefix = (is_warning) ? _("W") : _("E");
 
-		msg += "\n";
+        msg += prefix + ": " + message;
 
-		stdout.printf (msg);
-		stdout.flush();
-		
-		try {
-			string str = "[%s] %s: %s\n".printf(timestamp(), prefix, message);
-			
-			if (dos_log != null){
-				dos_log.put_string (str);
-			}
+        if (highlight && LOG_COLORS) {
+            msg += "\033[0m";
+        }
 
-			if (err_log != null){
-				err_log += "%s\n".printf(message);
-			}
-		}
-		catch (Error e) {
-			stdout.printf (e.message);
-		}
-	}
+        msg += "\n";
 
-	public void log_debug (string message){
-		if (!LOG_ENABLE) { return; }
+        stdout.printf (msg);
+        stdout.flush ();
 
-		if (LOG_DEBUG){
-			log_msg ("D: " + message);
-		}
+        try {
+            string str = "[%s] %s: %s\n".printf (timestamp (), prefix, message);
 
-		try {
-			if (dos_log != null){
-				dos_log.put_string ("[%s] %s\n".printf(timestamp(), message));
-			}
-		}
-		catch (Error e) {
-			stdout.printf (e.message);
-		}
-	}
+            if (dos_log != null) {
+                dos_log.put_string (str);
+            }
 
-	public void log_to_file (string message, bool highlight = false){
-		try {
-			if (dos_log != null){
-				dos_log.put_string ("[%s] %s\n".printf(timestamp(), message));
-			}
-		}
-		catch (Error e) {
-			stdout.printf (e.message);
-		}
-	}
+            if (err_log != null) {
+                err_log += "%s\n".printf (message);
+            }
+        } catch (Error e) {
+            stdout.printf (e.message);
+        }
+    }
 
-	public void log_draw_line(){
-		log_msg(string.nfill(70,'='));
-	}
+    public void log_debug (string message) {
+        if (!LOG_ENABLE) {
+            return;
+        }
 
-	public void err_log_clear(){
-		err_log = "";
-	}
+        if (LOG_DEBUG) {
+            log_msg ("D: " + message);
+        }
 
-	public void err_log_disable(){
-		err_log = null;
-	}
+        try {
+            if (dos_log != null) {
+                dos_log.put_string ("[%s] %s\n".printf (timestamp (), message));
+            }
+        } catch (Error e) {
+            stdout.printf (e.message);
+        }
+    }
+
+    public void log_to_file (string message, bool highlight = false) {
+        try {
+            if (dos_log != null) {
+                dos_log.put_string ("[%s] %s\n".printf (timestamp (), message));
+            }
+        } catch (Error e) {
+            stdout.printf (e.message);
+        }
+    }
+
+    public void log_draw_line () {
+        log_msg (string.nfill (70, '='));
+    }
+
+    public void err_log_clear () {
+        err_log = "";
+    }
+
+    public void err_log_disable () {
+        err_log = null;
+    }
 }

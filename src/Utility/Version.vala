@@ -28,67 +28,66 @@ using TeeJee.FileSystem;
 using TeeJee.Misc;
 
 namespace TeeJee {
-	
-	public class Version : GLib.Object, Gee.Comparable<Version> {
 
-		public string version = "";
-		public Gee.ArrayList<int> version_numbers;
-		
-		public Version(string version_string){
-			version = version_string;
-			version_numbers = new Gee.ArrayList<int>();
+    public class Version : GLib.Object, Gee.Comparable<Version> {
 
-			string[] arr = version.split_set (".-_");
+        public string version = "";
+        public Gee.ArrayList<int> version_numbers;
 
-			foreach(var part in arr){
-				if (is_numeric(part)){
-					version_numbers.add(int.parse(part));
-				}
-				else{
-					break;
-				}
-			}
-		}
+        public Version (string version_string) {
+            version = version_string;
+            version_numbers = new Gee.ArrayList<int>();
 
-		public int compare_to(Version b){
-			Version a = this;
-			int i = 0;
+            string[] arr = version.split_set (".-_");
 
-			// while both arrays have an element
-			while ((i < a.version_numbers.size) && (i < b.version_numbers.size)){
+            foreach (var part in arr) {
+                if (is_numeric (part)) {
+                    version_numbers.add (int.parse (part));
+                } else {
+                    break;
+                }
+            }
+        }
 
-				// continue if equal
-				if (a.version_numbers[i] == b.version_numbers[i]){
-					i++;
-					continue;
-				}
-				
-				// return difference
-				return a.version_numbers[i] - b.version_numbers[i];
-			}
+        public int compare_to (Version b) {
+            Version a = this;
+            int i = 0;
 
-			// one array has less parts than the other and all corresponding parts are equal
+            // while both arrays have an element
+            while ((i < a.version_numbers.size) && (i < b.version_numbers.size)) {
 
-			// larger array is larger version
-			return a.version_numbers.size - b.version_numbers.size; 
-		}
+                // continue if equal
+                if (a.version_numbers[i] == b.version_numbers[i]) {
+                    i++;
+                    continue;
+                }
 
-		public bool is_minimum(string version_string){
-			Version a = this;
-			Version b = new Version(version_string);
-			return a.compare_to(b) >= 0;
-		}
+                // return difference
+                return a.version_numbers[i] - b.version_numbers[i];
+            }
 
-		public bool is_maximum(string version_string){
-			Version a = this;
-			Version b = new Version(version_string);
-			return a.compare_to(b) <= 0;
-		}
-		
-		public bool is_equal(string version_string){
-			Version a = this;
-			Version b = new Version(version_string);
-			return a.compare_to(b) == 0;
-		}
-	}
+            // one array has less parts than the other and all corresponding parts are equal
+
+            // larger array is larger version
+            return a.version_numbers.size - b.version_numbers.size;
+        }
+
+        public bool is_minimum (string version_string) {
+            Version a = this;
+            Version b = new Version (version_string);
+            return a.compare_to (b) >= 0;
+        }
+
+        public bool is_maximum (string version_string) {
+            Version a = this;
+            Version b = new Version (version_string);
+            return a.compare_to (b) <= 0;
+        }
+
+        public bool is_equal (string version_string) {
+            Version a = this;
+            Version b = new Version (version_string);
+            return a.compare_to (b) == 0;
+        }
+    }
 }
