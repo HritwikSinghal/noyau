@@ -1,9 +1,29 @@
+/*
+ * DownloadManager.vala
+ *
+ * Copyright 2012-2019 Tony George <teejee2008@gmail.com>
+ * Copyright 2019 Joshua Dowding <joshuadowding@outlook.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ */
 
 using TeeJee.Logging;
 using TeeJee.FileSystem;
 using TeeJee.ProcessHelper;
 using TeeJee.Misc;
-
 
 public class DownloadTask : AsyncTask {
 
@@ -70,7 +90,7 @@ public class DownloadTask : AsyncTask {
             tool_version = new TeeJee.Version (part);
             log_msg ("aria2c version: %s".printf (tool_version.version));
         } else {
-            tool_version = new TeeJee.Version ("1.19");            // assume
+            tool_version = new TeeJee.Version ("1.19"); // assume
         }
     }
 
@@ -136,11 +156,11 @@ public class DownloadTask : AsyncTask {
             cmd += " -i '%s'".printf (escape_single_quote (list_file));
             cmd += " --show-console-readout=false";
             cmd += " --summary-interval=1";
-            cmd += " --auto-save-interval=1";             // save aria2 control file every sec
+            cmd += " --auto-save-interval=1"; // save aria2 control file every sec
             cmd += " --human-readable=false";
 
             if (tool_version.is_minimum ("1.19")) {
-                cmd += " --enable-color=false";                 // enabling color breaks the output parsing
+                cmd += " --enable-color=false"; // enabling color breaks the output parsing
             }
 
             cmd += " --allow-overwrite";
@@ -290,7 +310,7 @@ public class DownloadItem : GLib.Object {
     public string partial_dir = "";
     public string source_uri = "";
 
-    public string gid = "";     // ID
+    public string gid = ""; // ID
     public int64 bytes_total = 0;
     public int64 bytes_received = 0;
     public int64 rate = 0;

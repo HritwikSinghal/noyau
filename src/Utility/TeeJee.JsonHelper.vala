@@ -1,8 +1,8 @@
-
 /*
- * TeeJee.JsonHelper.vala
+ * JsonHelper.vala
  *
- * Copyright 2016 Tony George <teejeetech@gmail.com>
+ * Copyright 2012-2019 Tony George <teejeetech@gmail.com>
+ * Copyright 2019 Joshua Dowding <joshuadowding@outlook.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,15 +18,13 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- *
- *
  */
 
 using Json;
 
-namespace TeeJee.JsonHelper {
+using TeeJee.Logging;
 
-    using TeeJee.Logging;
+namespace JsonHelper {
 
     /* Convenience functions for reading and writing JSON files */
 

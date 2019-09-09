@@ -1,8 +1,8 @@
-
 /*
  * TeeJee.FileSystem.vala
  *
- * Copyright 2016 Tony George <teejeetech@gmail.com>
+ * Copyright 2012-2019 Tony George <teejeetech@gmail.com>
+ * Copyright 2019 Joshua Dowding <joshuadowding@outlook.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,18 +18,15 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- *
- *
  */
+
+using TeeJee.Logging;
+using TeeJee.ProcessHelper;
+using TeeJee.Misc;
 
 namespace TeeJee.FileSystem {
 
     /* Convenience functions for handling files and directories */
-
-    using TeeJee.Logging;
-    using TeeJee.ProcessHelper;
-    using TeeJee.Misc;
-
 
     public const int64 KB = 1000;
     public const int64 MB = 1000 * KB;
@@ -298,7 +295,7 @@ namespace TeeJee.FileSystem {
             log_error (e.message);
         }
 
-        return (new DateTime.from_unix_utc (0));        // 1970
+        return (new DateTime.from_unix_utc (0)); // 1970
     }
 
     public string file_get_symlink_target (string file_path) {
@@ -424,7 +421,7 @@ namespace TeeJee.FileSystem {
                 }
             }
 
-            file_delete (test_file2);            // delete if exists
+            file_delete (test_file2); // delete if exists
             file_delete (test_file);
         } else {
             is_readonly = true;

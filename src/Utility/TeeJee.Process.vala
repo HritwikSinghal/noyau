@@ -1,8 +1,8 @@
-
 /*
- * TeeJee.ProcessHelper.vala
+ * TeeJee.Process.vala
  *
- * Copyright 2016 Tony George <teejeetech@gmail.com>
+ * Copyright 2012-2019 Tony George <teejeetech@gmail.com>
+ * Copyright 2019 Joshua Dowding <joshuadowding@outlook.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,18 +18,17 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- *
- *
  */
 
-namespace TeeJee.ProcessHelper {
-    using TeeJee.Logging;
-    using TeeJee.FileSystem;
-    using TeeJee.Misc;
+using TeeJee.Logging;
+using TeeJee.FileSystem;
+using TeeJee.Misc;
 
-    public string TEMP_DIR;
+namespace TeeJee.ProcessHelper {
 
     /* Convenience functions for executing commands and managing processes */
+
+    public string TEMP_DIR;
 
     // execute process ---------------------------------
 
@@ -112,11 +111,11 @@ namespace TeeJee.ProcessHelper {
             if (print_to_terminal) {
 
                 Process.spawn_sync (
-                    TEMP_DIR,                     // working dir
-                    argv,                     // argv
-                    env,                     // environment
+                    TEMP_DIR, // working dir
+                    argv, // argv
+                    env, // environment
                     SpawnFlags.SEARCH_PATH,
-                    null,                       // child_setup
+                    null, // child_setup
                     null,
                     null,
                     out exit_code
@@ -124,11 +123,11 @@ namespace TeeJee.ProcessHelper {
             } else {
 
                 Process.spawn_sync (
-                    TEMP_DIR,                     // working dir
-                    argv,                     // argv
-                    env,                     // environment
+                    TEMP_DIR, // working dir
+                    argv, // argv
+                    env, // environment
                     SpawnFlags.SEARCH_PATH,
-                    null,                       // child_setup
+                    null, // child_setup
                     out std_out,
                     out std_err,
                     out exit_code
@@ -170,9 +169,9 @@ namespace TeeJee.ProcessHelper {
 
             Pid child_pid;
             Process.spawn_async_with_pipes (
-                TEMP_DIR,             // working dir
-                argv,             // argv
-                env,             // environment
+                TEMP_DIR, // working dir
+                argv, // argv
+                env, // environment
                 SpawnFlags.SEARCH_PATH,
                 null,
                 out child_pid);
@@ -317,7 +316,7 @@ namespace TeeJee.ProcessHelper {
                         if ((text != null) && text.contains (cmdline)) {
                             return int.parse (info.get_name ());
                         }
-                    }                     // stream closed
+                    } // stream closed
                 } catch (Error e) {
                     // do not log
                     // some processes cannot be accessed by non-admin user
@@ -351,7 +350,7 @@ namespace TeeJee.ProcessHelper {
                         write_bytes = int64.parse (line.replace ("wchar:", "").strip ());
                     }
                 }
-            }             // stream closed
+            } // stream closed
         } catch (Error e) {
             log_error (e.message);
         }

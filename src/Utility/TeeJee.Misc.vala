@@ -1,8 +1,8 @@
-
 /*
  * TeeJee.Misc.vala
  *
- * Copyright 2016 Tony George <teejeetech@gmail.com>
+ * Copyright 2012-2019 Tony George <teejeetech@gmail.com>
+ * Copyright 2019 Joshua Dowding <joshuadowding@outlook.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,17 +18,19 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- *
- *
  */
+
+using TeeJee.Logging;
+using TeeJee.FileSystem;
+using TeeJee.ProcessHelper;
+using TeeJee.ProcessHelper;
+using TeeJee.Logging;
+using TeeJee.Misc;
+using TeeJee.FileSystem;
 
 namespace TeeJee.Misc {
 
     /* Various utility functions */
-
-    using TeeJee.Logging;
-    using TeeJee.FileSystem;
-    using TeeJee.ProcessHelper;
 
     // localization --------------------
 
@@ -85,7 +87,7 @@ namespace TeeJee.Misc {
 
         /* Converts time in milliseconds to format '00:00:00.0' */
 
-        double time = millis / 1000.0;     // time in seconds
+        double time = millis / 1000.0; // time in seconds
 
         double hr = Math.floor (time / (60.0 * 60));
         time = time - (hr * 60 * 60);
@@ -154,7 +156,7 @@ namespace TeeJee.Misc {
                    .replace ("\\x", "");
         } else {
             txt = txt
-                   .replace (" ", "&nbsp;");              // pango markup throws an error with &nbsp;
+                   .replace (" ", "&nbsp;"); // pango markup throws an error with &nbsp;
         }
 
         txt = txt

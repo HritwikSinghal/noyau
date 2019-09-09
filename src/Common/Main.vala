@@ -1,7 +1,8 @@
 /*
  * Main.vala
  *
- * Copyright 2012 Tony George <teejee2008@gmail.com>
+ * Copyright 2012-2019 Tony George <teejee2008@gmail.com>
+ * Copyright 2019 Joshua Dowding <joshuadowding@outlook.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,8 +18,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- *
- *
  */
 
 using GLib;
@@ -27,7 +26,7 @@ using Json;
 
 using TeeJee.Logging;
 using TeeJee.FileSystem;
-using TeeJee.JsonHelper;
+using JsonHelper;
 using TeeJee.ProcessHelper;
 using TeeJee.System;
 using TeeJee.Misc;
@@ -142,7 +141,6 @@ public class Main : GLib.Object {
     }
 
     public void save_app_config () {
-
         var config = new Json.Object ();
         config.set_string_member ("notify_major", notify_major.to_string ());
         config.set_string_member ("notify_minor", notify_minor.to_string ());
@@ -185,7 +183,6 @@ public class Main : GLib.Object {
     }
 
     public void load_app_config () {
-
         var f = File.new_for_path (APP_CONFIG_FILE);
 
         if (!f.query_exists ()) {
@@ -233,20 +230,18 @@ public class Main : GLib.Object {
 
     // begin ------------
 
-
     private void update_startup_script () {
-
         int count = App.notify_interval_value;
 
         string suffix = "h";
         switch (App.notify_interval_unit) {
-            case 0:     // hour
+            case 0: // hour
                 suffix = "h";
                 break;
-            case 1:     // day
+            case 1: // day
                 suffix = "d";
                 break;
-            case 2:     // week
+            case 2: // week
                 suffix = "d";
                 count = App.notify_interval_value * 7;
                 break;
@@ -273,7 +268,7 @@ public class Main : GLib.Object {
         } else {
             file_write (
                 STARTUP_SCRIPT_FILE,
-                "# Notifications are disabled\n\nexit 0");                 // write dummy script
+                "# Notifications are disabled\n\nexit 0"); // write dummy script
         }
 
         chown (STARTUP_SCRIPT_FILE, user_login, user_login);
@@ -283,17 +278,18 @@ public class Main : GLib.Object {
         if (notify_minor || notify_major) {
 
             string txt =
-                """[Desktop Entry]
-Type=Application
-Exec={command}
-Hidden=false
-NoDisplay=false
-X-GNOME-Autostart-enabled=true
-Name[en_IN]=Ukuu Notification
-Name=Ukuu Notification
-Comment[en_IN]=Ukuu Notification
-Comment=Ukuu Notification
-""";
+                """
+                [Desktop Entry]
+                Type=Application
+                Exec={command}
+                Hidden=false
+                NoDisplay=false
+                X-GNOME-Autostart-enabled=true
+                Name[en_IN]=Ukuu Notification
+                Name=Ukuu Notification
+                Comment[en_IN]=Ukuu Notification
+                Comment=Ukuu Notification
+                """;
 
             txt = txt.replace ("{command}", "sh \"%s\"".printf (STARTUP_SCRIPT_FILE));
 

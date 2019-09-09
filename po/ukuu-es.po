@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-09-08 16:29-0700\n"
+"POT-Creation-Date: 2019-09-09 06:56-0700\n"
 "PO-Revision-Date: 2018-01-03 02:03-0600\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish\n"
@@ -111,8 +111,8 @@ msgstr "No se pudo encontrar la versión solicitada"
 msgid "Could not find running kernel in list!"
 msgstr "No se pudo encontrar la versión solicitada"
 
-#: Utility/TeeJee.FileSystem.vala:335 Utility/TeeJee.FileSystem.vala:337
-#: Utility/TeeJee.FileSystem.vala:361
+#: Utility/TeeJee.FileSystem.vala:334 Utility/TeeJee.FileSystem.vala:336
+#: Utility/TeeJee.FileSystem.vala:360
 msgid "Created directory"
 msgstr "Se creó el directorio"
 
@@ -120,11 +120,11 @@ msgstr "Se creó el directorio"
 msgid "Day(s)"
 msgstr "Días"
 
-#: Utility/TeeJee.FileSystem.vala:359
+#: Utility/TeeJee.FileSystem.vala:358
 msgid "Deleted directory"
 msgstr "Se eliminó el directorio"
 
-#: Utility/TeeJee.FileSystem.vala:486
+#: Utility/TeeJee.FileSystem.vala:485
 msgid "Dir not found"
 msgstr "No se encontró el directorio"
 
@@ -158,27 +158,27 @@ msgstr "ERROR"
 msgid "Error"
 msgstr "Error"
 
-#: Utility/TeeJee.FileSystem.vala:213
+#: Utility/TeeJee.FileSystem.vala:212
 msgid "Failed to copy file"
 msgstr "Falló la copia del archivo"
 
-#: Utility/TeeJee.FileSystem.vala:343
+#: Utility/TeeJee.FileSystem.vala:342
 msgid "Failed to create dir"
 msgstr "Falló la creación del directorio"
 
-#: Utility/TeeJee.FileSystem.vala:104
+#: Utility/TeeJee.FileSystem.vala:103
 msgid "Failed to delete file"
 msgstr "Falló la eliminación del archivo"
 
-#: Utility/TeeJee.FileSystem.vala:243
+#: Utility/TeeJee.FileSystem.vala:242
 msgid "Failed to move file"
 msgstr "Falló el traslado del archivo"
 
-#: Utility/TeeJee.FileSystem.vala:158
+#: Utility/TeeJee.FileSystem.vala:157
 msgid "Failed to read file"
 msgstr "Falló la lectura del archivo"
 
-#: Utility/TeeJee.FileSystem.vala:191
+#: Utility/TeeJee.FileSystem.vala:190
 msgid "Failed to write file"
 msgstr "Falló la escritura del archivo"
 
@@ -190,32 +190,32 @@ msgstr "Recuperando índice de kernel.ubuntu.com…"
 msgid "Fetching index..."
 msgstr ""
 
-#: Utility/TeeJee.FileSystem.vala:204 Utility/TeeJee.FileSystem.vala:206
+#: Utility/TeeJee.FileSystem.vala:203 Utility/TeeJee.FileSystem.vala:205
 msgid "File copied"
 msgstr "Se copió el archivo"
 
-#: Utility/TeeJee.FileSystem.vala:96 Utility/TeeJee.FileSystem.vala:98
+#: Utility/TeeJee.FileSystem.vala:95 Utility/TeeJee.FileSystem.vala:97
 msgid "File deleted"
 msgstr "Se eliminó el archivo"
 
-#: Utility/TeeJee.FileSystem.vala:634 Utility/TeeJee.FileSystem.vala:681
+#: Utility/TeeJee.FileSystem.vala:633 Utility/TeeJee.FileSystem.vala:680
 msgid "File is missing"
 msgstr "Falta el archivo"
 
-#: Utility/TeeJee.FileSystem.vala:237 Utility/TeeJee.FileSystem.vala:239
+#: Utility/TeeJee.FileSystem.vala:236 Utility/TeeJee.FileSystem.vala:238
 msgid "File moved"
 msgstr "Se trasladó el archivo"
 
-#: Utility/TeeJee.FileSystem.vala:223 Utility/TeeJee.FileSystem.vala:513
+#: Utility/TeeJee.FileSystem.vala:222 Utility/TeeJee.FileSystem.vala:512
 msgid "File not found"
 msgstr "No se encontró el archivo"
 
-#: Common/Package.vala:132 Common/Package.vala:194
+#: Common/Package.vala:129 Common/Package.vala:191
 #, c-format
 msgid "File not found: %s"
 msgstr "No se encontró el archivo: %s"
 
-#: Utility/TeeJee.FileSystem.vala:183 Utility/TeeJee.FileSystem.vala:185
+#: Utility/TeeJee.FileSystem.vala:182 Utility/TeeJee.FileSystem.vala:184
 msgid "File saved"
 msgstr "Se guardó el archivo"
 
@@ -537,7 +537,7 @@ msgstr "Ocultar versiones inestables y RC"
 msgid "Status"
 msgstr "Estado"
 
-#: Utility/TeeJee.Process.vala:500
+#: Utility/TeeJee.Process.vala:501
 msgid "Stopped"
 msgstr "Detenido"
 

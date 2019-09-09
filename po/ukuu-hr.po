@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-09-08 16:29-0700\n"
+"POT-Creation-Date: 2019-09-09 06:56-0700\n"
 "PO-Revision-Date: 2017-12-24 00:52+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -110,8 +110,8 @@ msgstr "Nemoguće je pronaći zatraženu inačicu"
 msgid "Could not find running kernel in list!"
 msgstr "Nemoguće je pronaći zatraženu inačicu"
 
-#: Utility/TeeJee.FileSystem.vala:335 Utility/TeeJee.FileSystem.vala:337
-#: Utility/TeeJee.FileSystem.vala:361
+#: Utility/TeeJee.FileSystem.vala:334 Utility/TeeJee.FileSystem.vala:336
+#: Utility/TeeJee.FileSystem.vala:360
 msgid "Created directory"
 msgstr "Stvoren direktorij"
 
@@ -119,11 +119,11 @@ msgstr "Stvoren direktorij"
 msgid "Day(s)"
 msgstr "Dan(a)"
 
-#: Utility/TeeJee.FileSystem.vala:359
+#: Utility/TeeJee.FileSystem.vala:358
 msgid "Deleted directory"
 msgstr "Obrisan direktorij"
 
-#: Utility/TeeJee.FileSystem.vala:486
+#: Utility/TeeJee.FileSystem.vala:485
 msgid "Dir not found"
 msgstr "Direktorij nije pronađen"
 
@@ -157,27 +157,27 @@ msgstr "GREŠKA"
 msgid "Error"
 msgstr "Greška"
 
-#: Utility/TeeJee.FileSystem.vala:213
+#: Utility/TeeJee.FileSystem.vala:212
 msgid "Failed to copy file"
 msgstr "Neuspjelo kopiranje datoteke"
 
-#: Utility/TeeJee.FileSystem.vala:343
+#: Utility/TeeJee.FileSystem.vala:342
 msgid "Failed to create dir"
 msgstr "Neuspjelo stvarnje direktorija"
 
-#: Utility/TeeJee.FileSystem.vala:104
+#: Utility/TeeJee.FileSystem.vala:103
 msgid "Failed to delete file"
 msgstr "Neuspjelo brisanje datoteke"
 
-#: Utility/TeeJee.FileSystem.vala:243
+#: Utility/TeeJee.FileSystem.vala:242
 msgid "Failed to move file"
 msgstr "Neuspjelo premještanje datoteke"
 
-#: Utility/TeeJee.FileSystem.vala:158
+#: Utility/TeeJee.FileSystem.vala:157
 msgid "Failed to read file"
 msgstr "Neuspjelo čitanje datoteke"
 
-#: Utility/TeeJee.FileSystem.vala:191
+#: Utility/TeeJee.FileSystem.vala:190
 msgid "Failed to write file"
 msgstr "Neuspjelo zapisivanje datoteke"
 
@@ -189,32 +189,32 @@ msgstr "Preuzimanje sadržaja sa kernel.ubuntu.com..."
 msgid "Fetching index..."
 msgstr ""
 
-#: Utility/TeeJee.FileSystem.vala:204 Utility/TeeJee.FileSystem.vala:206
+#: Utility/TeeJee.FileSystem.vala:203 Utility/TeeJee.FileSystem.vala:205
 msgid "File copied"
 msgstr "Datoteka kopirana"
 
-#: Utility/TeeJee.FileSystem.vala:96 Utility/TeeJee.FileSystem.vala:98
+#: Utility/TeeJee.FileSystem.vala:95 Utility/TeeJee.FileSystem.vala:97
 msgid "File deleted"
 msgstr "Datoteka obrisana"
 
-#: Utility/TeeJee.FileSystem.vala:634 Utility/TeeJee.FileSystem.vala:681
+#: Utility/TeeJee.FileSystem.vala:633 Utility/TeeJee.FileSystem.vala:680
 msgid "File is missing"
 msgstr "Datoteka nedostaje"
 
-#: Utility/TeeJee.FileSystem.vala:237 Utility/TeeJee.FileSystem.vala:239
+#: Utility/TeeJee.FileSystem.vala:236 Utility/TeeJee.FileSystem.vala:238
 msgid "File moved"
 msgstr "Datoteka je premještena"
 
-#: Utility/TeeJee.FileSystem.vala:223 Utility/TeeJee.FileSystem.vala:513
+#: Utility/TeeJee.FileSystem.vala:222 Utility/TeeJee.FileSystem.vala:512
 msgid "File not found"
 msgstr "Datoteka nije pronađena"
 
-#: Common/Package.vala:132 Common/Package.vala:194
+#: Common/Package.vala:129 Common/Package.vala:191
 #, c-format
 msgid "File not found: %s"
 msgstr "Datoteka nije pronađena: %s"
 
-#: Utility/TeeJee.FileSystem.vala:183 Utility/TeeJee.FileSystem.vala:185
+#: Utility/TeeJee.FileSystem.vala:182 Utility/TeeJee.FileSystem.vala:184
 msgid "File saved"
 msgstr "Datoteka je spremljenja"
 
@@ -532,7 +532,7 @@ msgstr "Sakrij nestabilne kernele i predizdanja"
 msgid "Status"
 msgstr "Stanje"
 
-#: Utility/TeeJee.Process.vala:500
+#: Utility/TeeJee.Process.vala:501
 msgid "Stopped"
 msgstr "Zaustavljeno"
 

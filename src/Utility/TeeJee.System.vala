@@ -1,8 +1,8 @@
-
 /*
  * TeeJee.System.vala
  *
- * Copyright 2017 Tony George <teejeetech@gmail.com>
+ * Copyright 2012-2019 Tony George <teejeetech@gmail.com>
+ * Copyright 2019 Joshua Dowding <joshuadowding@outlook.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,16 +18,14 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
- *
- *
  */
 
-namespace TeeJee.System {
+using TeeJee.ProcessHelper;
+using TeeJee.Logging;
+using TeeJee.Misc;
+using TeeJee.FileSystem;
 
-    using TeeJee.ProcessHelper;
-    using TeeJee.Logging;
-    using TeeJee.Misc;
-    using TeeJee.FileSystem;
+namespace TeeJee.System {
 
     // user ---------------------------------------------------
 
@@ -52,7 +50,7 @@ namespace TeeJee.System {
             return get_user_id_from_username (sudo_user);
         }
 
-        return get_user_id_effective ();        // normal user
+        return get_user_id_effective (); // normal user
     }
 
     public int get_user_id_effective () {
