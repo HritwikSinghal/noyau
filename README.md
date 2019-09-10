@@ -1,6 +1,8 @@
 ### Ubuntu Kernel Update Utility (Ukuu)
 A graphical utility for managing kernels on Ubuntu.
 
+[![CodeFactor](https://www.codefactor.io/repository/github/joshuadowding/ukuu/badge)](https://www.codefactor.io/repository/github/joshuadowding/ukuu)
+
 ### Features
 
 *   Fetches list of kernels from [kernel.ubuntu.com](http://kernel.ubuntu.com/~kernel-ppa/mainline/)
