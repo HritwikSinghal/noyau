@@ -43,7 +43,6 @@ app:
 		--pkg glib-2.0 --pkg gio-unix-2.0 --pkg posix --pkg gee-0.8 --pkg libsoup-2.4 --pkg json-glib-1.0
 
 app-translations:
-
 	# update translation template
 	find . -iname "*.vala" | xargs xgettext --from-code=UTF-8 --language=C --keyword=_ \
 		--copyright-holder='Tony George (teejeetech@gmail.com)' \
@@ -100,7 +99,6 @@ install:
 	done
 
 uninstall:
-
 	# binary
 	rm -f "$(DESTDIR)$(bindir)/${app_name}"
 	rm -f "$(DESTDIR)$(bindir)/${app_name}-uninstall"

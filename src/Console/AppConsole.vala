@@ -39,8 +39,6 @@ public class AppConsole : GLib.Object {
     public static int main (string[] args) {
         set_locale ();
 
-        log_msg ("%s v%s".printf (Main.AppShortName, Main.AppVersion));
-
         init_tmp ("ukuu");
 
         check_if_admin ();
@@ -55,6 +53,8 @@ public class AppConsole : GLib.Object {
         }
 
         App = new Main (args, false);
+
+        log_msg ("Application Version: %s".printf (Main.AppVersion));
 
         var console = new AppConsole ();
         bool is_success = console.parse_arguments (args);
@@ -72,7 +72,7 @@ public class AppConsole : GLib.Object {
     }
 
     private static string help_message () {
-        string msg = "\n" + Main.AppName + " v" + Main.AppVersion + " by Tony George (teejeetech@gmail.com)" + "\n";
+        string msg = "\n" + Main.AppName + " by Joshua Dowding (joshuadowding@outlook.com)" + "\n";
         msg += "\n";
         msg += _("Syntax") + ": ukuu <command> [options]\n";
         msg += "\n";
@@ -121,6 +121,7 @@ public class AppConsole : GLib.Object {
         for (int k = 1; k < args.length; k++) {
             txt += "'%s' ".printf (args[k]);
         }
+
         log_debug (txt);
 
         // check argument count -----------------
@@ -136,7 +137,7 @@ public class AppConsole : GLib.Object {
 
         // parse options first --------------
 
-        for (int k = 1; k < args.length; k++) {       // Oth arg is app path
+        for (int k = 1; k < args.length; k++) { // Oth arg is app path
             switch (args[k].down ()) {
                 case "--debug":
                     LOG_DEBUG = true;
@@ -199,71 +200,47 @@ public class AppConsole : GLib.Object {
 
         switch (cmd) {
             case "--list":
-
                 check_if_internet_is_active (false);
-
                 LinuxKernel.query (true);
-
                 LinuxKernel.print_list ();
-
                 break;
 
             case "--list-installed":
-
                 LinuxKernel.check_installed ();
-
                 break;
 
             case "--check":
-
                 print_updates ();
-
                 break;
 
             case "--notify":
-
                 notify_user ();
-
                 break;
 
             case "--install-latest":
-
                 check_if_admin ();
-
                 check_if_internet_is_active (true);
-
                 LinuxKernel.install_latest (false, App.confirm);
-
                 break;
 
             case "--install-point":
-
                 check_if_admin ();
-
                 check_if_internet_is_active (true);
-
                 LinuxKernel.install_latest (true, App.confirm);
-
                 break;
 
             case "--purge-old-kernels":
-
                 check_if_admin ();
-
                 LinuxKernel.purge_old_kernels (App.confirm);
-
                 break;
 
             case "--clean-cache":
-
                 LinuxKernel.clean_cache ();
-
                 break;
 
             case "--download":
             case "--install":
             case "--remove":
-
                 check_if_admin ();
 
                 if ((cmd == "--install") || (cmd == "--download")) {
@@ -286,7 +263,6 @@ public class AppConsole : GLib.Object {
                 var list = new Gee.ArrayList<LinuxKernel>();
 
                 foreach (string requested_version in requested_versions) {
-
                     LinuxKernel kern_requested = null;
                     foreach (var kern in LinuxKernel.kernel_list) {
                         if (kern.name == requested_version) {
@@ -328,7 +304,6 @@ public class AppConsole : GLib.Object {
                 break;
 
             default:
-                // unknown option
                 log_error (_("Command not specified"));
                 log_error (_("Run 'ukuu --help' to list all commands"));
                 break;
@@ -338,22 +313,18 @@ public class AppConsole : GLib.Object {
     }
 
     private void print_updates () {
-
         check_if_internet_is_active (false);
 
         LinuxKernel.query (true);
-
         LinuxKernel.check_updates ();
 
         var kern_major = LinuxKernel.kernel_update_major;
-
         if (kern_major != null) {
             var message = "%s: %s".printf (_("Latest update"), kern_major.version_main);
             log_msg (message);
         }
 
         var kern_minor = LinuxKernel.kernel_update_minor;
-
         if (kern_minor != null) {
             var message = "%s: %s".printf (_("Latest point update"), kern_minor.version_main);
             log_msg (message);
@@ -367,15 +338,12 @@ public class AppConsole : GLib.Object {
     }
 
     private void notify_user () {
-
         check_if_internet_is_active (false);
 
         LinuxKernel.query (true);
-
         LinuxKernel.check_updates ();
 
         var kern = LinuxKernel.kernel_update_major;
-
         if ((kern != null) && App.notify_major) {
 
             var title = "Linux v%s Available".printf (kern.version_main);
@@ -397,7 +365,6 @@ public class AppConsole : GLib.Object {
         }
 
         kern = LinuxKernel.kernel_update_minor;
-
         if ((kern != null) && App.notify_minor) {
 
             var title = "Linux v%s Available".printf (kern.version_main);
@@ -418,35 +385,11 @@ public class AppConsole : GLib.Object {
             return;
         }
 
-        // dummy
-
-        /*
-           var title = "Linux v4.7 Available";
-           var message = "Minor update available for installation";
-
-           if (App.notify_bubble){
-                OSDNotify.notify_send(title,message,3000,"normal","info");
-           }
-
-           if (App.notify_dialog){
-
-                var win = new UpdateNotificationWindow(
-                                Main.AppName,
-                                "<span size=\"large\" weight=\"bold\">%s</span>\n\n%s".printf(title, message),
-                                null);
-
-                win.destroy.connect(Gtk.main_quit);
-                Gtk.main(); // start event loop
-           }
-         * */
-
         log_msg (_("No updates found"));
     }
 
     public void check_if_internet_is_active (bool exit_app = true) {
-
         if (!check_internet_connectivity ()) {
-
             App.fix_startup_script_error ();
 
             if (exit_app) {
@@ -455,4 +398,3 @@ public class AppConsole : GLib.Object {
         }
     }
 }
-

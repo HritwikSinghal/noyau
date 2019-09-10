@@ -28,7 +28,7 @@ using TeeJee.Logging;
 using TeeJee.FileSystem;
 using JsonHelper;
 using TeeJee.ProcessHelper;
-using TeeJee.GtkHelper;
+using GtkHelper;
 using TeeJee.System;
 using TeeJee.Misc;
 
@@ -744,14 +744,14 @@ public class MainWindow : Gtk.Window {
 
             if (App.notify_dialog) {
 
-                var win = new UpdateNotificationWindow (
+                var win = new UpdateNotificationDialog (
                     Main.AppName,
                     "<span size=\"large\" weight=\"bold\">%s</span>\n\n%s".printf (title, message),
                     null,
                     kern);
 
                 win.destroy.connect (() => {
-                    log_debug ("UpdateNotificationWindow destroyed");
+                    log_debug ("UpdateNotificationDialog destroyed");
                     Gtk.main_quit ();
                 });
 
@@ -777,14 +777,14 @@ public class MainWindow : Gtk.Window {
 
             if (App.notify_dialog) {
 
-                var win = new UpdateNotificationWindow (
+                var win = new UpdateNotificationDialog (
                     Main.AppName,
                     "<span size=\"large\" weight=\"bold\">%s</span>\n\n%s".printf (title, message),
                     this,
                     kern);
 
                 win.destroy.connect (() => {
-                    log_debug ("UpdateNotificationWindow destroyed");
+                    log_debug ("UpdateNotificationDialog destroyed");
                     Gtk.main_quit ();
                 });
 
@@ -808,7 +808,7 @@ public class MainWindow : Gtk.Window {
 
            if (App.notify_dialog){
 
-                var win = new UpdateNotificationWindow(
+                var win = new UpdateNotificationDialog(
                                 Main.AppName,
                                 "<span size=\"large\" weight=\"bold\">%s</span>\n\n%s".printf(title, message),
                                 null);

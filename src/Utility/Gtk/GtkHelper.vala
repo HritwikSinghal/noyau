@@ -29,7 +29,7 @@ using TeeJee.ProcessHelper;
 using TeeJee.System;
 using TeeJee.Misc;
 
-namespace TeeJee.GtkHelper {
+namespace GtkHelper {
 
     // messages ----------------------------------------
 

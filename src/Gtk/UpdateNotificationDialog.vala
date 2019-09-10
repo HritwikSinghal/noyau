@@ -27,11 +27,11 @@ using TeeJee.Logging;
 using TeeJee.FileSystem;
 using JsonHelper;
 using TeeJee.ProcessHelper;
-using TeeJee.GtkHelper;
+using GtkHelper;
 using TeeJee.System;
 using TeeJee.Misc;
 
-public class UpdateNotificationWindow : Gtk.Window {
+public class UpdateNotificationDialog : Gtk.Window {
 
     private Gtk.Box vbox_main;
     private Gtk.Label lbl_msg;
@@ -44,7 +44,7 @@ public class UpdateNotificationWindow : Gtk.Window {
     private LinuxKernel kern_update;
     private MainWindow main_window;
 
-    public UpdateNotificationWindow (string _msg_title, string _msg_body, MainWindow ? _window, LinuxKernel _kern_update) {
+    public UpdateNotificationDialog (string _msg_title, string _msg_body, MainWindow ? _window, LinuxKernel _kern_update) {
 
         window_position = WindowPosition.CENTER;
 
