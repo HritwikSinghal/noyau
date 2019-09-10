@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu 2.2\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-09-10 08:03-0700\n"
+"POT-Creation-Date: 2019-09-10 16:57+0100\n"
 "PO-Revision-Date: 2018-01-13 16:56+0100\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
@@ -47,7 +47,7 @@ msgstr "Tillgängliga kärnor"
 msgid "Booting previous kernels"
 msgstr "Startar föregående kärnor"
 
-#: Console/AppConsole.vala:195 Gtk/AppGtk.vala:99
+#: Console/AppConsole.vala:196 Gtk/AppGtk.vala:99
 msgid "Cache"
 msgstr ""
 
@@ -79,7 +79,7 @@ msgstr "Sök efter kärnuppdateringar"
 msgid "Close"
 msgstr "Stäng"
 
-#: Console/AppConsole.vala:332
+#: Console/AppConsole.vala:307
 msgid "Command not specified"
 msgstr ""
 
@@ -101,7 +101,7 @@ msgstr ""
 msgid "Could not find any kernels to remove"
 msgstr "Välj kärnor för borttagning"
 
-#: Console/AppConsole.vala:300 Gtk/MainWindow.vala:101
+#: Console/AppConsole.vala:276 Gtk/MainWindow.vala:101
 msgid "Could not find requested version"
 msgstr "Kunde inte hitta efterfrågad version"
 
@@ -299,12 +299,12 @@ msgstr "Internetuppkopplingen är inte aktiv"
 msgid "Kernel"
 msgstr "Kärna"
 
-#: Console/AppConsole.vala:358 Common/LinuxKernel.vala:802
+#: Console/AppConsole.vala:329 Common/LinuxKernel.vala:802
 #, c-format
 msgid "Latest point update"
 msgstr ""
 
-#: Console/AppConsole.vala:351 Common/LinuxKernel.vala:791
+#: Console/AppConsole.vala:323 Common/LinuxKernel.vala:791
 #, c-format
 msgid "Latest update"
 msgstr ""
@@ -362,7 +362,7 @@ msgstr "Saknad ikon"
 msgid "Multiple Kernels Selected"
 msgstr "Flera kärnor markerade"
 
-#: Console/AppConsole.vala:282
+#: Console/AppConsole.vala:259
 msgid "Multiple kernels selected for installation. Select only one."
 msgstr "Flera kärnor valda för installation. Välj endast en."
 
@@ -374,11 +374,11 @@ msgstr "Nej"
 msgid "No Internet"
 msgstr "Inget internet"
 
-#: Console/AppConsole.vala:276 Console/AppConsole.vala:313
+#: Console/AppConsole.vala:253 Console/AppConsole.vala:289
 msgid "No kernels specified"
 msgstr ""
 
-#: Console/AppConsole.vala:363 Console/AppConsole.vala:443
+#: Console/AppConsole.vala:334 Console/AppConsole.vala:388
 #: Gtk/MainWindow.vala:821 Common/LinuxKernel.vala:810
 msgid "No updates found"
 msgstr "Inga uppdateringar hittades"
@@ -458,15 +458,15 @@ msgstr "Ta bort installerade kärnor äldre än den som körs"
 msgid "Remove specified kernel"
 msgstr "Ta bort specificerad kärna"
 
-#: Console/AppConsole.vala:333
+#: Console/AppConsole.vala:308
 msgid "Run 'ukuu --help' to list all commands"
 msgstr ""
 
-#: Console/AppConsole.vala:190
+#: Console/AppConsole.vala:191
 msgid "Run 'ukuu --help' to list all options"
 msgstr ""
 
-#: Console/AppConsole.vala:304
+#: Console/AppConsole.vala:280
 msgid "Run 'ukuu --list' and use the version string listed in first column"
 msgstr ""
 "Kör \"ukuu --list\" och använd den versionssträng som listas i första "
@@ -541,7 +541,7 @@ msgstr "Stoppad"
 msgid "Syntax"
 msgstr "Syntax"
 
-#: Console/AppConsole.vala:196 Gtk/AppGtk.vala:100
+#: Console/AppConsole.vala:197 Gtk/AppGtk.vala:100
 msgid "Temp"
 msgstr ""
 
@@ -577,7 +577,7 @@ msgstr "Avinstallation slutförd"
 msgid "Un-install completed with errors"
 msgstr "Avinstallation slutförd med fel"
 
-#: Console/AppConsole.vala:189 Gtk/AppGtk.vala:153
+#: Console/AppConsole.vala:190 Gtk/AppGtk.vala:153
 msgid "Unknown option"
 msgstr "Okänt alternativ"
 

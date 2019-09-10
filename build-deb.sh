@@ -37,9 +37,13 @@ echo "--------------------------------------------------------------------------
 
 }
 
-build_deb_for_dist xenial i386
-build_deb_for_dist xenial amd64
-#build_deb_for_dist stretch armel
-#build_deb_for_dist stretch armhf
+#build_deb_for_dist xenial i386
+#build_deb_for_dist xenial amd64
+
+#build_deb_for_dist bionic i386
+#build_deb_for_dist bionic amd64
+
+#build_deb_for_dist disco i386
+build_deb_for_dist disco amd64
 
 cd "$backup"

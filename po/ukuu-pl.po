@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-09-10 08:03-0700\n"
+"POT-Creation-Date: 2019-09-10 16:57+0100\n"
 "PO-Revision-Date: 2017-08-12 15:26+0200\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
@@ -45,7 +45,7 @@ msgstr "Dostępne jądra"
 msgid "Booting previous kernels"
 msgstr "Uruchamianie poprzednich jąder"
 
-#: Console/AppConsole.vala:195 Gtk/AppGtk.vala:99
+#: Console/AppConsole.vala:196 Gtk/AppGtk.vala:99
 msgid "Cache"
 msgstr ""
 
@@ -77,7 +77,7 @@ msgstr "Sprawdź nowe wersje jądra"
 msgid "Close"
 msgstr "Zamknij"
 
-#: Console/AppConsole.vala:332
+#: Console/AppConsole.vala:307
 msgid "Command not specified"
 msgstr ""
 
@@ -99,7 +99,7 @@ msgstr ""
 msgid "Could not find any kernels to remove"
 msgstr "Wybierz jądro do usunięcia"
 
-#: Console/AppConsole.vala:300 Gtk/MainWindow.vala:101
+#: Console/AppConsole.vala:276 Gtk/MainWindow.vala:101
 msgid "Could not find requested version"
 msgstr "Nie można odnaleźć żądanej wersji"
 
@@ -298,12 +298,12 @@ msgstr "Brak połączenia z internetem"
 msgid "Kernel"
 msgstr "Jądro"
 
-#: Console/AppConsole.vala:358 Common/LinuxKernel.vala:802
+#: Console/AppConsole.vala:329 Common/LinuxKernel.vala:802
 #, c-format
 msgid "Latest point update"
 msgstr ""
 
-#: Console/AppConsole.vala:351 Common/LinuxKernel.vala:791
+#: Console/AppConsole.vala:323 Common/LinuxKernel.vala:791
 #, c-format
 msgid "Latest update"
 msgstr ""
@@ -363,7 +363,7 @@ msgstr "Brakująca ikona"
 msgid "Multiple Kernels Selected"
 msgstr "Wybrano kilka jąder"
 
-#: Console/AppConsole.vala:282
+#: Console/AppConsole.vala:259
 msgid "Multiple kernels selected for installation. Select only one."
 msgstr "Wybrano kilka jąder do instalacji. Wybierz tylko jedno."
 
@@ -375,11 +375,11 @@ msgstr ""
 msgid "No Internet"
 msgstr "Brak internetu"
 
-#: Console/AppConsole.vala:276 Console/AppConsole.vala:313
+#: Console/AppConsole.vala:253 Console/AppConsole.vala:289
 msgid "No kernels specified"
 msgstr ""
 
-#: Console/AppConsole.vala:363 Console/AppConsole.vala:443
+#: Console/AppConsole.vala:334 Console/AppConsole.vala:388
 #: Gtk/MainWindow.vala:821 Common/LinuxKernel.vala:810
 msgid "No updates found"
 msgstr "Nie znaleziono aktualizacji"
@@ -458,15 +458,15 @@ msgstr ""
 msgid "Remove specified kernel"
 msgstr "Usuń wybrane jądro"
 
-#: Console/AppConsole.vala:333
+#: Console/AppConsole.vala:308
 msgid "Run 'ukuu --help' to list all commands"
 msgstr ""
 
-#: Console/AppConsole.vala:190
+#: Console/AppConsole.vala:191
 msgid "Run 'ukuu --help' to list all options"
 msgstr ""
 
-#: Console/AppConsole.vala:304
+#: Console/AppConsole.vala:280
 msgid "Run 'ukuu --list' and use the version string listed in first column"
 msgstr "Uruchom 'ukuu --list' i użyj wersji wyświetlonej w pierwszej kolumnie"
 
@@ -540,7 +540,7 @@ msgstr "Zatrzymany"
 msgid "Syntax"
 msgstr "Składnia"
 
-#: Console/AppConsole.vala:196 Gtk/AppGtk.vala:100
+#: Console/AppConsole.vala:197 Gtk/AppGtk.vala:100
 msgid "Temp"
 msgstr ""
 
@@ -576,7 +576,7 @@ msgstr "De-instalacja zakończona"
 msgid "Un-install completed with errors"
 msgstr "De-instalacja zakończona z błędami"
 
-#: Console/AppConsole.vala:189 Gtk/AppGtk.vala:153
+#: Console/AppConsole.vala:190 Gtk/AppGtk.vala:153
 msgid "Unknown option"
 msgstr "Nieznana opcja"
 
