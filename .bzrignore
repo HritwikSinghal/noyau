@@ -1,5 +1,6 @@
 src/ukuu
 src/ukuu-gtk
+designs
 release/source
 release/amd64
 release/i386
@@ -7,9 +8,11 @@ release/armel
 release/armhf
 release/*.deb
 release/*.run
+build/
 *.geany
 *.mo
 *.c
 *.o
+*~
 .git
 .bzr

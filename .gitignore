@@ -8,6 +8,7 @@ release/armel
 release/armhf
 release/*.deb
 release/*.run
+build/
 *.geany
 *.mo
 *.c
@@ -15,4 +16,3 @@ release/*.run
 *~
 .git
 .bzr
-
