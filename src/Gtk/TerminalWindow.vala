@@ -110,7 +110,7 @@ public class TerminalWindow : Gtk.Window {
         scroll_win.vscrollbar_policy = PolicyType.AUTOMATIC;
         vbox_main.add (scroll_win);
 
-                #if VTE_291
+        #if VTE_291
 
         term.input_enabled = true;
         term.backspace_binding = Vte.EraseBinding.AUTO;
@@ -118,7 +118,7 @@ public class TerminalWindow : Gtk.Window {
         term.cursor_shape = Vte.CursorShape.UNDERLINE;
         term.rewrap_on_resize = true;
 
-                #endif
+        #endif
 
         term.scroll_on_keystroke = true;
         term.scroll_on_output = true;
@@ -126,7 +126,7 @@ public class TerminalWindow : Gtk.Window {
 
         // colors -----------------------------
 
-                #if VTE_291
+        #if VTE_291
 
         var color = Gdk.RGBA ();
         color.parse ("#FFFFFF");
@@ -135,16 +135,18 @@ public class TerminalWindow : Gtk.Window {
         color.parse ("#404040");
         term.set_color_background (color);
 
-                #else
+        #else
 
+        /*
         Gdk.Color color;
         Gdk.Color.parse ("#FFFFFF", out color);
         term.set_color_foreground (color);
 
         Gdk.Color.parse ("#404040", out color);
         term.set_color_background (color);
+        */
 
-                #endif
+        #endif
 
         // grab focus ----------------
 
@@ -198,32 +200,34 @@ public class TerminalWindow : Gtk.Window {
 
             is_running = true;
 
-                        #if VTE_291
+            #if VTE_291
 
             term.spawn_sync (
-                Vte.PtyFlags.DEFAULT,                 // pty_flags
-                TEMP_DIR,                 // working_directory
-                argv,                 // argv
-                env,                 // env
-                GLib.SpawnFlags.SEARCH_PATH,                 // spawn_flags
-                null,                 // child_setup
+                Vte.PtyFlags.DEFAULT, // pty_flags
+                TEMP_DIR, // working_directory
+                argv, // argv
+                env, // env
+                GLib.SpawnFlags.SEARCH_PATH, // spawn_flags
+                null, // child_setup
                 out child_pid,
                 null
             );
 
-                        #else
+            #else
 
+            /* 
             term.fork_command_full (
-                Vte.PtyFlags.DEFAULT,                 // pty_flags
-                TEMP_DIR,                 // working_directory
-                argv,                 // argv
-                env,                 // env
-                GLib.SpawnFlags.SEARCH_PATH,                 // spawn_flags
-                null,                 // child_setup
+                Vte.PtyFlags.DEFAULT, // pty_flags
+                TEMP_DIR, // working_directory
+                argv, // argv
+                env, // env
+                GLib.SpawnFlags.SEARCH_PATH, // spawn_flags
+                null, // child_setup
                 out child_pid
             );
+            */
 
-                        #endif
+            #endif
         } catch (Error e) {
             log_error (e.message);
         }
@@ -248,32 +252,33 @@ public class TerminalWindow : Gtk.Window {
 
             is_running = true;
 
-                        #if VTE_291
+            #if VTE_291
 
             term.spawn_sync (
-                Vte.PtyFlags.DEFAULT,                 // pty_flags
-                TEMP_DIR,                 // working_directory
-                argv,                 // argv
-                env,                 // env
-                GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD,                 // spawn_flags
-                null,                 // child_setup
+                Vte.PtyFlags.DEFAULT, // pty_flags
+                TEMP_DIR, // working_directory
+                argv, // argv
+                env, // env
+                GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD, // spawn_flags
+                null, // child_setup
                 out child_pid,
                 null
             );
 
-                        #else
+            #else
 
+            /*
             term.fork_command_full (
-                Vte.PtyFlags.DEFAULT,                 // pty_flags
-                TEMP_DIR,                 // working_directory
-                argv,                 // argv
-                env,                 // env
-                GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD,                 // spawn_flags
-                null,                 // child_setup
+                Vte.PtyFlags.DEFAULT, // pty_flags
+                TEMP_DIR, // working_directory
+                argv, // argv
+                env, // env
+                GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD, // spawn_flags
+                null, // child_setup
                 out child_pid
             );
-
-                        #endif
+            */
+            #endif
 
             term.watch_child (child_pid);
 
@@ -290,15 +295,15 @@ public class TerminalWindow : Gtk.Window {
         }
     }
 
-        #if VTE_291
+    #if VTE_291
     public void script_exit (int status) {
-        #else
+    #else
     public void script_exit () {
-        #endif
+    #endif
 
         is_running = false;
 
-        Process.close_pid (child_pid);        // required on Windows, doesn't do anything on Unix
+        Process.close_pid (child_pid); // required on Windows, doesn't do anything on Unix
 
         btn_cancel.visible = false;
         btn_close.visible = true;
@@ -326,5 +331,3 @@ public class TerminalWindow : Gtk.Window {
         }
     }
 }
-
-

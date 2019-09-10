@@ -48,6 +48,7 @@ public class AboutWindow : AboutDialog {
         };
 
         this.translator_credits = _("translator-credits");
+
         this.copyright = "Copyright © 2019 Joshua Dowding (%s)".printf (Main.AppAuthorEmail);
         this.license_type = Gtk.License.GPL_3_0;
         this.wrap_license = true;
@@ -57,15 +58,3 @@ public class AboutWindow : AboutDialog {
         });
     }
 }
-
-/*
- *  Translators:
- *  "Åke Engelbrektson (Swedish):eson@svenskasprakfiler.se",
-        "Иннусик (Russian):slavusik1988@gmail.com",
-        "Waldemar Konik (Polish):valdi74@github",
-        "gogo (Croatian):trebelnik2@gmail.com",
-        "Adolfo Jayme Barrientos (Spanish):fitojb@ubuntu.com",
-        "yolateng0 (French):github.com/yolateng0",
-        "Hugo Posnic (French):hugo.posnic@gmail.com"
- */
-

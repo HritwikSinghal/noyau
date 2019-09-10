@@ -23,10 +23,6 @@
 using TeeJee.Logging;
 using TeeJee.FileSystem;
 using TeeJee.ProcessHelper;
-using TeeJee.ProcessHelper;
-using TeeJee.Logging;
-using TeeJee.Misc;
-using TeeJee.FileSystem;
 
 namespace TeeJee.Misc {
 
