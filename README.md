@@ -25,10 +25,11 @@
 <ul>
     <li>Download and install kernel packages automatically.</li>
     <li>Notifies when new kernel releases are available.</li>
-    <li>Purge all-but the running kernel.</li>
+    <li>Purge all-but the (current) running kernel.</li>
+    <li>View release changelogs.</li>
 </ul>
 
-<h2>Changes (Since 18.9.1)</h2>
+<h2>Changes Since 18.9.1</h2>
 <h3>18.10 (Upcoming Release)</h3>
 <ul>
     <li>Refreshed user interface.</li>
@@ -47,7 +48,7 @@
     cd build && ninja
     sudo ninja install
 
-<h3>Dependencies</h3>
+<h3>Runtime Dependencies</h3>
 
     sudo apt install aria2 aptitude curl
 
