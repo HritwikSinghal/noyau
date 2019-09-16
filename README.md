@@ -28,14 +28,24 @@
     <li>Purge all-but the running kernel.</li>
 </ul>
 
+<h2>Changes (Since 18.9.1)</h2>
+<h3>18.10 (Upcoming Release)</h3>
+<ul>
+    <li>Refreshed user interface.</li>
+    <li>Begun transitioning to the meson build system.</li>
+    <li>Removed intrusive prompts to support the project.</li>
+    <li>Fixed numerous build issues.</li>
+</ul>
+
+
 <h2>Source Code</h2>
 <h3>Build Instructions</h3>
 
-    sudo apt install valac libgee-0.8-dev libjson-glib-dev libvte-2.91-dev
-    git clone https://github.com/joshuadowding/ukuu.git
-    cd ukuu
-    make all
-    sudo make install
+    sudo apt install valac meson libgee-0.8-dev libjson-glib-dev libvte-2.91-dev libsoup2.4-dev
+    git clone https://github.com/joshuadowding/ukuu.git && cd ukuu
+    meson build
+    cd build && ninja
+    sudo ninja install
 
 <h3>Dependencies</h3>
 
