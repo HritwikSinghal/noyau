@@ -160,7 +160,6 @@ public class AppGtk : GLib.Object {
     }
 
     public static string help_message () {
-
         string msg = "\n" + Main.AppName + " v" + Main.AppVersion + " by Tony George (teejeetech@gmail.com)" + "\n";
         msg += "\n";
         msg += _("Syntax") + ": ukuu-gtk [options]\n";

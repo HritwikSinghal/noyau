@@ -30,33 +30,14 @@ public class Package : GLib.Object {
     public string id = "";
     public string name = "";
     public string description = "";
-    public string server = "";
     public string repo = "";
-    public string repo_section = "";
     public string arch = "";
     public string status = "";
-    public string section = "";
     public string version = "";
     public string version_installed = "";
-    public string version_available = "";
-    public string depends = "";
 
-    public string deb_file_name = "";
-    public string deb_uri = "";
-    public int64 deb_size = 0;
-    public string deb_md5hash = "";
-
-    public bool is_selected = false;
-    public bool is_available = false;
     public bool is_installed = false;
-    public bool is_default = false;
     public bool is_automatic = false;
-    public bool is_manual = false;
-    public bool is_deb = false;
-
-    // convenience members
-    public bool is_visible = false;
-    public bool in_backup_list = false;
 
     public static string NATIVE_ARCH = "";
 
@@ -106,7 +87,7 @@ public class Package : GLib.Object {
         // get installed packages from aptitude --------------
 
         string std_out, std_err;
-        int status = exec_sync ("aptitude search --disable-columns -F '%p|%v|%M|%d' '?installed'", out std_out, out std_err);
+        exec_sync ("aptitude search --disable-columns -F '%p|%v|%M|%d' '?installed'", out std_out, out std_err);
         file_write (temp_file, std_out);
 
         // parse ------------------------
@@ -168,7 +149,7 @@ public class Package : GLib.Object {
 
         string std_out, std_err;
         string cmd = "aptitude search --disable-columns -F '%%p|%%v|%%M|%%d' '!installed ?architecture(native) %s'".printf (search_string);
-        int status = exec_sync (cmd, out std_out, out std_err);
+        exec_sync (cmd, out std_out, out std_err);
         file_write (temp_file, std_out);
 
         // parse ------------------------

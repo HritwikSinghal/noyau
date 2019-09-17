@@ -44,7 +44,7 @@
 
     sudo apt install valac meson libgee-0.8-dev libjson-glib-dev libvte-2.91-dev libsoup2.4-dev
     git clone https://github.com/joshuadowding/ukuu.git && cd ukuu
-    meson build
+    meson build --prefix=/usr
     cd build && ninja
     sudo ninja install
 

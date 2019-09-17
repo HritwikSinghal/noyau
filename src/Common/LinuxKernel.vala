@@ -49,7 +49,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
     public bool is_installed = false;
     public bool is_running = false;
     public bool is_mainline = false;
-    public bool is_mainline_package = false;     // TODO: remove this
+    public bool is_mainline_package = false; // TODO: remove this
 
     public string deb_header = "";
     public string deb_header_all = "";
@@ -97,7 +97,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
     // class initialize
 
     public static void initialize () {
-        new LinuxKernel ("", false);        // instance must be created before setting static members
+        new LinuxKernel ("", false); // instance must be created before setting static members
 
         LINUX_DISTRO = check_distribution ();
         NATIVE_ARCH = check_package_architecture ();
@@ -260,7 +260,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
         if (wait) {
             while (task_is_running) {
-                sleep (500);                // wait
+                sleep (500); // wait
             }
         }
     }
@@ -957,7 +957,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
             }
         }
 
-        return (arr_a.length - arr_b.length) * -1;         // smaller array is larger version
+        return (arr_a.length - arr_b.length) * -1; // smaller array is larger version
     }
 
     public void mark_invalid () {
@@ -1148,7 +1148,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
                     }
 
                     if (add) {
-                        list[file_name] = file_uri;                         // add to list
+                        list[file_name] = file_uri; // add to list
                     }
                 }
             }
@@ -1276,10 +1276,10 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
             if (write_to_terminal) {
                 log_msg ("");
-                status = Posix.system (cmd);                // execute
+                status = Posix.system (cmd); // execute
                 log_msg ("");
             } else {
-                status = exec_script_sync (cmd);                // execute
+                status = exec_script_sync (cmd); // execute
             }
 
             ok = (status == 0);
@@ -1337,7 +1337,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         }
 
         log_msg ("");
-        status = Posix.system (cmd);        // execute
+        status = Posix.system (cmd); // execute
         log_msg ("");
 
         ok = (status == 0);
@@ -1389,10 +1389,10 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
         if (write_to_terminal) {
             log_msg ("");
-            status = Posix.system (cmd);            // execute
+            status = Posix.system (cmd); // execute
             log_msg ("");
         } else {
-            status = exec_script_sync (cmd);            // execute
+            status = exec_script_sync (cmd); // execute
         }
         ok = (status == 0);
 

@@ -30,7 +30,7 @@ using JsonHelper;
 using TeeJee.ProcessHelper;
 using TeeJee.System;
 using TeeJee.Misc;
-//using TeeJee.Console;
+// using TeeJee.Console;
 
 extern void exit (int exit_code);
 
@@ -81,7 +81,6 @@ public class Main : GLib.Object {
     // constructors ------------
 
     public Main (string[] arg0, bool _gui_mode) {
-
         GUI_MODE = _gui_mode;
 
         LOG_TIMESTAMP = false;
@@ -232,10 +231,10 @@ public class Main : GLib.Object {
     // begin ------------
 
     private void update_startup_script () {
-        int count = App.notify_interval_value;
+        int count = notify_interval_value;
 
         string suffix = "h";
-        switch (App.notify_interval_unit) {
+        switch (notify_interval_unit) {
             case 0: // hour
                 suffix = "h";
                 break;
@@ -244,7 +243,7 @@ public class Main : GLib.Object {
                 break;
             case 2: // week
                 suffix = "d";
-                count = App.notify_interval_value * 7;
+                count = notify_interval_value * 7;
                 break;
         }
 
@@ -277,7 +276,6 @@ public class Main : GLib.Object {
 
     private void update_startup_desktop_file () {
         if (notify_minor || notify_major) {
-
             string txt =
                 """
                 [Desktop Entry]

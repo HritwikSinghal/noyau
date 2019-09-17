@@ -40,7 +40,6 @@ public class ProgressWindow : Gtk.Dialog {
     private Gtk.Button btn_cancel;
 
     private uint tmr_init = 0;
-    private uint tmr_pulse = 0;
     private uint tmr_close = 0;
     private int def_width = 400;
     private int def_height = 50;

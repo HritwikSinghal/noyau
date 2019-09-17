@@ -46,14 +46,14 @@ public class MainWindow : Gtk.Window {
 
     // helper members
 
-    private int window_width = 600;
-    private int window_height = 400;
+    private int window_width = 640;
+    private int window_height = 480;
     private uint tmr_init = -1;
 
     private Gee.ArrayList<LinuxKernel> selected_kernels;
 
     public MainWindow () {
-        title = Main.AppName;         // "%s (Ukuu) v%s".printf(Main.AppName, Main.AppVersion);
+        title = Main.AppName; // "%s (Ukuu) v%s".printf(Main.AppName, Main.AppVersion);
         window_position = WindowPosition.CENTER;
         icon = get_app_icon (16, ".svg");
 
@@ -755,7 +755,7 @@ public class MainWindow : Gtk.Window {
                     Gtk.main_quit ();
                 });
 
-                Gtk.main ();                // start event loop
+                Gtk.main (); // start event loop
             }
 
             log_msg (title);
@@ -788,35 +788,13 @@ public class MainWindow : Gtk.Window {
                     Gtk.main_quit ();
                 });
 
-                Gtk.main ();                // start event loop
+                Gtk.main (); // start event loop
             }
 
             log_msg (title);
             log_msg (message);
             return;
         }
-
-        // dummy
-
-        /*
-           var title = "Linux v4.7 Available";
-           var message = "Minor update available for installation";
-
-           if (App.notify_bubble){
-                OSDNotify.notify_send(title,message,3000,"normal","info");
-           }
-
-           if (App.notify_dialog){
-
-                var win = new UpdateNotificationDialog(
-                                Main.AppName,
-                                "<span size=\"large\" weight=\"bold\">%s</span>\n\n%s".printf(title, message),
-                                null);
-
-                win.destroy.connect(Gtk.main_quit);
-                Gtk.main(); // start event loop
-           }
-         * */
 
         log_msg (_("No updates found"));
     }

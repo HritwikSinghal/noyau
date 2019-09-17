@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: teejeetech@gmail.com\n"
-"POT-Creation-Date: 2019-09-10 16:57+0100\n"
+"POT-Creation-Date: 2019-09-17 16:47+0100\n"
 "PO-Revision-Date: 2018-01-03 02:03-0600\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "A graphical utility for managing kernels on Ubuntu."
 msgstr ""
 
-#: Console/AppConsole.vala:108
+#: Console/AppConsole.vala:109
 msgid "Admin access is required for running this application."
 msgstr ""
 "Se necesitan privilegios administrativos para ejecutar esta aplicación."
@@ -35,7 +35,7 @@ msgstr "Se está ejecutando otra instancia de esta aplicación"
 msgid "Architecture"
 msgstr "Arquitectura del sistema"
 
-#: Console/AppConsole.vala:97
+#: Console/AppConsole.vala:98
 msgid "Assume Yes for all prompts (non-interactive mode)"
 msgstr ""
 
@@ -43,17 +43,17 @@ msgstr ""
 msgid "Available Kernels"
 msgstr "Núcleos disponibles"
 
-#: Gtk/MainWindow.vala:826
+#: Gtk/MainWindow.vala:804
 msgid "Booting previous kernels"
 msgstr "Arrancando núcleos anteriores"
 
-#: Console/AppConsole.vala:196 Gtk/AppGtk.vala:99
+#: Console/AppConsole.vala:197 Gtk/AppGtk.vala:99
 msgid "Cache"
 msgstr ""
 
-#: Utility/Gtk/GtkHelper.vala:139 Gtk/UpdateNotificationDialog.vala:164
-#: Gtk/CustomMessageDialog.vala:169 Gtk/TerminalWindow.vala:166
-#: Gtk/ProgressWindow.vala:138
+#: Utility/Gtk/GtkHelper.vala:139 Gtk/CustomMessageDialog.vala:169
+#: Gtk/UpdateNotificationDialog.vala:161 Gtk/TerminalWindow.vala:147
+#: Gtk/ProgressWindow.vala:137
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -66,24 +66,24 @@ msgstr "Cambios"
 msgid "Check every"
 msgstr "Comprobar cada"
 
-#: Console/AppConsole.vala:81
+#: Console/AppConsole.vala:82
 msgid "Check for kernel updates"
 msgstr "Buscar actualizaciones del núcleo"
 
-#: Console/AppConsole.vala:82
+#: Console/AppConsole.vala:83
 #, fuzzy
 msgid "Check for kernel updates and notify current user"
 msgstr "Buscar actualizaciones del núcleo"
 
-#: Gtk/TerminalWindow.vala:176
+#: Gtk/TerminalWindow.vala:157
 msgid "Close"
 msgstr "Cerrar"
 
-#: Console/AppConsole.vala:307
+#: Console/AppConsole.vala:308
 msgid "Command not specified"
 msgstr ""
 
-#: Console/AppConsole.vala:79
+#: Console/AppConsole.vala:80
 msgid "Commands"
 msgstr ""
 
@@ -102,7 +102,7 @@ msgstr ""
 msgid "Could not find any kernels to remove"
 msgstr "Seleccione los núcleos que se desinstalarán"
 
-#: Console/AppConsole.vala:276 Gtk/MainWindow.vala:101
+#: Console/AppConsole.vala:277 Gtk/MainWindow.vala:101
 msgid "Could not find requested version"
 msgstr "No se pudo encontrar la versión solicitada"
 
@@ -136,7 +136,7 @@ msgstr "Mostrar"
 msgid "Distribution"
 msgstr "Distribución"
 
-#: Console/AppConsole.vala:90
+#: Console/AppConsole.vala:91
 msgid "Download packages for specified kernel"
 msgstr "Descargar paquetes del núcleo especificado"
 
@@ -210,7 +210,7 @@ msgstr "Se trasladó el archivo"
 msgid "File not found"
 msgstr "No se encontró el archivo"
 
-#: Common/Package.vala:152 Common/Package.vala:214
+#: Common/Package.vala:133 Common/Package.vala:195
 #, c-format
 msgid "File not found: %s"
 msgstr "No se encontró el archivo: %s"
@@ -240,7 +240,7 @@ msgstr "Ocultar versiones inestables y RC"
 msgid "Hour(s)"
 msgstr "Horas"
 
-#: Gtk/UpdateNotificationDialog.vala:165
+#: Gtk/UpdateNotificationDialog.vala:162
 msgid "Ignore this update"
 msgstr "Ignorar esta actualización"
 
@@ -252,7 +252,7 @@ msgstr "El índice está al día"
 msgid "Index is stale"
 msgstr "El índice es obsoleto"
 
-#: Gtk/UpdateNotificationDialog.vala:144 Gtk/MainWindow.vala:391
+#: Gtk/UpdateNotificationDialog.vala:141 Gtk/MainWindow.vala:391
 msgid "Install"
 msgstr "Instalar"
 
@@ -261,20 +261,20 @@ msgstr "Instalar"
 msgid "Install Linux v%s ? (y/n): "
 msgstr ""
 
-#: Console/AppConsole.vala:85
+#: Console/AppConsole.vala:86
 #, fuzzy
 msgid "Install latest mainline kernel"
 msgstr "Instalar núcleo troncal especificado"
 
-#: Console/AppConsole.vala:86
+#: Console/AppConsole.vala:87
 msgid "Install latest point update for current series"
 msgstr ""
 
-#: Console/AppConsole.vala:87
+#: Console/AppConsole.vala:88
 msgid "Install specified mainline kernel"
 msgstr "Instalar núcleo troncal especificado"
 
-#: Gtk/UpdateNotificationDialog.vala:145
+#: Gtk/UpdateNotificationDialog.vala:142
 msgid "Install this kernel"
 msgstr "Instalar este núcleo"
 
@@ -300,30 +300,30 @@ msgstr "La conexión a Internet está inactiva"
 msgid "Kernel"
 msgstr "Núcleo"
 
-#: Console/AppConsole.vala:329 Common/LinuxKernel.vala:802
+#: Console/AppConsole.vala:330 Common/LinuxKernel.vala:802
 #, c-format
 msgid "Latest point update"
 msgstr ""
 
-#: Console/AppConsole.vala:323 Common/LinuxKernel.vala:791
+#: Console/AppConsole.vala:324 Common/LinuxKernel.vala:791
 #, c-format
 msgid "Latest update"
 msgstr ""
 
-#: Console/AppConsole.vala:83
+#: Console/AppConsole.vala:84
 msgid "List all available mainline kernels"
 msgstr "Mostrar todos los núcleos troncales disponibles"
 
-#: Gtk/UpdateNotificationDialog.vala:155
+#: Gtk/UpdateNotificationDialog.vala:152
 msgid "List available kernels"
 msgstr "Mostrar núcleos disponibles"
 
-#: Console/AppConsole.vala:84
+#: Console/AppConsole.vala:85
 #, fuzzy
 msgid "List installed kernels"
 msgstr "Mostrar núcleos disponibles"
 
-#: Gtk/MainWindow.vala:827
+#: Gtk/MainWindow.vala:805
 #, fuzzy
 msgid ""
 "Mainline kernels can sometimes cause problems if there are proprietary "
@@ -366,7 +366,7 @@ msgstr "Falta el icono"
 msgid "Multiple Kernels Selected"
 msgstr "Se seleccionaron varios núcleos"
 
-#: Console/AppConsole.vala:259
+#: Console/AppConsole.vala:260
 msgid "Multiple kernels selected for installation. Select only one."
 msgstr "Se seleccionaron varios núcleos para su instalación. Elija solo uno."
 
@@ -378,12 +378,12 @@ msgstr "No"
 msgid "No Internet"
 msgstr "No hay Internet"
 
-#: Console/AppConsole.vala:253 Console/AppConsole.vala:289
+#: Console/AppConsole.vala:254 Console/AppConsole.vala:290
 msgid "No kernels specified"
 msgstr ""
 
-#: Console/AppConsole.vala:334 Console/AppConsole.vala:388
-#: Gtk/MainWindow.vala:821 Common/LinuxKernel.vala:810
+#: Console/AppConsole.vala:335 Console/AppConsole.vala:389
+#: Gtk/MainWindow.vala:799 Common/LinuxKernel.vala:810
 msgid "No updates found"
 msgstr "No se encontró ninguna actualización"
 
@@ -409,7 +409,7 @@ msgstr "Notificar si hay una versión puntual disponible"
 msgid "OK"
 msgstr "Aceptar"
 
-#: Console/AppConsole.vala:94 Gtk/AppGtk.vala:168
+#: Console/AppConsole.vala:95 Gtk/AppGtk.vala:167
 msgid "Options"
 msgstr "Opciones"
 
@@ -431,7 +431,7 @@ msgstr "Instale los paquetes requeridos e inténtelo de nuevo"
 msgid "Preparing to remove selected kernels"
 msgstr "Preparándose para desinstalar los núcleos seleccionados"
 
-#: Gtk/AppGtk.vala:170
+#: Gtk/AppGtk.vala:169
 msgid "Print debug information"
 msgstr "Mostrar información de depuración"
 
@@ -444,11 +444,11 @@ msgstr "Actualizando…"
 msgid "Remove"
 msgstr "Quitar"
 
-#: Console/AppConsole.vala:91 Console/AppConsole.vala:96
+#: Console/AppConsole.vala:92 Console/AppConsole.vala:97
 msgid "Remove files from application cache"
 msgstr "Quitar archivos de la antememoria de la aplicación"
 
-#: Console/AppConsole.vala:89
+#: Console/AppConsole.vala:90
 msgid "Remove installed kernels older than running kernel"
 msgstr ""
 
@@ -456,26 +456,26 @@ msgstr ""
 msgid "Remove installed kernels older than the running kernel"
 msgstr ""
 
-#: Console/AppConsole.vala:88
+#: Console/AppConsole.vala:89
 #, fuzzy
 msgid "Remove specified kernel"
 msgstr "Quitar el núcleo troncal especificado"
 
-#: Console/AppConsole.vala:308
+#: Console/AppConsole.vala:309
 msgid "Run 'ukuu --help' to list all commands"
 msgstr ""
 
-#: Console/AppConsole.vala:191
+#: Console/AppConsole.vala:192
 msgid "Run 'ukuu --help' to list all options"
 msgstr ""
 
-#: Console/AppConsole.vala:280
+#: Console/AppConsole.vala:281
 msgid "Run 'ukuu --list' and use the version string listed in first column"
 msgstr ""
 "Ejecute «ukuu --list» y use la cadena de versión mostrada en la primera "
 "columna"
 
-#: Console/AppConsole.vala:111
+#: Console/AppConsole.vala:112
 msgid "Run the application as admin with pkexec or sudo."
 msgstr "Ejecute la aplicación con permisos administrativos con pkexec o sudo."
 
@@ -511,11 +511,11 @@ msgstr ""
 msgid "Settings"
 msgstr "Configuración"
 
-#: Gtk/UpdateNotificationDialog.vala:154
+#: Gtk/UpdateNotificationDialog.vala:151
 msgid "Show"
 msgstr "Mostrar"
 
-#: Gtk/AppGtk.vala:171
+#: Gtk/AppGtk.vala:170
 msgid "Show all options"
 msgstr "Mostrar todas las opciones"
 
@@ -527,7 +527,7 @@ msgstr "Mostrar globo de notificación en el escritorio"
 msgid "Show notification dialog"
 msgstr "Mostrar cuadro de diálogo de notificación"
 
-#: Console/AppConsole.vala:92
+#: Console/AppConsole.vala:93
 #, fuzzy
 msgid "Show unstable and RC releases"
 msgstr "Ocultar versiones inestables y RC"
@@ -536,15 +536,15 @@ msgstr "Ocultar versiones inestables y RC"
 msgid "Status"
 msgstr "Estado"
 
-#: Utility/TeeJee.Process.vala:499
+#: Utility/TeeJee.Process.vala:498
 msgid "Stopped"
 msgstr "Detenido"
 
-#: Console/AppConsole.vala:77 Gtk/AppGtk.vala:166
+#: Console/AppConsole.vala:78 Gtk/AppGtk.vala:165
 msgid "Syntax"
 msgstr "Sintaxis"
 
-#: Console/AppConsole.vala:197 Gtk/AppGtk.vala:100
+#: Console/AppConsole.vala:198 Gtk/AppGtk.vala:100
 msgid "Temp"
 msgstr ""
 
@@ -580,7 +580,7 @@ msgstr "Desinstalación finalizada"
 msgid "Un-install completed with errors"
 msgstr "Desinstalación finalizada con errores"
 
-#: Console/AppConsole.vala:190 Gtk/AppGtk.vala:153
+#: Console/AppConsole.vala:191 Gtk/AppGtk.vala:153
 msgid "Unknown option"
 msgstr "Opción desconocida"
 

@@ -39,7 +39,7 @@ public class TerminalWindow : Gtk.Window {
     private Gtk.Button btn_close;
     private Gtk.ScrolledWindow scroll_win;
 
-    private int def_width = 1100;
+    private int def_width = 1024;
     private int def_height = 600;
 
     private Pid child_pid;
@@ -49,8 +49,6 @@ public class TerminalWindow : Gtk.Window {
     public bool is_running = false;
 
     public signal void script_complete ();
-
-    // init
 
     public TerminalWindow.with_parent (Gtk.Window ? parent, bool fullscreen = false, bool show_cancel_button = false) {
         if (parent != null) {
@@ -79,13 +77,11 @@ public class TerminalWindow : Gtk.Window {
     }
 
     public bool cancel_window_close () {
-        // do not allow window to close
-        return true;
+        return true; // Note: do not allow window to close
     }
 
     public void init_window () {
-
-        title = "";
+        title = Main.AppName;
         icon = get_app_icon (16);
         resizable = true;
         deletable = false;
@@ -119,6 +115,8 @@ public class TerminalWindow : Gtk.Window {
         term.scroll_on_keystroke = true;
         term.scroll_on_output = true;
         term.scrollback_lines = 100000;
+
+        term.set_font_scale (1.0);
 
         // colors -----------------------------
 
@@ -201,7 +199,7 @@ public class TerminalWindow : Gtk.Window {
     }
 
     public void execute_command (string command) {
-    	term.feed_child(string_to_char_array(command));
+        term.feed_child (string_to_char_array (command));
     }
 
     public void execute_script (string script_path, bool wait = false) {
@@ -270,14 +268,15 @@ public class TerminalWindow : Gtk.Window {
         }
     }
 
-	private char[] string_to_char_array (string str) {
-		char[] char_array = new char[str.length];
+    // Adapted from: https://kuikie.com/snippet/85-8/vala/strings/vala-convert-string-to-char-array/
+    private char[] string_to_char_array (string str) {
+        char[] char_array = new char[str.length];
 
-		for (int i = 0; i < str.length; i++){
-			char_array[i] = (char)str.get_char(str.index_of_nth_char(i));
-		}
+        for (int i = 0; i < str.length; i++) {
+            char_array[i] = (char) str.get_char (str.index_of_nth_char (i));
+        }
 
-		return char_array;
-	}
+        return char_array;
+    }
 }
 

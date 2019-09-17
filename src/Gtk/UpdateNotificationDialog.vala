@@ -45,7 +45,6 @@ public class UpdateNotificationDialog : Gtk.Window {
     private MainWindow main_window;
 
     public UpdateNotificationDialog (string _msg_title, string _msg_body, MainWindow ? _window, LinuxKernel _kern_update) {
-
         window_position = WindowPosition.CENTER;
 
         set_transient_for (_window);
@@ -71,9 +70,7 @@ public class UpdateNotificationDialog : Gtk.Window {
     }
 
     public void init_window () {
-
         title = Main.AppName;
-        window_position = WindowPosition.CENTER_ON_PARENT;
         icon = get_app_icon (16);
         resizable = false;
         deletable = false;
@@ -174,5 +171,3 @@ public class UpdateNotificationDialog : Gtk.Window {
         });
     }
 }
-
-
