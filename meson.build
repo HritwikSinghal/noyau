@@ -1,5 +1,5 @@
 project(
-    'com.github.joshuadowding.ukuu',
+    'ukuu',
     'vala', 'c',
     version: '18.10',
     meson_version: '>=0.46.0'
@@ -12,8 +12,6 @@ add_project_arguments([
     ],
     language: 'c'
 )
-
-i18n = import('i18n')
 
 subdir('data')
 subdir('docs')

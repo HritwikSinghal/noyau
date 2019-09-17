@@ -1,0 +1,611 @@
+# Turkish translations for ukuu package.
+# Copyright (C) 2019 THE ukuu'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the ukuu package.
+# Automatically generated, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ukuu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-17 17:10+0100\n"
+"PO-Revision-Date: 2019-09-17 17:10+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/Common/Main.vala:113
+msgid "Commands listed below are not available on this system"
+msgstr ""
+
+#: src/Common/Main.vala:114
+msgid "Please install required packages and try again"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:116
+msgid "Distribution"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:130
+msgid "Architecture"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:279
+msgid "Index is stale"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:281
+msgid "Index is fresh"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:375
+msgid "Fetching index..."
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:418
+msgid "Fetching index from kernel.ubuntu.com..."
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:739
+msgid "Could not find running kernel in list!"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:745
+msgid "Could not find any kernels to remove"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:754
+msgid "Following kernels will be removed"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:761
+msgid "Continue ?"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:791 src/Console/AppConsole.vala:324
+msgid "Latest update"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:802 src/Console/AppConsole.vala:330
+msgid "Latest point update"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:810 src/Console/AppConsole.vala:335
+#: src/Console/AppConsole.vala:389 src/Gtk/MainWindow.vala:799
+msgid "No updates found"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:820
+#, c-format
+msgid "Install Linux v%s ? (y/n): "
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:1082
+msgid "Packages Available (DEB)"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:1090
+msgid "Packages Installed"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:1173
+msgid "Available Kernels"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:1190 src/Gtk/MainWindow.vala:205
+msgid "Running"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:1190 src/Gtk/MainWindow.vala:205
+msgid "Installed"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:1219
+msgid "Downloading"
+msgstr ""
+
+#. add buttons
+#: src/Common/LinuxKernel.vala:1238 src/Gtk/CustomMessageDialog.vala:164
+#: src/Gtk/CustomMessageDialog.vala:168 src/Utility/Gtk/GtkHelper.vala:138
+msgid "OK"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:1246
+msgid "ERROR"
+msgstr ""
+
+#. dep: dpkg
+#. check if installed
+#: src/Common/LinuxKernel.vala:1260 src/Gtk/MainWindow.vala:683
+msgid "This kernel is already installed."
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:1290
+msgid "Installation completed. A reboot is required to use the new kernel."
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:1292
+msgid "Installation completed with errors"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:1308
+msgid ""
+"Selected kernel is currently running and cannot be removed.\n"
+" Install another kernel before removing this one."
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:1313
+msgid "Preparing to remove selected kernels"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:1348 src/Common/LinuxKernel.vala:1402
+msgid "Un-install completed"
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:1350 src/Common/LinuxKernel.vala:1404
+msgid "Un-install completed with errors"
+msgstr ""
+
+#. check if running
+#: src/Common/LinuxKernel.vala:1363
+msgid ""
+"This kernel is currently running and cannot be removed.\n"
+" Install another kernel before removing this one."
+msgstr ""
+
+#: src/Common/LinuxKernel.vala:1466
+msgid "Updating GRUB menu"
+msgstr ""
+
+#: src/Common/Package.vala:133 src/Common/Package.vala:195
+#, c-format
+msgid "File not found: %s"
+msgstr ""
+
+#: src/Console/AppConsole.vala:78 src/Gtk/AppGtk.vala:165
+msgid "Syntax"
+msgstr ""
+
+#: src/Console/AppConsole.vala:80
+msgid "Commands"
+msgstr ""
+
+#: src/Console/AppConsole.vala:82
+msgid "Check for kernel updates"
+msgstr ""
+
+#: src/Console/AppConsole.vala:83
+msgid "Check for kernel updates and notify current user"
+msgstr ""
+
+#: src/Console/AppConsole.vala:84
+msgid "List all available mainline kernels"
+msgstr ""
+
+#: src/Console/AppConsole.vala:85
+msgid "List installed kernels"
+msgstr ""
+
+#: src/Console/AppConsole.vala:86
+msgid "Install latest mainline kernel"
+msgstr ""
+
+#: src/Console/AppConsole.vala:87
+msgid "Install latest point update for current series"
+msgstr ""
+
+#: src/Console/AppConsole.vala:88
+msgid "Install specified mainline kernel"
+msgstr ""
+
+#: src/Console/AppConsole.vala:89
+msgid "Remove specified kernel"
+msgstr ""
+
+#: src/Console/AppConsole.vala:90
+msgid "Remove installed kernels older than running kernel"
+msgstr ""
+
+#: src/Console/AppConsole.vala:91
+msgid "Download packages for specified kernel"
+msgstr ""
+
+#: src/Console/AppConsole.vala:92 src/Console/AppConsole.vala:97
+msgid "Remove files from application cache"
+msgstr ""
+
+#: src/Console/AppConsole.vala:93
+msgid "Show unstable and RC releases"
+msgstr ""
+
+#: src/Console/AppConsole.vala:95 src/Gtk/AppGtk.vala:167
+msgid "Options"
+msgstr ""
+
+#: src/Console/AppConsole.vala:98
+msgid "Assume Yes for all prompts (non-interactive mode)"
+msgstr ""
+
+#: src/Console/AppConsole.vala:109
+msgid "Admin access is required for running this application."
+msgstr ""
+
+#: src/Console/AppConsole.vala:112
+msgid "Run the application as admin with pkexec or sudo."
+msgstr ""
+
+#. unknown option
+#. unknown option - show help and exit
+#: src/Console/AppConsole.vala:191 src/Gtk/AppGtk.vala:153
+msgid "Unknown option"
+msgstr ""
+
+#: src/Console/AppConsole.vala:192
+msgid "Run 'ukuu --help' to list all options"
+msgstr ""
+
+#: src/Console/AppConsole.vala:197 src/Gtk/AppGtk.vala:99
+msgid "Cache"
+msgstr ""
+
+#: src/Console/AppConsole.vala:198 src/Gtk/AppGtk.vala:100
+msgid "Temp"
+msgstr ""
+
+#: src/Console/AppConsole.vala:254 src/Console/AppConsole.vala:290
+msgid "No kernels specified"
+msgstr ""
+
+#: src/Console/AppConsole.vala:260
+msgid "Multiple kernels selected for installation. Select only one."
+msgstr ""
+
+#: src/Console/AppConsole.vala:277 src/Gtk/MainWindow.vala:101
+msgid "Could not find requested version"
+msgstr ""
+
+#: src/Console/AppConsole.vala:281
+msgid "Run 'ukuu --list' and use the version string listed in first column"
+msgstr ""
+
+#: src/Console/AppConsole.vala:308
+msgid "Command not specified"
+msgstr ""
+
+#: src/Console/AppConsole.vala:309
+msgid "Run 'ukuu --help' to list all commands"
+msgstr ""
+
+#: src/Gtk/AboutWindow.vala:37
+msgid "A graphical utility for managing kernels on Ubuntu."
+msgstr ""
+
+#: src/Gtk/AboutWindow.vala:50
+msgid "translator-credits"
+msgstr ""
+
+#: src/Gtk/AppGtk.vala:169
+msgid "Print debug information"
+msgstr ""
+
+#: src/Gtk/AppGtk.vala:170
+msgid "Show all options"
+msgstr ""
+
+#. btn
+#. btn_cancel
+#. ignore
+#: src/Gtk/CustomMessageDialog.vala:169 src/Gtk/ProgressWindow.vala:137
+#: src/Gtk/TerminalWindow.vala:147 src/Gtk/UpdateNotificationDialog.vala:161
+#: src/Utility/Gtk/GtkHelper.vala:139
+msgid "Cancel"
+msgstr ""
+
+#: src/Gtk/CustomMessageDialog.vala:173
+msgid "Yes"
+msgstr ""
+
+#: src/Gtk/CustomMessageDialog.vala:174
+msgid "No"
+msgstr ""
+
+#. column
+#: src/Gtk/MainWindow.vala:147
+msgid "Kernel"
+msgstr ""
+
+#. column
+#: src/Gtk/MainWindow.vala:176
+msgid "Version"
+msgstr ""
+
+#. column
+#: src/Gtk/MainWindow.vala:193
+msgid "Status"
+msgstr ""
+
+#: src/Gtk/MainWindow.vala:335
+msgid "Multiple Kernels Selected"
+msgstr ""
+
+#: src/Gtk/MainWindow.vala:335
+msgid "Select a single kernel to install"
+msgstr ""
+
+#: src/Gtk/MainWindow.vala:337 src/Gtk/MainWindow.vala:343
+msgid "Not Selected"
+msgstr ""
+
+#: src/Gtk/MainWindow.vala:337
+msgid "Select the kernel to install"
+msgstr ""
+
+#: src/Gtk/MainWindow.vala:343
+msgid "Select the kernels to remove"
+msgstr ""
+
+#. install
+#: src/Gtk/MainWindow.vala:391 src/Gtk/UpdateNotificationDialog.vala:141
+msgid "Install"
+msgstr ""
+
+#. remove
+#: src/Gtk/MainWindow.vala:398
+msgid "Remove"
+msgstr ""
+
+#. changes
+#: src/Gtk/MainWindow.vala:405
+msgid "Changes"
+msgstr ""
+
+#: src/Gtk/MainWindow.vala:424 src/Gtk/MainWindow.vala:559
+#: src/Gtk/MainWindow.vala:688
+msgid "No Internet"
+msgstr ""
+
+#: src/Gtk/MainWindow.vala:424 src/Gtk/MainWindow.vala:559
+#: src/Gtk/MainWindow.vala:688 src/Utility/TeeJee.System.vala:287
+msgid "Internet connection is not active"
+msgstr ""
+
+#. purge
+#: src/Gtk/MainWindow.vala:476
+msgid "Remove installed kernels older than the running kernel"
+msgstr ""
+
+#: src/Gtk/MainWindow.vala:577
+msgid "Refreshing."
+msgstr ""
+
+#: src/Gtk/MainWindow.vala:804
+msgid "Booting previous kernels"
+msgstr ""
+
+#: src/Gtk/MainWindow.vala:805
+msgid ""
+"Mainline kernels can sometimes cause problems if there are proprietary "
+"drivers installed on your system. These issues include:\n"
+"\n"
+"▰ WiFi not working\n"
+"▰ Black screen on startup\n"
+"▰ Random system freeze\n"
+"\n"
+"If you face any of these issues there is no need to panic.\n"
+"\n"
+"▰ Reboot your system\n"
+"▰ Select 'Advanced Boot Options' from the GRUB boot menu\n"
+"▰ Select an older kernel from the list displayed on this screen\n"
+"▰ Your system will boot using the selected kernel\n"
+"▰ You can now uninstall the kernel that is causing issues\n"
+msgstr ""
+
+#: src/Gtk/SettingsDialog.vala:55
+msgid "Settings"
+msgstr ""
+
+#. vbox_main.margin_bottom = 12;
+#. notification
+#: src/Gtk/SettingsDialog.vala:65
+msgid "Notification"
+msgstr ""
+
+#. chk_notify_major
+#: src/Gtk/SettingsDialog.vala:72
+msgid "Notify if a major release is available"
+msgstr ""
+
+#. chk_notify_minor
+#: src/Gtk/SettingsDialog.vala:83
+msgid "Notify if a point release is available"
+msgstr ""
+
+#. show bubble
+#: src/Gtk/SettingsDialog.vala:94
+msgid "Show notification bubble on desktop"
+msgstr ""
+
+#. show window
+#: src/Gtk/SettingsDialog.vala:105
+msgid "Show notification dialog"
+msgstr ""
+
+#: src/Gtk/SettingsDialog.vala:120
+msgid "Check every"
+msgstr ""
+
+#: src/Gtk/SettingsDialog.vala:151
+msgid "Hour(s)"
+msgstr ""
+
+#: src/Gtk/SettingsDialog.vala:153
+msgid "Day(s)"
+msgstr ""
+
+#: src/Gtk/SettingsDialog.vala:155
+msgid "Week(s)"
+msgstr ""
+
+#. display
+#: src/Gtk/SettingsDialog.vala:160
+msgid "Display"
+msgstr ""
+
+#. chk_hide_unstable
+#: src/Gtk/SettingsDialog.vala:168
+msgid "Hide unstable and RC releases"
+msgstr ""
+
+#. chk_hide_older
+#: src/Gtk/SettingsDialog.vala:179
+msgid "Hide kernels older than 4.0"
+msgstr ""
+
+#. grub
+#: src/Gtk/SettingsDialog.vala:190
+msgid "GRUB Options"
+msgstr ""
+
+#. chk_update_grub_timeout
+#: src/Gtk/SettingsDialog.vala:201
+msgid "Set GRUB menu timeout"
+msgstr ""
+
+#: src/Gtk/SettingsDialog.vala:208
+msgid ""
+"Updates the GRUB menu after installing or removing kernels, so that the menu "
+"is displayed for 2 seconds at boot time. This will help you recover from a "
+"bad kernel update by selecting another kernel to boot. During boot, use the "
+"'Advanced options for Ubuntu' menu entry to select another kernel.\n"
+"\n"
+"0 = Do not show menu\n"
+"-1 = Show indefinitely till user selects"
+msgstr ""
+
+#: src/Gtk/SettingsDialog.vala:221
+msgid ""
+"Time (in seconds) to display the GRUB menu\n"
+"\n"
+"0 = Do not show menu\n"
+"-1 = Show indefinitely till user selects"
+msgstr ""
+
+#. btn_close
+#: src/Gtk/TerminalWindow.vala:157
+msgid "Close"
+msgstr ""
+
+#: src/Gtk/UpdateNotificationDialog.vala:142
+msgid "Install this kernel"
+msgstr ""
+
+#. open ukuu
+#: src/Gtk/UpdateNotificationDialog.vala:151
+msgid "Show"
+msgstr ""
+
+#: src/Gtk/UpdateNotificationDialog.vala:152
+msgid "List available kernels"
+msgstr ""
+
+#: src/Gtk/UpdateNotificationDialog.vala:162
+msgid "Ignore this update"
+msgstr ""
+
+#: src/Utility/Gtk/GtkHelper.vala:38
+msgid "Error"
+msgstr ""
+
+#: src/Utility/Gtk/GtkHelper.vala:291
+msgid "Missing Icon"
+msgstr ""
+
+#: src/Utility/AppLock.vala:49
+msgid "Another instance of this application is running"
+msgstr ""
+
+#: src/Utility/AppLock.vala:53
+msgid "[Warning] Deleted invalid lock"
+msgstr ""
+
+#: src/Utility/TeeJee.FileSystem.vala:93 src/Utility/TeeJee.FileSystem.vala:95
+msgid "File deleted"
+msgstr ""
+
+#: src/Utility/TeeJee.FileSystem.vala:101
+msgid "Failed to delete file"
+msgstr ""
+
+#: src/Utility/TeeJee.FileSystem.vala:155
+msgid "Failed to read file"
+msgstr ""
+
+#: src/Utility/TeeJee.FileSystem.vala:180
+#: src/Utility/TeeJee.FileSystem.vala:182
+msgid "File saved"
+msgstr ""
+
+#: src/Utility/TeeJee.FileSystem.vala:188
+msgid "Failed to write file"
+msgstr ""
+
+#: src/Utility/TeeJee.FileSystem.vala:201
+#: src/Utility/TeeJee.FileSystem.vala:203
+msgid "File copied"
+msgstr ""
+
+#: src/Utility/TeeJee.FileSystem.vala:210
+msgid "Failed to copy file"
+msgstr ""
+
+#: src/Utility/TeeJee.FileSystem.vala:220
+#: src/Utility/TeeJee.FileSystem.vala:510
+msgid "File not found"
+msgstr ""
+
+#: src/Utility/TeeJee.FileSystem.vala:234
+#: src/Utility/TeeJee.FileSystem.vala:236
+msgid "File moved"
+msgstr ""
+
+#: src/Utility/TeeJee.FileSystem.vala:240
+msgid "Failed to move file"
+msgstr ""
+
+#: src/Utility/TeeJee.FileSystem.vala:332
+#: src/Utility/TeeJee.FileSystem.vala:334
+#: src/Utility/TeeJee.FileSystem.vala:358
+msgid "Created directory"
+msgstr ""
+
+#: src/Utility/TeeJee.FileSystem.vala:340
+msgid "Failed to create dir"
+msgstr ""
+
+#: src/Utility/TeeJee.FileSystem.vala:356
+msgid "Deleted directory"
+msgstr ""
+
+#: src/Utility/TeeJee.FileSystem.vala:483
+msgid "Dir not found"
+msgstr ""
+
+#: src/Utility/TeeJee.FileSystem.vala:631
+#: src/Utility/TeeJee.FileSystem.vala:678
+msgid "File is missing"
+msgstr ""
+
+#: src/Utility/TeeJee.Logging.vala:90
+msgid "W"
+msgstr ""
+
+#: src/Utility/TeeJee.Logging.vala:90
+msgid "E"
+msgstr ""
+
+#: src/Utility/TeeJee.Process.vala:498
+msgid "Stopped"
+msgstr ""
