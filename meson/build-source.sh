@@ -18,27 +18,30 @@ echo "--------------------------------------------------------------------------
 
 # clean build dir
 
-rm -rfv ../tmp/builds
-mkdir -pv ../tmp/builds
+rm -rfv /tmp/builds
+mkdir -pv /tmp/builds
 
-make clean
+#ninja clean
 
 mkdir -pv ../release/source
 
 echo "--------------------------------------------------------------------------"
 
-# build source package
-dpkg-source --build ./
+cd ..
+cd ..
 
-mv -vf ../$pkg_name*.dsc ../release/source/
-mv -vf ../$pkg_name*.tar.xz ../release/source/
+# build source package
+dpkg-source --build ukuu
+
+mv -vf $pkg_name*.dsc ukuu/release/source/
+mv -vf $pkg_name*.tar.xz ukuu/release/source/
 
 if [ $? -ne 0 ]; then cd "$backup"; echo "Failed"; exit 1; fi
 
 echo "--------------------------------------------------------------------------"
 
 # list files
-ls -l ../release/source
+ls -l ukuu/release/source
 
 echo "-------------------------------------------------------------------------"
 

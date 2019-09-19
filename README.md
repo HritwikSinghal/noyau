@@ -42,11 +42,15 @@
 <h2>Source Code</h2>
 <h3>Build Instructions</h3>
 
-    sudo apt install valac meson libgee-0.8-dev libjson-glib-dev libvte-2.91-dev libsoup2.4-dev
+    sudo apt install valac meson libgtk-3-dev libgee-0.8-dev libjson-glib-dev libvte-2.91-dev libsoup2.4-dev
     git clone https://github.com/joshuadowding/ukuu.git && cd ukuu
     meson build --prefix=/usr
     cd build && ninja
     sudo ninja install
+
+<h3>Packaging Dependencies</h3>
+
+    sudo apt install ubuntu-dev-tools
 
 <h3>Runtime Dependencies</h3>
 

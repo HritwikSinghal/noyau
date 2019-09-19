@@ -137,7 +137,7 @@ executable(
 )
 
 executable(
-    'ukuu-cli',
+    'com.github.joshuadowding.ukuu-cli',
     project_files_cli,
     dependencies: [
         dependency('gtk+-3.0'),

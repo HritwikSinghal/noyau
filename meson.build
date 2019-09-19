@@ -1,5 +1,5 @@
 project(
-    'ukuu',
+    'com.github.joshuadowding.ukuu',
     'vala', 'c',
     version: '18.10',
     meson_version: '>=0.46.0'
@@ -17,3 +17,6 @@ subdir('data')
 subdir('docs')
 subdir('po')
 subdir('src')
+
+meson.add_install_script('meson/build-source.sh')
+meson.add_install_script('meson/build-deb.sh')
