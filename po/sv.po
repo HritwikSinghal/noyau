@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-17 17:10+0100\n"
+"POT-Creation-Date: 2019-09-20 23:35+0100\n"
 "PO-Revision-Date: 2019-09-17 17:10+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -19,43 +19,47 @@ msgstr ""
 
 #: src/Common/Main.vala:113
 msgid "Commands listed below are not available on this system"
-msgstr ""
+msgstr "Kommandon listade nedan, finns inte tillgängliga i detta system."
 
 #: src/Common/Main.vala:114
 msgid "Please install required packages and try again"
-msgstr ""
+msgstr "Installera nödvändiga paket och försök igen"
 
 #: src/Common/LinuxKernel.vala:116
 msgid "Distribution"
-msgstr ""
+msgstr "Distribution"
 
 #: src/Common/LinuxKernel.vala:130
+#, fuzzy
 msgid "Architecture"
-msgstr ""
+msgstr "Systemarkitektur"
 
 #: src/Common/LinuxKernel.vala:279
 msgid "Index is stale"
-msgstr ""
+msgstr "Index är inaktuellt"
 
 #: src/Common/LinuxKernel.vala:281
 msgid "Index is fresh"
-msgstr ""
+msgstr "Index är uppdaterat"
 
 #: src/Common/LinuxKernel.vala:375
+#, fuzzy
 msgid "Fetching index..."
-msgstr ""
+msgstr "Hämtar index för"
 
 #: src/Common/LinuxKernel.vala:418
 msgid "Fetching index from kernel.ubuntu.com..."
-msgstr ""
+msgstr "Hämtar index från kernel.ubuntu.com ..."
 
 #: src/Common/LinuxKernel.vala:739
+#, fuzzy
 msgid "Could not find running kernel in list!"
-msgstr ""
+msgstr "Kunde inte hitta efterfrågad version"
 
 #: src/Common/LinuxKernel.vala:745
+#, fuzzy
 msgid "Could not find any kernels to remove"
-msgstr ""
+msgstr "Välj kärnor för borttagning"
 
 #: src/Common/LinuxKernel.vala:754
 msgid "Following kernels will be removed"
@@ -76,7 +80,7 @@ msgstr ""
 #: src/Common/LinuxKernel.vala:810 src/Console/AppConsole.vala:335
 #: src/Console/AppConsole.vala:389 src/Gtk/MainWindow.vala:799
 msgid "No updates found"
-msgstr ""
+msgstr "Inga uppdateringar hittades"
 
 #: src/Common/LinuxKernel.vala:820
 #, c-format
@@ -85,69 +89,71 @@ msgstr ""
 
 #: src/Common/LinuxKernel.vala:1082
 msgid "Packages Available (DEB)"
-msgstr ""
+msgstr "Tillgängliga paket (DEB)"
 
 #: src/Common/LinuxKernel.vala:1090
 msgid "Packages Installed"
-msgstr ""
+msgstr "Installerade paket"
 
 #: src/Common/LinuxKernel.vala:1173
 msgid "Available Kernels"
-msgstr ""
+msgstr "Tillgängliga kärnor"
 
 #: src/Common/LinuxKernel.vala:1190 src/Gtk/MainWindow.vala:205
 msgid "Running"
-msgstr ""
+msgstr "Körs"
 
 #: src/Common/LinuxKernel.vala:1190 src/Gtk/MainWindow.vala:205
 msgid "Installed"
-msgstr ""
+msgstr "Installerad"
 
 #: src/Common/LinuxKernel.vala:1219
 msgid "Downloading"
-msgstr ""
+msgstr "Laddar ner"
 
 #. add buttons
 #: src/Common/LinuxKernel.vala:1238 src/Gtk/CustomMessageDialog.vala:164
 #: src/Gtk/CustomMessageDialog.vala:168 src/Utility/Gtk/GtkHelper.vala:138
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/Common/LinuxKernel.vala:1246
 msgid "ERROR"
-msgstr ""
+msgstr "FEL"
 
 #. dep: dpkg
 #. check if installed
 #: src/Common/LinuxKernel.vala:1260 src/Gtk/MainWindow.vala:683
 msgid "This kernel is already installed."
-msgstr ""
+msgstr "Denna kärna är redan installerad"
 
 #: src/Common/LinuxKernel.vala:1290
 msgid "Installation completed. A reboot is required to use the new kernel."
-msgstr ""
+msgstr "Installation slutförd. Omstart krävs för att tillämpa den nya kärnan."
 
 #: src/Common/LinuxKernel.vala:1292
 msgid "Installation completed with errors"
-msgstr ""
+msgstr "Installation slutförd med fel"
 
 #: src/Common/LinuxKernel.vala:1308
 msgid ""
 "Selected kernel is currently running and cannot be removed.\n"
 " Install another kernel before removing this one."
 msgstr ""
+"Denna kärna används för tillfället och kan inte tas bort.\n"
+"Installera en annan kärna innan du tar bort den här."
 
 #: src/Common/LinuxKernel.vala:1313
 msgid "Preparing to remove selected kernels"
-msgstr ""
+msgstr "Förbereder borttagning av markerade kärnor"
 
 #: src/Common/LinuxKernel.vala:1348 src/Common/LinuxKernel.vala:1402
 msgid "Un-install completed"
-msgstr ""
+msgstr "Avinstallation slutförd"
 
 #: src/Common/LinuxKernel.vala:1350 src/Common/LinuxKernel.vala:1404
 msgid "Un-install completed with errors"
-msgstr ""
+msgstr "Avinstallation slutförd med fel"
 
 #. check if running
 #: src/Common/LinuxKernel.vala:1363
@@ -155,19 +161,21 @@ msgid ""
 "This kernel is currently running and cannot be removed.\n"
 " Install another kernel before removing this one."
 msgstr ""
+"Denna kärna används för tillfället och kan inte tas bort.\n"
+"Installera en annan kärna innan du tar bort den här."
 
 #: src/Common/LinuxKernel.vala:1466
 msgid "Updating GRUB menu"
-msgstr ""
+msgstr "Uppdaterar GRUB-menyn"
 
 #: src/Common/Package.vala:133 src/Common/Package.vala:195
 #, c-format
 msgid "File not found: %s"
-msgstr ""
+msgstr "Filen kunde inte hittas: %s"
 
 #: src/Console/AppConsole.vala:78 src/Gtk/AppGtk.vala:165
 msgid "Syntax"
-msgstr ""
+msgstr "Syntax"
 
 #: src/Console/AppConsole.vala:80
 msgid "Commands"
@@ -175,23 +183,26 @@ msgstr ""
 
 #: src/Console/AppConsole.vala:82
 msgid "Check for kernel updates"
-msgstr ""
+msgstr "Sök efter kärnuppdateringar"
 
 #: src/Console/AppConsole.vala:83
+#, fuzzy
 msgid "Check for kernel updates and notify current user"
-msgstr ""
+msgstr "Sök efter kärnuppdateringar"
 
 #: src/Console/AppConsole.vala:84
 msgid "List all available mainline kernels"
-msgstr ""
+msgstr "Lista alla tillgängliga kärnor"
 
 #: src/Console/AppConsole.vala:85
+#, fuzzy
 msgid "List installed kernels"
-msgstr ""
+msgstr "Lista tillgängliga kärnor"
 
 #: src/Console/AppConsole.vala:86
+#, fuzzy
 msgid "Install latest mainline kernel"
-msgstr ""
+msgstr "Installera specificerad kärna"
 
 #: src/Console/AppConsole.vala:87
 msgid "Install latest point update for current series"
@@ -199,31 +210,33 @@ msgstr ""
 
 #: src/Console/AppConsole.vala:88
 msgid "Install specified mainline kernel"
-msgstr ""
+msgstr "Installera specificerad kärna"
 
 #: src/Console/AppConsole.vala:89
+#, fuzzy
 msgid "Remove specified kernel"
-msgstr ""
+msgstr "Ta bort specificerad kärna"
 
 #: src/Console/AppConsole.vala:90
 msgid "Remove installed kernels older than running kernel"
-msgstr ""
+msgstr "Ta bort installerade kärnor äldre än den som körs"
 
 #: src/Console/AppConsole.vala:91
 msgid "Download packages for specified kernel"
-msgstr ""
+msgstr "Ladda ner paket för specificerad kärna"
 
 #: src/Console/AppConsole.vala:92 src/Console/AppConsole.vala:97
 msgid "Remove files from application cache"
-msgstr ""
+msgstr "Ta bort filer från program-cachen"
 
 #: src/Console/AppConsole.vala:93
+#, fuzzy
 msgid "Show unstable and RC releases"
-msgstr ""
+msgstr "Dölj instabila- och RC-publiceringar"
 
 #: src/Console/AppConsole.vala:95 src/Gtk/AppGtk.vala:167
 msgid "Options"
-msgstr ""
+msgstr "Alternativ"
 
 #: src/Console/AppConsole.vala:98
 msgid "Assume Yes for all prompts (non-interactive mode)"
@@ -231,17 +244,17 @@ msgstr ""
 
 #: src/Console/AppConsole.vala:109
 msgid "Admin access is required for running this application."
-msgstr ""
+msgstr "Root-åtkomst krävs för att köra detta program."
 
 #: src/Console/AppConsole.vala:112
 msgid "Run the application as admin with pkexec or sudo."
-msgstr ""
+msgstr "Kör programmet som administratör, med pkexec eller sudo."
 
 #. unknown option
 #. unknown option - show help and exit
 #: src/Console/AppConsole.vala:191 src/Gtk/AppGtk.vala:153
 msgid "Unknown option"
-msgstr ""
+msgstr "Okänt alternativ"
 
 #: src/Console/AppConsole.vala:192
 msgid "Run 'ukuu --help' to list all options"
@@ -261,15 +274,17 @@ msgstr ""
 
 #: src/Console/AppConsole.vala:260
 msgid "Multiple kernels selected for installation. Select only one."
-msgstr ""
+msgstr "Flera kärnor valda för installation. Välj endast en."
 
 #: src/Console/AppConsole.vala:277 src/Gtk/MainWindow.vala:101
 msgid "Could not find requested version"
-msgstr ""
+msgstr "Kunde inte hitta efterfrågad version"
 
 #: src/Console/AppConsole.vala:281
 msgid "Run 'ukuu --list' and use the version string listed in first column"
 msgstr ""
+"Kör \"ukuu --list\" och använd den versionssträng som listas i första "
+"kolumnen"
 
 #: src/Console/AppConsole.vala:308
 msgid "Command not specified"
@@ -284,16 +299,17 @@ msgid "A graphical utility for managing kernels on Ubuntu."
 msgstr ""
 
 #: src/Gtk/AboutWindow.vala:50
+#, fuzzy
 msgid "translator-credits"
-msgstr ""
+msgstr "Översättare"
 
 #: src/Gtk/AppGtk.vala:169
 msgid "Print debug information"
-msgstr ""
+msgstr "Skriv ut felsökningsinformation"
 
 #: src/Gtk/AppGtk.vala:170
 msgid "Show all options"
-msgstr ""
+msgstr "Visa alla alternativ"
 
 #. btn
 #. btn_cancel
@@ -302,88 +318,91 @@ msgstr ""
 #: src/Gtk/TerminalWindow.vala:147 src/Gtk/UpdateNotificationDialog.vala:161
 #: src/Utility/Gtk/GtkHelper.vala:139
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: src/Gtk/CustomMessageDialog.vala:173
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: src/Gtk/CustomMessageDialog.vala:174
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #. column
 #: src/Gtk/MainWindow.vala:147
 msgid "Kernel"
-msgstr ""
+msgstr "Kärna"
 
 #. column
 #: src/Gtk/MainWindow.vala:176
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #. column
 #: src/Gtk/MainWindow.vala:193
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: src/Gtk/MainWindow.vala:335
 msgid "Multiple Kernels Selected"
-msgstr ""
+msgstr "Flera kärnor markerade"
 
 #: src/Gtk/MainWindow.vala:335
 msgid "Select a single kernel to install"
-msgstr ""
+msgstr "Välj en enstaka kärna att installera"
 
 #: src/Gtk/MainWindow.vala:337 src/Gtk/MainWindow.vala:343
 msgid "Not Selected"
-msgstr ""
+msgstr "Inte vald"
 
 #: src/Gtk/MainWindow.vala:337
 msgid "Select the kernel to install"
-msgstr ""
+msgstr "Välj kärna för installation"
 
 #: src/Gtk/MainWindow.vala:343
 msgid "Select the kernels to remove"
-msgstr ""
+msgstr "Välj kärnor för borttagning"
 
 #. install
 #: src/Gtk/MainWindow.vala:391 src/Gtk/UpdateNotificationDialog.vala:141
 msgid "Install"
-msgstr ""
+msgstr "Installera"
 
 #. remove
 #: src/Gtk/MainWindow.vala:398
 msgid "Remove"
-msgstr ""
+msgstr "Ta bort"
 
 #. changes
 #: src/Gtk/MainWindow.vala:405
+#, fuzzy
 msgid "Changes"
-msgstr ""
+msgstr "Ändringar"
 
 #: src/Gtk/MainWindow.vala:424 src/Gtk/MainWindow.vala:559
 #: src/Gtk/MainWindow.vala:688
 msgid "No Internet"
-msgstr ""
+msgstr "Inget internet"
 
 #: src/Gtk/MainWindow.vala:424 src/Gtk/MainWindow.vala:559
 #: src/Gtk/MainWindow.vala:688 src/Utility/TeeJee.System.vala:287
 msgid "Internet connection is not active"
-msgstr ""
+msgstr "Internetuppkopplingen är inte aktiv"
 
 #. purge
 #: src/Gtk/MainWindow.vala:476
+#, fuzzy
 msgid "Remove installed kernels older than the running kernel"
-msgstr ""
+msgstr "Ta bort installerade kärnor äldre än den som körs"
 
 #: src/Gtk/MainWindow.vala:577
+#, fuzzy
 msgid "Refreshing."
-msgstr ""
+msgstr "Uppdaterar ..."
 
 #: src/Gtk/MainWindow.vala:804
 msgid "Booting previous kernels"
-msgstr ""
+msgstr "Startar föregående kärnor"
 
 #: src/Gtk/MainWindow.vala:805
 msgid ""
@@ -402,72 +421,86 @@ msgid ""
 "▰ Your system will boot using the selected kernel\n"
 "▰ You can now uninstall the kernel that is causing issues\n"
 msgstr ""
+"Standardkärnor kan ibland orsaka problem, om det finns proprietära "
+"drivrutiner installerade i ditt system. Dessa problem kan inkludera:\n"
+"\n"
+"▰ Trådlöst nätverk som inte fungerar\n"
+"▰ Svart skärm vid systemstart\n"
+"▰ Slumpartade systemfrysningar\n"
+"\n"
+"Råkar du ut för något av dessa problem, är det ingen panik\n"
+"\n"
+"▰ Starta om ditt system\n"
+"▰ Välj \"Avancerade startalternativ\" i GRUB-menyn\n"
+"▰ Välj en äldre kärna från listan som visas\n"
+"▰ Ditt system startar då med med den valda kärnan\n"
+"▰ Du kan nu avinstallera den kärna som orsakar problem\n"
 
 #: src/Gtk/SettingsDialog.vala:55
 msgid "Settings"
-msgstr ""
+msgstr "Inställningar"
 
 #. vbox_main.margin_bottom = 12;
 #. notification
 #: src/Gtk/SettingsDialog.vala:65
 msgid "Notification"
-msgstr ""
+msgstr "Avisering"
 
 #. chk_notify_major
 #: src/Gtk/SettingsDialog.vala:72
 msgid "Notify if a major release is available"
-msgstr ""
+msgstr "Meddela om en ny (stor) uppdatering finns tillgänglig"
 
 #. chk_notify_minor
 #: src/Gtk/SettingsDialog.vala:83
 msgid "Notify if a point release is available"
-msgstr ""
+msgstr "Meddela om en ny (mindre) uppdatering finns tillgänglig"
 
 #. show bubble
 #: src/Gtk/SettingsDialog.vala:94
 msgid "Show notification bubble on desktop"
-msgstr ""
+msgstr "Visa aviseringsruta på skrivbordet"
 
 #. show window
 #: src/Gtk/SettingsDialog.vala:105
 msgid "Show notification dialog"
-msgstr ""
+msgstr "Visa aviseringsdialog"
 
 #: src/Gtk/SettingsDialog.vala:120
 msgid "Check every"
-msgstr ""
+msgstr "Kontrollera varje"
 
 #: src/Gtk/SettingsDialog.vala:151
 msgid "Hour(s)"
-msgstr ""
+msgstr "Timma(r)"
 
 #: src/Gtk/SettingsDialog.vala:153
 msgid "Day(s)"
-msgstr ""
+msgstr "Dag(ar)"
 
 #: src/Gtk/SettingsDialog.vala:155
 msgid "Week(s)"
-msgstr ""
+msgstr "Veckor"
 
 #. display
 #: src/Gtk/SettingsDialog.vala:160
 msgid "Display"
-msgstr ""
+msgstr "Visa"
 
 #. chk_hide_unstable
 #: src/Gtk/SettingsDialog.vala:168
 msgid "Hide unstable and RC releases"
-msgstr ""
+msgstr "Dölj instabila- och RC-publiceringar"
 
 #. chk_hide_older
 #: src/Gtk/SettingsDialog.vala:179
 msgid "Hide kernels older than 4.0"
-msgstr ""
+msgstr "Dölj kärnor, äldre än 4.0"
 
 #. grub
 #: src/Gtk/SettingsDialog.vala:190
 msgid "GRUB Options"
-msgstr ""
+msgstr "GRUB-alternativ"
 
 #. chk_update_grub_timeout
 #: src/Gtk/SettingsDialog.vala:201
@@ -484,6 +517,14 @@ msgid ""
 "0 = Do not show menu\n"
 "-1 = Show indefinitely till user selects"
 msgstr ""
+"Uppdaterar GRUB-menyn efter installation eller borttagning av kärnor, så att "
+"menyn visas i 2 sekunder vid systemstart. Detta hjälper dig att återställa "
+"från en dålig kärnuppdatering, genom att du kan välja en annan kärna att "
+"starta med. Under uppstarten väljer du \"Avancerade alternativ...\" för att "
+"välja en annan kärna.\n"
+"\n"
+"0 = Visa ingen meny\n"
+"-1 = Visa menyn oavbrutet tills användaren väljer"
 
 #: src/Gtk/SettingsDialog.vala:221
 msgid ""
@@ -492,120 +533,278 @@ msgid ""
 "0 = Do not show menu\n"
 "-1 = Show indefinitely till user selects"
 msgstr ""
+"Tid (i sekunder) att visa GRUB-menyn\n"
+"\n"
+"0 = Visa ingen meny\n"
+"-1 = Visa oavbrutet tills användaren väljer"
 
 #. btn_close
 #: src/Gtk/TerminalWindow.vala:157
 msgid "Close"
-msgstr ""
+msgstr "Stäng"
 
 #: src/Gtk/UpdateNotificationDialog.vala:142
 msgid "Install this kernel"
-msgstr ""
+msgstr "Installera denna kärna"
 
 #. open ukuu
 #: src/Gtk/UpdateNotificationDialog.vala:151
 msgid "Show"
-msgstr ""
+msgstr "Visa"
 
 #: src/Gtk/UpdateNotificationDialog.vala:152
 msgid "List available kernels"
-msgstr ""
+msgstr "Lista tillgängliga kärnor"
 
 #: src/Gtk/UpdateNotificationDialog.vala:162
 msgid "Ignore this update"
-msgstr ""
+msgstr "Undanta denna uppdatering"
 
 #: src/Utility/Gtk/GtkHelper.vala:38
 msgid "Error"
-msgstr ""
+msgstr "Fel"
 
 #: src/Utility/Gtk/GtkHelper.vala:291
 msgid "Missing Icon"
-msgstr ""
+msgstr "Saknad ikon"
 
 #: src/Utility/AppLock.vala:49
 msgid "Another instance of this application is running"
-msgstr ""
+msgstr "En annan instans av programmet körs redan"
 
 #: src/Utility/AppLock.vala:53
 msgid "[Warning] Deleted invalid lock"
-msgstr ""
+msgstr "[Varning] Tog bort ogiltigt lås"
 
 #: src/Utility/TeeJee.FileSystem.vala:93 src/Utility/TeeJee.FileSystem.vala:95
 msgid "File deleted"
-msgstr ""
+msgstr "Fil borttagen"
 
 #: src/Utility/TeeJee.FileSystem.vala:101
 msgid "Failed to delete file"
-msgstr ""
+msgstr "Kunde inte ta bort filen"
 
 #: src/Utility/TeeJee.FileSystem.vala:155
 msgid "Failed to read file"
-msgstr ""
+msgstr "Kunde inte läsa filen"
 
 #: src/Utility/TeeJee.FileSystem.vala:180
 #: src/Utility/TeeJee.FileSystem.vala:182
 msgid "File saved"
-msgstr ""
+msgstr "Fil sparad"
 
 #: src/Utility/TeeJee.FileSystem.vala:188
 msgid "Failed to write file"
-msgstr ""
+msgstr "Kunde inte skriva filen"
 
 #: src/Utility/TeeJee.FileSystem.vala:201
 #: src/Utility/TeeJee.FileSystem.vala:203
 msgid "File copied"
-msgstr ""
+msgstr "Kopierade fil"
 
 #: src/Utility/TeeJee.FileSystem.vala:210
 msgid "Failed to copy file"
-msgstr ""
+msgstr "Kunde inte kopiera filen"
 
 #: src/Utility/TeeJee.FileSystem.vala:220
 #: src/Utility/TeeJee.FileSystem.vala:510
 msgid "File not found"
-msgstr ""
+msgstr "Filen kan inte hittas"
 
 #: src/Utility/TeeJee.FileSystem.vala:234
 #: src/Utility/TeeJee.FileSystem.vala:236
 msgid "File moved"
-msgstr ""
+msgstr "Fil flyttad"
 
 #: src/Utility/TeeJee.FileSystem.vala:240
 msgid "Failed to move file"
-msgstr ""
+msgstr "Kunde inte flytta filen"
 
 #: src/Utility/TeeJee.FileSystem.vala:332
 #: src/Utility/TeeJee.FileSystem.vala:334
 #: src/Utility/TeeJee.FileSystem.vala:358
 msgid "Created directory"
-msgstr ""
+msgstr "Skapade mapp"
 
 #: src/Utility/TeeJee.FileSystem.vala:340
 msgid "Failed to create dir"
-msgstr ""
+msgstr "Kunde inte skapa mappen"
 
 #: src/Utility/TeeJee.FileSystem.vala:356
 msgid "Deleted directory"
-msgstr ""
+msgstr "Tog bort mapp"
 
 #: src/Utility/TeeJee.FileSystem.vala:483
 msgid "Dir not found"
-msgstr ""
+msgstr "Mappen kan inte hittas"
 
 #: src/Utility/TeeJee.FileSystem.vala:631
 #: src/Utility/TeeJee.FileSystem.vala:678
 msgid "File is missing"
-msgstr ""
+msgstr "Filen saknas"
 
 #: src/Utility/TeeJee.Logging.vala:90
 msgid "W"
-msgstr ""
+msgstr "V"
 
 #: src/Utility/TeeJee.Logging.vala:90
 msgid "E"
-msgstr ""
+msgstr "F"
 
 #: src/Utility/TeeJee.Process.vala:498
 msgid "Stopped"
-msgstr ""
+msgstr "Stoppad"
+
+#~ msgid "Refresh"
+#~ msgstr "Uppdatera"
+
+#~ msgid "About"
+#~ msgstr "Om"
+
+#~ msgid "Artists"
+#~ msgstr "Artister"
+
+#~ msgid "Authors"
+#~ msgstr "Utvecklare"
+
+#~ msgid "Back"
+#~ msgstr "Tillbaka"
+
+#~ msgid "Contributions"
+#~ msgstr "Bidrag"
+
+#~ msgid "Credits"
+#~ msgstr "Tack"
+
+#~ msgid "Documenters"
+#~ msgstr "Dokumentalister"
+
+#~ msgid "Donations"
+#~ msgstr "Donationer"
+
+#~ msgid "Kernel upgrade utility for Ubuntu-based distributions"
+#~ msgstr "Kärnuppgraderingsverktyg för Ubuntu-baserade distributioner"
+
+#~ msgid "Third Party Tools"
+#~ msgstr "Tredjepartsverktyg"
+
+#, fuzzy
+#~ msgid "Install kernel"
+#~ msgstr "Installera denna kärna"
+
+#, fuzzy
+#~ msgid "Refresh the kernel list"
+#~ msgstr "Välj kärna för installation"
+
+#, fuzzy
+#~ msgid "Remove kernel"
+#~ msgstr "Ta bort specificerad kärna"
+
+#, fuzzy
+#~ msgid "About ukuu."
+#~ msgstr "Om"
+
+#, fuzzy
+#~ msgid "Install selected kernel."
+#~ msgstr "Installera denna kärna"
+
+#, fuzzy
+#~ msgid "Remove installed kernels older than running kernel."
+#~ msgstr "Ta bort installerade kärnor äldre än den som körs"
+
+#, fuzzy
+#~ msgid "Remove selected installed kernel."
+#~ msgstr "Ta bort specificerad kärna"
+
+#~ msgid "Purge"
+#~ msgstr "Rensa"
+
+#~ msgid "Donate"
+#~ msgstr "Donera"
+
+#~ msgid ""
+#~ "Did you find this software useful?\n"
+#~ "\n"
+#~ "You can buy me a coffee or make a donation via PayPal to show your "
+#~ "support. Or just drop me an email and say Hi. This application is "
+#~ "completely free and will continue to remain that way. Your contributions "
+#~ "will help in keeping this project alive and improving it further.\n"
+#~ "\n"
+#~ "Feel free to send me an email if you find any issues in this application "
+#~ "or if you need any changes. Suggestions and feedback are always welcome.\n"
+#~ "\n"
+#~ "Thanks,\n"
+#~ "Tony George\n"
+#~ "(teejeetech@gmail.com)"
+#~ msgstr ""
+#~ "Tycker du att detta program är användbart?\n"
+#~ "\n"
+#~ "Du kan bjuda mig på en kopp kaffe eller donera via PayPal för att visa "
+#~ "ditt stöd. Eller bara skicka ett e-postmeddelande och säga Hej! "
+#~ "Programmet är helt gratis och kommer att fortsätta vara så. Ditt bidrag "
+#~ "hjälper mig att hålla projektet levande och att utveckla det vidare.\n"
+#~ "\n"
+#~ "Skicka gärna ett e-postmeddelande om du stöter på några problem med "
+#~ "programmet eller behöver några ändringar. Förslag och återkoppling är "
+#~ "alltid välkommet.\n"
+#~ "\n"
+#~ "Tack!\n"
+#~ "Tony George\n"
+#~ "(teejeetech@gmail.com)"
+
+#~ msgid "Display GRUB menu during boot"
+#~ msgstr "Visa GRUB-menyn vid systemstart"
+
+#~ msgid "Donate with Google Wallet"
+#~ msgstr "Donera med Google Wallet"
+
+#~ msgid "Donate with PayPal"
+#~ msgstr "Donera med PayPal"
+
+#~ msgid "File read"
+#~ msgstr "Fil läst"
+
+#~ msgid "Notify if kernel update is available"
+#~ msgstr "Meddela om en kärnuppdatering finns tillgänglig"
+
+#~ msgid "Send Email"
+#~ msgstr "Skicka e-post"
+
+#~ msgid "Use specified user's cache directory"
+#~ msgstr "Använd specificerad användares cache-mapp"
+
+#~ msgid "Using cache directory"
+#~ msgstr "Använder cache-mapp"
+
+#~ msgid "Visit Website"
+#~ msgstr "Besök hemsidan"
+
+#~ msgid "Open Ukuu"
+#~ msgstr "Öppna Ukuu"
+
+#~ msgid "Cron job added"
+#~ msgstr "Cron-jobb tillagt"
+
+#~ msgid "Cron job removed"
+#~ msgstr "Cron-jobb borttaget"
+
+#~ msgid "Failed to add cron job"
+#~ msgstr "Kunde inte lägga till Cron-jobb"
+
+#~ msgid "Failed to read cron tab"
+#~ msgstr "Kunde inte läsa cron-fliken"
+
+#~ msgid "Failed to remove cron job"
+#~ msgstr "Kunde inte ta bort cron-jobbet"
+
+#~ msgid "Fetching changelog for"
+#~ msgstr "Hämtar ändringslogg för"
+
+#~ msgid "Open"
+#~ msgstr "Öppna"
+
+#~ msgid "Root Access Required"
+#~ msgstr "Root-åtkomst krävs"
+
+#~ msgid "Root access is required for running this application."
+#~ msgstr "Root-åtkomst krävs för att använda det här programmet"

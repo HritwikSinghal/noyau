@@ -5,3 +5,4 @@ i18n.gettext(
     args: ['--directory=' + meson.source_root()],
     preset: 'glib'
 )
+

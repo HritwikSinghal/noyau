@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ukuu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-17 17:10+0100\n"
+"POT-Creation-Date: 2019-09-20 23:35+0100\n"
 "PO-Revision-Date: 2019-09-17 17:10+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -20,27 +20,28 @@ msgstr ""
 
 #: src/Common/Main.vala:113
 msgid "Commands listed below are not available on this system"
-msgstr ""
+msgstr "Naredbe navedene ispod nisu dostupne na ovom sustavu"
 
 #: src/Common/Main.vala:114
 msgid "Please install required packages and try again"
-msgstr ""
+msgstr "Instalirajte potrebni paket i pokušajte ponovno"
 
 #: src/Common/LinuxKernel.vala:116
 msgid "Distribution"
-msgstr ""
+msgstr "Distribucija"
 
 #: src/Common/LinuxKernel.vala:130
+#, fuzzy
 msgid "Architecture"
-msgstr ""
+msgstr "Arhitektura sustava"
 
 #: src/Common/LinuxKernel.vala:279
 msgid "Index is stale"
-msgstr ""
+msgstr "Sadržaj je zastario"
 
 #: src/Common/LinuxKernel.vala:281
 msgid "Index is fresh"
-msgstr ""
+msgstr "Sadržaj je osvježen"
 
 #: src/Common/LinuxKernel.vala:375
 msgid "Fetching index..."
@@ -48,15 +49,17 @@ msgstr ""
 
 #: src/Common/LinuxKernel.vala:418
 msgid "Fetching index from kernel.ubuntu.com..."
-msgstr ""
+msgstr "Preuzimanje sadržaja sa kernel.ubuntu.com..."
 
 #: src/Common/LinuxKernel.vala:739
+#, fuzzy
 msgid "Could not find running kernel in list!"
-msgstr ""
+msgstr "Nemoguće je pronaći zatraženu inačicu"
 
 #: src/Common/LinuxKernel.vala:745
+#, fuzzy
 msgid "Could not find any kernels to remove"
-msgstr ""
+msgstr "Odaberi kernele za uklanjanje"
 
 #: src/Common/LinuxKernel.vala:754
 msgid "Following kernels will be removed"
@@ -77,7 +80,7 @@ msgstr ""
 #: src/Common/LinuxKernel.vala:810 src/Console/AppConsole.vala:335
 #: src/Console/AppConsole.vala:389 src/Gtk/MainWindow.vala:799
 msgid "No updates found"
-msgstr ""
+msgstr "Nema pronađenih nadopuna"
 
 #: src/Common/LinuxKernel.vala:820
 #, c-format
@@ -86,69 +89,73 @@ msgstr ""
 
 #: src/Common/LinuxKernel.vala:1082
 msgid "Packages Available (DEB)"
-msgstr ""
+msgstr "Dostupni paketi (DEB)"
 
 #: src/Common/LinuxKernel.vala:1090
 msgid "Packages Installed"
-msgstr ""
+msgstr "Instalirani paketi"
 
 #: src/Common/LinuxKernel.vala:1173
 msgid "Available Kernels"
-msgstr ""
+msgstr "Dostupni kerneli"
 
 #: src/Common/LinuxKernel.vala:1190 src/Gtk/MainWindow.vala:205
 msgid "Running"
-msgstr ""
+msgstr "Pokrenuto"
 
 #: src/Common/LinuxKernel.vala:1190 src/Gtk/MainWindow.vala:205
 msgid "Installed"
-msgstr ""
+msgstr "Instalirano"
 
 #: src/Common/LinuxKernel.vala:1219
 msgid "Downloading"
-msgstr ""
+msgstr "Preuzimanje"
 
 #. add buttons
 #: src/Common/LinuxKernel.vala:1238 src/Gtk/CustomMessageDialog.vala:164
 #: src/Gtk/CustomMessageDialog.vala:168 src/Utility/Gtk/GtkHelper.vala:138
 msgid "OK"
-msgstr ""
+msgstr "U redu"
 
 #: src/Common/LinuxKernel.vala:1246
 msgid "ERROR"
-msgstr ""
+msgstr "GREŠKA"
 
 #. dep: dpkg
 #. check if installed
 #: src/Common/LinuxKernel.vala:1260 src/Gtk/MainWindow.vala:683
 msgid "This kernel is already installed."
-msgstr ""
+msgstr "Ovaj kernel je već instaliran."
 
 #: src/Common/LinuxKernel.vala:1290
 msgid "Installation completed. A reboot is required to use the new kernel."
 msgstr ""
+"Instalacija je završena. Potrebno je ponovno pokretanje računala kako bi se "
+"koristio novi kernel."
 
 #: src/Common/LinuxKernel.vala:1292
 msgid "Installation completed with errors"
-msgstr ""
+msgstr "Instalacija je završena s greškama"
 
 #: src/Common/LinuxKernel.vala:1308
 msgid ""
 "Selected kernel is currently running and cannot be removed.\n"
 " Install another kernel before removing this one."
 msgstr ""
+"Odabrani kernel je trenutno pokernut i ne može se ukloniti.\n"
+" Instalirajte drugi kernel prije uklanjanja trenutnog kernela."
 
 #: src/Common/LinuxKernel.vala:1313
 msgid "Preparing to remove selected kernels"
-msgstr ""
+msgstr "Pripremanje uklanjanja odabranih kernela"
 
 #: src/Common/LinuxKernel.vala:1348 src/Common/LinuxKernel.vala:1402
 msgid "Un-install completed"
-msgstr ""
+msgstr "Deinstalacija završena"
 
 #: src/Common/LinuxKernel.vala:1350 src/Common/LinuxKernel.vala:1404
 msgid "Un-install completed with errors"
-msgstr ""
+msgstr "Deinstalacija završena s greškama"
 
 #. check if running
 #: src/Common/LinuxKernel.vala:1363
@@ -156,19 +163,21 @@ msgid ""
 "This kernel is currently running and cannot be removed.\n"
 " Install another kernel before removing this one."
 msgstr ""
+"Ovaj kernel je trenutno pokrenut i ne može se ukloniti.\n"
+" Instalirajte drugi kernel prije uklanjanja trenutnog kernela."
 
 #: src/Common/LinuxKernel.vala:1466
 msgid "Updating GRUB menu"
-msgstr ""
+msgstr "Nadopuna GRUB izbornika"
 
 #: src/Common/Package.vala:133 src/Common/Package.vala:195
 #, c-format
 msgid "File not found: %s"
-msgstr ""
+msgstr "Datoteka nije pronađena: %s"
 
 #: src/Console/AppConsole.vala:78 src/Gtk/AppGtk.vala:165
 msgid "Syntax"
-msgstr ""
+msgstr "Sintaksa"
 
 #: src/Console/AppConsole.vala:80
 msgid "Commands"
@@ -176,23 +185,26 @@ msgstr ""
 
 #: src/Console/AppConsole.vala:82
 msgid "Check for kernel updates"
-msgstr ""
+msgstr "Provjeri nadopune kernela"
 
 #: src/Console/AppConsole.vala:83
+#, fuzzy
 msgid "Check for kernel updates and notify current user"
-msgstr ""
+msgstr "Provjeri nadopune kernela"
 
 #: src/Console/AppConsole.vala:84
 msgid "List all available mainline kernels"
-msgstr ""
+msgstr "Prikaži sve mainline kernele"
 
 #: src/Console/AppConsole.vala:85
+#, fuzzy
 msgid "List installed kernels"
-msgstr ""
+msgstr "Prikaži sve kernele"
 
 #: src/Console/AppConsole.vala:86
+#, fuzzy
 msgid "Install latest mainline kernel"
-msgstr ""
+msgstr "Instaliraj određeni mainline kernel"
 
 #: src/Console/AppConsole.vala:87
 msgid "Install latest point update for current series"
@@ -200,11 +212,12 @@ msgstr ""
 
 #: src/Console/AppConsole.vala:88
 msgid "Install specified mainline kernel"
-msgstr ""
+msgstr "Instaliraj određeni mainline kernel"
 
 #: src/Console/AppConsole.vala:89
+#, fuzzy
 msgid "Remove specified kernel"
-msgstr ""
+msgstr "Ukloni određeni mainline kernel"
 
 #: src/Console/AppConsole.vala:90
 msgid "Remove installed kernels older than running kernel"
@@ -212,19 +225,20 @@ msgstr ""
 
 #: src/Console/AppConsole.vala:91
 msgid "Download packages for specified kernel"
-msgstr ""
+msgstr "Preuzmi pakete za određeni kernel"
 
 #: src/Console/AppConsole.vala:92 src/Console/AppConsole.vala:97
 msgid "Remove files from application cache"
-msgstr ""
+msgstr "Ukloni datoteke iz predmemorije aplikacije"
 
 #: src/Console/AppConsole.vala:93
+#, fuzzy
 msgid "Show unstable and RC releases"
-msgstr ""
+msgstr "Sakrij nestabilne kernele i predizdanja"
 
 #: src/Console/AppConsole.vala:95 src/Gtk/AppGtk.vala:167
 msgid "Options"
-msgstr ""
+msgstr "Mogućnosti"
 
 #: src/Console/AppConsole.vala:98
 msgid "Assume Yes for all prompts (non-interactive mode)"
@@ -232,17 +246,17 @@ msgstr ""
 
 #: src/Console/AppConsole.vala:109
 msgid "Admin access is required for running this application."
-msgstr ""
+msgstr "Administratorske ovlasti su potrebne za pokretanje ove aplikacije."
 
 #: src/Console/AppConsole.vala:112
 msgid "Run the application as admin with pkexec or sudo."
-msgstr ""
+msgstr "Pokreni aplikaciju kao administrator sa pkexec ili sudo."
 
 #. unknown option
 #. unknown option - show help and exit
 #: src/Console/AppConsole.vala:191 src/Gtk/AppGtk.vala:153
 msgid "Unknown option"
-msgstr ""
+msgstr "Nepoznata mogućnost"
 
 #: src/Console/AppConsole.vala:192
 msgid "Run 'ukuu --help' to list all options"
@@ -262,15 +276,15 @@ msgstr ""
 
 #: src/Console/AppConsole.vala:260
 msgid "Multiple kernels selected for installation. Select only one."
-msgstr ""
+msgstr "Više kernela je odabrano za instalaciju. odaberite samo jedan."
 
 #: src/Console/AppConsole.vala:277 src/Gtk/MainWindow.vala:101
 msgid "Could not find requested version"
-msgstr ""
+msgstr "Nemoguće je pronaći zatraženu inačicu"
 
 #: src/Console/AppConsole.vala:281
 msgid "Run 'ukuu --list' and use the version string listed in first column"
-msgstr ""
+msgstr "Pokrenite 'ukuu --list' i koristite izraz inačice u prvom stupcu"
 
 #: src/Console/AppConsole.vala:308
 msgid "Command not specified"
@@ -285,16 +299,17 @@ msgid "A graphical utility for managing kernels on Ubuntu."
 msgstr ""
 
 #: src/Gtk/AboutWindow.vala:50
+#, fuzzy
 msgid "translator-credits"
-msgstr ""
+msgstr "Prevoditelji"
 
 #: src/Gtk/AppGtk.vala:169
 msgid "Print debug information"
-msgstr ""
+msgstr "Ispiši informacije otklanjanja grešaka"
 
 #: src/Gtk/AppGtk.vala:170
 msgid "Show all options"
-msgstr ""
+msgstr "Prikaži sve mogućnosti"
 
 #. btn
 #. btn_cancel
@@ -303,75 +318,76 @@ msgstr ""
 #: src/Gtk/TerminalWindow.vala:147 src/Gtk/UpdateNotificationDialog.vala:161
 #: src/Utility/Gtk/GtkHelper.vala:139
 msgid "Cancel"
-msgstr ""
+msgstr "Odustani"
 
 #: src/Gtk/CustomMessageDialog.vala:173
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: src/Gtk/CustomMessageDialog.vala:174
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #. column
 #: src/Gtk/MainWindow.vala:147
 msgid "Kernel"
-msgstr ""
+msgstr "Kernel"
 
 #. column
 #: src/Gtk/MainWindow.vala:176
 msgid "Version"
-msgstr ""
+msgstr "Inačica"
 
 #. column
 #: src/Gtk/MainWindow.vala:193
 msgid "Status"
-msgstr ""
+msgstr "Stanje"
 
 #: src/Gtk/MainWindow.vala:335
 msgid "Multiple Kernels Selected"
-msgstr ""
+msgstr "Više kernela je odabrano"
 
 #: src/Gtk/MainWindow.vala:335
 msgid "Select a single kernel to install"
-msgstr ""
+msgstr "Odaberi pojedni kernel za instalaciju"
 
 #: src/Gtk/MainWindow.vala:337 src/Gtk/MainWindow.vala:343
 msgid "Not Selected"
-msgstr ""
+msgstr "Nije odabrano"
 
 #: src/Gtk/MainWindow.vala:337
 msgid "Select the kernel to install"
-msgstr ""
+msgstr "Odaberi kernel za instalaciju"
 
 #: src/Gtk/MainWindow.vala:343
 msgid "Select the kernels to remove"
-msgstr ""
+msgstr "Odaberi kernele za uklanjanje"
 
 #. install
 #: src/Gtk/MainWindow.vala:391 src/Gtk/UpdateNotificationDialog.vala:141
 msgid "Install"
-msgstr ""
+msgstr "Instaliraj"
 
 #. remove
 #: src/Gtk/MainWindow.vala:398
 msgid "Remove"
-msgstr ""
+msgstr "Ukloni"
 
 #. changes
 #: src/Gtk/MainWindow.vala:405
+#, fuzzy
 msgid "Changes"
-msgstr ""
+msgstr "Promjene"
 
 #: src/Gtk/MainWindow.vala:424 src/Gtk/MainWindow.vala:559
 #: src/Gtk/MainWindow.vala:688
 msgid "No Internet"
-msgstr ""
+msgstr "Nema pristupa internetu"
 
 #: src/Gtk/MainWindow.vala:424 src/Gtk/MainWindow.vala:559
 #: src/Gtk/MainWindow.vala:688 src/Utility/TeeJee.System.vala:287
 msgid "Internet connection is not active"
-msgstr ""
+msgstr "Internet povezivanje nije aktivno"
 
 #. purge
 #: src/Gtk/MainWindow.vala:476
@@ -379,12 +395,13 @@ msgid "Remove installed kernels older than the running kernel"
 msgstr ""
 
 #: src/Gtk/MainWindow.vala:577
+#, fuzzy
 msgid "Refreshing."
-msgstr ""
+msgstr "Osvježavanje..."
 
 #: src/Gtk/MainWindow.vala:804
 msgid "Booting previous kernels"
-msgstr ""
+msgstr "Pokretanje prijašnjeg kernela"
 
 #: src/Gtk/MainWindow.vala:805
 msgid ""
@@ -403,72 +420,86 @@ msgid ""
 "▰ Your system will boot using the selected kernel\n"
 "▰ You can now uninstall the kernel that is causing issues\n"
 msgstr ""
+"Mainline kerneli ponekada mogu prouzrokovati probleme ako su instalirani "
+"vlasnički upravljački programi na vašem sustavu. Ti problemi uključuju:\n"
+"\n"
+"▰ Bežična mreža ne radi\n"
+"▰ Crni zaslon pri pokretanju\n"
+"▰ Slučajna smrzavanja sustava\n"
+"\n"
+"Ako se suočite s bilo kojim od ovih problema nemojte paničariti.\n"
+"\n"
+"▰ Ponovno pokrenite svoj sustav\n"
+"▰ Odaberite 'Napredne mogućnosti pokretanja' s GRUB izbornika pokretanja\n"
+"▰ Odaberite stariji kernel s popisa prikazanog na zaslonu\n"
+"▰ Vaš sustav će se pokrenuti pomoću odabranog kernela\n"
+"▰ Sada možete ukloniti kernel koji uzrokuje probleme\n"
 
 #: src/Gtk/SettingsDialog.vala:55
 msgid "Settings"
-msgstr ""
+msgstr "Postavke"
 
 #. vbox_main.margin_bottom = 12;
 #. notification
 #: src/Gtk/SettingsDialog.vala:65
 msgid "Notification"
-msgstr ""
+msgstr "Obavijesti"
 
 #. chk_notify_major
 #: src/Gtk/SettingsDialog.vala:72
 msgid "Notify if a major release is available"
-msgstr ""
+msgstr "Obavijesti kada je glavno izdanje dostupno"
 
 #. chk_notify_minor
 #: src/Gtk/SettingsDialog.vala:83
 msgid "Notify if a point release is available"
-msgstr ""
+msgstr "Obavijesti kada je pojedino izdanje dostupno"
 
 #. show bubble
 #: src/Gtk/SettingsDialog.vala:94
 msgid "Show notification bubble on desktop"
-msgstr ""
+msgstr "Prikaži mjehurić obavijesti radne površine"
 
 #. show window
 #: src/Gtk/SettingsDialog.vala:105
 msgid "Show notification dialog"
-msgstr ""
+msgstr "Prikaži dijalog obavijesti"
 
 #: src/Gtk/SettingsDialog.vala:120
 msgid "Check every"
-msgstr ""
+msgstr "Provjeri svaka"
 
 #: src/Gtk/SettingsDialog.vala:151
 msgid "Hour(s)"
-msgstr ""
+msgstr "Sat(a)"
 
 #: src/Gtk/SettingsDialog.vala:153
 msgid "Day(s)"
-msgstr ""
+msgstr "Dan(a)"
 
 #: src/Gtk/SettingsDialog.vala:155
 msgid "Week(s)"
-msgstr ""
+msgstr "Tjedan(a)"
 
 #. display
 #: src/Gtk/SettingsDialog.vala:160
 msgid "Display"
-msgstr ""
+msgstr "Prikaz"
 
 #. chk_hide_unstable
 #: src/Gtk/SettingsDialog.vala:168
 msgid "Hide unstable and RC releases"
-msgstr ""
+msgstr "Sakrij nestabilne kernele i predizdanja"
 
 #. chk_hide_older
 #: src/Gtk/SettingsDialog.vala:179
 msgid "Hide kernels older than 4.0"
-msgstr ""
+msgstr "Sakrij kernele starije od inačice 4.0"
 
 #. grub
 #: src/Gtk/SettingsDialog.vala:190
 msgid "GRUB Options"
-msgstr ""
+msgstr "GRUB mogućnosti"
 
 #. chk_update_grub_timeout
 #: src/Gtk/SettingsDialog.vala:201
@@ -485,6 +516,14 @@ msgid ""
 "0 = Do not show menu\n"
 "-1 = Show indefinitely till user selects"
 msgstr ""
+"Nadopunjuje GRUB izbornik nakon instalacije ili uklanjanja kernela, tako da "
+"je izbornik prikazan 2 sekunde pri pokretanju računala. Ovo će vam pomoći u "
+"slučaju nepotpune nadopune kernela odabirom drugog kernela za pokretanje. "
+"Tijekom pokretanja, koristite stavku izbornika 'Napredne mogućnosti za "
+"Ubuntu' kako bi odabrali drugi kernel.\n"
+"\n"
+"0 = Ne prikazuj izbornik\n"
+"-1 = Prikaži izbornik sve do korisnikovog odabira"
 
 #: src/Gtk/SettingsDialog.vala:221
 msgid ""
@@ -493,120 +532,297 @@ msgid ""
 "0 = Do not show menu\n"
 "-1 = Show indefinitely till user selects"
 msgstr ""
+"Vrijeme (u sekundama) prikaza GRUB izbornika\n"
+"\n"
+"0 = Ne prikazuj izbornik\n"
+"-1 = Prikaži izbornik sve do korisnikovog odabira"
 
 #. btn_close
 #: src/Gtk/TerminalWindow.vala:157
 msgid "Close"
-msgstr ""
+msgstr "Zatvori"
 
 #: src/Gtk/UpdateNotificationDialog.vala:142
 msgid "Install this kernel"
-msgstr ""
+msgstr "Instaliraj ovaj kernel"
 
 #. open ukuu
 #: src/Gtk/UpdateNotificationDialog.vala:151
 msgid "Show"
-msgstr ""
+msgstr "Prikaži"
 
 #: src/Gtk/UpdateNotificationDialog.vala:152
 msgid "List available kernels"
-msgstr ""
+msgstr "Prikaži sve kernele"
 
 #: src/Gtk/UpdateNotificationDialog.vala:162
 msgid "Ignore this update"
-msgstr ""
+msgstr "Zanemari ovu nadopunu"
 
 #: src/Utility/Gtk/GtkHelper.vala:38
 msgid "Error"
-msgstr ""
+msgstr "Greška"
 
 #: src/Utility/Gtk/GtkHelper.vala:291
 msgid "Missing Icon"
-msgstr ""
+msgstr "Ikone koje nedostaju"
 
 #: src/Utility/AppLock.vala:49
 msgid "Another instance of this application is running"
-msgstr ""
+msgstr "Drugi primjerak ove aplikacije je pokrenut"
 
 #: src/Utility/AppLock.vala:53
 msgid "[Warning] Deleted invalid lock"
-msgstr ""
+msgstr "[Upozorenje] Obrisano je neispravno zaključavanje"
 
 #: src/Utility/TeeJee.FileSystem.vala:93 src/Utility/TeeJee.FileSystem.vala:95
 msgid "File deleted"
-msgstr ""
+msgstr "Datoteka obrisana"
 
 #: src/Utility/TeeJee.FileSystem.vala:101
 msgid "Failed to delete file"
-msgstr ""
+msgstr "Neuspjelo brisanje datoteke"
 
 #: src/Utility/TeeJee.FileSystem.vala:155
 msgid "Failed to read file"
-msgstr ""
+msgstr "Neuspjelo čitanje datoteke"
 
 #: src/Utility/TeeJee.FileSystem.vala:180
 #: src/Utility/TeeJee.FileSystem.vala:182
 msgid "File saved"
-msgstr ""
+msgstr "Datoteka je spremljenja"
 
 #: src/Utility/TeeJee.FileSystem.vala:188
 msgid "Failed to write file"
-msgstr ""
+msgstr "Neuspjelo zapisivanje datoteke"
 
 #: src/Utility/TeeJee.FileSystem.vala:201
 #: src/Utility/TeeJee.FileSystem.vala:203
 msgid "File copied"
-msgstr ""
+msgstr "Datoteka kopirana"
 
 #: src/Utility/TeeJee.FileSystem.vala:210
 msgid "Failed to copy file"
-msgstr ""
+msgstr "Neuspjelo kopiranje datoteke"
 
 #: src/Utility/TeeJee.FileSystem.vala:220
 #: src/Utility/TeeJee.FileSystem.vala:510
 msgid "File not found"
-msgstr ""
+msgstr "Datoteka nije pronađena"
 
 #: src/Utility/TeeJee.FileSystem.vala:234
 #: src/Utility/TeeJee.FileSystem.vala:236
 msgid "File moved"
-msgstr ""
+msgstr "Datoteka je premještena"
 
 #: src/Utility/TeeJee.FileSystem.vala:240
 msgid "Failed to move file"
-msgstr ""
+msgstr "Neuspjelo premještanje datoteke"
 
 #: src/Utility/TeeJee.FileSystem.vala:332
 #: src/Utility/TeeJee.FileSystem.vala:334
 #: src/Utility/TeeJee.FileSystem.vala:358
 msgid "Created directory"
-msgstr ""
+msgstr "Stvoren direktorij"
 
 #: src/Utility/TeeJee.FileSystem.vala:340
 msgid "Failed to create dir"
-msgstr ""
+msgstr "Neuspjelo stvarnje direktorija"
 
 #: src/Utility/TeeJee.FileSystem.vala:356
 msgid "Deleted directory"
-msgstr ""
+msgstr "Obrisan direktorij"
 
 #: src/Utility/TeeJee.FileSystem.vala:483
 msgid "Dir not found"
-msgstr ""
+msgstr "Direktorij nije pronađen"
 
 #: src/Utility/TeeJee.FileSystem.vala:631
 #: src/Utility/TeeJee.FileSystem.vala:678
 msgid "File is missing"
-msgstr ""
+msgstr "Datoteka nedostaje"
 
 #: src/Utility/TeeJee.Logging.vala:90
 msgid "W"
-msgstr ""
+msgstr "Z"
 
 #: src/Utility/TeeJee.Logging.vala:90
 msgid "E"
-msgstr ""
+msgstr "G"
 
 #: src/Utility/TeeJee.Process.vala:498
 msgid "Stopped"
-msgstr ""
+msgstr "Zaustavljeno"
+
+#~ msgid "Refresh"
+#~ msgstr "Osvježi"
+
+#~ msgid "About"
+#~ msgstr "O programu"
+
+#~ msgid "Artists"
+#~ msgstr "Dizajneri"
+
+#~ msgid "Authors"
+#~ msgstr "Autori"
+
+#~ msgid "Back"
+#~ msgstr "Natrag"
+
+#~ msgid "Contributions"
+#~ msgstr "Prilozi"
+
+#~ msgid "Credits"
+#~ msgstr "Zasluge"
+
+#~ msgid "Documenters"
+#~ msgstr "Autori dokumentacije"
+
+#~ msgid "Donations"
+#~ msgstr "Donacije"
+
+#~ msgid "Kernel upgrade utility for Ubuntu-based distributions"
+#~ msgstr "Alat za nadogradnju kernela Ubuntu temeljenih distribucija"
+
+#~ msgid "Third Party Tools"
+#~ msgstr "Alati treće strane"
+
+#, fuzzy
+#~ msgid "Install kernel"
+#~ msgstr "Instaliraj ovaj kernel"
+
+#, fuzzy
+#~ msgid "Refresh the kernel list"
+#~ msgstr "Odaberi kernel za instalaciju"
+
+#, fuzzy
+#~ msgid "Remove kernel"
+#~ msgstr "Ukloni određeni mainline kernel"
+
+#, fuzzy
+#~ msgid "About ukuu."
+#~ msgstr "O programu"
+
+#, fuzzy
+#~ msgid "Install selected kernel."
+#~ msgstr "Instaliraj ovaj kernel"
+
+#, fuzzy
+#~ msgid "Remove selected installed kernel."
+#~ msgstr "Ukloni određeni mainline kernel"
+
+#~ msgid "Donate"
+#~ msgstr "Donirajte"
+
+#~ msgid ""
+#~ "Did you find this software useful?\n"
+#~ "\n"
+#~ "You can buy me a coffee or make a donation via PayPal to show your "
+#~ "support. Or just drop me an email and say Hi. This application is "
+#~ "completely free and will continue to remain that way. Your contributions "
+#~ "will help in keeping this project alive and improving it further.\n"
+#~ "\n"
+#~ "Feel free to send me an email if you find any issues in this application "
+#~ "or if you need any changes. Suggestions and feedback are always welcome.\n"
+#~ "\n"
+#~ "Thanks,\n"
+#~ "Tony George\n"
+#~ "(teejeetech@gmail.com)"
+#~ msgstr ""
+#~ "Je li vam ovaj softver bio koristan?\n"
+#~ "\n"
+#~ "Možete mi kupiti kavu ili donirati putem PayPala kako bi me podržali. Ili "
+#~ "mi jednostavno pošaljite e-poštu i recite mi Bok. Ova aplikacija je u "
+#~ "potpunosti besplatna i takva će i ostati. Vaš doprinos će pomoći održati "
+#~ "ovaj projekt živim i poboljšanim u budućnosti.\n"
+#~ "\n"
+#~ "Slobodno mi pošaljite e-poštu ako imate bilo kakav problem s ovom "
+#~ "aplikacijom ili želite neku promjenu. Prijedlozi i povratne informacije "
+#~ "su uvijek dobrodošle.\n"
+#~ "\n"
+#~ "Hvala Vam,\n"
+#~ "Tony George\n"
+#~ "(teejeetech@gmail.com)"
+
+#~ msgid "Display GRUB menu during boot"
+#~ msgstr "Prikaži GRUB izbornik tijekom pokretanja sustava"
+
+#~ msgid "Donate with Google Wallet"
+#~ msgstr "Donirajte putem Google Walleta"
+
+#~ msgid "Donate with PayPal"
+#~ msgstr "Donirajte putem PayPala"
+
+#~ msgid "File read"
+#~ msgstr "Datoteka je pročitana"
+
+#~ msgid ""
+#~ "Mainline kernels can sometimes cause problems if there are proprietary "
+#~ "drivers installed on your system. These issues include:\n"
+#~ "\n"
+#~ "\\342\\226\\260 WiFi not working\n"
+#~ "\\342\\226\\260 Black screen on startup\n"
+#~ "\\342\\226\\260 Random system freeze\n"
+#~ "\n"
+#~ "If you face any of these issues there is no need to panic.\n"
+#~ "\n"
+#~ "\\342\\226\\260 Reboot your system\n"
+#~ "\\342\\226\\260 Select 'Advanced Boot Options' from the GRUB boot menu\n"
+#~ "\\342\\226\\260 Select an older kernel from the list displayed on this "
+#~ "screen\n"
+#~ "\\342\\226\\260 Your system will boot using the selected kernel\n"
+#~ "\\342\\226\\260 You can now uninstall the kernel that is causing issues\n"
+#~ msgstr ""
+#~ "Mainline kerneli ponekad mogu prouzrokovati probleme ako su vlasnički "
+#~ "upravljački programi instalirani na vašem sustavu. Ti problemi "
+#~ "obuhvaćaju:\n"
+#~ "\n"
+#~ "\\342\\226\\260 Bežična mreža ne radi\n"
+#~ "\\342\\226\\260 Crni zaslon pri pokretanju\n"
+#~ "\\342\\226\\260 Naizmjenično smrzavanje sustava\n"
+#~ "\n"
+#~ "Ako se suočite sa nekim od ovih problema ne paničarite.\n"
+#~ "\n"
+#~ "\\342\\226\\260 Ponovno pokrenite vaš sustav\n"
+#~ "\\342\\226\\260 Odaberite 'Napredne mogućnosti' iz GRUB izbornika\n"
+#~ "\\342\\226\\260 Odaberite stariji kernel s popisa prikazanih na ovom "
+#~ "zaslonu\n"
+#~ "\\342\\226\\260 Vaš sustav će se pokrenuti koristeći odabrani kernel\n"
+#~ "\\342\\226\\260 Sada možete ukloniti kernel koji uzrokuje probleme\n"
+
+#~ msgid "Notify if kernel update is available"
+#~ msgstr "Obavijesti kada je nadopuna kernela dostupna"
+
+#~ msgid "Send Email"
+#~ msgstr "Pošalji e-poštu"
+
+#~ msgid "Use specified user's cache directory"
+#~ msgstr "Koristi korisnikom određeni direktorij predmemorije"
+
+#~ msgid "Using cache directory"
+#~ msgstr "Direktorij predmemorije u upotrebi"
+
+#~ msgid "Visit Website"
+#~ msgstr "Posjetite web stranicu"
+
+#~ msgid "Enter path or browse for directory"
+#~ msgstr "Upišite putanju ili odabrite direktorij"
+
+#~ msgid "Open"
+#~ msgstr "Otvori"
+
+#~ msgid "Open Ukuu"
+#~ msgstr "Otvori Ukuu"
+
+#~ msgid "Root Access Required"
+#~ msgstr "Potreban je korijenski pristup"
+
+#~ msgid "Root access is required for running this application."
+#~ msgstr "Potreban je korijenski pristup"
+
+#~ msgid "Run the application as root or using gksu/sudo."
+#~ msgstr ""
+#~ "Pokrenite aplikaciju kao korijenski korisnik upotrebom naredbe gksu/sudo."
+
+#~ msgid "Select Path"
+#~ msgstr "Odaberi putanju"
