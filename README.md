@@ -50,9 +50,9 @@
 
 <h3>Packaging Dependencies</h3>
 
-    sudo apt install ubuntu-dev-tools
+    sudo apt install phbuilder debhelper dh-make autotools-dev
 
 <h3>Runtime Dependencies</h3>
 
-    sudo apt install aria2 aptitude curl
+    sudo apt install rsync aria2 aptitude curl
 
