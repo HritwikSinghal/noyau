@@ -43,13 +43,13 @@ build_deb_for_dist() {
 
     echo "-------------------------------------------------------------------------"
 
-    sudo pbuilder --build --distribution $dist --architecture $arch --basetgz /var/cache/pbuilder/${dist}-${arch}-base.tgz ukuu/release/source/ukuu-${version}-${dist}-${arch}.dsc
+    sudo -S pbuilder --build --distribution $dist --architecture $arch --basetgz /var/cache/pbuilder/${dist}-${arch}-base.tgz ukuu/release/source/ukuu_${version}.dsc
 
     if [ $? -ne 0 ]; then cd "$backup"; echo "Failed"; exit 1; fi
 
     echo "--------------------------------------------------------------------------"
 
-    cp -pv --no-preserve=ownership /var/cache/pbuilder/result/ukuu-${version}-${dist}-${arch}.deb ukuu/release/${arch}/
+    cp -pv --no-preserve=ownership /var/cache/pbuilder/result/ukuu_${version}_${arch}.deb ukuu/release/${arch}/
 
     if [ $? -ne 0 ]; then cd "$backup"; echo "Failed"; exit 1; fi
 
