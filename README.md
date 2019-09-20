@@ -7,7 +7,7 @@
 </h1>
 
 <p align="center">
-    A graphical utility for managing kernels for Ubuntu-based distributions.
+    A graphical utility for managing kernels on Ubuntu-based platforms.
 </p>
 
 <br />
@@ -33,8 +33,8 @@
 <h3>18.10 (Upcoming Release)</h3>
 <ul>
     <li>Refreshed user interface.</li>
-    <li>Begun transitioning to the meson build system.</li>
-    <li>Removed intrusive prompts to support the project.</li>
+    <li>Transitioned to the meson build system.</li>
+    <li>Removed intrusive prompts and nagware.</li>
     <li>Fixed numerous build issues.</li>
 </ul>
 
