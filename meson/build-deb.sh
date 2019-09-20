@@ -2,35 +2,54 @@
 
 backup=`pwd`
 DIR="$( cd "$( dirname "$0" )" && pwd )"
-cd $DIR
+cd "$DIR"
 
-. ./BUILD_CONFIG
+#../BUILD_CONFIG
 
 build_deb_for_dist() {
     dist=$1
     arch=$2
+    version=$3
 
     echo ""
     echo "=========================================================================="
-    echo " build-deb.sh : $dist-$arch"
+    echo " build-deb.sh ($dist:$arch:$version)"
     echo "=========================================================================="
     echo ""
+
+    rm -rfv /tmp/builds
+    mkdir -pv /tmp/builds
+
+    mkdir -pv ../release/source
 
     cd ..
     cd ..
 
-    mkdir -pv ukuu/release/${arch}
+    dpkg-source --build ukuu
 
-    echo "-------------------------------------------------------------------------"
+    mv -vf ukuu_${version}.dsc ukuu/release/source/
+    mv -vf ukuu_${version}.tar.xz ukuu/release/source/
 
-    pbuilder --build --distribution $dist --architecture $arch --basetgz /home/jdowding/pbuilder/disco-base.tgz ukuu/release/source/ukuu_18.10.dsc
+    #mv -vf ukuu-${version}-${dist}-${arch}.dsc ukuu/release/source/
+    #mv -vf ukuu-${version}-${dist}-${arch}.tar.xz ukuu/release/source/
 
     if [ $? -ne 0 ]; then cd "$backup"; echo "Failed"; exit 1; fi
 
     echo "--------------------------------------------------------------------------"
 
-    cp -pv --no-preserve=ownership /var/cache/pbuilder/result/ukuu_18.10_${arch}.deb ukuu/release/${arch}/
-    #cp -pv --no-preserve=ownership ukuu/release/${arch}/ukuu-18.10-amd64.deb ukuu/release/ukuu-18.10-amd64.deb
+    ls -l ukuu/release/source
+
+    mkdir -pv ukuu/release/${arch}
+
+    echo "-------------------------------------------------------------------------"
+
+    sudo pbuilder --build --distribution $dist --architecture $arch --basetgz /var/cache/pbuilder/${dist}-${arch}-base.tgz ukuu/release/source/ukuu-${version}-${dist}-${arch}.dsc
+
+    if [ $? -ne 0 ]; then cd "$backup"; echo "Failed"; exit 1; fi
+
+    echo "--------------------------------------------------------------------------"
+
+    cp -pv --no-preserve=ownership /var/cache/pbuilder/result/ukuu-${version}-${dist}-${arch}.deb ukuu/release/${arch}/
 
     if [ $? -ne 0 ]; then cd "$backup"; echo "Failed"; exit 1; fi
 
@@ -44,6 +63,7 @@ build_deb_for_dist() {
 #build_deb_for_dist bionic amd64
 
 #build_deb_for_dist disco i386
-build_deb_for_dist disco amd64
+build_deb_for_dist disco amd64 18.10
 
 cd "$backup"
+

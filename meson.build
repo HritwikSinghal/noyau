@@ -18,5 +18,6 @@ subdir('docs')
 subdir('po')
 subdir('src')
 
-meson.add_install_script('meson/build-source.sh')
+#meson.add_install_script('meson/build-source.sh')
 meson.add_install_script('meson/build-deb.sh')
+
