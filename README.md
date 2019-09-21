@@ -50,7 +50,7 @@
 
 <h3>Packaging Dependencies</h3>
 
-    sudo apt install phbuilder debhelper dh-make autotools-dev
+    sudo apt install pbuilder debhelper dh-make autotools-dev
 
 <h3>Runtime Dependencies</h3>
 
