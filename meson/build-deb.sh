@@ -4,8 +4,6 @@ backup=`pwd`
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 cd "$DIR"
 
-#../BUILD_CONFIG
-
 build_deb_for_dist() {
     dist=$1
     arch=$2
@@ -62,7 +60,7 @@ build_deb_for_dist() {
 #build_deb_for_dist bionic i386
 #build_deb_for_dist bionic amd64
 
-#build_deb_for_dist disco i386
+build_deb_for_dist disco i386 18.10
 build_deb_for_dist disco amd64 18.10
 
 cd "$backup"
