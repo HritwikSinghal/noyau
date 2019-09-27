@@ -1,13 +1,16 @@
-# build
+# navigate to root directory:
 
-make all
+cd ukuu
 
-# install
+# configure meson:
 
-sudo make install
+meson build --prefix=/usr
 
-# building only some components
+# navigate to build directory and build project:
 
-make app              # console app
-make app-gtk          # GTK app
-make app-translations # update POT and PO files from source
+cd build && ninja
+
+# (optional) install project locally:
+
+sudo ninja install
+
