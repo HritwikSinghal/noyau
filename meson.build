@@ -14,9 +14,6 @@ add_project_arguments([
 )
 
 subdir('data')
-subdir('docs')
 subdir('po')
 subdir('src')
-
-meson.add_install_script('meson/build-deb.sh')
 
