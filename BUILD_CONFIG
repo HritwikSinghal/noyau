@@ -1,6 +1,0 @@
-
-app_fullname="Ubuntu Kernel Update Utility"
-app_name="ukuu"
-pkg_name="ukuu"
-pkg_version=$(dpkg-parsechangelog --show-field Version)
-git_origin="git@github.com:joshuadowding/ukuu.git"
