@@ -199,7 +199,11 @@ public class TerminalWindow : Gtk.Window {
     }
 
     public void execute_command (string command) {
+#if VALA_0_44
         term.feed_child (string_to_char_array (command));
+#elif VALA_0_40
+        term.feed_child (command, command.length);
+#endif
     }
 
     public void execute_script (string script_path, bool wait = false) {

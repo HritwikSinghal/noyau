@@ -11,61 +11,62 @@ build_deb_for_dist() {
 
     echo ""
     echo "=========================================================================="
-    echo " build-deb.sh ($dist:$arch:$version)"
+    echo " build-deb.sh (${dist}:${arch}:${version})"
     echo "=========================================================================="
     echo ""
 
-    #rm -rfv /tmp/builds
-    #mkdir -pv /tmp/builds
-
-    echo $PWD
-
-    #cd ..
-
-    #echo $PWD
-
     cd release
 
-    mkdir -pv source
+    mkdir -pv source/${dist}
 
     cd ..
     cd ..
 
     dpkg-source --build ukuu
 
-    mv -vf ukuu_${version}.dsc ukuu/release/source
-    mv -vf ukuu_${version}.tar.xz ukuu/release/source
+    mv -vf ukuu_${version}.dsc ukuu/release/source/${dist}
+    mv -vf ukuu_${version}.tar.xz ukuu/release/source/${dist}
 
-    if [ $? -ne 0 ]; then cd "$backup"; echo "Failed"; exit 1; fi
+    if [ $? -ne 0 ]; then cd "$backup"; echo "Failure, again!"; exit 1; fi
 
     echo "--------------------------------------------------------------------------"
 
     cd ukuu
 
-    ls -l release/source
+    ls -l release/source/${dist}
 
-    mkdir -pv release/${arch}
+    mkdir -pv release/${dist}/${arch}
 
     echo "-------------------------------------------------------------------------"
 
-    sudo -S pbuilder --build --distribution $dist --architecture $arch --basetgz /var/cache/pbuilder/${dist}-${arch}-base.tgz release/source/ukuu_${version}.dsc
+    sudo -S pbuilder --build --distribution ${dist} --architecture ${arch} --basetgz /var/cache/pbuilder/${dist}-${arch}-base.tgz release/source/${dist}/ukuu_${version}.dsc
 
-    if [ $? -ne 0 ]; then cd "$backup"; echo "Failed"; exit 1; fi
+    if [ $? -ne 0 ]; then cd "$backup"; echo "Failure, again!"; exit 1; fi
+
+    echo "--------------------------------------------------------------------------"
+
+    sudo cp -pv /var/cache/pbuilder/result/ukuu_${version}_${arch}.deb release/${dist}/${arch}
+    sudo cp -pv /var/cache/pbuilder/result/ukuu_${version}_${arch}.changes release/${dist}/${arch}
+
+    if [ "${dist}" != "xenial" ]; then
+        sudo cp -pv /var/cache/pbuilder/result/ukuu_${version}_${arch}.buildinfo release/${dist}/${arch}
+        sudo cp -pv /var/cache/pbuilder/result/ukuu-dbgsym_${version}_${arch}.ddeb release/${dist}/${arch}
+    fi
+
+    if [ $? -ne 0 ]; then cd "$backup"; echo "Failure, again!"; exit 1; fi
 
     echo "--------------------------------------------------------------------------"
 
-    sudo cp -pv --no-preserve=ownership /var/cache/pbuilder/result/ukuu_${version}_${arch}.deb release/${arch}
-
-    if [ $? -ne 0 ]; then cd "$backup"; echo "Failed"; exit 1; fi
-
-    echo "--------------------------------------------------------------------------"
+    sudo rm -r /var/cache/pbuilder/result/*
 }
 
-#build_deb_for_dist xenial i386 18.10
-#build_deb_for_dist xenial amd64 18.10
+mkdir release
 
-#build_deb_for_dist bionic i386 18.10
-#build_deb_for_dist bionic amd64 18.10
+build_deb_for_dist xenial i386 18.10
+build_deb_for_dist xenial amd64 18.10
+
+build_deb_for_dist bionic i386 18.10
+build_deb_for_dist bionic amd64 18.10
 
 build_deb_for_dist disco i386 18.10
 build_deb_for_dist disco amd64 18.10

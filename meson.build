@@ -2,7 +2,7 @@ project(
     'com.github.joshuadowding.ukuu',
     'vala', 'c',
     version: '18.10',
-    meson_version: '>=0.46.0'
+    meson_version: '>=0.40.1'
 )
 
 add_project_arguments([

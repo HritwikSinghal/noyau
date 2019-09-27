@@ -1,0 +1,33 @@
+Format: 1.8
+Date: Sun, 3 Feb 2019 10:00:00 +0530
+Source: ukuu
+Binary: ukuu
+Architecture: source amd64
+Version: 18.10
+Distribution: disco
+Urgency: medium
+Maintainer: Joshua Dowding <joshuadowding@outlook.com>
+Changed-By: Joshua Dowding <joshuadowding@outlook.com>
+Description:
+ ukuu       - Kernel Update Utility for Ubuntu-based distributions
+Changes:
+ ukuu (18.10) disco; urgency=medium
+ .
+   * UI: Implement a headerbar to replace the button spread
+   * UI: Remove the big, obnoxious tux logo in the status bar
+   * UI: Implement a right-click menu in the treeview
+   * Project: Fix a build issue
+   * Project: Fix several packaging issues
+   * Project: Migrate to a uniform licence (GPL2)
+Checksums-Sha1:
+ e3377a066f1f3e34131bb2b16cca2e1096d46595 660 ukuu_18.10.dsc
+ 466274696524f57f43d93034c68bbe43abe5c769 636872 ukuu_18.10.tar.xz
+ 769465c30d42af66ae91a3c3cf9846a98ff7563f 3844 ukuu_18.10_amd64.deb
+Checksums-Sha256:
+ 17aeabe9ccfa54bacaeae39fed87a0219555f5a95f9250d811c0c6cc7780a3cb 660 ukuu_18.10.dsc
+ 9a7d329fc6165a3d215dcaa6dc86643adc1fd226a66d6516dc15dde0a0829d65 636872 ukuu_18.10.tar.xz
+ 32e7dbebb5039d77f491ddd377844cdb9f607c8ceece40f4d3fb84a5646834c4 3844 ukuu_18.10_amd64.deb
+Files:
+ b270f1f5350ab0c3809fd952dfa00526 660 utils extra ukuu_18.10.dsc
+ 68fa8f89425f01369a6f6fb1bb9476db 636872 utils extra ukuu_18.10.tar.xz
+ 406e77a9afd9524f09cbd69bb6814e58 3844 utils extra ukuu_18.10_amd64.deb
