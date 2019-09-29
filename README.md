@@ -13,7 +13,7 @@
 <br />
 
 <p align="center">
-    <img width="612" height="453" src="src/share/ukuu/screenshots/main-ubuntu-3.png">
+    <img width="612" height="453" src="data/screenshots/main-ubuntu.png">
 </p>
 
 <br />
