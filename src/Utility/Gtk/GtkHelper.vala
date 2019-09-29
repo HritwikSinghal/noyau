@@ -74,6 +74,7 @@ namespace GtkHelper {
 
     public void gtk_messagebox (string title, string message, Gtk.Window ? parent_win, bool is_error = false) {
         var type = Gtk.MessageType.INFO;
+
         if (is_error) {
             type = Gtk.MessageType.ERROR;
         } else {

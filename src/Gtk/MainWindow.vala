@@ -791,20 +791,12 @@ public class MainWindow : Gtk.Window {
 
     public void show_grub_message () {
         string title = _("Booting previous kernels");
-        string msg = _("Mainline kernels can sometimes cause problems if there are proprietary drivers installed on your system. These issues include:\n\n▰ WiFi not working\n▰ Black screen on startup\n▰ Random system freeze\n\nIf you face any of these issues there is no need to panic.\n\n▰ Reboot your system\n▰ Select 'Advanced Boot Options' from the GRUB boot menu\n▰ Select an older kernel from the list displayed on this screen\n▰ Your system will boot using the selected kernel\n▰ You can now uninstall the kernel that is causing issues\n");
+        string msg = _("Mainline kernels can sometimes cause problems if there are proprietary drivers installed on your system. These issues include:\n\n- WiFi not working\n- Black screen on startup\n- Random system freeze\n\nIf you face any of these issues there is no need to panic.\n\n- Reboot your system\n- Select 'Advanced Boot Options' from the GRUB boot menu\n- Select an older kernel from the list displayed on this screen\n- Your system will boot using the selected kernel\n- You can now uninstall the kernel that is causing issues\n");
         gtk_messagebox (title, msg, this, false);
 
         if (App.command != "list") {
             Gtk.main_quit ();
             App.exit_app (0);
-        }
-    }
-
-    private void dialog_response(Gtk.Dialog dialog, int response_id) {
-        switch(response_id) {
-            case Gtk.ResponseType.OK:
-                dialog.destroy();
-                break;
         }
     }
 }
