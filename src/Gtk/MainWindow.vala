@@ -662,11 +662,6 @@ public class MainWindow : Gtk.Window {
         hbox.margin = 6;
         scrolled.add (hbox);
 
-        // var img_status = new Gtk.Image();
-        // img_status.pixbuf = get_shared_icon_pixbuf("", "tux.svg", 64);
-        // img_status.margin = 6;
-        // hbox.add(img_status);
-
         lbl_info = new Gtk.Label ("");
         lbl_info.margin = 6;
         lbl_info.set_use_markup (true);
