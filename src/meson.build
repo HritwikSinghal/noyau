@@ -57,56 +57,6 @@ project_files_cli = files(
     'Utility/Version.vala'
 )
 
-install_data(
-    join_paths(get_option('datadir'), 'pixmaps/ukuu.svg'),
-    install_dir: join_paths(get_option('datadir'), 'pixmaps')
-)
-
-install_data(
-    join_paths(get_option('datadir'), 'ukuu/screenshots/main-gnome-1.png'),
-    install_dir: join_paths(get_option('datadir'), 'ukuu', 'screenshots')
-)
-
-install_data(
-    join_paths(get_option('datadir'), 'ukuu/screenshots/main-ubuntu-1.png'),
-    install_dir: join_paths(get_option('datadir'), 'ukuu', 'screenshots')
-)
-
-install_data(
-    join_paths(get_option('datadir'), 'ukuu/images/general.svg'),
-    install_dir: join_paths(get_option('datadir'), 'ukuu', 'images')
-)
-
-install_data(
-    join_paths(get_option('datadir'), 'ukuu/images/help-info.svg'),
-    install_dir: join_paths(get_option('datadir'), 'ukuu', 'images')
-)
-
-install_data(
-    join_paths(get_option('datadir'), 'ukuu/images/tux.png'),
-    install_dir: join_paths(get_option('datadir'), 'ukuu', 'images')
-)
-
-install_data(
-    join_paths(get_option('datadir'), 'ukuu/images/tux.svg'),
-    install_dir: join_paths(get_option('datadir'), 'ukuu', 'images')
-)
-
-install_data(
-    join_paths(get_option('datadir'), 'ukuu/images/tux-red.png'),
-    install_dir: join_paths(get_option('datadir'), 'ukuu', 'images')
-)
-
-install_data(
-    join_paths(get_option('datadir'), 'ukuu/images/ubuntu-logo.png'),
-    install_dir: join_paths(get_option('datadir'), 'ukuu', 'images')
-)
-
-install_data(
-    join_paths(get_option('datadir'), 'ukuu/images/ukuu.svg'),
-    install_dir: join_paths(get_option('datadir'), 'ukuu', 'images')
-)
-
 executable(
     meson.project_name(),
     project_files,
