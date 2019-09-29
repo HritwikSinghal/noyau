@@ -44,7 +44,7 @@ public class AppGtk : GLib.Object {
 
         Gtk.init (ref args);
 
-        init_tmp ("ukuu-gtk");
+        init_tmp ("ukuu");
 
         // check_if_admin();
 

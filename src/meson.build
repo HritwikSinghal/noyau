@@ -17,7 +17,6 @@ project_files = files(
 
     'Gtk/AboutWindow.vala',
     'Gtk/AppGtk.vala',
-    'Gtk/CustomMessageDialog.vala',
     'Gtk/MainWindow.vala',
     'Gtk/ProgressWindow.vala',
     'Gtk/SettingsDialog.vala',
@@ -61,11 +60,6 @@ project_files_cli = files(
 install_data(
     join_paths(get_option('datadir'), 'pixmaps/ukuu.svg'),
     install_dir: join_paths(get_option('datadir'), 'pixmaps')
-)
-
-install_data(
-    join_paths(get_option('datadir'), 'polkit-1/actions/in.teejeetech.pkexec.ukuu.policy'),
-    install_dir: join_paths(get_option('datadir'), 'polkit-1', 'actions')
 )
 
 install_data(
@@ -137,7 +131,7 @@ executable(
 )
 
 executable(
-    'com.github.joshuadowding.ukuu-cli',
+    meson.project_name() + '-cli',
     project_files_cli,
     dependencies: [
         dependency('gtk+-3.0'),
@@ -152,4 +146,3 @@ executable(
     ],
     install: true
 )
-

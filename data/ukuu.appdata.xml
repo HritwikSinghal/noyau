@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2019 Joshua Dowding <joshuadowding@outlook.com> -->
 <component type="desktop">
-  <id>com.github.joshuadowding.ukuu</id>
+  <id>ukuu</id>
   <metadata_license>CC0</metadata_license>
   <name>Ukuu</name>
   <summary>Ubuntu Kernel Update Utility</summary>

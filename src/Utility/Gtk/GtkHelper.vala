@@ -73,9 +73,6 @@ namespace GtkHelper {
     }
 
     public void gtk_messagebox (string title, string message, Gtk.Window ? parent_win, bool is_error = false) {
-
-        /* Shows a simple message box */
-
         var type = Gtk.MessageType.INFO;
         if (is_error) {
             type = Gtk.MessageType.ERROR;
@@ -83,19 +80,17 @@ namespace GtkHelper {
             type = Gtk.MessageType.INFO;
         }
 
-        /*var dlg = new Gtk.MessageDialog.with_markup(null, Gtk.DialogFlags.MODAL, type, Gtk.ButtonsType.OK, message);
-           dlg.title = title;
-           dlg.set_default_size (200, -1);
-           if (parent_win != null){
-                dlg.set_transient_for(parent_win);
-                dlg.set_modal(true);
-           }
-           dlg.run();
-           dlg.destroy();*/
+        var dlg = new Gtk.MessageDialog.with_markup(parent_win, Gtk.DialogFlags.MODAL, type, Gtk.ButtonsType.OK, message);
+        dlg.title = title;
+        dlg.set_default_size (200, -1);
 
-        var dlg = new CustomMessageDialog (title, message, type, parent_win, Gtk.ButtonsType.OK);
-        dlg.run ();
-        dlg.destroy ();
+        if (parent_win != null){
+            dlg.set_transient_for(parent_win);
+            dlg.set_modal(true);
+        }
+
+        dlg.run();
+        dlg.destroy();
     }
 
     public string ? gtk_inputbox (

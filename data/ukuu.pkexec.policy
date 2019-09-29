@@ -3,9 +3,9 @@
  "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
  "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
 <policyconfig>
-  <vendor>Tony George</vendor>
-  <vendor_url>https://github.com/teejee2008</vendor_url>
-  <action id="in.teejeetech.pkexec.ukuu">
+  <vendor>Joshua Dowding</vendor>
+  <vendor_url>https://github.com/joshuadowding/</vendor_url>
+  <action id="pkexec.ukuu">
     <message>Authentication is required to manage kernel packages</message>
     <icon_name>ukuu</icon_name>
     <defaults>
@@ -16,5 +16,5 @@
     <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/ukuu</annotate>
     <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
   </action>
-
 </policyconfig>
+

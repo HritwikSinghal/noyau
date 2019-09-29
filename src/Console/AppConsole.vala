@@ -40,7 +40,7 @@ namespace TeeJee.Console {
         public static int main (string[] args) {
             set_locale ();
 
-            init_tmp ("ukuu");
+            init_tmp ("ukuu-cli");
 
             check_if_admin ();
 
