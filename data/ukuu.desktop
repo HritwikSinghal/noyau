@@ -12,4 +12,5 @@ Comment[ru]=Программа обновления ядра
 X-KDE-StartupNotify=false
 Categories=System;
 StartupWMClass=ukuu
+X-GNOME-UsesNotifications=true
 

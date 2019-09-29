@@ -194,6 +194,29 @@ public class MainWindow : Gtk.Window {
 
         // column
         col = new TreeViewColumn ();
+        col.title = _("Branch");
+        col.resizable = true;
+        col.min_width = 100;
+        tv.append_column (col);
+
+        // cell text
+        cellText = new CellRendererText ();
+        cellText.ellipsize = Pango.EllipsizeMode.END;
+        col.pack_start (cellText, false);
+        col.set_cell_data_func (cellText, (cell_layout, cell, model, iter) => {
+            LinuxKernel kern;
+            model.get (iter, 0, out kern, -1);
+
+            if(kern.is_mainline) {
+                (cell as Gtk.CellRendererText).text = "(mainline)";
+            }
+            else {
+                (cell as Gtk.CellRendererText).text = "(ubuntu)";
+            }
+        });
+
+        // column
+        col = new TreeViewColumn ();
         col.title = _("Status");
         col.resizable = true;
         col.min_width = 100;
@@ -669,23 +692,39 @@ public class MainWindow : Gtk.Window {
     }
 
     private void set_infobar () {
-
         if (LinuxKernel.kernel_active != null) {
-
-            lbl_info.label = "Running <b>Linux %s</b>".printf (LinuxKernel.kernel_active.version_main);
+            lbl_info.label = "<b>Linux %s".printf (LinuxKernel.kernel_active.version_main);
 
             if (LinuxKernel.kernel_active.is_mainline) {
-                lbl_info.label += " (mainline)";
+                lbl_info.label += " (mainline)</b>";
             } else {
-                lbl_info.label += " (ubuntu)";
+                lbl_info.label += " (ubuntu)</b>";
             }
 
+            lbl_info.label += " (running)";
+
             if (LinuxKernel.kernel_latest_stable.compare_to (LinuxKernel.kernel_active) > 0) {
-                lbl_info.label += " ~ " + "<b>Linux %s</b> available".printf (
-                    LinuxKernel.kernel_latest_stable.version_main);
+                lbl_info.label += " - " + "<b>Linux %s".printf (
+                    LinuxKernel.kernel_latest_stable.version_main
+                );
+
+                if(LinuxKernel.kernel_latest_stable.is_mainline) {
+                    lbl_info.label += " (mainline)</b>";
+                } else {
+                    lbl_info.label += " (ubuntu)</b>";
+                }
+
+                lbl_info.label += " (available)";
             }
         } else {
-            lbl_info.label = "Running <b>Linux %s</b>".printf (LinuxKernel.RUNNING_KERNEL);
+            lbl_info.label = "<b>Linux %s".printf (LinuxKernel.RUNNING_KERNEL);
+            lbl_info.label += " (running)";
+
+            if (LinuxKernel.kernel_active.is_mainline) {
+                lbl_info.label += " (mainline)</b>";
+            } else {
+                lbl_info.label += " (ubuntu)</b>";
+            }
         }
     }
 

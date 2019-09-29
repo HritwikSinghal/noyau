@@ -28,7 +28,6 @@ using TeeJee.System;
 using TeeJee.Misc;
 
 public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
-
     public string name = "";
     public string version = "";
     public string version_main = "";
