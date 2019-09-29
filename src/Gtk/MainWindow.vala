@@ -23,6 +23,7 @@
 using Gtk;
 using Gdk;
 using Gee;
+using GLib;
 
 using TeeJee.Logging;
 using TeeJee.FileSystem;
@@ -38,9 +39,12 @@ public class MainWindow : Gtk.Window {
 
     private Gtk.TreeView tv;
     private Gtk.Button btn_install;
+    private Gtk.MenuItem menu_install;
     private Gtk.Button btn_remove;
+    private Gtk.MenuItem menu_remove;
     private Gtk.Button btn_purge;
     private Gtk.Button btn_changes;
+    private Gtk.MenuItem menu_changes;
     private Gtk.Label lbl_info;
     private Gtk.HeaderBar header_bar;
 
@@ -317,14 +321,26 @@ public class MainWindow : Gtk.Window {
     private void set_button_state () {
         if (selected_kernels.size == 0) {
             btn_install.sensitive = false;
+            menu_install.set_sensitive(false);
+
             btn_remove.sensitive = false;
+            menu_remove.sensitive = false;
+
             btn_purge.sensitive = true;
+
             btn_changes.sensitive = false;
+            menu_changes.sensitive = false;
         } else {
             btn_install.sensitive = (selected_kernels.size == 1) && !selected_kernels[0].is_installed;
+            menu_install.sensitive = (selected_kernels.size == 1) && !selected_kernels[0].is_installed;
+
             btn_remove.sensitive = selected_kernels[0].is_installed && !selected_kernels[0].is_running;
+            menu_remove.sensitive = selected_kernels[0].is_installed && !selected_kernels[0].is_running;
+
             btn_purge.sensitive = true;
+
             btn_changes.sensitive = (selected_kernels.size == 1) && file_exists (selected_kernels[0].changes_file);
+            menu_changes.sensitive = (selected_kernels.size == 1) && file_exists (selected_kernels[0].changes_file);
         }
     }
 
@@ -525,13 +541,13 @@ public class MainWindow : Gtk.Window {
                 tv_selection_changed ();
 
                 var menu = new Gtk.Menu ();
-                var menu_install = new Gtk.MenuItem.with_label ("Install");
+                menu_install = new Gtk.MenuItem.with_label ("Install");
                 menu_install.activate.connect (button_install_click);
 
-                var menu_remove = new Gtk.MenuItem.with_label ("Remove");
+                menu_remove = new Gtk.MenuItem.with_label ("Remove");
                 menu_remove.activate.connect (button_remove_click);
 
-                var menu_changes = new Gtk.MenuItem.with_label ("Changes");
+                menu_changes = new Gtk.MenuItem.with_label ("Changes");
                 menu_changes.activate.connect (button_changes_click);
 
                 menu.attach_to_widget (tv, null);
@@ -540,6 +556,8 @@ public class MainWindow : Gtk.Window {
                 menu.add (menu_changes);
                 menu.show_all ();
                 menu.popup (null, null, null, event.button, event.time);
+
+                set_button_state();
 
                 return true;
             } else {
