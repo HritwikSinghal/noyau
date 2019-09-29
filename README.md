@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="64" height="64" src="src/share/ukuu/images/ukuu.png">
+    <img width="64" height="64" src="data/images/ukuu.png">
 </p>
 
 <h1 align="center">
