@@ -46,7 +46,7 @@ public class AppGtk : GLib.Object {
 
         init_tmp ("ukuu");
 
-        // check_if_admin();
+        check_if_admin();
 
         LOG_TIMESTAMP = false;
 
@@ -93,6 +93,20 @@ public class AppGtk : GLib.Object {
         Intl.textdomain (Main.GETTEXT_PACKAGE);
         Intl.bind_textdomain_codeset (Main.GETTEXT_PACKAGE, "utf-8");
         Intl.bindtextdomain (Main.GETTEXT_PACKAGE, Main.LOCALE_DIR);
+    }
+
+    private static void check_if_admin () {
+        if (get_user_id_effective () != 0) {
+            log_msg (string.nfill (70, '-'));
+
+            string msg = _("Admin access is required to run this application.");
+            log_error (msg);
+
+            msg = _("Run the application as admin with pkexec or sudo.");
+            log_error (msg);
+
+            exit (1);
+        }
     }
 
     public static bool parse_arguments (string[] args) {

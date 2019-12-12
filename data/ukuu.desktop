@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Ukuu Kernel Update Utility
 MimeType=
-Exec=ukuu
+Exec=pkexec ukuu %U
 Type=Application
 GenericName=Kernel Update Utility
 GenericName[ru]=Программа обновления ядра
@@ -13,4 +13,5 @@ X-KDE-StartupNotify=false
 Categories=System;
 StartupWMClass=ukuu
 X-GNOME-UsesNotifications=true
+StartupNotify=true
 
