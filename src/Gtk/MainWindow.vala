@@ -91,7 +91,6 @@ public class MainWindow : Gtk.Window {
         }
 
         refresh_cache ();
-
         tv_refresh ();
 
         switch (App.command) {

@@ -39,11 +39,7 @@ public class App : Gtk.Application {
     public static string STARTUP_SCRIPT_FILE = "";
     public static string STARTUP_DESKTOP_FILE = "";
 
-    public string user_home = "";
-    public bool GUI_MODE = false;
-    public bool confirm = true;
-
-    // state flags ----------
+    public const int STARTUP_DELAY = 300;
 
     public static string command = "list";
     public static bool notify_major = true;
@@ -54,7 +50,6 @@ public class App : Gtk.Application {
     public static int notify_interval_value = 2;
     public static bool message_shown = false;
     public static string user_login = "";
-    public static int startup_delay = 300;
     public static string status_line = "";
     public static int64 progress_total = 0;
     public static int64 progress_count = 0;
@@ -159,6 +154,8 @@ public class App : Gtk.Application {
     }
 
     private void init_paths (string custom_user_login = "") {
+        string user_home = "";
+
         // user info
         user_login = get_username ();
 
@@ -289,7 +286,7 @@ public class App : Gtk.Application {
         // suffix = "s";
 
         string txt = "";
-        txt += "sleep %ds\n".printf (startup_delay);
+        txt += "sleep %ds\n".printf (STARTUP_DELAY);
         txt += "while true\n";
         txt += "do\n";
         txt += "  ukuu --notify ; sleep %d%s \n".printf (count, suffix);
