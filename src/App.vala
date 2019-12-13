@@ -68,7 +68,7 @@ public class App : Gtk.Application {
     public App () {
         GLib.Object (
             application_id: "ukuu",
-            flags: ApplicationFlags.FLAGS_NONE
+            flags : ApplicationFlags.FLAGS_NONE
         );
     }
 
@@ -87,7 +87,7 @@ public class App : Gtk.Application {
 
         init_tmp ("ukuu");
 
-        check_if_admin();
+        check_if_admin ();
 
         LOG_TIMESTAMP = false;
 
@@ -129,8 +129,8 @@ public class App : Gtk.Application {
 
         Gtk.init (ref args);
 
-        var app = new App();
-        return app.run(args);
+        var app = new App ();
+        return app.run (args);
     }
 
     // helpers ------------
@@ -336,25 +336,6 @@ public class App : Gtk.Application {
         } else {
             file_delete (STARTUP_DESKTOP_FILE);
         }
-    }
-
-    public void fix_startup_script_error () {
-
-        /* This fixes a critical issue with startup script in versions prior to Ukuu v16.12 */
-
-        if (!file_exists (STARTUP_SCRIPT_FILE)) {
-            return;
-        }
-
-        if (!file_read (STARTUP_SCRIPT_FILE).contains ("&&")) {
-            return;
-        }
-
-        update_startup_script ();
-
-        process_quit_by_name ("sh", "ukuu-notify.sh", false);
-
-        // don't start script again
     }
 
     private static void set_locale () {

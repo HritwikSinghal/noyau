@@ -14,7 +14,6 @@ project_files = files(
 
     'Utility/Gtk/GtkHelper.vala',
 
-    'Utility/AppLock.vala',
     'Utility/AsyncTask.vala',
     'Utility/JsonHelper.vala',
     'Utility/OSDNotify.vala',

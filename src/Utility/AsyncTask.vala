@@ -106,11 +106,11 @@ public abstract class AsyncTask : GLib.Object {
 
             // execute script file
             Process.spawn_async_with_pipes (
-                working_dir,             // working dir
-                spawn_args,              // argv
-                spawn_env,               // environment
+                working_dir, // working dir
+                spawn_args, // argv
+                spawn_env, // environment
                 SpawnFlags.SEARCH_PATH,
-                null,                    // child_setup
+                null, // child_setup
                 out child_pid,
                 out input_fd,
                 out output_fd,
@@ -174,9 +174,9 @@ public abstract class AsyncTask : GLib.Object {
                 // log_msg("O: " + out_line);
                 if (!is_terminated && (out_line.length > 0)) {
                     parse_stdout_line (out_line);
-                    stdout_line_read (out_line);                    // signal
+                    stdout_line_read (out_line); // signal
                 }
-                out_line = dis_out.read_line (null);                 // read next
+                out_line = dis_out.read_line (null); // read next
             }
 
             stdout_is_open = false;
@@ -209,9 +209,9 @@ public abstract class AsyncTask : GLib.Object {
                     error_msg += "%s\n".printf (err_line);
 
                     parse_stderr_line (err_line);
-                    stderr_line_read (err_line);                    // signal
+                    stderr_line_read (err_line); // signal
                 }
-                err_line = dis_err.read_line (null);                 // read next
+                err_line = dis_err.read_line (null); // read next
             }
 
             stderr_is_open = false;
@@ -275,7 +275,7 @@ public abstract class AsyncTask : GLib.Object {
         GLib.FileUtils.close (input_fd);
 
         // dispose child process
-        Process.close_pid (child_pid);        // required on Windows, doesn't do anything on Unix
+        Process.close_pid (child_pid); // required on Windows, doesn't do anything on Unix
 
         try {
             // dispose log
@@ -305,7 +305,7 @@ public abstract class AsyncTask : GLib.Object {
 
         // dir_delete(working_dir);
 
-        task_complete ();        // signal
+        task_complete (); // signal
     }
 
     protected abstract void finish_task ();

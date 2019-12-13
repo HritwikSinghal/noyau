@@ -212,10 +212,9 @@ public class MainWindow : Gtk.Window {
             LinuxKernel kern;
             model.get (iter, 0, out kern, -1);
 
-            if(kern.is_mainline) {
+            if (kern.is_mainline) {
                 (cell as Gtk.CellRendererText).text = "(mainline)";
-            }
-            else {
+            } else {
                 (cell as Gtk.CellRendererText).text = "(ubuntu)";
             }
         });
@@ -349,7 +348,7 @@ public class MainWindow : Gtk.Window {
     private void set_button_state () {
         if (selected_kernels.size == 0) {
             btn_install.sensitive = false;
-            menu_install.set_sensitive(false);
+            menu_install.set_sensitive (false);
 
             btn_remove.sensitive = false;
             menu_remove.sensitive = false;
@@ -585,7 +584,7 @@ public class MainWindow : Gtk.Window {
                 menu.show_all ();
                 menu.popup (null, null, null, event.button, event.time);
 
-                set_button_state();
+                set_button_state ();
 
                 return true;
             } else {
@@ -713,7 +712,7 @@ public class MainWindow : Gtk.Window {
                     LinuxKernel.kernel_latest_stable.version_main
                 );
 
-                if(LinuxKernel.kernel_latest_stable.is_mainline) {
+                if (LinuxKernel.kernel_latest_stable.is_mainline) {
                     lbl_info.label += " (mainline)</b>";
                 } else {
                     lbl_info.label += " (ubuntu)</b>";

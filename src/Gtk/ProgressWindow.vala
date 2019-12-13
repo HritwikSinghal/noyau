@@ -54,7 +54,7 @@ public class ProgressWindow : Gtk.Dialog {
 
     public ProgressWindow.with_parent (Window parent, string message, bool allow_cancel = false) {
         gtk_helper = new GtkHelper ();
-        
+
         this.set_transient_for (parent);
         this.set_modal (true);
         this.set_skip_taskbar_hint (true);
