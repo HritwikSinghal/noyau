@@ -35,6 +35,8 @@
     <li>Refreshed user interface.</li>
     <li>Transitioned to the meson build system.</li>
     <li>Removed intrusive prompts and nagware.</li>
+    <li>Download over HTTPS instead of HTTP.</li>
+    <li>Serious code refactor and clean-up.</li>
     <li>Fixed numerous build issues.</li>
 </ul>
 
