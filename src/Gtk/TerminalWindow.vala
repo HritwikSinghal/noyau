@@ -23,8 +23,6 @@
 using Gtk;
 using Gee;
 
-using JsonHelper;
-
 using TeeJee.Logging;
 using TeeJee.FileSystem;
 using TeeJee.ProcessHelper;

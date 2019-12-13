@@ -22,8 +22,6 @@
 
 using Gtk;
 
-using JsonHelper;
-
 using TeeJee.Logging;
 using TeeJee.FileSystem;
 using TeeJee.ProcessHelper;
@@ -40,7 +38,7 @@ public class AboutWindow : AboutDialog {
         this.program_name = Consts.APP_NAME_SHORT;
         this.comments = _("A graphical utility for managing kernels on Ubuntu.");
         this.version = Consts.APP_VERSION;
-        this.website = "https://joshuadowding.github.io";
+        this.website = Consts.APP_AUTHOR_WEBSITE;
 
         this.logo = gtk_helper.get_app_icon (64);
         this.modal = true;
@@ -53,7 +51,7 @@ public class AboutWindow : AboutDialog {
 
         this.translator_credits = _("translator-credits");
 
-        this.copyright = "Copyright © 2019 Joshua Dowding (%s)".printf (Consts.APP_AUTHOR_EMAIL);
+        this.copyright = "Copyright © 2019 " + Consts.APP_AUTHOR + " (" + Consts.APP_AUTHOR_EMAIL + ")";
         this.license_type = Gtk.License.GPL_3_0;
         this.wrap_license = true;
 

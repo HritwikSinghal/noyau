@@ -25,8 +25,6 @@ using Gdk;
 using Gee;
 using GLib;
 
-using JsonHelper;
-
 using TeeJee.Logging;
 using TeeJee.FileSystem;
 using TeeJee.ProcessHelper;

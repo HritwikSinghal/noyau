@@ -20,11 +20,12 @@
  * MA 02110-1301, USA.
  */
 
+using GLib;
 using Json;
 
 using TeeJee.Logging;
 
-namespace JsonHelper {
+public class JsonHelper : GLib.Object {
 
     /* Convenience functions for reading and writing JSON files */
 

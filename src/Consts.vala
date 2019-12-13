@@ -1,13 +1,14 @@
 using GLib;
 
 public class Consts : GLib.Object {
-    public static const string APP_NAME = @"Ubuntu Kernel Update Utility";
-    public static const string APP_NAME_SHORT = @"ukuu";
-    public static const string APP_VERSION = @"18.10";
-    public static const string APP_AUTHOR = @"Joshua Dowding";
-    public static const string APP_AUTHOR_EMAIL = @"joshuadowding@outlook.com";
+    public const string APP_NAME = @"Ubuntu Kernel Update Utility";
+    public const string APP_NAME_SHORT = @"ukuu";
+    public const string APP_VERSION = @"18.10";
+    public const string APP_AUTHOR = @"Joshua Dowding";
+    public const string APP_AUTHOR_EMAIL = @"joshuadowding@outlook.com";
+    public const string APP_AUTHOR_WEBSITE = @"https://joshuadowding.github.io";
 
-    public static const string GETTEXT_PACKAGE = @"";
-    public static const string LOCALE_DIR = @"/usr/share/locale";
+    public const string GETTEXT_PACKAGE = @"";
+    public const string LOCALE_DIR = @"/usr/share/locale";
 }
 

@@ -25,8 +25,6 @@ using GLib;
 using Gee;
 using Json;
 
-using JsonHelper;
-
 using TeeJee.Logging;
 using TeeJee.FileSystem;
 using TeeJee.ProcessHelper;
@@ -64,6 +62,7 @@ public class App : Gtk.Application {
     public static string requested_version = "";
 
     public GtkHelper gtk_helper;
+    public JsonHelper json_helper;
 
     public App () {
         GLib.Object (
@@ -74,6 +73,7 @@ public class App : Gtk.Application {
 
     protected override void activate () {
         gtk_helper = new GtkHelper ();
+        json_helper = new JsonHelper ();
 
         Package.initialize ();
         LinuxKernel.initialize ();
@@ -243,20 +243,20 @@ public class App : Gtk.Application {
         var node = parser.get_root ();
         var config = node.get_object ();
 
-        notify_major = json_get_bool (config, "notify_major", true);
-        notify_minor = json_get_bool (config, "notify_minor", true);
-        notify_bubble = json_get_bool (config, "notify_bubble", true);
-        notify_dialog = json_get_bool (config, "notify_dialog", true);
-        notify_interval_unit = json_get_int (config, "notify_interval_unit", 0);
-        notify_interval_value = json_get_int (config, "notify_interval_value", 2);
+        notify_major = json_helper.json_get_bool (config, "notify_major", true);
+        notify_minor = json_helper.json_get_bool (config, "notify_minor", true);
+        notify_bubble = json_helper.json_get_bool (config, "notify_bubble", true);
+        notify_dialog = json_helper.json_get_bool (config, "notify_dialog", true);
+        notify_interval_unit = json_helper.json_get_int (config, "notify_interval_unit", 0);
+        notify_interval_value = json_helper.json_get_int (config, "notify_interval_value", 2);
 
-        LinuxKernel.hide_unstable = json_get_bool (config, "hide_unstable", true);
-        LinuxKernel.hide_older = json_get_bool (config, "hide_older", true);
+        LinuxKernel.hide_unstable = json_helper.json_get_bool (config, "hide_unstable", true);
+        LinuxKernel.hide_older = json_helper.json_get_bool (config, "hide_older", true);
         // LinuxKernel.show_grub_menu = json_get_bool(config, "show_grub_menu", true);
-        LinuxKernel.grub_timeout = json_get_int (config, "grub_timeout", 2);
-        LinuxKernel.update_grub_timeout = json_get_bool (config, "update_grub_timeout", false);
+        LinuxKernel.grub_timeout = json_helper.json_get_int (config, "grub_timeout", 2);
+        LinuxKernel.update_grub_timeout = json_helper.json_get_bool (config, "update_grub_timeout", false);
 
-        message_shown = json_get_bool (config, "message_shown", false);
+        message_shown = json_helper.json_get_bool (config, "message_shown", false);
 
         log_debug ("Load config file: %s".printf (APP_CONFIG_FILE));
     }
