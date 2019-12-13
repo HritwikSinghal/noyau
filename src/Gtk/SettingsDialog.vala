@@ -23,11 +23,11 @@
 using Gtk;
 using Gee;
 
+using JsonHelper;
+
 using TeeJee.Logging;
 using TeeJee.FileSystem;
-using JsonHelper;
 using TeeJee.ProcessHelper;
-using GtkHelper;
 using TeeJee.System;
 using TeeJee.Misc;
 
@@ -41,7 +41,11 @@ public class SettingsDialog : Gtk.Dialog {
     private Gtk.CheckButton chk_hide_older;
     private Gtk.CheckButton chk_update_grub_timeout;
 
+    public GtkHelper gtk_helper;
+
     public SettingsDialog.with_parent (Window parent) {
+        gtk_helper = new GtkHelper ();
+
         set_transient_for (parent);
         set_modal (true);
         set_skip_taskbar_hint (true);
@@ -50,7 +54,7 @@ public class SettingsDialog : Gtk.Dialog {
         deletable = false;
         resizable = false;
 
-        icon = get_app_icon (16, ".svg");
+        icon = gtk_helper.get_app_icon (16, ".svg");
 
         title = _("Settings");
 

@@ -23,11 +23,11 @@
 using Gtk;
 using Gee;
 
+using JsonHelper;
+
 using TeeJee.Logging;
 using TeeJee.FileSystem;
-using JsonHelper;
 using TeeJee.ProcessHelper;
-using GtkHelper;
 using TeeJee.System;
 using TeeJee.Misc;
 
@@ -48,9 +48,13 @@ public class ProgressWindow : Gtk.Dialog {
     private bool allow_cancel = false;
     private bool allow_close = false;
 
+    public GtkHelper gtk_helper;
+
     // init
 
     public ProgressWindow.with_parent (Window parent, string message, bool allow_cancel = false) {
+        gtk_helper = new GtkHelper ();
+        
         this.set_transient_for (parent);
         this.set_modal (true);
         this.set_skip_taskbar_hint (true);
@@ -85,8 +89,8 @@ public class ProgressWindow : Gtk.Dialog {
     }
 
     public void init_window () {
-        this.title = Main.AppName;
-        this.icon = get_app_icon (16);
+        this.title = Consts.APP_NAME;
+        this.icon = gtk_helper.get_app_icon (16);
         this.resizable = false;
         this.set_deletable (false);
 
@@ -173,7 +177,7 @@ public class ProgressWindow : Gtk.Dialog {
         }
 
         progressbar.fraction = fraction;
-        // gtk_do_events();
+        // gtk_helper.gtk_do_events();
     }
 
     public void finish (string message = "") {
@@ -187,7 +191,7 @@ public class ProgressWindow : Gtk.Dialog {
 
         spinner.visible = false;
 
-        gtk_do_events ();
+        gtk_helper.gtk_do_events ();
         auto_close_window ();
     }
 
@@ -206,7 +210,7 @@ public class ProgressWindow : Gtk.Dialog {
 
     public void sleep (int ms) {
         Thread.usleep ((ulong) ms * 1000);
-        gtk_do_events ();
+        gtk_helper.gtk_do_events ();
     }
 }
 

@@ -21,15 +21,17 @@
  */
 
 using Gtk;
+using GLib;
+
+using JsonHelper;
 
 using TeeJee.Logging;
 using TeeJee.FileSystem;
-using JsonHelper;
 using TeeJee.ProcessHelper;
 using TeeJee.System;
 using TeeJee.Misc;
 
-namespace GtkHelper {
+public class GtkHelper : GLib.Object {
 
     // messages ----------------------------------------
 
@@ -247,7 +249,7 @@ namespace GtkHelper {
     // icon ----------------------------------------------
 
     public Gdk.Pixbuf ? get_app_icon (int icon_size, string format = ".png") {
-        var img_icon = get_shared_icon (Main.AppShortName, Main.AppShortName + format, icon_size, "pixmaps");
+        var img_icon = get_shared_icon (Consts.APP_NAME_SHORT, Consts.APP_NAME_SHORT + format, icon_size, "pixmaps");
         if (img_icon != null) {
             return img_icon.pixbuf;
         } else {
@@ -259,7 +261,7 @@ namespace GtkHelper {
         string icon_name,
         string fallback_icon_file_name,
         int icon_size,
-        string icon_directory = Main.AppShortName + "/images") {
+        string icon_directory = Consts.APP_NAME_SHORT + "/images") {
 
         Gdk.Pixbuf pix_icon = null;
         Gtk.Image img_icon = null;
@@ -295,7 +297,7 @@ namespace GtkHelper {
     public Gdk.Pixbuf ? get_shared_icon_pixbuf (string icon_name,
                                                 string fallback_file_name,
                                                 int icon_size,
-                                                string icon_directory = Main.AppShortName + "/images") {
+                                                string icon_directory = Consts.APP_NAME_SHORT + "/images") {
 
         var img = get_shared_icon (icon_name, fallback_file_name, icon_size, icon_directory);
         var pixbuf = (img == null) ? null : img.pixbuf;
@@ -455,4 +457,3 @@ namespace GtkHelper {
         return filter;
     }
 }
-

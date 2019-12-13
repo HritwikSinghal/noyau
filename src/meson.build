@@ -1,11 +1,11 @@
 project_files = files(
-    'Common/Main.vala',
-    'Common/LinuxKernel.vala',
-    'Common/DownloadManager.vala',
-    'Common/Package.vala',
+    'Consts.vala',
+    'App.vala',
+    'LinuxKernel.vala',
+    'DownloadManager.vala',
+    'Package.vala',
 
     'Gtk/AboutWindow.vala',
-    'Gtk/AppGtk.vala',
     'Gtk/MainWindow.vala',
     'Gtk/ProgressWindow.vala',
     'Gtk/SettingsDialog.vala',

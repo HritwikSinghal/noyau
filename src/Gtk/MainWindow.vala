@@ -25,15 +25,16 @@ using Gdk;
 using Gee;
 using GLib;
 
+using JsonHelper;
+
 using TeeJee.Logging;
 using TeeJee.FileSystem;
-using JsonHelper;
 using TeeJee.ProcessHelper;
-using GtkHelper;
 using TeeJee.System;
 using TeeJee.Misc;
 
 public class MainWindow : Gtk.Window {
+
     private Gtk.Box vbox_main;
     private Gtk.Box hbox_list;
 
@@ -56,14 +57,18 @@ public class MainWindow : Gtk.Window {
 
     private Gee.ArrayList<LinuxKernel> selected_kernels;
 
+    public GtkHelper gtk_helper;
+
     public MainWindow () {
-        title = Main.AppName; // "%s (Ukuu) v%s".printf(Main.AppName, Main.AppVersion);
+        gtk_helper = new GtkHelper ();
+
+        title = Consts.APP_NAME; // "%s (Ukuu) v%s".printf(Main.AppName, Main.AppVersion);
         window_position = WindowPosition.CENTER;
-        icon = get_app_icon (16, ".svg");
+        icon = gtk_helper.get_app_icon (16, ".svg");
 
         header_bar = new Gtk.HeaderBar ();
         header_bar.show_close_button = true;
-        header_bar.title = Main.AppName;
+        header_bar.title = Consts.APP_NAME;
         this.set_titlebar (header_bar);
 
         // vbox_main
@@ -371,15 +376,15 @@ public class MainWindow : Gtk.Window {
         if (selected_kernels.size == 1) {
             install (selected_kernels[0]);
         } else if (selected_kernels.size > 1) {
-            gtk_messagebox (_("Multiple Kernels Selected"), _("Select a single kernel to install"), this, true);
+            gtk_helper.gtk_messagebox (_("Multiple Kernels Selected"), _("Select a single kernel to install"), this, true);
         } else {
-            gtk_messagebox (_("Not Selected"), _("Select the kernel to install"), this, true);
+            gtk_helper.gtk_messagebox (_("Not Selected"), _("Select the kernel to install"), this, true);
         }
     }
 
     private void button_remove_click () {
         if (selected_kernels.size == 0) {
-            gtk_messagebox (_("Not Selected"), _("Select the kernels to remove"), this, true);
+            gtk_helper.gtk_messagebox (_("Not Selected"), _("Select the kernels to remove"), this, true);
         } else if (selected_kernels.size > 0) {
             var term = new TerminalWindow.with_parent (this, false, true);
 
@@ -460,7 +465,7 @@ public class MainWindow : Gtk.Window {
         button_refresh.centered = true;
         button_refresh.clicked.connect (() => {
             if (!check_internet_connectivity ()) {
-                gtk_messagebox (_("No Internet"), _("Internet connection is not active"), this, true);
+                gtk_helper.gtk_messagebox (_("No Internet"), _("Internet connection is not active"), this, true);
                 return;
             }
 
@@ -597,7 +602,7 @@ public class MainWindow : Gtk.Window {
 
     private void refresh_cache (bool download_index = true) {
         if (!check_internet_connectivity ()) {
-            gtk_messagebox (_("No Internet"), _("Internet connection is not active"), this, true);
+            gtk_helper.gtk_messagebox (_("No Internet"), _("Internet connection is not active"), this, true);
             return;
         }
 
@@ -609,7 +614,7 @@ public class MainWindow : Gtk.Window {
 
             while (LinuxKernel.task_is_running) {
                 sleep (200);
-                gtk_do_events ();
+                gtk_helper.gtk_do_events ();
             }
 
             return;
@@ -618,7 +623,7 @@ public class MainWindow : Gtk.Window {
         string message = _("Refreshing.");
         var dlg = new ProgressWindow.with_parent (this, message, true);
         dlg.show_all ();
-        gtk_do_events ();
+        gtk_helper.gtk_do_events ();
 
         // TODO: Check if kernel.ubuntu.com is down
 
@@ -661,7 +666,7 @@ public class MainWindow : Gtk.Window {
             dlg.update_progressbar ();
 
             dlg.sleep (200);
-            gtk_do_events ();
+            gtk_helper.gtk_do_events ();
 
             count++;
         }
@@ -669,7 +674,7 @@ public class MainWindow : Gtk.Window {
         timer_elapsed (timer, true);
 
         dlg.destroy ();
-        gtk_do_events ();
+        gtk_helper.gtk_do_events ();
     }
 
     private void init_infobar () {
@@ -730,12 +735,12 @@ public class MainWindow : Gtk.Window {
 
     public void install (LinuxKernel kern) {
         if (kern.is_installed) {
-            gtk_messagebox (_("Already Installed"), _("This kernel is already installed. Please choose another from the list and try again."), this, true);
+            gtk_helper.gtk_messagebox (_("Already Installed"), _("This kernel is already installed. Please choose another from the list and try again."), this, true);
             return;
         }
 
         if (!check_internet_connectivity ()) {
-            gtk_messagebox (_("No Internet"), _("Internet connection is not active."), this, true);
+            gtk_helper.gtk_messagebox (_("No Internet"), _("Internet connection is not active."), this, true);
             return;
         }
 
@@ -789,7 +794,7 @@ public class MainWindow : Gtk.Window {
 
             if (App.notify_dialog) {
                 var win = new UpdateNotificationDialog (
-                    Main.AppName,
+                    Consts.APP_NAME,
                     "<span size=\"large\" weight=\"bold\">%s</span>\n\n%s".printf (title, message),
                     null,
                     kern);
@@ -820,7 +825,7 @@ public class MainWindow : Gtk.Window {
 
             if (App.notify_dialog) {
                 var win = new UpdateNotificationDialog (
-                    Main.AppName,
+                    Consts.APP_NAME,
                     "<span size=\"large\" weight=\"bold\">%s</span>\n\n%s".printf (title, message),
                     this,
                     kern);
@@ -844,7 +849,7 @@ public class MainWindow : Gtk.Window {
     public void show_grub_message () {
         string title = _("Booting previous kernels");
         string msg = _("Mainline kernels can sometimes cause problems if there are proprietary drivers installed on your system. These issues include:\n\n- WiFi not working\n- Black screen on startup\n- Random system freeze\n\nIf you face any of these issues there is no need to panic.\n\n- Reboot your system\n- Select 'Advanced Boot Options' from the GRUB boot menu\n- Select an older kernel from the list displayed on this screen\n- Your system will boot using the selected kernel\n- You can now uninstall the kernel that is causing issues\n");
-        gtk_messagebox (title, msg, this, false);
+        gtk_helper.gtk_messagebox (title, msg, this, false);
 
         if (App.command != "list") {
             Gtk.main_quit ();

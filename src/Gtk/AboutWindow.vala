@@ -22,23 +22,27 @@
 
 using Gtk;
 
+using JsonHelper;
+
 using TeeJee.Logging;
 using TeeJee.FileSystem;
-using JsonHelper;
 using TeeJee.ProcessHelper;
-using GtkHelper;
 using TeeJee.System;
 using TeeJee.Misc;
 
 public class AboutWindow : AboutDialog {
+    public GtkHelper gtk_helper;
+
     public AboutWindow () {
-        this.title = Main.AppName;
-        this.program_name = Main.AppName;
+        gtk_helper = new GtkHelper ();
+
+        this.title = Consts.APP_NAME;
+        this.program_name = Consts.APP_NAME_SHORT;
         this.comments = _("A graphical utility for managing kernels on Ubuntu.");
-        this.version = Main.AppVersion;
+        this.version = Consts.APP_VERSION;
         this.website = "https://joshuadowding.github.io";
 
-        this.logo = get_app_icon (64);
+        this.logo = gtk_helper.get_app_icon (64);
         this.modal = true;
         this.destroy_with_parent = true;
 
@@ -49,7 +53,7 @@ public class AboutWindow : AboutDialog {
 
         this.translator_credits = _("translator-credits");
 
-        this.copyright = "Copyright © 2019 Joshua Dowding (%s)".printf (Main.AppAuthorEmail);
+        this.copyright = "Copyright © 2019 Joshua Dowding (%s)".printf (Consts.APP_AUTHOR_EMAIL);
         this.license_type = Gtk.License.GPL_3_0;
         this.wrap_license = true;
 

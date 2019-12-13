@@ -23,11 +23,11 @@
 using Gtk;
 using Gee;
 
+using JsonHelper;
+
 using TeeJee.Logging;
 using TeeJee.FileSystem;
-using JsonHelper;
 using TeeJee.ProcessHelper;
-using GtkHelper;
 using TeeJee.System;
 using TeeJee.Misc;
 
@@ -48,9 +48,13 @@ public class TerminalWindow : Gtk.Window {
     public bool cancelled = false;
     public bool is_running = false;
 
+    public GtkHelper gtk_helper;
+
     public signal void script_complete ();
 
     public TerminalWindow.with_parent (Gtk.Window ? parent, bool fullscreen = false, bool show_cancel_button = false) {
+        gtk_helper = new GtkHelper ();
+
         if (parent != null) {
             set_transient_for (parent);
             parent_win = parent;
@@ -81,8 +85,8 @@ public class TerminalWindow : Gtk.Window {
     }
 
     public void init_window () {
-        title = Main.AppName;
-        icon = get_app_icon (16);
+        title = Consts.APP_NAME;
+        icon = gtk_helper.get_app_icon (16);
         resizable = true;
         deletable = false;
 
@@ -233,7 +237,7 @@ public class TerminalWindow : Gtk.Window {
             if (wait) {
                 while (is_running) {
                     sleep (200);
-                    gtk_do_events ();
+                    gtk_helper.gtk_do_events ();
                 }
             }
         } catch (Error e) {

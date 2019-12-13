@@ -1,5 +1,5 @@
 /*
- * Main.vala
+ * App.vala
  *
  * Copyright 2012-2019 Tony George <teejee2008@gmail.com>
  * Copyright 2019 Joshua Dowding <joshuadowding@outlook.com>
@@ -20,82 +20,122 @@
  * MA 02110-1301, USA.
  */
 
+using Gtk;
 using GLib;
 using Gee;
 using Json;
 
+using JsonHelper;
+
 using TeeJee.Logging;
 using TeeJee.FileSystem;
-using JsonHelper;
 using TeeJee.ProcessHelper;
 using TeeJee.System;
 using TeeJee.Misc;
 
 extern void exit (int exit_code);
 
-public class Main : GLib.Object {
+public class App : Gtk.Application {
 
-    // constants ----------
-    public static string AppName = "Ubuntu Kernel Update Utility";
-    public static string AppShortName = "ukuu";
-    public static string AppVersion = "18.10";
-    public static string AppAuthor = "Joshua Dowding";
-    public static string AppAuthorEmail = "joshuadowding@outlook.com";
+    public static string APP_CONFIG_FILE = "";
+    public static string STARTUP_SCRIPT_FILE = "";
+    public static string STARTUP_DESKTOP_FILE = "";
 
-    public static string GETTEXT_PACKAGE = "";
-    public static string LOCALE_DIR = "/usr/share/locale";
-
-    public string APP_CONFIG_FILE = "";
-    public string STARTUP_SCRIPT_FILE = "";
-    public string STARTUP_DESKTOP_FILE = "";
-
-    public int startup_delay = 300;
-    public string user_login = "";
     public string user_home = "";
-
-    // global progress ----------------
-
-    public string status_line = "";
-    public int64 progress_total = 0;
-    public int64 progress_count = 0;
-    public bool cancelled = false;
+    public bool GUI_MODE = false;
+    public bool confirm = true;
 
     // state flags ----------
 
-    public bool GUI_MODE = false;
-    public string command = "list";
-    public string requested_version = "";
+    public static string command = "list";
+    public static bool notify_major = true;
+    public static bool notify_minor = true;
+    public static bool notify_bubble = true;
+    public static bool notify_dialog = true;
+    public static int notify_interval_unit = 0;
+    public static int notify_interval_value = 2;
+    public static bool message_shown = false;
+    public static string user_login = "";
+    public static int startup_delay = 300;
+    public static string status_line = "";
+    public static int64 progress_total = 0;
+    public static int64 progress_count = 0;
+    public static bool cancelled = false;
+    public static string requested_version = "";
 
-    public bool notify_major = true;
-    public bool notify_minor = true;
-    public bool notify_bubble = true;
-    public bool notify_dialog = true;
-    public int notify_interval_unit = 0;
-    public int notify_interval_value = 2;
+    public GtkHelper gtk_helper;
 
-    public bool message_shown = false;
+    public App () {
+        GLib.Object (
+            application_id: "ukuu",
+            flags: ApplicationFlags.FLAGS_NONE
+        );
+    }
 
-    public bool confirm = true;
-
-    // constructors ------------
-
-    public Main (string[] arg0, bool _gui_mode) {
-        GUI_MODE = _gui_mode;
-
-        LOG_TIMESTAMP = false;
+    protected override void activate () {
+        gtk_helper = new GtkHelper ();
 
         Package.initialize ();
-
         LinuxKernel.initialize ();
 
         init_paths ();
-
         load_app_config ();
+
+        set_locale ();
+
+        log_msg ("%s v%s".printf (Consts.APP_NAME_SHORT, Consts.APP_VERSION));
+
+        init_tmp ("ukuu");
+
+        check_if_admin();
+
+        LOG_TIMESTAMP = false;
+
+        // check dependencies
+        string message;
+        if (!check_dependencies (out message)) {
+            gtk_helper.gtk_messagebox ("", message, null, true);
+            exit (0);
+        }
+
+        // create main window --------------------------------------
+
+        var window = new MainWindow ();
+
+        window.destroy.connect (() => {
+            log_debug ("MainWindow destroyed");
+            Gtk.main_quit ();
+        });
+
+        window.delete_event.connect ((event) => {
+            log_debug ("MainWindow closed");
+            Gtk.main_quit ();
+            return true;
+        });
+
+        if (command == "list") {
+            window.show_all ();
+        }
+
+        // start event loop -------------------------------------
+
+        Gtk.main ();
+
+        save_app_config ();
+    }
+
+    public static int main (string[] args) {
+        parse_arguments (args);
+
+        Gtk.init (ref args);
+
+        var app = new App();
+        return app.run(args);
     }
 
     // helpers ------------
 
-    public static bool check_dependencies (out string msg) {
+    private bool check_dependencies (out string msg) {
         string[] dependencies = { "aptitude", "apt-get", "aria2c", "dpkg", "uname", "lsb_release", "ping", "curl" };
 
         msg = "";
@@ -118,8 +158,7 @@ public class Main : GLib.Object {
         }
     }
 
-    public void init_paths (string custom_user_login = "") {
-
+    private void init_paths (string custom_user_login = "") {
         // user info
         user_login = get_username ();
 
@@ -139,7 +178,7 @@ public class Main : GLib.Object {
         LinuxKernel.CURRENT_USER_HOME = user_home;
     }
 
-    public void save_app_config () {
+    public static void save_app_config () {
         var config = new Json.Object ();
         config.set_string_member ("notify_major", notify_major.to_string ());
         config.set_string_member ("notify_minor", notify_minor.to_string ());
@@ -176,7 +215,7 @@ public class Main : GLib.Object {
         update_notification_files ();
     }
 
-    public void update_notification_files () {
+    public static void update_notification_files () {
         update_startup_script ();
         update_startup_desktop_file ();
     }
@@ -222,17 +261,17 @@ public class Main : GLib.Object {
         log_debug ("Load config file: %s".printf (APP_CONFIG_FILE));
     }
 
-    public void exit_app (int exit_code) {
+    public static void exit_app (int exit_code) {
         save_app_config ();
         exit (exit_code);
     }
 
     // begin ------------
 
-    private void update_startup_script () {
+    private static void update_startup_script () {
         int count = notify_interval_value;
-
         string suffix = "h";
+
         switch (notify_interval_unit) {
             case 0: // hour
                 suffix = "h";
@@ -273,7 +312,7 @@ public class Main : GLib.Object {
         chown (STARTUP_SCRIPT_FILE, user_login, user_login);
     }
 
-    private void update_startup_desktop_file () {
+    private static void update_startup_desktop_file () {
         if (notify_minor || notify_major) {
             string txt =
                 """
@@ -317,5 +356,102 @@ public class Main : GLib.Object {
 
         // don't start script again
     }
-}
 
+    private static void set_locale () {
+        Intl.setlocale (GLib.LocaleCategory.MESSAGES, "ukuu");
+        Intl.textdomain (Consts.GETTEXT_PACKAGE);
+        Intl.bind_textdomain_codeset (Consts.GETTEXT_PACKAGE, "utf-8");
+        Intl.bindtextdomain (Consts.GETTEXT_PACKAGE, Consts.LOCALE_DIR);
+    }
+
+    private static void check_if_admin () {
+        if (get_user_id_effective () != 0) {
+            log_msg (string.nfill (70, '-'));
+
+            string msg = _("Admin access is required to run this application.");
+            log_error (msg);
+
+            msg = _("Run the application as admin with pkexec or sudo.");
+            log_error (msg);
+
+            exit (1);
+        }
+    }
+
+    public static bool parse_arguments (string[] args) {
+        log_msg (_("Cache") + ": %s".printf (LinuxKernel.CACHE_DIR));
+        log_msg (_("Temp") + ": %s".printf (TEMP_DIR));
+
+        command = "list";
+
+        // parse options
+        for (int k = 1; k < args.length; k++) { // Oth arg is app path
+            switch (args[k].down ()) {
+
+                case "--debug":
+                    LOG_DEBUG = true;
+                    break;
+
+                case "--help":
+                case "--h":
+                case "-h":
+                    log_msg (help_message ());
+                    exit (0);
+                    return true;
+            }
+        }
+
+        for (int k = 1; k < args.length; k++) { // Oth arg is app path
+            switch (args[k].down ()) {
+
+                // commands ------------------------------------
+
+                case "--install":
+                    command = "install";
+                    requested_version = args[++k];
+                    break;
+
+                case "--notify":
+                    command = "notify";
+                    break;
+
+                // options without argument --------------------------
+
+                case "--help":
+                case "--h":
+                case "-h":
+                case "--debug":
+                    // already handled - do nothing
+                    break;
+
+                // options with argument --------------------------
+
+                case "--user":
+                    k += 1;
+                    // already handled - do nothing
+                    break;
+
+                default:
+                    // unknown option - show help and exit
+                    log_error (_("Unknown option") + ": %s".printf (args[k]));
+                    log_msg (help_message ());
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static string help_message () {
+        string msg = "\n" + Consts.APP_NAME + " v" + Consts.APP_VERSION + " by Tony George (teejeetech@gmail.com)" + "\n";
+        msg += "\n";
+        msg += _("Syntax") + ": ukuu-gtk [options]\n";
+        msg += "\n";
+        msg += _("Options") + ":\n";
+        msg += "\n";
+        msg += "  --debug      " + _("Print debug information") + "\n";
+        msg += "  --h[elp]     " + _("Show all options") + "\n";
+        msg += "\n";
+        return msg;
+    }
+}
