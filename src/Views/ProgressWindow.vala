@@ -23,12 +23,6 @@
 using Gtk;
 using Gee;
 
-using TeeJee.Logging;
-using TeeJee.FileSystem;
-using TeeJee.ProcessHelper;
-using TeeJee.System;
-using TeeJee.Misc;
-
 public class ProgressWindow : Gtk.Dialog {
 
     private Gtk.Box vbox_main;

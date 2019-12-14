@@ -23,9 +23,13 @@
 using GLib;
 using Json;
 
-using TeeJee.Logging;
-
 public class JsonHelper : GLib.Object {
+
+    private LoggingHelper logging_helper;
+
+    public JsonHelper () {
+        logging_helper = new LoggingHelper ();
+    }
 
     /* Convenience functions for reading and writing JSON files */
 
@@ -33,7 +37,7 @@ public class JsonHelper : GLib.Object {
         if (jobj.has_member (member)) {
             return jobj.get_string_member (member);
         } else {
-            log_debug ("Member not found in JSON object: " + member);
+            logging_helper.log_debug ("Member not found in JSON object: " + member);
             return def_value;
         }
     }
@@ -52,7 +56,7 @@ public class JsonHelper : GLib.Object {
         if (jobj.has_member (member)) {
             return bool.parse (jobj.get_string_member (member));
         } else {
-            log_debug ("Member not found in JSON object: " + member);
+            logging_helper.log_debug ("Member not found in JSON object: " + member);
             return def_value;
         }
     }
@@ -61,7 +65,7 @@ public class JsonHelper : GLib.Object {
         if (jobj.has_member (member)) {
             return int.parse (jobj.get_string_member (member));
         } else {
-            log_debug ("Member not found in JSON object: " + member);
+            logging_helper.log_debug ("Member not found in JSON object: " + member);
             return def_value;
         }
     }
@@ -70,7 +74,7 @@ public class JsonHelper : GLib.Object {
         if (jobj.has_member (member)) {
             return int64.parse (jobj.get_string_member (member));
         } else {
-            log_debug ("Member not found in JSON object: " + member);
+            logging_helper.log_debug ("Member not found in JSON object: " + member);
             return def_value;
         }
     }
@@ -87,7 +91,7 @@ public class JsonHelper : GLib.Object {
             }
             return list;
         } else {
-            log_debug ("Member not found in JSON object: " + member);
+            logging_helper.log_debug ("Member not found in JSON object: " + member);
             return def_value;
         }
     }

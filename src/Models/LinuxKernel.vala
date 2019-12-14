@@ -20,11 +20,8 @@
  * MA 02110-1301, USA.
  */
 
-using TeeJee.Logging;
-using TeeJee.FileSystem;
-using TeeJee.ProcessHelper;
-using TeeJee.System;
-using TeeJee.Misc;
+using Gee;
+using GLib;
 
 public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
     public string name = "";
@@ -92,6 +89,12 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
     public static bool task_is_running;
     public static bool _temp_refresh;
 
+    private LoggingHelper logging_helper;
+    private ProcessHelper process_helper;
+    private SystemHelper system_helper;
+    private FileHelper file_helper;
+    private MiscHelper misc_helper;
+
     // class initialize
 
     public static void initialize () {
@@ -105,13 +108,15 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
     // dep: lsb_release
     public static string check_distribution () {
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        ProcessHelper _process_helper = new ProcessHelper ();
         string dist = "";
 
         string std_out, std_err;
-        int status = exec_sync ("lsb_release -sd", out std_out, out std_err);
+        int status = _process_helper.exec_sync ("lsb_release -sd", out std_out, out std_err);
         if ((status == 0) && (std_out != null)) {
             dist = std_out.strip ();
-            log_msg (_("Distribution") + ": %s".printf (dist));
+            _logging_helper.log_msg (_("Distribution") + ": %s".printf (dist));
         }
 
         return dist;
@@ -119,13 +124,15 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
     // dep: dpkg
     public static string check_package_architecture () {
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        ProcessHelper _process_helper = new ProcessHelper ();
         string arch = "";
 
         string std_out, std_err;
-        int status = exec_sync ("dpkg --print-architecture", out std_out, out std_err);
+        int status = _process_helper.exec_sync ("dpkg --print-architecture", out std_out, out std_err);
         if ((status == 0) && (std_out != null)) {
             arch = std_out.strip ();
-            log_msg (_("Architecture") + ": %s".printf (arch));
+            _logging_helper.log_msg (_("Architecture") + ": %s".printf (arch));
         }
 
         return arch;
@@ -133,17 +140,20 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
     // dep: uname
     public static string check_running_kernel () {
-        string ver = "";
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        ProcessHelper _process_helper = new ProcessHelper ();
+        MiscHelper _misc_helper = new MiscHelper ();
 
+        string ver = "";
         string std_out;
-        exec_sync ("uname -r", out std_out, null);
-        log_debug (std_out);
+        _process_helper.exec_sync ("uname -r", out std_out, null);
+        _logging_helper.log_debug (std_out);
 
         ver = std_out.strip ().replace ("\n", "");
-        log_msg ("Running kernel" + ": %s".printf (ver));
+        _logging_helper.log_msg ("Running kernel" + ": %s".printf (ver));
 
-        exec_sync ("uname -a", out std_out, null);
-        log_debug (std_out);
+        _process_helper.exec_sync ("uname -a", out std_out, null);
+        _logging_helper.log_debug (std_out);
 
         string[] arr = std_out.split (ver);
         if (arr.length > 0) {
@@ -151,19 +161,21 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
             string partnum = parts[0].strip ();
             if (partnum.has_prefix ("#")) {
                 partnum = partnum[1 : partnum.length];
-                if (is_numeric (partnum) && (partnum.length <= 3)) {
+                if (_misc_helper.is_numeric (partnum) && (partnum.length <= 3)) {
                     var kern = new LinuxKernel.from_version (ver);
                     ver = "%s.%s".printf (kern.version_main, partnum);
                 }
             }
         }
 
-        log_msg ("Kernel version" + ": %s".printf (ver));
+        _logging_helper.log_msg ("Kernel version" + ": %s".printf (ver));
 
         return ver;
     }
 
     public static void initialize_regex () {
+        LoggingHelper _logging_helper = new LoggingHelper ();
+
         try {
             // linux-headers-3.4.75-030475-generic_3.4.75-030475.201312201255_amd64.deb
             rex_header = new Regex ("""linux-headers-[a-zA-Z0-9.\-_]*generic_[a-zA-Z0-9.\-]*_""" + NATIVE_ARCH + ".deb");
@@ -180,24 +192,28 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
             // linux-image-extra-3.4.75-030475-generic_3.4.75-030475.201312201255_amd64.deb
             rex_modules = new Regex ("""linux-modules-[a-zA-Z0-9.\-_]*generic_[a-zA-Z0-9.\-]*_""" + NATIVE_ARCH + ".deb");
         } catch (Error e) {
-            log_error (e.message);
+            _logging_helper.log_error (e.message);
         }
     }
 
     public static bool check_if_initialized () {
+        LoggingHelper _logging_helper = new LoggingHelper ();
         bool ok = (NATIVE_ARCH.length > 0);
         if (!ok) {
-            log_error ("LinuxKernel: Class should be initialized before use!");
+            _logging_helper.log_error ("LinuxKernel: Class should be initialized before use!");
             exit (1);
         }
         return ok;
     }
 
     public static void clean_cache () {
-        if (dir_exists (CACHE_DIR)) {
-            bool ok = dir_delete (CACHE_DIR);
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        FileHelper _file_helper = new FileHelper ();
+
+        if (_file_helper.dir_exists (CACHE_DIR)) {
+            bool ok = _file_helper.dir_delete (CACHE_DIR);
             if (ok) {
-                log_msg ("Removed cached files in '%s'".printf (CACHE_DIR));
+                _logging_helper.log_msg ("Removed cached files in '%s'".printf (CACHE_DIR));
             }
         }
     }
@@ -205,6 +221,11 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
     // contructor
 
     public LinuxKernel (string _name, bool _is_mainline) {
+        process_helper = new ProcessHelper ();
+        logging_helper = new LoggingHelper ();
+        system_helper = new SystemHelper ();
+        misc_helper = new MiscHelper ();
+        file_helper = new FileHelper ();
 
         if (_name.has_suffix ("/")) {
             this.name = _name[0 : _name.length - 1];
@@ -244,6 +265,8 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
     // static
 
     public static void query (bool wait) {
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        SystemHelper _system_helper = new SystemHelper ();
 
         check_if_initialized ();
 
@@ -253,20 +276,24 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
             Thread.create<void>(query_thread, true);
         } catch (ThreadError e) {
             task_is_running = false;
-            log_error (e.message);
+            _logging_helper.log_error (e.message);
         }
 
         if (wait) {
             while (task_is_running) {
-                sleep (500); // wait
+                _system_helper.sleep (500); // wait
             }
         }
     }
 
     private static void query_thread () {
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        SystemHelper _system_helper = new SystemHelper ();
+        FileHelper _file_helper = new FileHelper ();
+        MiscHelper _misc_helper = new MiscHelper ();
 
-        log_debug ("query: hide_older: %s".printf (hide_older.to_string ()));
-        log_debug ("query: hide_unstable: %s".printf (hide_unstable.to_string ()));
+        _logging_helper.log_debug ("query: hide_older: %s".printf (hide_older.to_string ()));
+        _logging_helper.log_debug ("query: hide_unstable: %s".printf (hide_unstable.to_string ()));
 
         // DownloadManager.reset_counter();
 
@@ -274,12 +301,12 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         var one_hour_before = (new DateTime.now_local ()).add_hours (-1);
         if (last_refreshed_date.compare (one_hour_before) < 0) {
             refresh = true;
-            log_debug (_("Index is stale"));
+            _logging_helper.log_debug (_("Index is stale"));
         } else {
-            log_debug (_("Index is fresh"));
+            _logging_helper.log_debug (_("Index is fresh"));
         }
 
-        bool is_connected = check_internet_connectivity ();
+        bool is_connected = _system_helper.check_internet_connectivity ();
 
         if (refresh) {
             download_index ();
@@ -342,25 +369,23 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
                 var item = new DownloadItem (
                     kern.cached_page_uri,
-                    file_parent (kern.cached_page),
-                    file_basename (kern.cached_page));
+                    _file_helper.file_parent (kern.cached_page),
+                    _file_helper.file_basename (kern.cached_page));
 
                 downloads.add (item);
 
                 item = new DownloadItem (
                     kern.changes_file_uri,
-                    file_parent (kern.changes_file),
-                    file_basename (kern.changes_file));
+                    _file_helper.file_parent (kern.changes_file),
+                    _file_helper.file_basename (kern.changes_file));
 
                 downloads.add (item);
-
                 kernels_to_update.add (kern);
             }
         }
 
         if ((downloads.size > 0) && is_connected) {
-
-            var mgr = new DownloadTask ();
+            var mgr = new DownloadHelper ();
 
             foreach (var item in downloads) {
                 mgr.add_to_queue (item);
@@ -370,77 +395,79 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
             mgr.prg_count_total = progress_total;
             mgr.execute ();
 
-            print_progress_bar_start (_("Fetching index..."));
+            MiscHelper.print_progress_bar_start (_("Fetching index..."));
 
             while (mgr.is_running ()) {
                 progress_count = mgr.prg_count;
-                print_progress_bar ((progress_count * 1.0) / progress_total);
-                sleep (300);
+                MiscHelper.print_progress_bar ((progress_count * 1.0) / progress_total);
+                _system_helper.sleep (300);
             }
 
-            print_progress_bar_finish ();
+            MiscHelper.print_progress_bar_finish ();
 
-            foreach (var kern
-                     in kernels_to_update) {
+            foreach (var kern in kernels_to_update) {
                 kern.load_cached_page ();
             }
         }
 
         check_installed ();
-
         check_updates ();
-
         // check_available();
 
         task_is_running = false;
     }
 
     private static bool download_index () {
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        SystemHelper _system_helper = new SystemHelper ();
+        FileHelper _file_helper = new FileHelper ();
 
         check_if_initialized ();
 
         // fetch index.html --------------------------------------
 
-        dir_create (file_parent (index_page));
+        _file_helper.dir_create (_file_helper.file_parent (index_page));
 
-        if (file_exists (index_page)) {
-            file_delete (index_page);
+        if (_file_helper.file_exists (index_page)) {
+            _file_helper.file_delete (index_page);
         }
 
         var item = new DownloadItem (URI_KERNEL_UBUNTU_MAINLINE, CACHE_DIR, "index.html");
-        var mgr = new DownloadTask ();
+        var mgr = new DownloadHelper ();
         mgr.add_to_queue (item);
         mgr.status_in_kb = true;
         mgr.execute ();
 
         var msg = _("Fetching index from kernel.ubuntu.com...");
-        log_msg (msg);
+        _logging_helper.log_msg (msg);
         status_line = msg.strip ();
 
         while (mgr.is_running ()) {
-            sleep (500);
+            _system_helper.sleep (500);
         }
 
         // log_debug(index_page);
 
-        if (file_exists (index_page)) {
-            log_msg ("OK");
+        if (_file_helper.file_exists (index_page)) {
+            _logging_helper.log_msg ("OK");
             return true;
         } else {
-            log_error ("ERR");
+            _logging_helper.log_error ("ERR");
             return false;
         }
     }
 
     private static void load_index () {
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        FileHelper _file_helper = new FileHelper ();
 
         var list = new Gee.ArrayList<LinuxKernel>();
 
-        if (!file_exists (index_page)) {
+        if (!_file_helper.file_exists (index_page)) {
             return;
         }
 
-        string txt = file_read (index_page);
+        string txt = _file_helper.file_read (index_page);
 
         // parse index.html --------------------------
 
@@ -465,17 +492,17 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
                 return a.compare_to (b) * -1;
             });
         } catch (Error e) {
-            log_error (e.message);
+            _logging_helper.log_error (e.message);
         }
 
         kernel_list = list;
     }
 
     public static void check_installed () {
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        _logging_helper.log_debug ("check_installed");
 
-        log_debug ("check_installed");
-
-        log_msg (string.nfill (70, '-'));
+        _logging_helper.log_msg (string.nfill (70, '-'));
 
         foreach (var kern in kernel_list) {
             kern.is_installed = false;
@@ -491,7 +518,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
                 if (!pkg_versions.contains (pkg.version_installed)) {
 
                     pkg_versions.add (pkg.version_installed);
-                    log_msg ("Found installed" + ": %s".printf (pkg.version_installed));
+                    _logging_helper.log_msg ("Found installed" + ": %s".printf (pkg.version_installed));
 
                     string kern_name = "v%s".printf (pkg.version_installed);
                     var kern = new LinuxKernel (kern_name, false);
@@ -585,12 +612,12 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
             return a.compare_to (b) * -1;
         });
 
-        log_msg (string.nfill (70, '-'));
+        _logging_helper.log_msg (string.nfill (70, '-'));
     }
 
     public static void check_available () {
-
-        log_debug ("check_available");
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        _logging_helper.log_debug ("check_available");
 
         var list = Package.query_available_packages ("^linux-image");
 
@@ -601,7 +628,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
                 if (!pkg_versions.contains (pkg.version_installed)) {
 
                     pkg_versions.add (pkg.version_installed);
-                    log_msg ("Found upgrade" + ": %s".printf (pkg.version_installed));
+                    _logging_helper.log_msg ("Found upgrade" + ": %s".printf (pkg.version_installed));
 
                     string kern_name = "v%s".printf (pkg.version_installed);
                     var kern = new LinuxKernel (kern_name, false);
@@ -632,8 +659,8 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
     }
 
     public static void check_updates () {
-
-        log_debug ("check_updates");
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        _logging_helper.log_debug ("check_updates");
 
         kernel_update_major = null;
         kernel_update_minor = null;
@@ -653,7 +680,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
             if (kernel_latest_stable == null) {
                 kernel_latest_stable = kern;
-                log_debug ("latest stable kernel -> %s".printf (kern.version_main));
+                _logging_helper.log_debug ("latest stable kernel -> %s".printf (kern.version_main));
             }
 
             // skip installed
@@ -680,12 +707,12 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
             if (major_available && (kernel_update_major == null)) {
                 kernel_update_major = kern;
-                log_debug ("major update -> %s".printf (kern.version_main));
+                _logging_helper.log_debug ("major update -> %s".printf (kern.version_main));
             }
 
             if (minor_available && (kernel_update_minor == null)) {
                 kernel_update_minor = kern;
-                log_debug ("minor update -> %s".printf (kern.version_main));
+                _logging_helper.log_debug ("minor update -> %s".printf (kern.version_main));
             }
 
             if ((kernel_update_major != null)
@@ -698,13 +725,11 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
     }
 
     public static void purge_old_kernels (bool confirm) {
-
+        LoggingHelper _logging_helper = new LoggingHelper ();
         check_installed ();
 
         var list = new Gee.ArrayList<LinuxKernel>();
-
         var kern_running = new LinuxKernel.from_version (LinuxKernel.RUNNING_KERNEL);
-
         bool found_running_kernel = false;
 
         foreach (var kern in LinuxKernel.kernel_list) {
@@ -734,25 +759,23 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         }
 
         if (!found_running_kernel) {
-            log_error (_("Could not find running kernel in list!"));
-            log_msg (string.nfill (70, '-'));
+            _logging_helper.log_error (_("Could not find running kernel in list!"));
+            _logging_helper.log_msg (string.nfill (70, '-'));
             return;
         }
 
         if (list.size == 0) {
-            log_msg (_("Could not find any kernels to remove"));
-            log_msg (string.nfill (70, '-'));
+            _logging_helper.log_msg (_("Could not find any kernels to remove"));
+            _logging_helper.log_msg (string.nfill (70, '-'));
             return;
         }
 
         // confirm -------------------------------
 
         if (confirm) {
-
             var message = "\n%s:\n".printf (_("Following kernels will be removed"));
 
             foreach (var kern in list) {
-
                 message += " ▰ v%s\n".printf (kern.version_main);
             }
 
@@ -771,13 +794,12 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         // remove --------------------------------
 
         foreach (var kern in list) {
-
             kern.remove (true);
         }
     }
 
     public static void install_latest (bool point_update, bool confirm) {
-
+        LoggingHelper _logging_helper = new LoggingHelper ();
         query (true);
 
         check_updates ();
@@ -787,7 +809,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         if ((kern_major != null) && !point_update) {
 
             var message = "%s: %s".printf (_("Latest update"), kern_major.version_main);
-            log_msg (message);
+            _logging_helper.log_msg (message);
 
             install_update (kern_major, confirm);
             return;
@@ -798,21 +820,20 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         if (kern_minor != null) {
 
             var message = "%s: %s".printf (_("Latest point update"), kern_minor.version_main);
-            log_msg (message);
+            _logging_helper.log_msg (message);
 
             install_update (kern_minor, confirm);
             return;
         }
 
         if ((kern_major == null) && (kern_minor == null)) {
-            log_msg (_("No updates found"));
+            _logging_helper.log_msg (_("No updates found"));
         }
 
-        log_msg (string.nfill (70, '-'));
+        _logging_helper.log_msg (string.nfill (70, '-'));
     }
 
     public static void install_update (LinuxKernel kern, bool confirm) {
-
         if (confirm) {
 
             var message = "\n" + _("Install Linux v%s ? (y/n): ").printf (kern.version_main);
@@ -832,7 +853,6 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
     // helpers
 
     public void split_version_string (string _version_string, out string ver_main, out string ver_extra) {
-
         ver_main = "";
         ver_extra = "";
         version_maj = 0;
@@ -844,17 +864,13 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         }
 
         var version_string = _version_string.split ("~")[0];
-
-        var match = regex_match ("""[v]*([0-9]+|r+c+)""", version_string);
-
+        var match = misc_helper.regex_match ("""[v]*([0-9]+|r+c+)""", version_string);
         int index = -1;
 
         while (match != null) {
-
             string ? num = match.fetch (1);
 
             if (num != null) {
-
                 index++;
 
                 if (num == "rc") {
@@ -862,7 +878,6 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
                 } else {
 
                     if (num.length <= 3) {
-
                         if ((ver_main.length > 0) && !ver_main.has_suffix ("rc")) {
                             ver_main += ".";
                         }
@@ -960,8 +975,8 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
     public void mark_invalid () {
         string file = "%s/invalid".printf (cache_subdir);
-        if (!file_exists (file)) {
-            file_write (file, "1");
+        if (!file_helper.file_exists (file)) {
+            file_helper.file_write (file, "1");
         }
     }
 
@@ -972,7 +987,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
             }
             if (pkg.version_installed == version) {
                 apt_pkg_list[pkg.name] = pkg.name;
-                log_debug ("Package: %s".printf (pkg.name));
+                logging_helper.log_debug ("Package: %s".printf (pkg.name));
             }
         }
     }
@@ -993,7 +1008,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
     public bool is_valid {
         get {
-            return !file_exists ("%s/invalid".printf (cache_subdir));
+            return !file_helper.file_exists ("%s/invalid".printf (cache_subdir));
         }
     }
 
@@ -1005,10 +1020,12 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
     public static DateTime last_refreshed_date{
         owned get {
-            if (file_get_size (index_page) < 300000) {
+            FileHelper _file_helper = new FileHelper ();
+
+            if (_file_helper.file_get_size (index_page) < 300000) {
                 return (new DateTime.now_local ()).add_years (-1);
             } else {
-                return file_get_modified_date (index_page);
+                return _file_helper.file_get_modified_date (index_page);
             }
         }
     }
@@ -1045,7 +1062,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
     public bool cached_page_exists {
         get {
-            return file_exists (cached_page);
+            return file_helper.file_exists (cached_page);
         }
     }
 
@@ -1094,15 +1111,14 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
     // load
 
     private void load_cached_page () {
-
         var list = new Gee.HashMap<string, string>();
 
-        if (!file_exists (cached_page)) {
+        if (!file_helper.file_exists (cached_page)) {
             // log_error("load_cached_page: " + _("File not found") + ": %s".printf(cached_page));
             return;
         }
 
-        string txt = file_read (cached_page);
+        string txt = file_helper.file_read (cached_page);
 
         // parse index.html --------------------------
 
@@ -1155,7 +1171,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
                 mark_invalid ();
             }
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
         }
 
 
@@ -1165,11 +1181,12 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
     // actions
 
     public static void print_list () {
+        LoggingHelper _logging_helper = new LoggingHelper ();
 
-        log_msg ("");
-        log_draw_line ();
-        log_msg (_("Available Kernels"));
-        log_draw_line ();
+        _logging_helper.log_msg ("");
+        _logging_helper.log_draw_line ();
+        _logging_helper.log_msg (_("Available Kernels"));
+        _logging_helper.log_draw_line ();
 
         var kern_4 = new LinuxKernel.from_version ("4.0");
         foreach (var kern in kernel_list) {
@@ -1187,7 +1204,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
             extra = extra.has_prefix ("-") ? extra[1 : extra.length] : extra;
             var desc = kern.is_running ? _("Running") : (kern.is_installed ? _("Installed") : "");
 
-            log_msg ("%-30s %-25s %s".printf (kern.name, kern.version_main, desc));
+            _logging_helper.log_msg ("%-30s %-25s %s".printf (kern.name, kern.version_main, desc));
         }
     }
 
@@ -1208,37 +1225,35 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
             string file_path = "%s/%s/%s".printf (cache_subdir, NATIVE_ARCH, file_name);
 
-            if (file_exists (file_path) && !file_exists (file_path + ".aria2c")) {
+            if (file_helper.file_exists (file_path) && !file_helper.file_exists (file_path + ".aria2c")) {
                 continue;
             }
 
-            dir_create (file_parent (file_path));
+            file_helper.dir_create (file_helper.file_parent (file_path));
 
             stdout.printf ("\n" + _("Downloading") + ": '%s'... \n".printf (file_name));
             stdout.flush ();
 
-            var item = new DownloadItem (deb_list[file_name], file_parent (file_path), file_basename (file_path));
-
-            var mgr = new DownloadTask ();
+            var item = new DownloadItem (deb_list[file_name], file_helper.file_parent (file_path), file_helper.file_basename (file_path));
+            var mgr = new DownloadHelper ();
             mgr.add_to_queue (item);
             mgr.status_in_kb = true;
             mgr.execute ();
 
             while (mgr.is_running ()) {
-
-                sleep (200);
+                system_helper.sleep (200);
 
                 stdout.printf ("\r%-60s".printf (mgr.status_line.replace ("\n", "")));
                 stdout.flush ();
             }
 
-            if (file_exists (file_path)) {
+            if (file_helper.file_exists (file_path)) {
                 stdout.printf ("\r%-70s\n".printf (_("OK")));
                 stdout.flush ();
 
-                if (get_user_id_effective () == 0) {
-                    chown (file_path, CURRENT_USER, CURRENT_USER);
-                    chmod (file_path, "a+rw");
+                if (system_helper.get_user_id_effective () == 0) {
+                    file_helper.chown (file_path, CURRENT_USER, CURRENT_USER);
+                    file_helper.chmod (file_path, "a+rw");
                 }
             } else {
                 stdout.printf ("\r%-70s\n".printf (_("ERROR")));
@@ -1255,7 +1270,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
         // check if installed
         if (is_installed) {
-            log_error (_("This kernel is already installed."));
+            logging_helper.log_error (_("This kernel is already installed."));
             return false;
         }
 
@@ -1263,8 +1278,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         int status = -1;
 
         if (ok) {
-
-            log_msg ("Preparing to install '%s'".printf (name));
+            logging_helper.log_msg ("Preparing to install '%s'".printf (name));
 
             var cmd = "cd '%s/%s' && dpkg -i ".printf (cache_subdir, NATIVE_ARCH);
 
@@ -1273,11 +1287,11 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
             }
 
             if (write_to_terminal) {
-                log_msg ("");
+                logging_helper.log_msg ("");
                 status = Posix.system (cmd); // execute
-                log_msg ("");
+                logging_helper.log_msg ("");
             } else {
-                status = exec_script_sync (cmd); // execute
+                status = process_helper.exec_script_sync (cmd); // execute
             }
 
             ok = (status == 0);
@@ -1285,9 +1299,9 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
             update_grub_menu ();
 
             if (ok) {
-                log_msg (_("Installation completed. A reboot is required to use the new kernel."));
+                logging_helper.log_msg (_("Installation completed. A reboot is required to use the new kernel."));
             } else {
-                log_error (_("Installation completed with errors"));
+                logging_helper.log_error (_("Installation completed with errors"));
             }
         }
 
@@ -1296,6 +1310,8 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
     // dep: dpkg
     public static bool remove_kernels (Gee.ArrayList<LinuxKernel> selected_kernels) {
+        LoggingHelper _logging_helper = new LoggingHelper ();
+
         bool ok = true;
         int status = -1;
 
@@ -1303,12 +1319,12 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
         foreach (var kern in selected_kernels) {
             if (kern.is_running) {
-                log_error (_("Selected kernel is currently running and cannot be removed.\n Install another kernel before removing this one."));
+                _logging_helper.log_error (_("Selected kernel is currently running and cannot be removed.\n Install another kernel before removing this one."));
                 return false;
             }
         }
 
-        log_msg (_("Preparing to remove selected kernels"));
+        _logging_helper.log_msg (_("Preparing to remove selected kernels"));
 
         var cmd = "dpkg -r ";
 
@@ -1329,23 +1345,23 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
                 }
             } else {
                 stdout.printf ("");
-                log_error ("Could not find the packages to remove!");
+                _logging_helper.log_error ("Could not find the packages to remove!");
                 return false;
             }
         }
 
-        log_msg ("");
+        _logging_helper.log_msg ("");
         status = Posix.system (cmd); // execute
-        log_msg ("");
+        _logging_helper.log_msg ("");
 
         ok = (status == 0);
 
         update_grub_menu ();
 
         if (ok) {
-            log_msg (_("Un-install completed"));
+            _logging_helper.log_msg (_("Un-install completed"));
         } else {
-            log_error (_("Un-install completed with errors"));
+            _logging_helper.log_error (_("Un-install completed with errors"));
         }
 
         return ok;
@@ -1358,11 +1374,11 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
         // check if running
         if (is_running) {
-            log_error (_("This kernel is currently running and cannot be removed.\n Install another kernel before removing this one."));
+            logging_helper.log_error (_("This kernel is currently running and cannot be removed.\n Install another kernel before removing this one."));
             return false;
         }
 
-        log_msg ("Preparing to remove '%s'".printf (name));
+        logging_helper.log_msg ("Preparing to remove '%s'".printf (name));
 
         var cmd = "dpkg -r ";
 
@@ -1381,25 +1397,25 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
             }
         } else {
             stdout.printf ("");
-            log_error ("Could not find the packages to remove!");
+            logging_helper.log_error ("Could not find the packages to remove!");
             return false;
         }
 
         if (write_to_terminal) {
-            log_msg ("");
+            logging_helper.log_msg ("");
             status = Posix.system (cmd); // execute
-            log_msg ("");
+            logging_helper.log_msg ("");
         } else {
-            status = exec_script_sync (cmd); // execute
+            status = process_helper.exec_script_sync (cmd); // execute
         }
         ok = (status == 0);
 
         update_grub_menu ();
 
         if (ok) {
-            log_msg (_("Un-install completed"));
+            logging_helper.log_msg (_("Un-install completed"));
         } else {
-            log_error (_("Un-install completed with errors"));
+            logging_helper.log_error (_("Un-install completed with errors"));
         }
 
         return ok;
@@ -1407,9 +1423,11 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
     // dep: update-grub
     public static bool update_grub_menu () {
+        FileHelper _file_helper = new FileHelper ();
+        LoggingHelper _logging_helper = new LoggingHelper ();
 
         string grub_file = "/etc/default/grub";
-        if (!file_exists (grub_file)) {
+        if (!_file_helper.file_exists (grub_file)) {
             return false;
         }
 
@@ -1417,15 +1435,15 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         bool file_changed = false;
         bool grub_timeout_found = false;
 
-        foreach (var line in file_read (grub_file).split ("\n")) {
+        foreach (var line in _file_helper.file_read (grub_file).split ("\n")) {
 
             if (line.up ().contains ("GRUB_HIDDEN_TIMEOUT=") && !line.strip ().has_prefix ("#")) {
                 // comment the line
                 txt += "#%s\n".printf (line);
                 file_changed = true;
             } else if (line.up ().contains ("GRUB_TIMEOUT=")) {
-
                 int64 seconds = 0;
+
                 if (int64.try_parse (line.split ("=")[1], out seconds)) {
                     // value can be 0, > 0 or -1 (indefinite wait)
                     if (seconds == grub_timeout) {
@@ -1458,10 +1476,10 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         }
 
         if (file_changed && update_grub_timeout) {
-            file_write (grub_file, txt);
+            _file_helper.file_write (grub_file, txt);
         }
 
-        log_msg (_("Updating GRUB menu"));
+        _logging_helper.log_msg (_("Updating GRUB menu"));
 
         string cmd = "update-grub";
         Posix.system (cmd);

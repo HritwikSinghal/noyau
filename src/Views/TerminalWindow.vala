@@ -23,12 +23,6 @@
 using Gtk;
 using Gee;
 
-using TeeJee.Logging;
-using TeeJee.FileSystem;
-using TeeJee.ProcessHelper;
-using TeeJee.System;
-using TeeJee.Misc;
-
 public class TerminalWindow : Gtk.Window {
 
     private Gtk.Box vbox_main;
@@ -46,12 +40,20 @@ public class TerminalWindow : Gtk.Window {
     public bool cancelled = false;
     public bool is_running = false;
 
-    public GtkHelper gtk_helper;
+    private GtkHelper gtk_helper;
+    private ProcessHelper process_helper;
+    private LoggingHelper logging_helper;
+    private SystemHelper system_helper;
+    private FileHelper file_helper;
 
     public signal void script_complete ();
 
     public TerminalWindow.with_parent (Gtk.Window ? parent, bool fullscreen = false, bool show_cancel_button = false) {
         gtk_helper = new GtkHelper ();
+        process_helper = new ProcessHelper ();
+        logging_helper = new LoggingHelper ();
+        system_helper = new SystemHelper ();
+        file_helper = new FileHelper ();
 
         if (parent != null) {
             set_transient_for (parent);
@@ -182,7 +184,7 @@ public class TerminalWindow : Gtk.Window {
 
             term.spawn_sync (
                 Vte.PtyFlags.DEFAULT, // pty_flags
-                TEMP_DIR, // working_directory
+                process_helper.get_temp_file_path (), // working_directory
                 argv, // argv
                 env, // env
                 GLib.SpawnFlags.SEARCH_PATH, // spawn_flags
@@ -191,13 +193,13 @@ public class TerminalWindow : Gtk.Window {
                 null
             );
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
         }
     }
 
     public void terminate_child () {
         btn_cancel.sensitive = false;
-        process_quit (child_pid);
+        process_helper.process_quit (child_pid);
     }
 
     public void execute_command (string command) {
@@ -219,7 +221,7 @@ public class TerminalWindow : Gtk.Window {
 
             term.spawn_sync (
                 Vte.PtyFlags.DEFAULT, // pty_flags
-                TEMP_DIR, // working_directory
+                process_helper.get_temp_file_path (), // working_directory
                 argv, // argv
                 env, // env
                 GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD, // spawn_flags
@@ -229,17 +231,16 @@ public class TerminalWindow : Gtk.Window {
             );
 
             term.watch_child (child_pid);
-
             term.child_exited.connect (script_exit);
 
             if (wait) {
                 while (is_running) {
-                    sleep (200);
+                    system_helper.sleep (200);
                     gtk_helper.gtk_do_events ();
                 }
             }
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
         }
     }
 

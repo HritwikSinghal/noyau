@@ -25,12 +25,6 @@ using Gdk;
 using Gee;
 using GLib;
 
-using TeeJee.Logging;
-using TeeJee.FileSystem;
-using TeeJee.ProcessHelper;
-using TeeJee.System;
-using TeeJee.Misc;
-
 public class MainWindow : Gtk.Window {
 
     private Gtk.Box vbox_main;
@@ -53,10 +47,20 @@ public class MainWindow : Gtk.Window {
 
     private Gee.ArrayList<LinuxKernel> selected_kernels;
 
-    public GtkHelper gtk_helper;
+    private GtkHelper gtk_helper;
+    private FileHelper file_helper;
+    private SystemHelper system_helper;
+    private MiscHelper misc_helper;
+    private LoggingHelper logging_helper;
+    private ProcessHelper process_helper;
 
     public MainWindow () {
         gtk_helper = new GtkHelper ();
+        file_helper = new FileHelper ();
+        system_helper = new SystemHelper ();
+        misc_helper = new MiscHelper ();
+        logging_helper = new LoggingHelper ();
+        process_helper = new ProcessHelper ();
 
         title = App.APP_NAME; // "%s (Ukuu) v%s".printf(Main.AppName, Main.AppVersion);
         window_position = WindowPosition.CENTER;
@@ -104,7 +108,7 @@ public class MainWindow : Gtk.Window {
                 if (kern_requested == null) {
                     var msg = _("Could not find requested version");
                     msg += ": %s".printf (App.requested_version);
-                    log_error (msg);
+                    logging_helper.log_error (msg);
                     exit (1);
                 } else {
                     install (kern_requested);
@@ -288,12 +292,10 @@ public class MainWindow : Gtk.Window {
 
         try {
             pix_ubuntu = new Gdk.Pixbuf.from_file ("/usr/share/ukuu/images/ubuntu-logo.png");
-
             pix_mainline = new Gdk.Pixbuf.from_file ("/usr/share/ukuu/images/tux.png");
-
             pix_mainline_rc = new Gdk.Pixbuf.from_file ("/usr/share/ukuu/images/tux-red.png");
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
         }
 
         var kern_4 = new LinuxKernel.from_version ("4.0");
@@ -361,8 +363,8 @@ public class MainWindow : Gtk.Window {
 
             btn_purge.sensitive = true;
 
-            btn_changes.sensitive = (selected_kernels.size == 1) && file_exists (selected_kernels[0].changes_file);
-            menu_changes.sensitive = (selected_kernels.size == 1) && file_exists (selected_kernels[0].changes_file);
+            btn_changes.sensitive = (selected_kernels.size == 1) && file_helper.file_exists (selected_kernels[0].changes_file);
+            menu_changes.sensitive = (selected_kernels.size == 1) && file_helper.file_exists (selected_kernels[0].changes_file);
         }
     }
 
@@ -395,10 +397,11 @@ public class MainWindow : Gtk.Window {
             string sh = "";
             sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ";
             sh += "ukuu --user %s".printf (App.user_login);
+            /*
             if (LOG_DEBUG) {
                 sh += " --debug";
             }
-
+            */
             string names = "";
             foreach (var kern in selected_kernels) {
                 if (names.length > 0) {
@@ -408,19 +411,18 @@ public class MainWindow : Gtk.Window {
             }
 
             sh += " --remove %s\n".printf (names);
-
             sh += "echo ''\n";
             sh += "echo 'Close window to exit...'\n";
 
             this.hide ();
 
-            term.execute_script (save_bash_script_temp (sh));
+            term.execute_script (process_helper.save_bash_script_temp (sh));
         }
     }
 
     private void button_changes_click () {
-        if ((selected_kernels.size == 1) && file_exists (selected_kernels[0].changes_file)) {
-            xdg_open (selected_kernels[0].changes_file);
+        if ((selected_kernels.size == 1) && file_helper.file_exists (selected_kernels[0].changes_file)) {
+            system_helper.xdg_open (selected_kernels[0].changes_file);
         }
     }
 
@@ -458,7 +460,7 @@ public class MainWindow : Gtk.Window {
         button_refresh.text = "Refresh";
         button_refresh.centered = true;
         button_refresh.clicked.connect (() => {
-            if (!check_internet_connectivity ()) {
+            if (!system_helper.check_internet_connectivity ()) {
                 gtk_helper.gtk_messagebox (_("No Internet"), _("Internet connection is not active"), this, true);
                 return;
             }
@@ -529,20 +531,21 @@ public class MainWindow : Gtk.Window {
             string sh = "";
             sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ";
             sh += "ukuu --user %s".printf (App.user_login);
+            /*
             if (LOG_DEBUG) {
                 sh += " --debug";
             }
-
+            */
             sh += " --purge-old-kernels\n";
 
-            log_debug (sh);
+            logging_helper.log_debug (sh);
 
             sh += "echo ''\n";
             sh += "echo 'Close window to exit...'\n";
 
             this.hide ();
 
-            term.execute_script (save_bash_script_temp (sh));
+            term.execute_script (process_helper.save_bash_script_temp (sh));
         });
 
         header_bar.pack_end (button_purge);
@@ -595,7 +598,7 @@ public class MainWindow : Gtk.Window {
     }
 
     private void refresh_cache (bool download_index = true) {
-        if (!check_internet_connectivity ()) {
+        if (!system_helper.check_internet_connectivity ()) {
             gtk_helper.gtk_messagebox (_("No Internet"), _("Internet connection is not active"), this, true);
             return;
         }
@@ -607,7 +610,7 @@ public class MainWindow : Gtk.Window {
             LinuxKernel.query (false);
 
             while (LinuxKernel.task_is_running) {
-                sleep (200);
+                system_helper.sleep (200);
                 gtk_helper.gtk_do_events ();
             }
 
@@ -623,7 +626,7 @@ public class MainWindow : Gtk.Window {
 
         LinuxKernel.query (false);
 
-        var timer = timer_start ();
+        var timer = system_helper.timer_start ();
 
         App.progress_total = 1;
         App.progress_count = 0;
@@ -641,12 +644,12 @@ public class MainWindow : Gtk.Window {
             App.progress_total = LinuxKernel.progress_total;
             App.progress_count = LinuxKernel.progress_count;
 
-            ulong ms_elapsed = timer_elapsed (timer, false);
+            ulong ms_elapsed = system_helper.timer_elapsed (timer, false);
             int64 remaining_count = App.progress_total - App.progress_count;
             int64 ms_remaining = (int64) ((ms_elapsed * 1.0) / App.progress_count) * remaining_count;
 
             if ((count % 5) == 0) {
-                msg_remaining = format_time_left (ms_remaining);
+                msg_remaining = misc_helper.format_time_left (ms_remaining);
             }
 
             if (App.progress_total > 0) {
@@ -665,7 +668,7 @@ public class MainWindow : Gtk.Window {
             count++;
         }
 
-        timer_elapsed (timer, true);
+        system_helper.timer_elapsed (timer, true);
 
         dlg.destroy ();
         gtk_helper.gtk_do_events ();
@@ -733,7 +736,7 @@ public class MainWindow : Gtk.Window {
             return;
         }
 
-        if (!check_internet_connectivity ()) {
+        if (!system_helper.check_internet_connectivity ()) {
             gtk_helper.gtk_messagebox (_("No Internet"), _("Internet connection is not active."), this, true);
             return;
         }
@@ -762,15 +765,17 @@ public class MainWindow : Gtk.Window {
         string sh = "";
         sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ";
         sh += "ukuu --user %s".printf (App.user_login);
+        /*
         if (LOG_DEBUG) {
             sh += " --debug";
         }
+        */
         sh += " --install %s\n".printf (kern.name);
 
         sh += "echo ''\n";
         sh += "echo 'Close window to exit...'\n";
 
-        term.execute_script (save_bash_script_temp (sh));
+        term.execute_script (process_helper.save_bash_script_temp (sh));
     }
 
     private void notify_user () {
@@ -794,15 +799,15 @@ public class MainWindow : Gtk.Window {
                     kern);
 
                 win.destroy.connect (() => {
-                    log_debug ("UpdateNotificationDialog destroyed");
+                    logging_helper.log_debug ("UpdateNotificationDialog destroyed");
                     Gtk.main_quit ();
                 });
 
                 Gtk.main (); // start event loop
             }
 
-            log_msg (title);
-            log_msg (message);
+            logging_helper.log_msg (title);
+            logging_helper.log_msg (message);
             return;
         }
 
@@ -825,19 +830,19 @@ public class MainWindow : Gtk.Window {
                     kern);
 
                 win.destroy.connect (() => {
-                    log_debug ("UpdateNotificationDialog destroyed");
+                    logging_helper.log_debug ("UpdateNotificationDialog destroyed");
                     Gtk.main_quit ();
                 });
 
                 Gtk.main (); // start event loop
             }
 
-            log_msg (title);
-            log_msg (message);
+            logging_helper.log_msg (title);
+            logging_helper.log_msg (message);
             return;
         }
 
-        log_msg (_("No updates found"));
+        logging_helper.log_msg (_("No updates found"));
     }
 
     public void show_grub_message () {

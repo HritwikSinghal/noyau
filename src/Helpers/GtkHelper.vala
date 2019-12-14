@@ -23,15 +23,15 @@
 using Gtk;
 using GLib;
 
-using TeeJee.Logging;
-using TeeJee.FileSystem;
-using TeeJee.ProcessHelper;
-using TeeJee.System;
-using TeeJee.Misc;
-
 public class GtkHelper : GLib.Object {
 
     public static int CSS_AUTO_CLASS_INDEX = 0;
+
+    private LoggingHelper logging_helper;
+
+    public GtkHelper () {
+        logging_helper = new LoggingHelper ();
+    }
 
     // messages ----------------------------------------
 
@@ -91,7 +91,7 @@ public class GtkHelper : GLib.Object {
             pix_icon = icon_theme.load_icon_for_scale (
                 icon_name, Gtk.IconSize.MENU, icon_size, Gtk.IconLookupFlags.FORCE_SIZE);
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
         }
 
         string fallback_icon_file_path = "/usr/share/%s/%s".printf (icon_directory, fallback_icon_file_name);
@@ -100,12 +100,12 @@ public class GtkHelper : GLib.Object {
             try {
                 pix_icon = new Gdk.Pixbuf.from_file_at_size (fallback_icon_file_path, icon_size, icon_size);
             } catch (Error e) {
-                log_error (e.message);
+                logging_helper.log_error (e.message);
             }
         }
 
         if (pix_icon == null) {
-            log_error (_("Missing Icon") + ": '%s', '%s'".printf (icon_name, fallback_icon_file_path));
+            logging_helper.log_error (_("Missing Icon") + ": '%s', '%s'".printf (icon_name, fallback_icon_file_path));
         } else {
             img_icon = new Gtk.Image.from_pixbuf (pix_icon);
         }

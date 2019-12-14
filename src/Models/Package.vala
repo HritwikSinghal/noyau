@@ -20,12 +20,11 @@
  * MA 02110-1301, USA.
  */
 
-using TeeJee.Logging;
-using TeeJee.FileSystem;
-using TeeJee.ProcessHelper;
-using TeeJee.Misc;
+using GLib;
 
 public class Package : GLib.Object {
+
+    public FileHelper file_utils;
 
     public string id = "";
     public string name = "";
@@ -41,16 +40,23 @@ public class Package : GLib.Object {
 
     public static string NATIVE_ARCH = "";
 
-    public static void initialize () {
-        string std_out, std_err;
-        int status = exec_sync ("dpkg --print-architecture", out std_out, out std_err);
-        if ((status == 0) && (std_out != null)) {
-            NATIVE_ARCH = std_out.strip ();
-        }
-    }
+    private LoggingHelper logging_helper;
+    private ProcessHelper process_helper;
 
     public Package (string _name) {
         name = _name;
+        file_utils = new FileHelper ();
+        process_helper = new ProcessHelper ();
+        logging_helper = new LoggingHelper ();
+    }
+
+    public static void initialize () {
+        ProcessHelper _process_helper = new ProcessHelper ();
+        string std_out, std_err;
+        int status = _process_helper.exec_sync ("dpkg --print-architecture", out std_out, out std_err);
+        if ((status == 0) && (std_out != null)) {
+            NATIVE_ARCH = std_out.strip ();
+        }
     }
 
     public bool is_foreign () {
@@ -79,16 +85,18 @@ public class Package : GLib.Object {
     }
 
     public static Gee.HashMap<string, Package> query_installed_packages () {
+        ProcessHelper _process_helper = new ProcessHelper ();
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        FileHelper _file_utils = new FileHelper ();
 
         var list = new Gee.HashMap<string, Package>();
-
-        string temp_file = get_temp_file_path ();
+        string temp_file = _process_helper.get_temp_file_path ();
 
         // get installed packages from aptitude --------------
 
         string std_out, std_err;
-        exec_sync ("aptitude search --disable-columns -F '%p|%v|%M|%d' '?installed'", out std_out, out std_err);
-        file_write (temp_file, std_out);
+        _process_helper.exec_sync ("aptitude search --disable-columns -F '%p|%v|%M|%d' '?installed'", out std_out, out std_err);
+        _file_utils.file_write (temp_file, std_out);
 
         // parse ------------------------
 
@@ -130,27 +138,29 @@ public class Package : GLib.Object {
                     }
                 }
             } else {
-                log_error (_("File not found: %s").printf (temp_file));
+                _logging_helper.log_error (_("File not found: %s").printf (temp_file));
             }
         } catch (Error e) {
-            log_error (e.message);
+            _logging_helper.log_error (e.message);
         }
 
         return list;
     }
 
     public static Gee.HashMap<string, Package> query_available_packages (string search_string) {
+        ProcessHelper _process_helper = new ProcessHelper ();
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        FileHelper _file_utils = new FileHelper ();
 
         var list = new Gee.HashMap<string, Package>();
-
-        string temp_file = get_temp_file_path ();
+        string temp_file = _process_helper.get_temp_file_path ();
 
         // get installed packages from aptitude --------------
 
         string std_out, std_err;
         string cmd = "aptitude search --disable-columns -F '%%p|%%v|%%M|%%d' '!installed ?architecture(native) %s'".printf (search_string);
-        exec_sync (cmd, out std_out, out std_err);
-        file_write (temp_file, std_out);
+        _process_helper.exec_sync (cmd, out std_out, out std_err);
+        _file_utils.file_write (temp_file, std_out);
 
         // parse ------------------------
 
@@ -192,10 +202,10 @@ public class Package : GLib.Object {
                     }
                 }
             } else {
-                log_error (_("File not found: %s").printf (temp_file));
+                _logging_helper.log_error (_("File not found: %s").printf (temp_file));
             }
         } catch (Error e) {
-            log_error (e.message);
+            _logging_helper.log_error (e.message);
         }
 
         return list;

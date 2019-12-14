@@ -1,27 +1,28 @@
 project_files = files(
     'App.vala',
 
-    'Gtk/AboutWindow.vala',
-    'Gtk/MainWindow.vala',
-    'Gtk/ProgressWindow.vala',
-    'Gtk/SettingsDialog.vala',
-    'Gtk/TerminalWindow.vala',
-    'Gtk/UpdateNotificationDialog.vala',
+    'Models/DownloadItem.vala',
+    'Models/LinuxKernel.vala',
+    'Models/OSDNotify.vala',
+    'Models/Package.vala',
+    'Models/Version.vala',
+    'Models/AsyncTask.vala',
 
-    'Utility/Gtk/GtkHelper.vala',
+    'Views/AboutWindow.vala',
+    'Views/MainWindow.vala',
+    'Views/ProgressWindow.vala',
+    'Views/SettingsDialog.vala',
+    'Views/TerminalWindow.vala',
+    'Views/UpdateNotificationDialog.vala',
 
-    'Utility/LinuxKernel.vala',
-    'Utility/DownloadManager.vala',
-    'Utility/Package.vala',
-    'Utility/AsyncTask.vala',
-    'Utility/JsonHelper.vala',
-    'Utility/OSDNotify.vala',
-    'Utility/TeeJee.FileSystem.vala',
-    'Utility/TeeJee.Logging.vala',
-    'Utility/TeeJee.Misc.vala',
-    'Utility/TeeJee.Process.vala',
-    'Utility/TeeJee.System.vala',
-    'Utility/Version.vala'
+    'Helpers/GtkHelper.vala',
+    'Helpers/DownloadHelper.vala',
+    'Helpers/JsonHelper.vala',
+    'Helpers/FileHelper.vala',
+    'Helpers/LoggingHelper.vala',
+    'Helpers/MiscHelper.vala',
+    'Helpers/ProcessHelper.vala',
+    'Helpers/SystemHelper.vala'
 )
 
 executable(

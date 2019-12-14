@@ -20,12 +20,18 @@
  * MA 02110-1301, USA.
  */
 
-using TeeJee.ProcessHelper;
-using TeeJee.Logging;
-using TeeJee.Misc;
-using TeeJee.FileSystem;
+using GLib;
 
-namespace TeeJee.System {
+public class SystemHelper : GLib.Object {
+
+    private ProcessHelper process_helper;
+    private FileHelper file_helper;
+    private LoggingHelper logging_helper;
+
+    public SystemHelper () {
+        process_helper = new ProcessHelper ();
+        file_helper = new FileHelper ();
+    }
 
     // user ---------------------------------------------------
 
@@ -60,7 +66,9 @@ namespace TeeJee.System {
         int uid = -1;
         string cmd = "id -u";
         string std_out, std_err;
-        exec_sync (cmd, out std_out, out std_err);
+
+        process_helper.exec_sync (cmd, out std_out, out std_err);
+
         if ((std_out != null) && (std_out.length > 0)) {
             uid = int.parse (std_out);
         }
@@ -83,10 +91,9 @@ namespace TeeJee.System {
     }
 
     public int get_user_id_from_username (string username) {
-
         int user_id = -1;
 
-        foreach (var line in file_read ("/etc/passwd").split ("\n")) {
+        foreach (var line in file_helper.file_read ("/etc/passwd").split ("\n")) {
             var arr = line.split (":");
             if (arr.length < 3) {
                 continue;
@@ -101,10 +108,9 @@ namespace TeeJee.System {
     }
 
     public string get_username_from_uid (int user_id) {
-
         string username = "";
 
-        foreach (var line in file_read ("/etc/passwd").split ("\n")) {
+        foreach (var line in file_helper.file_read ("/etc/passwd").split ("\n")) {
             var arr = line.split (":");
             if (arr.length < 3) {
                 continue;
@@ -119,10 +125,9 @@ namespace TeeJee.System {
     }
 
     public string get_user_home (string username = get_username ()) {
-
         string userhome = "";
 
-        foreach (var line in file_read ("/etc/passwd").split ("\n")) {
+        foreach (var line in file_helper.file_read ("/etc/passwd").split ("\n")) {
             var arr = line.split (":");
             if (arr.length < 6) {
                 continue;
@@ -149,7 +154,7 @@ namespace TeeJee.System {
         try {
             return GLib.FileUtils.read_link ("/proc/self/exe");
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
             return "";
         }
     }
@@ -161,7 +166,7 @@ namespace TeeJee.System {
         try {
             return (File.new_for_path (GLib.FileUtils.read_link ("/proc/self/exe"))).get_parent ().get_path ();
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
             return "";
         }
     }
@@ -185,7 +190,7 @@ namespace TeeJee.System {
             double secs = double.parse (uptime);
             return secs;
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
             return 0;
         }
     }
@@ -196,37 +201,37 @@ namespace TeeJee.System {
 
         int pid = -1;
 
-        pid = get_pid_by_name ("cinnamon");
+        pid = process_helper.get_pid_by_name ("cinnamon");
         if (pid > 0) {
             return "Cinnamon";
         }
 
-        pid = get_pid_by_name ("xfdesktop");
+        pid = process_helper.get_pid_by_name ("xfdesktop");
         if (pid > 0) {
             return "Xfce";
         }
 
-        pid = get_pid_by_name ("lxsession");
+        pid = process_helper.get_pid_by_name ("lxsession");
         if (pid > 0) {
             return "LXDE";
         }
 
-        pid = get_pid_by_name ("gnome-shell");
+        pid = process_helper.get_pid_by_name ("gnome-shell");
         if (pid > 0) {
             return "Gnome";
         }
 
-        pid = get_pid_by_name ("wingpanel");
+        pid = process_helper.get_pid_by_name ("wingpanel");
         if (pid > 0) {
             return "Elementary";
         }
 
-        pid = get_pid_by_name ("unity-panel-service");
+        pid = process_helper.get_pid_by_name ("unity-panel-service");
         if (pid > 0) {
             return "Unity";
         }
 
-        pid = get_pid_by_name ("plasma-desktop");
+        pid = process_helper.get_pid_by_name ("plasma-desktop");
         if (pid > 0) {
             return "KDE";
         }
@@ -247,7 +252,7 @@ namespace TeeJee.System {
                 list.add (name);
             }
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
         }
 
         // sort the list
@@ -262,7 +267,6 @@ namespace TeeJee.System {
     // internet helpers ----------------------
 
     public bool check_internet_connectivity () {
-
         string std_err, std_out;
 
         string cmd = "url='https://www.google.com' \n";
@@ -270,21 +274,17 @@ namespace TeeJee.System {
         // Note: minimum of 3 seconds is required for timeout, to avoid wrong results
 
         cmd += "httpCode=$(curl -o /dev/null --silent --max-time 5 --head --write-out '%{http_code}\n' $url) \n";
-
         cmd += "test $httpCode -lt 400 -a $httpCode -gt 0 \n";
-
         cmd += "exit $?";
 
-        int status = exec_script_sync (cmd, out std_out, out std_err, false);
+        int status = process_helper.exec_script_sync (cmd, out std_out, out std_err, false);
 
         if (std_err.length > 0) {
-
-            log_error (std_err);
+            logging_helper.log_error (std_err);
         }
 
         if (status != 0) {
-
-            log_error (_("Internet connection is not active"));
+            logging_helper.log_error (_("Internet connection is not active"));
         }
 
         return (status == 0);
@@ -300,33 +300,32 @@ namespace TeeJee.System {
             Process.spawn_async (null, argv, null, SpawnFlags.SEARCH_PATH, null, out procId);
             return true;
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
             return false;
         }
     }
 
     public bool command_exists (string command) {
-        string path = get_cmd_path (command);
+        string path = process_helper.get_cmd_path (command);
         return ((path != null) && (path.length > 0));
     }
 
     // open -----------------------------
 
     public bool xdg_open (string file, string user = "") {
-
-        string path = get_cmd_path ("xdg-open");
+        string path = process_helper.get_cmd_path ("xdg-open");
 
         if ((path != null) && (path != "")) {
 
-            string cmd = "xdg-open '%s'".printf (escape_single_quote (file));
+            string cmd = "xdg-open '%s'".printf (file_helper.escape_single_quote (file));
 
             if (user.length > 0) {
                 cmd = "pkexec --user %s env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ".printf (user) + cmd;
             }
 
-            log_debug (cmd);
+            logging_helper.log_debug (cmd);
 
-            int status = exec_script_async (cmd);
+            int status = process_helper.exec_script_async (cmd);
 
             return (status == 0);
         }
@@ -339,7 +338,7 @@ namespace TeeJee.System {
         /* Returns true if the system was booted in EFI mode
          * and false for BIOS mode */
 
-        return dir_exists ("/sys/firmware/efi");
+        return file_helper.dir_exists ("/sys/firmware/efi");
     }
 
     public void open_terminal_window (string terminal_emulator,
@@ -366,16 +365,16 @@ namespace TeeJee.System {
             case "gnome-terminal":
             case "xfce4-terminal":
                 if (working_dir.length > 0) {
-                    cmd += " --working-directory='%s'".printf (escape_single_quote (working_dir));
+                    cmd += " --working-directory='%s'".printf (file_helper.escape_single_quote (working_dir));
                 }
                 if (script_file_to_execute.length > 0) {
-                    cmd += " -e '%s\n; echo Press ENTER to exit... ; read dummy;'".printf (escape_single_quote (script_file_to_execute));
+                    cmd += " -e '%s\n; echo Press ENTER to exit... ; read dummy;'".printf (file_helper.escape_single_quote (script_file_to_execute));
                 }
                 break;
         }
 
-        log_debug (cmd);
-        exec_script_async (cmd);
+        logging_helper.log_debug (cmd);
+        process_helper.exec_script_async (cmd);
     }
 
     // timers --------------------------------------------------
@@ -422,7 +421,7 @@ namespace TeeJee.System {
         if (stop) {
             timer.stop ();
         }
-        log_msg ("%s %lu\n".printf (seconds.to_string (), microseconds));
+        logging_helper.log_msg ("%s %lu\n".printf (seconds.to_string (), microseconds));
     }
 
     public void set_numeric_locale (string type) {

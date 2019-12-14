@@ -23,12 +23,6 @@
 using Gtk;
 using Gee;
 
-using TeeJee.Logging;
-using TeeJee.FileSystem;
-using TeeJee.ProcessHelper;
-using TeeJee.System;
-using TeeJee.Misc;
-
 public class SettingsDialog : Gtk.Dialog {
 
     private Gtk.CheckButton chk_notify_major;

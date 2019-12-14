@@ -20,37 +20,51 @@
  * MA 02110-1301, USA.
  */
 
-using TeeJee.Logging;
-using TeeJee.FileSystem;
-using TeeJee.Misc;
+using GLib;
 
-namespace TeeJee.ProcessHelper {
+public class ProcessHelper : GLib.Object {
 
     /* Convenience functions for executing commands and managing processes */
 
-    public string TEMP_DIR;
+    public static string TEMP_DIR;
+
+    private MiscHelper misc_helper;
+    private FileHelper file_helper;
+    private LoggingHelper logging_helper;
+    private ProcessHelper process_helper;
+
+    public ProcessHelper () {
+        misc_helper = new MiscHelper ();
+        file_helper = new FileHelper ();
+        logging_helper = new LoggingHelper ();
+        process_helper = new ProcessHelper ();
+    }
 
     // execute process ---------------------------------
 
     public static void init_tmp (string subdir_name) {
+        MiscHelper _misc_helper = new MiscHelper ();
+        FileHelper _file_helper = new FileHelper ();
+        ProcessHelper _process_helper = new ProcessHelper ();
+
         string std_out, std_err;
 
-        TEMP_DIR = Environment.get_tmp_dir () + "/" + subdir_name + "/" + random_string ();
-        dir_create (TEMP_DIR);
+        TEMP_DIR = Environment.get_tmp_dir () + "/" + subdir_name + "/" + _misc_helper.random_string ();
+        _file_helper.dir_create (TEMP_DIR);
 
-        exec_script_sync ("echo 'ok'", out std_out, out std_err, true);
+        _process_helper.exec_script_sync ("echo 'ok'", out std_out, out std_err, true);
         if ((std_out == null) || (std_out.strip () != "ok")) {
-            TEMP_DIR = Environment.get_home_dir () + "/.temp/" + subdir_name + "/" + random_string ();
-            exec_sync ("rm -rf '%s'".printf (TEMP_DIR), null, null);
-            dir_create (TEMP_DIR);
+            TEMP_DIR = Environment.get_home_dir () + "/.temp/" + subdir_name + "/" + _misc_helper.random_string ();
+            _process_helper.exec_sync ("rm -rf '%s'".printf (TEMP_DIR), null, null);
+            _file_helper.dir_create (TEMP_DIR);
         }
 
         // log_debug("TEMP_DIR=" + TEMP_DIR);
     }
 
     public string create_temp_subdir (string base_dir = "") {
-        var temp = "%s/%s".printf ((base_dir.length > 0) ? base_dir : TEMP_DIR, random_string ());
-        dir_create (temp);
+        var temp = "%s/%s".printf ((base_dir.length > 0) ? base_dir : TEMP_DIR, misc_helper.random_string ());
+        file_helper.dir_create (temp);
         return temp;
     }
 
@@ -65,7 +79,7 @@ namespace TeeJee.ProcessHelper {
             Process.spawn_command_line_sync (cmd, out std_out, out std_err, out status);
             return status;
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
             return -1;
         }
     }
@@ -88,9 +102,9 @@ namespace TeeJee.ProcessHelper {
 
             var script_admin = "#!/bin/bash\n";
             script_admin += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY";
-            script_admin += " '%s'".printf (escape_single_quote (sh_file));
+            script_admin += " '%s'".printf (file_helper.escape_single_quote (sh_file));
 
-            sh_file_admin = GLib.Path.build_filename (file_parent (sh_file), "script-admin.sh");
+            sh_file_admin = GLib.Path.build_filename (file_helper.file_parent (sh_file), "script-admin.sh");
 
             save_bash_script_temp (script_admin, sh_file_admin, true, supress_errors);
         }
@@ -134,16 +148,16 @@ namespace TeeJee.ProcessHelper {
             }
 
             if (cleanup_tmp) {
-                file_delete (sh_file);
+                file_helper.file_delete (sh_file);
                 if (run_as_admin) {
-                    file_delete (sh_file_admin);
+                    file_helper.file_delete (sh_file_admin);
                 }
             }
 
             return exit_code;
         } catch (Error e) {
             if (!supress_errors) {
-                log_error (e.message);
+                logging_helper.log_error (e.message);
             }
             return -1;
         }
@@ -177,7 +191,7 @@ namespace TeeJee.ProcessHelper {
 
             return 0;
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
             return 1;
         }
     }
@@ -212,18 +226,19 @@ namespace TeeJee.ProcessHelper {
             if (file.query_exists ()) {
                 file.delete ();
             }
+
             var file_stream = file.create (FileCreateFlags.REPLACE_DESTINATION);
             var data_stream = new DataOutputStream (file_stream);
             data_stream.put_string (script.str);
             data_stream.close ();
 
             // set execute permission
-            chmod (sh_path, "u+x");
+            file_helper.chmod (sh_path, "u+x");
 
             return sh_path;
         } catch (Error e) {
             if (!supress_errors) {
-                log_error (e.message);
+                logging_helper.log_error (e.message);
             }
         }
 
@@ -234,7 +249,7 @@ namespace TeeJee.ProcessHelper {
 
         /* Generates temporary file path */
 
-        return TEMP_DIR + "/" + timestamp_numeric () + (new Rand ()).next_int ().to_string ();
+        return TEMP_DIR + "/" + misc_helper.timestamp_numeric () + (new Rand ()).next_int ().to_string ();
     }
 
     public void exec_process_new_session (string command) {
@@ -254,7 +269,7 @@ namespace TeeJee.ProcessHelper {
             Process.spawn_command_line_sync ("which " + cmd_tool, out stdout, out stderr, out exitCode);
             return stdout;
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
             return "";
         }
     }
@@ -322,7 +337,7 @@ namespace TeeJee.ProcessHelper {
                 }
             }
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
         }
 
         return -1;
@@ -351,7 +366,7 @@ namespace TeeJee.ProcessHelper {
                 }
             } // stream closed
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
         }
     }
 
@@ -369,7 +384,7 @@ namespace TeeJee.ProcessHelper {
             cmd = "ps --pid %ld".printf (pid);
             Process.spawn_command_line_sync (cmd, out std_out, out std_err, out ret_val);
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
             return false;
         }
 
@@ -390,7 +405,7 @@ namespace TeeJee.ProcessHelper {
             cmd = "pgrep -f '%s'".printf (proc_name);
             Process.spawn_command_line_sync (cmd, out std_out, out std_err, out ret_val);
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
             return false;
         }
 
@@ -495,7 +510,7 @@ namespace TeeJee.ProcessHelper {
                 || (!exact_match && (line.index_of (cmd_to_match) != -1))) {
                 pid = line.strip ().split (" ")[0];
                 Posix.kill ((Pid) int.parse (pid), 15);
-                log_debug (_("Stopped") + ": [PID=" + pid + "] ");
+                logging_helper.log_debug (_("Stopped") + ": [PID=" + pid + "] ");
             }
         }
     }

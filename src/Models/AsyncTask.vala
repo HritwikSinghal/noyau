@@ -20,11 +20,7 @@
  * MA 02110-1301, USA.
  */
 
-using TeeJee.Logging;
-using TeeJee.FileSystem;
-using TeeJee.ProcessHelper;
-using TeeJee.System;
-using TeeJee.Misc;
+using GLib;
 
 public abstract class AsyncTask : GLib.Object {
 
@@ -66,19 +62,31 @@ public abstract class AsyncTask : GLib.Object {
     public string eta = "";
     // public bool is_running = false;
 
+    private ProcessHelper process_helper;
+    private LoggingHelper logging_helper;
+    private SystemHelper system_helper;
+    private FileHelper file_helper;
+    private MiscHelper misc_helper;
+
     // signals
     public signal void stdout_line_read (string line);
     public signal void stderr_line_read (string line);
     public signal void task_complete ();
 
     public AsyncTask () {
-        working_dir = TEMP_DIR + "/" + timestamp_for_path ();
-        script_file = path_combine (working_dir, "script.sh");
-        log_file = path_combine (working_dir, "task.log");
+        misc_helper = new MiscHelper ();
+        file_helper = new FileHelper ();
+        system_helper = new SystemHelper ();
+        process_helper = new ProcessHelper ();
+        logging_helper = new LoggingHelper ();
+
+        working_dir = process_helper.get_temp_file_path () + "/" + misc_helper.timestamp_for_path ();
+        script_file = file_helper.path_combine (working_dir, "script.sh");
+        log_file = file_helper.path_combine (working_dir, "task.log");
 
         // regex = new Gee.HashMap<string,Regex>(); // needs to be initialized again in instance constructor
 
-        dir_create (working_dir);
+        file_helper.dir_create (working_dir);
     }
 
     public bool begin () {
@@ -117,7 +125,7 @@ public abstract class AsyncTask : GLib.Object {
 
             set_priority ();
 
-            log_debug ("AsyncTask: child_pid: %d".printf (child_pid));
+            logging_helper.log_debug ("AsyncTask: child_pid: %d".printf (child_pid));
 
             // create stream readers
             UnixOutputStream uos_in = new UnixOutputStream (input_fd, false);
@@ -143,20 +151,20 @@ public abstract class AsyncTask : GLib.Object {
                 // start thread for reading output stream
                 Thread.create<void>(read_stdout, true);
             } catch (Error e) {
-                log_error ("AsyncTask.begin():create_thread:read_stdout()");
-                log_error (e.message);
+                logging_helper.log_error ("AsyncTask.begin():create_thread:read_stdout()");
+                logging_helper.log_error (e.message);
             }
 
             try {
                 // start thread for reading error stream
                 Thread.create<void>(read_stderr, true);
             } catch (Error e) {
-                log_error ("AsyncTask.begin():create_thread:read_stderr()");
-                log_error (e.message);
+                logging_helper.log_error ("AsyncTask.begin():create_thread:read_stderr()");
+                logging_helper.log_error (e.message);
             }
         } catch (Error e) {
-            log_error ("AsyncTask.begin()");
-            log_error (e.message);
+            logging_helper.log_error ("AsyncTask.begin()");
+            logging_helper.log_error (e.message);
             has_started = false;
             // status = AppStatus.FINISHED;
         }
@@ -193,8 +201,8 @@ public abstract class AsyncTask : GLib.Object {
                 finish ();
             }
         } catch (Error e) {
-            log_error ("AsyncTask.read_stdout()");
-            log_error (e.message);
+            logging_helper.log_error ("AsyncTask.read_stdout()");
+            logging_helper.log_error (e.message);
         }
     }
 
@@ -228,8 +236,8 @@ public abstract class AsyncTask : GLib.Object {
                 finish ();
             }
         } catch (Error e) {
-            log_error ("AsyncTask.read_stderr()");
-            log_error (e.message);
+            logging_helper.log_error ("AsyncTask.read_stderr()");
+            logging_helper.log_error (e.message);
         }
     }
 
@@ -238,11 +246,11 @@ public abstract class AsyncTask : GLib.Object {
             if (status == AppStatus.RUNNING) {
                 dos_in.put_string (line + "\n");
             } else {
-                log_error ("AsyncTask.write_stdin(): NOT RUNNING");
+                logging_helper.log_error ("AsyncTask.write_stdin(): NOT RUNNING");
             }
         } catch (Error e) {
-            log_error ("AsyncTask.write_stdin(): %s".printf (line));
-            log_error (e.message);
+            logging_helper.log_error ("AsyncTask.write_stdin(): %s".printf (line));
+            logging_helper.log_error (e.message);
         }
     }
 
@@ -257,7 +265,7 @@ public abstract class AsyncTask : GLib.Object {
         }
         finish_called = true;
 
-        log_debug ("AsyncTask: finish(): enter");
+        logging_helper.log_debug ("AsyncTask: finish(): enter");
 
         // dispose stdin
         try {
@@ -311,12 +319,12 @@ public abstract class AsyncTask : GLib.Object {
 
     protected int read_exit_code () {
         exit_code = -1;
-        var path = file_parent (script_file) + "/status";
-        if (file_exists (path)) {
-            var txt = file_read (path);
+        var path = file_helper.file_parent (script_file) + "/status";
+        if (file_helper.file_exists (path)) {
+            var txt = file_helper.file_read (path);
             exit_code = int.parse (txt);
         }
-        log_debug ("exit_code: %d".printf (exit_code));
+        logging_helper.log_debug ("exit_code: %d".printf (exit_code));
         return exit_code;
     }
 
@@ -328,9 +336,9 @@ public abstract class AsyncTask : GLib.Object {
 
     public void pause () {
         Pid sub_child_pid;
-        foreach (long pid in get_process_children (child_pid)) {
+        foreach (long pid in process_helper.get_process_children (child_pid)) {
             sub_child_pid = (Pid) pid;
-            process_pause (sub_child_pid);
+            process_helper.process_pause (sub_child_pid);
         }
 
         status = AppStatus.PAUSED;
@@ -338,9 +346,9 @@ public abstract class AsyncTask : GLib.Object {
 
     public void resume () {
         Pid sub_child_pid;
-        foreach (long pid in get_process_children (child_pid)) {
+        foreach (long pid in process_helper.get_process_children (child_pid)) {
             sub_child_pid = (Pid) pid;
-            process_resume (sub_child_pid);
+            process_helper.process_resume (sub_child_pid);
         }
 
         status = AppStatus.RUNNING;
@@ -353,10 +361,8 @@ public abstract class AsyncTask : GLib.Object {
         }
 
         status = status_to_update;
-
-        process_quit (child_pid);
-
-        log_debug ("process_quit: %d".printf (child_pid));
+        process_helper.process_quit (child_pid);
+        logging_helper.log_debug ("process_quit: %d".printf (child_pid));
     }
 
     public void set_priority () {
@@ -369,35 +375,35 @@ public abstract class AsyncTask : GLib.Object {
 
     public void set_priority_value (int prio) {
         Pid app_pid = Posix.getpid ();
-        process_set_priority (app_pid, prio);
+        process_helper.process_set_priority (app_pid, prio);
 
         if (status == AppStatus.RUNNING) {
-            process_set_priority (child_pid, prio);
+            process_helper.process_set_priority (child_pid, prio);
 
             Pid sub_child_pid;
-            foreach (long pid in get_process_children (child_pid)) {
+            foreach (long pid in process_helper.get_process_children (child_pid)) {
                 sub_child_pid = (Pid) pid;
-                process_set_priority (sub_child_pid, prio);
+                process_helper.process_set_priority (sub_child_pid, prio);
             }
         }
     }
 
     public string stat_time_elapsed{
         owned get {
-            long elapsed = (long) timer_elapsed (timer);
-            return format_duration (elapsed);
+            long elapsed = (long) system_helper.timer_elapsed (timer);
+            return misc_helper.format_duration (elapsed);
         }
     }
 
     public string stat_time_remaining{
         owned get {
             if (progress > 0) {
-                long elapsed = (long) timer_elapsed (timer);
+                long elapsed = (long) system_helper.timer_elapsed (timer);
                 long remaining = (long) ((elapsed / progress) * (1.0 - progress));
                 if (remaining < 0) {
                     remaining = 0;
                 }
-                return format_duration (remaining);
+                return misc_helper.format_duration (remaining);
             } else {
                 return "???";
             }
@@ -407,22 +413,22 @@ public abstract class AsyncTask : GLib.Object {
     public void print_app_status () {
         switch (status) {
             case AppStatus.NOT_STARTED:
-                log_debug ("status=%s".printf ("NOT_STARTED"));
+                logging_helper.log_debug ("status=%s".printf ("NOT_STARTED"));
                 break;
             case AppStatus.RUNNING:
-                log_debug ("status=%s".printf ("RUNNING"));
+                logging_helper.log_debug ("status=%s".printf ("RUNNING"));
                 break;
             case AppStatus.PAUSED:
-                log_debug ("status=%s".printf ("PAUSED"));
+                logging_helper.log_debug ("status=%s".printf ("PAUSED"));
                 break;
             case AppStatus.FINISHED:
-                log_debug ("status=%s".printf ("FINISHED"));
+                logging_helper.log_debug ("status=%s".printf ("FINISHED"));
                 break;
             case AppStatus.CANCELLED:
-                log_debug ("status=%s".printf ("CANCELLED"));
+                logging_helper.log_debug ("status=%s".printf ("CANCELLED"));
                 break;
             case AppStatus.PASSWORD_REQUIRED:
-                log_debug ("status=%s".printf ("PASSWORD_REQUIRED"));
+                logging_helper.log_debug ("status=%s".printf ("PASSWORD_REQUIRED"));
                 break;
         }
     }

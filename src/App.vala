@@ -25,12 +25,6 @@ using GLib;
 using Gee;
 using Json;
 
-using TeeJee.Logging;
-using TeeJee.FileSystem;
-using TeeJee.ProcessHelper;
-using TeeJee.System;
-using TeeJee.Misc;
-
 extern void exit (int exit_code);
 
 public class App : Gtk.Application {
@@ -68,11 +62,19 @@ public class App : Gtk.Application {
     public GtkHelper gtk_helper;
     public JsonHelper json_helper;
 
+    private SystemHelper system_helper;
+    private LoggingHelper logging_helper;
+    private ProcessHelper process_helper;
+
     public App () {
         GLib.Object (
             application_id: "ukuu",
             flags : ApplicationFlags.FLAGS_NONE
         );
+
+        system_helper = new SystemHelper ();
+        logging_helper = new LoggingHelper ();
+        process_helper = new ProcessHelper ();
     }
 
     protected override void activate () {
@@ -87,13 +89,13 @@ public class App : Gtk.Application {
 
         set_locale ();
 
-        log_msg ("%s v%s".printf (App.APP_NAME_SHORT, App.APP_VERSION));
+        logging_helper.log_msg ("%s v%s".printf (App.APP_NAME_SHORT, App.APP_VERSION));
 
-        init_tmp ("ukuu");
+        ProcessHelper.init_tmp ("ukuu");
 
         check_if_admin ();
 
-        LOG_TIMESTAMP = false;
+        // LOG_TIMESTAMP = false;
 
         // check dependencies
         string message;
@@ -107,12 +109,12 @@ public class App : Gtk.Application {
         var window = new MainWindow ();
 
         window.destroy.connect (() => {
-            log_debug ("MainWindow destroyed");
+            logging_helper.log_debug ("MainWindow destroyed");
             Gtk.main_quit ();
         });
 
         window.delete_event.connect ((event) => {
-            log_debug ("MainWindow closed");
+            logging_helper.log_debug ("MainWindow closed");
             Gtk.main_quit ();
             return true;
         });
@@ -146,7 +148,7 @@ public class App : Gtk.Application {
 
         string path;
         foreach (string cmd_tool in dependencies) {
-            path = get_cmd_path (cmd_tool);
+            path = process_helper.get_cmd_path (cmd_tool);
             if ((path == null) || (path.length == 0)) {
                 msg += " * " + cmd_tool + "\n";
             }
@@ -155,7 +157,7 @@ public class App : Gtk.Application {
         if (msg.length > 0) {
             msg = _("Commands listed below are not available on this system") + ":\n\n" + msg + "\n";
             msg += _("Please install required packages and try again");
-            log_msg (msg);
+            logging_helper.log_msg (msg);
             return false;
         } else {
             return true;
@@ -166,13 +168,13 @@ public class App : Gtk.Application {
         string user_home = "";
 
         // user info
-        user_login = get_username ();
+        user_login = system_helper.get_username ();
 
         if (custom_user_login.length > 0) {
             user_login = custom_user_login;
         }
 
-        user_home = get_user_home (user_login);
+        user_home = system_helper.get_user_home (user_login);
 
         // app config files
         APP_CONFIG_FILE = user_home + "/.config/ukuu.json";
@@ -185,6 +187,9 @@ public class App : Gtk.Application {
     }
 
     public static void save_app_config () {
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        FileHelper _file_helper = new FileHelper ();
+
         var config = new Json.Object ();
         config.set_string_member ("notify_major", notify_major.to_string ());
         config.set_string_member ("notify_minor", notify_minor.to_string ());
@@ -210,13 +215,13 @@ public class App : Gtk.Application {
         try {
             json.to_file (APP_CONFIG_FILE);
         } catch (Error e) {
-            log_error (e.message);
+            _logging_helper.log_error (e.message);
         }
 
-        log_debug ("Saved config file: %s".printf (APP_CONFIG_FILE));
+        _logging_helper.log_debug ("Saved config file: %s".printf (APP_CONFIG_FILE));
 
         // change owner to current user so that ukuu can access in normal mode
-        chown (APP_CONFIG_FILE, user_login, user_login);
+        _file_helper.chown (APP_CONFIG_FILE, user_login, user_login);
 
         update_notification_files ();
     }
@@ -243,7 +248,7 @@ public class App : Gtk.Application {
         try {
             parser.load_from_file (APP_CONFIG_FILE);
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
         }
 
         var node = parser.get_root ();
@@ -264,7 +269,7 @@ public class App : Gtk.Application {
 
         message_shown = json_helper.json_get_bool (config, "message_shown", false);
 
-        log_debug ("Load config file: %s".printf (APP_CONFIG_FILE));
+        logging_helper.log_debug ("Load config file: %s".printf (APP_CONFIG_FILE));
     }
 
     public static void exit_app (int exit_code) {
@@ -275,6 +280,8 @@ public class App : Gtk.Application {
     // begin ------------
 
     private static void update_startup_script () {
+        FileHelper _file_helper = new FileHelper ();
+
         int count = notify_interval_value;
         string suffix = "h";
 
@@ -301,24 +308,26 @@ public class App : Gtk.Application {
         txt += "  ukuu --notify ; sleep %d%s \n".printf (count, suffix);
         txt += "done\n";
 
-        if (file_exists (STARTUP_SCRIPT_FILE)) {
-            file_delete (STARTUP_SCRIPT_FILE);
+        if (_file_helper.file_exists (STARTUP_SCRIPT_FILE)) {
+            _file_helper.file_delete (STARTUP_SCRIPT_FILE);
         }
 
         if (notify_minor || notify_major) {
-            file_write (
+            _file_helper.file_write (
                 STARTUP_SCRIPT_FILE,
                 txt);
         } else {
-            file_write (
+            _file_helper.file_write (
                 STARTUP_SCRIPT_FILE,
                 "# Notifications are disabled\n\nexit 0"); // write dummy script
         }
 
-        chown (STARTUP_SCRIPT_FILE, user_login, user_login);
+        _file_helper.chown (STARTUP_SCRIPT_FILE, user_login, user_login);
     }
 
     private static void update_startup_desktop_file () {
+        FileHelper _file_helper = new FileHelper ();
+
         if (notify_minor || notify_major) {
             string txt =
                 """
@@ -336,11 +345,11 @@ public class App : Gtk.Application {
 
             txt = txt.replace ("{command}", "sh \"%s\"".printf (STARTUP_SCRIPT_FILE));
 
-            file_write (STARTUP_DESKTOP_FILE, txt);
+            _file_helper.file_write (STARTUP_DESKTOP_FILE, txt);
 
-            chown (STARTUP_DESKTOP_FILE, user_login, user_login);
+            _file_helper.chown (STARTUP_DESKTOP_FILE, user_login, user_login);
         } else {
-            file_delete (STARTUP_DESKTOP_FILE);
+            _file_helper.file_delete (STARTUP_DESKTOP_FILE);
         }
     }
 
@@ -352,22 +361,27 @@ public class App : Gtk.Application {
     }
 
     private static void check_if_admin () {
-        if (get_user_id_effective () != 0) {
-            log_msg (string.nfill (70, '-'));
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        SystemHelper _system_helper = new SystemHelper ();
+
+        if (_system_helper.get_user_id_effective () != 0) {
+            _logging_helper.log_msg (string.nfill (70, '-'));
 
             string msg = _("Admin access is required to run this application.");
-            log_error (msg);
+            _logging_helper.log_error (msg);
 
             msg = _("Run the application as admin with pkexec or sudo.");
-            log_error (msg);
+            _logging_helper.log_error (msg);
 
             exit (1);
         }
     }
 
     public static bool parse_arguments (string[] args) {
-        log_msg (_("Cache") + ": %s".printf (LinuxKernel.CACHE_DIR));
-        log_msg (_("Temp") + ": %s".printf (TEMP_DIR));
+        LoggingHelper _logging_helper = new LoggingHelper ();
+
+        _logging_helper.log_msg (_("Cache") + ": %s".printf (LinuxKernel.CACHE_DIR));
+        // _logging_helper.log_msg (_("Temp") + ": %s".printf (TEMP_DIR));
 
         command = "list";
 
@@ -376,13 +390,13 @@ public class App : Gtk.Application {
             switch (args[k].down ()) {
 
                 case "--debug":
-                    LOG_DEBUG = true;
+                    // LOG_DEBUG = true;
                     break;
 
                 case "--help":
                 case "--h":
                 case "-h":
-                    log_msg (help_message ());
+                    _logging_helper.log_msg (help_message ());
                     exit (0);
                     return true;
             }
@@ -420,8 +434,8 @@ public class App : Gtk.Application {
 
                 default:
                     // unknown option - show help and exit
-                    log_error (_("Unknown option") + ": %s".printf (args[k]));
-                    log_msg (help_message ());
+                    _logging_helper.log_error (_("Unknown option") + ": %s".printf (args[k]));
+                    _logging_helper.log_msg (help_message ());
                     return false;
             }
         }

@@ -20,9 +20,9 @@
  * MA 02110-1301, USA.
  */
 
-using TeeJee.Misc;
+using GLib;
 
-namespace TeeJee.Logging {
+public class LoggingHelper : GLib.Object {
 
     /* Functions for logging messages to console and log files */
 
@@ -33,6 +33,12 @@ namespace TeeJee.Logging {
     public bool LOG_COLORS = true;
     public bool LOG_DEBUG = false;
     public bool LOG_COMMANDS = false;
+
+    private MiscHelper misc_helper;
+
+    public LoggingHelper () {
+        misc_helper = new MiscHelper ();
+    }
 
     public void log_msg (string message, bool highlight = false) {
 
@@ -47,7 +53,7 @@ namespace TeeJee.Logging {
         }
 
         if (LOG_TIMESTAMP) {
-            msg += "[" + timestamp (true) + "] ";
+            msg += "[" + misc_helper.timestamp (true) + "] ";
         }
 
         msg += message;
@@ -63,7 +69,7 @@ namespace TeeJee.Logging {
 
         try {
             if (dos_log != null) {
-                dos_log.put_string ("[%s] %s\n".printf (timestamp (), message));
+                dos_log.put_string ("[%s] %s\n".printf (misc_helper.timestamp (), message));
             }
         } catch (Error e) {
             stdout.printf (e.message);
@@ -84,7 +90,7 @@ namespace TeeJee.Logging {
         }
 
         if (LOG_TIMESTAMP) {
-            msg += "[" + timestamp (true) + "] ";
+            msg += "[" + misc_helper.timestamp (true) + "] ";
         }
 
         string prefix = (is_warning) ? _("W") : _("E");
@@ -101,7 +107,7 @@ namespace TeeJee.Logging {
         stdout.flush ();
 
         try {
-            string str = "[%s] %s: %s\n".printf (timestamp (), prefix, message);
+            string str = "[%s] %s: %s\n".printf (misc_helper.timestamp (), prefix, message);
 
             if (dos_log != null) {
                 dos_log.put_string (str);
@@ -126,7 +132,7 @@ namespace TeeJee.Logging {
 
         try {
             if (dos_log != null) {
-                dos_log.put_string ("[%s] %s\n".printf (timestamp (), message));
+                dos_log.put_string ("[%s] %s\n".printf (misc_helper.timestamp (), message));
             }
         } catch (Error e) {
             stdout.printf (e.message);
@@ -136,7 +142,7 @@ namespace TeeJee.Logging {
     public void log_to_file (string message, bool highlight = false) {
         try {
             if (dos_log != null) {
-                dos_log.put_string ("[%s] %s\n".printf (timestamp (), message));
+                dos_log.put_string ("[%s] %s\n".printf (misc_helper.timestamp (), message));
             }
         } catch (Error e) {
             stdout.printf (e.message);

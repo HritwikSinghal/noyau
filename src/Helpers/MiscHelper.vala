@@ -20,11 +20,15 @@
  * MA 02110-1301, USA.
  */
 
-using TeeJee.Logging;
-using TeeJee.FileSystem;
-using TeeJee.ProcessHelper;
+using GLib;
 
-namespace TeeJee.Misc {
+public class MiscHelper : GLib.Object {
+
+    private LoggingHelper logging_helper;
+
+    public MiscHelper () {
+        logging_helper = new LoggingHelper ();
+    }
 
     /* Various utility functions */
 
@@ -262,13 +266,12 @@ namespace TeeJee.Misc {
     }
 
     public MatchInfo ? regex_match (string expression, string line) {
-
         Regex regex = null;
 
         try {
             regex = new Regex (expression);
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
             return null;
         }
 
@@ -280,12 +283,12 @@ namespace TeeJee.Misc {
         }
     }
 
-    private static void print_progress_bar_start (string message) {
-
-        log_msg ("\n%s\n".printf (message));
+    public static void print_progress_bar_start (string message) {
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        _logging_helper.log_msg ("\n%s\n".printf (message));
     }
 
-    private static void print_progress_bar (double fraction) {
+    public static void print_progress_bar (double fraction) {
         string txt = "";
 
         double length = 30.0;
@@ -316,12 +319,10 @@ namespace TeeJee.Misc {
         txt += " %0.0f %% ".printf (fraction * 100.0);
 
         stdout.printf ("\r%s".printf (txt));
-
         stdout.flush ();
     }
 
-    private static void print_progress_bar_finish () {
-
+    public static void print_progress_bar_finish () {
         print_progress_bar (1.0);
         stdout.printf ("\n\n");
         stdout.flush ();

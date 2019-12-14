@@ -22,12 +22,6 @@
 
 using Gtk;
 
-using TeeJee.Logging;
-using TeeJee.FileSystem;
-using TeeJee.ProcessHelper;
-using TeeJee.System;
-using TeeJee.Misc;
-
 public class AboutWindow : AboutDialog {
 
     public GtkHelper gtk_helper;

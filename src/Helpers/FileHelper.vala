@@ -20,13 +20,9 @@
  * MA 02110-1301, USA.
  */
 
-using TeeJee.Logging;
-using TeeJee.ProcessHelper;
-using TeeJee.Misc;
+using GLib;
 
-namespace TeeJee.FileSystem {
-
-    /* Convenience functions for handling files and directories */
+public class FileHelper : GLib.Object {
 
     public const int64 KB = 1000;
     public const int64 MB = 1000 * KB;
@@ -36,6 +32,16 @@ namespace TeeJee.FileSystem {
     public const int64 MiB = 1024 * KiB;
     public const int64 GiB = 1024 * MiB;
     public const int64 TiB = 1024 * GiB;
+
+    private LoggingHelper logging_helper;
+    private ProcessHelper process_helper;
+    private MiscHelper misc_helper;
+
+    public FileHelper () {
+        logging_helper = new LoggingHelper ();
+        process_helper = new ProcessHelper ();
+        misc_helper = new MiscHelper ();
+    }
 
     // path helpers ----------------------------
 
@@ -90,15 +96,15 @@ namespace TeeJee.FileSystem {
             if (file.query_exists ()) {
                 file.delete ();
                 if (show_message) {
-                    log_msg (_("File deleted") + ": %s".printf (file_path));
+                    logging_helper.log_msg (_("File deleted") + ": %s".printf (file_path));
                 } else {
-                    log_debug (_("File deleted") + ": %s".printf (file_path));
+                    logging_helper.log_debug (_("File deleted") + ": %s".printf (file_path));
                 }
             }
             return true;
         } catch (Error e) {
-            log_error (e.message);
-            log_error (_("Failed to delete file") + ": %s".printf (file_path));
+            logging_helper.log_error (e.message);
+            logging_helper.log_error (_("Failed to delete file") + ": %s".printf (file_path));
             return false;
         }
     }
@@ -129,7 +135,7 @@ namespace TeeJee.FileSystem {
         /* Count number of lines in text file */
         string cmd = "wc -l '%s'".printf (escape_single_quote (file_path));
         string std_out, std_err;
-        exec_sync (cmd, out std_out, out std_err);
+        process_helper.exec_sync (cmd, out std_out, out std_err);
         return long.parse (std_out.split ("\t")[0]);
     }
 
@@ -151,8 +157,8 @@ namespace TeeJee.FileSystem {
 
             return txt;
         } catch (Error e) {
-            log_error (e.message);
-            log_error (_("Failed to read file") + ": %s".printf (file_path));
+            logging_helper.log_error (e.message);
+            logging_helper.log_error (_("Failed to read file") + ": %s".printf (file_path));
         }
 
         return null;
@@ -177,15 +183,15 @@ namespace TeeJee.FileSystem {
             data_stream.close ();
 
             if (show_message) {
-                log_msg (_("File saved") + ": %s".printf (file_path));
+                logging_helper.log_msg (_("File saved") + ": %s".printf (file_path));
             } else {
-                log_debug (_("File saved") + ": %s".printf (file_path));
+                logging_helper.log_debug (_("File saved") + ": %s".printf (file_path));
             }
 
             return true;
         } catch (Error e) {
-            log_error (e.message);
-            log_error (_("Failed to write file") + ": %s".printf (file_path));
+            logging_helper.log_error (e.message);
+            logging_helper.log_error (_("Failed to write file") + ": %s".printf (file_path));
             return false;
         }
     }
@@ -198,16 +204,16 @@ namespace TeeJee.FileSystem {
                 file_src.copy (file_dest, FileCopyFlags.OVERWRITE, null, null);
 
                 if (show_message) {
-                    log_msg (_("File copied") + ": '%s' → '%s'".printf (src_file, dest_file));
+                    logging_helper.log_msg (_("File copied") + ": '%s' → '%s'".printf (src_file, dest_file));
                 } else {
-                    log_debug (_("File copied") + ": '%s' → '%s'".printf (src_file, dest_file));
+                    logging_helper.log_debug (_("File copied") + ": '%s' → '%s'".printf (src_file, dest_file));
                 }
 
                 return true;
             }
         } catch (Error e) {
-            log_error (e.message);
-            log_error (_("Failed to copy file") + ": '%s', '%s'".printf (src_file, dest_file));
+            logging_helper.log_error (e.message);
+            logging_helper.log_error (_("Failed to copy file") + ": '%s', '%s'".printf (src_file, dest_file));
         }
 
         return false;
@@ -217,7 +223,7 @@ namespace TeeJee.FileSystem {
         try {
             var file_src = File.new_for_path (src_file);
             if (!file_src.query_exists ()) {
-                log_error (_("File not found") + ": '%s'".printf (src_file));
+                logging_helper.log_error (_("File not found") + ": '%s'".printf (src_file));
                 return;
             }
 
@@ -231,36 +237,34 @@ namespace TeeJee.FileSystem {
             file_src.move (file_dest, FileCopyFlags.OVERWRITE, null, null);
 
             if (show_message) {
-                log_msg (_("File moved") + ": '%s' → '%s'".printf (src_file, dest_file));
+                logging_helper.log_msg (_("File moved") + ": '%s' → '%s'".printf (src_file, dest_file));
             } else {
-                log_debug (_("File moved") + ": '%s' → '%s'".printf (src_file, dest_file));
+                logging_helper.log_debug (_("File moved") + ": '%s' → '%s'".printf (src_file, dest_file));
             }
         } catch (Error e) {
-            log_error (e.message);
-            log_error (_("Failed to move file") + ": '%s' → '%s'".printf (src_file, dest_file));
+            logging_helper.log_error (e.message);
+            logging_helper.log_error (_("Failed to move file") + ": '%s' → '%s'".printf (src_file, dest_file));
         }
     }
 
     public bool file_gzip (string src_file) {
-
         string dst_file = src_file + ".gz";
         file_delete (dst_file);
 
         string cmd = "gzip '%s'".printf (escape_single_quote (src_file));
         string std_out, std_err;
-        exec_sync (cmd, out std_out, out std_err);
+        process_helper.exec_sync (cmd, out std_out, out std_err);
 
         return file_exists (dst_file);
     }
 
     public bool file_gunzip (string src_file) {
-
         string dst_file = src_file;
         file_delete (dst_file);
 
         string cmd = "gunzip '%s'".printf (escape_single_quote (src_file));
         string std_out, std_err;
-        exec_sync (cmd, out std_out, out std_err);
+        process_helper.exec_sync (cmd, out std_out, out std_err);
 
         return file_exists (dst_file);
     }
@@ -277,7 +281,7 @@ namespace TeeJee.FileSystem {
                 }
             }
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
         }
 
         return -1;
@@ -292,7 +296,7 @@ namespace TeeJee.FileSystem {
                 return (new DateTime.from_timeval_utc (info.get_modification_time ())).to_local ();
             }
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
         }
 
         return (new DateTime.from_unix_utc (0)); // 1970
@@ -307,7 +311,7 @@ namespace TeeJee.FileSystem {
                 return info.get_symlink_target ();
             }
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
         }
 
         return "";
@@ -329,15 +333,15 @@ namespace TeeJee.FileSystem {
             if (dir.query_exists () == false) {
                 dir.make_directory_with_parents (null);
                 if (show_message) {
-                    log_msg (_("Created directory") + ": %s".printf (dir_path));
+                    logging_helper.log_msg (_("Created directory") + ": %s".printf (dir_path));
                 } else {
-                    log_debug (_("Created directory") + ": %s".printf (dir_path));
+                    logging_helper.log_debug (_("Created directory") + ": %s".printf (dir_path));
                 }
             }
             return true;
         } catch (Error e) {
-            log_error (e.message);
-            log_error (_("Failed to create dir") + ": %s".printf (dir_path));
+            logging_helper.log_error (e.message);
+            logging_helper.log_error (_("Failed to create dir") + ": %s".printf (dir_path));
             return false;
         }
     }
@@ -351,11 +355,11 @@ namespace TeeJee.FileSystem {
         }
 
         string cmd = "rm -rf '%s'".printf (escape_single_quote (dir_path));
-        int status = exec_sync (cmd);
+        int status = process_helper.exec_sync (cmd);
         if (show_message) {
-            log_msg (_("Deleted directory") + ": %s".printf (dir_path));
+            logging_helper.log_msg (_("Deleted directory") + ": %s".printf (dir_path));
         } else {
-            log_debug (_("Created directory") + ": %s".printf (dir_path));
+            logging_helper.log_debug (_("Created directory") + ": %s".printf (dir_path));
         }
 
         return (status == 0);
@@ -382,7 +386,7 @@ namespace TeeJee.FileSystem {
             }
             return is_empty;
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
             return false;
         }
     }
@@ -391,28 +395,27 @@ namespace TeeJee.FileSystem {
         bool supports_hardlinks = false;
         is_readonly = false;
 
-        var test_file = path_combine (path, random_string () + "~");
+        var test_file = path_combine (path, misc_helper.random_string () + "~");
 
         if (file_write (test_file, "")) {
-
-            var test_file2 = path_combine (path, random_string () + "~");
+            var test_file2 = path_combine (path, misc_helper.random_string () + "~");
 
             var cmd = "ln '%s' '%s'".printf (
                 escape_single_quote (test_file),
                 escape_single_quote (test_file2));
 
-            log_debug (cmd);
+            logging_helper.log_debug (cmd);
 
-            int status = exec_sync (cmd);
+            int status = process_helper.exec_sync (cmd);
 
             cmd = "stat --printf '%%h' '%s'".printf (
                 escape_single_quote (test_file));
 
-            log_debug (cmd);
+            logging_helper.log_debug (cmd);
 
             string std_out, std_err;
-            status = exec_sync (cmd, out std_out, out std_err);
-            log_debug ("stdout: %s".printf (std_out));
+            status = process_helper.exec_sync (cmd, out std_out, out std_err);
+            logging_helper.log_debug ("stdout: %s".printf (std_out));
 
             int64 count = 0;
             if (int64.try_parse (std_out, out count)) {
@@ -442,7 +445,7 @@ namespace TeeJee.FileSystem {
                 list.add (name);
             }
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
         }
 
         // sort the list
@@ -470,17 +473,17 @@ namespace TeeJee.FileSystem {
                 escape_single_quote (src_parent),
                 escape_single_quote (src_name));
 
-            log_debug (cmd);
+            logging_helper.log_debug (cmd);
 
             string stdout, stderr;
-            int status = exec_script_sync (cmd, out stdout, out stderr);
+            int status = process_helper.exec_script_sync (cmd, out stdout, out stderr);
             if (status == 0) {
                 return true;
             } else {
-                log_msg (stderr);
+                logging_helper.log_msg (stderr);
             }
         } else {
-            log_error (_("Dir not found") + ": %s".printf (src_dir));
+            logging_helper.log_error (_("Dir not found") + ": %s".printf (src_dir));
         }
 
         return false;
@@ -497,17 +500,17 @@ namespace TeeJee.FileSystem {
                 escape_single_quote (tar_file),
                 escape_single_quote (dst_dir));
 
-            log_debug (cmd);
+            logging_helper.log_debug (cmd);
 
             string stdout, stderr;
-            int status = exec_script_sync (cmd, out stdout, out stderr);
+            int status = process_helper.exec_script_sync (cmd, out stdout, out stderr);
             if (status == 0) {
                 return true;
             } else {
-                log_msg (stderr);
+                logging_helper.log_msg (stderr);
             }
         } else {
-            log_error (_("File not found") + ": %s".printf (tar_file));
+            logging_helper.log_error (_("File not found") + ": %s".printf (tar_file));
         }
 
         return false;
@@ -515,7 +518,7 @@ namespace TeeJee.FileSystem {
 
     public bool chown (string dir_path, string user, string group = user) {
         string cmd = "chown %s:%s -R '%s'".printf (user, group, escape_single_quote (dir_path));
-        int status = exec_sync (cmd, null, null);
+        int status = process_helper.exec_sync (cmd, null, null);
         return (status == 0);
     }
 
@@ -532,7 +535,7 @@ namespace TeeJee.FileSystem {
         int ret_val;
 
         cmd = "find '%s' | wc -l".printf (escape_single_quote (path));
-        ret_val = exec_script_sync (cmd, out std_out, out std_err);
+        ret_val = process_helper.exec_script_sync (cmd, out std_out, out std_err);
         return long.parse (std_out);
     }
 
@@ -543,7 +546,7 @@ namespace TeeJee.FileSystem {
 
         string cmd = "du -s -b '%s'".printf (escape_single_quote (path));
         string std_out, std_err;
-        exec_sync (cmd, out std_out, out std_err);
+        process_helper.exec_sync (cmd, out std_out, out std_err);
         return long.parse (std_out.split ("\t")[0]);
     }
 
@@ -584,14 +587,14 @@ namespace TeeJee.FileSystem {
 
             cmd += "rm -f '%s'\n".printf (escape_single_quote (tar_file));
 
-            log_debug (cmd);
+            logging_helper.log_debug (cmd);
 
             string stdout, stderr;
-            int status = exec_script_sync (cmd, out stdout, out stderr);
+            int status = process_helper.exec_script_sync (cmd, out stdout, out stderr);
             if (status == 0) {
                 return true;
             } else {
-                log_msg (stderr);
+                logging_helper.log_msg (stderr);
             }
         }
 
@@ -600,13 +603,12 @@ namespace TeeJee.FileSystem {
 
     // dep: tar gzip gpg
     public string file_decrypt_untar_read (string src_file, string password) {
-
         if (file_exists (src_file)) {
 
             // var src_name = file_basename(src_file);
             // var tar_name = src_name[0 : src_name.index_of(".gpg")];
             // var tar_file = "%s/%s".printf(TEMP_DIR, tar_name);
-            // var temp_file = "%s/%s".printf(TEMP_DIR, random_string());
+            // var temp_file = "%s/%s".printf(TEMP_DIR, misc_helper.random_string());
 
             string cmd = "";
 
@@ -617,18 +619,18 @@ namespace TeeJee.FileSystem {
             cmd += " | tar xf - --to-stdout 2>/dev/null\n";
             cmd += "exit $?\n";
 
-            log_debug (cmd);
+            logging_helper.log_debug (cmd);
 
             string std_out, std_err;
-            int status = exec_script_sync (cmd, out std_out, out std_err);
+            int status = process_helper.exec_script_sync (cmd, out std_out, out std_err);
             if (status == 0) {
                 return std_out;
             } else {
-                log_error (std_err);
+                logging_helper.log_error (std_err);
                 return "";
             }
         } else {
-            log_error (_("File is missing") + ": %s".printf (src_file));
+            logging_helper.log_error (_("File is missing") + ": %s".printf (src_file));
         }
 
         return "";
@@ -664,18 +666,18 @@ namespace TeeJee.FileSystem {
 
             cmd += "rm -f '%s'\n".printf (escape_single_quote (tar_file));
 
-            log_debug (cmd);
+            logging_helper.log_debug (cmd);
 
             string stdout, stderr;
-            int status = exec_script_sync (cmd, out stdout, out stderr);
+            int status = process_helper.exec_script_sync (cmd, out stdout, out stderr);
             if (status == 0) {
                 return true;
             } else {
-                log_error (stderr);
+                logging_helper.log_error (stderr);
                 return false;
             }
         } else {
-            log_error (_("File is missing") + ": %s".printf (src_file));
+            logging_helper.log_error (_("File is missing") + ": %s".printf (src_file));
         }
 
         return false;
@@ -732,7 +734,7 @@ namespace TeeJee.FileSystem {
 
         /* Change file permissions */
         string cmd = "chmod %s '%s'".printf (permission, escape_single_quote (file));
-        return exec_sync (cmd, null, null);
+        return process_helper.exec_sync (cmd, null, null);
     }
 
     // dep: realpath
@@ -754,7 +756,7 @@ namespace TeeJee.FileSystem {
                 return output;
             }
         } catch (Error e) {
-            log_error (e.message);
+            logging_helper.log_error (e.message);
         }
 
         return filePath2;
@@ -769,6 +771,6 @@ namespace TeeJee.FileSystem {
         cmd += deleteExtra ? " --delete" : "";
         cmd += " '%s'".printf (escape_single_quote (sourceDirectory) + "//");
         cmd += " '%s'".printf (escape_single_quote (destDirectory));
-        return exec_sync (cmd, null, null);
+        return process_helper.exec_sync (cmd, null, null);
     }
 }
