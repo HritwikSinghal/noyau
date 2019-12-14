@@ -47,8 +47,6 @@ public class MainWindow : Gtk.Window {
     private Gtk.Label lbl_info;
     private Gtk.HeaderBar header_bar;
 
-    // helper members
-
     private int window_width = 640;
     private int window_height = 480;
     private uint tmr_init = -1;
@@ -60,13 +58,13 @@ public class MainWindow : Gtk.Window {
     public MainWindow () {
         gtk_helper = new GtkHelper ();
 
-        title = Consts.APP_NAME; // "%s (Ukuu) v%s".printf(Main.AppName, Main.AppVersion);
+        title = App.APP_NAME; // "%s (Ukuu) v%s".printf(Main.AppName, Main.AppVersion);
         window_position = WindowPosition.CENTER;
         icon = gtk_helper.get_app_icon (16, ".svg");
 
         header_bar = new Gtk.HeaderBar ();
         header_bar.show_close_button = true;
-        header_bar.title = Consts.APP_NAME;
+        header_bar.title = App.APP_NAME;
         this.set_titlebar (header_bar);
 
         // vbox_main
@@ -790,7 +788,7 @@ public class MainWindow : Gtk.Window {
 
             if (App.notify_dialog) {
                 var win = new UpdateNotificationDialog (
-                    Consts.APP_NAME,
+                    App.APP_NAME,
                     "<span size=\"large\" weight=\"bold\">%s</span>\n\n%s".printf (title, message),
                     null,
                     kern);
@@ -821,7 +819,7 @@ public class MainWindow : Gtk.Window {
 
             if (App.notify_dialog) {
                 var win = new UpdateNotificationDialog (
-                    Consts.APP_NAME,
+                    App.APP_NAME,
                     "<span size=\"large\" weight=\"bold\">%s</span>\n\n%s".printf (title, message),
                     this,
                     kern);

@@ -1,9 +1,5 @@
 project_files = files(
-    'Consts.vala',
     'App.vala',
-    'LinuxKernel.vala',
-    'DownloadManager.vala',
-    'Package.vala',
 
     'Gtk/AboutWindow.vala',
     'Gtk/MainWindow.vala',
@@ -14,6 +10,9 @@ project_files = files(
 
     'Utility/Gtk/GtkHelper.vala',
 
+    'Utility/LinuxKernel.vala',
+    'Utility/DownloadManager.vala',
+    'Utility/Package.vala',
     'Utility/AsyncTask.vala',
     'Utility/JsonHelper.vala',
     'Utility/OSDNotify.vala',

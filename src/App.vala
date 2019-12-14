@@ -35,11 +35,20 @@ extern void exit (int exit_code);
 
 public class App : Gtk.Application {
 
+    public const string APP_NAME = @"Ubuntu Kernel Update Utility";
+    public const string APP_NAME_SHORT = @"ukuu";
+    public const string APP_VERSION = @"18.10";
+    public const string APP_AUTHOR = @"Joshua Dowding";
+    public const string APP_AUTHOR_EMAIL = @"joshuadowding@outlook.com";
+    public const string APP_AUTHOR_WEBSITE = @"https://joshuadowding.github.io";
+
+    public const string GETTEXT_PACKAGE = @"";
+    public const string LOCALE_DIR = @"/usr/share/locale";
+    public const int STARTUP_DELAY = 300;
+
     public static string APP_CONFIG_FILE = "";
     public static string STARTUP_SCRIPT_FILE = "";
     public static string STARTUP_DESKTOP_FILE = "";
-
-    public const int STARTUP_DELAY = 300;
 
     public static string command = "list";
     public static bool notify_major = true;
@@ -78,7 +87,7 @@ public class App : Gtk.Application {
 
         set_locale ();
 
-        log_msg ("%s v%s".printf (Consts.APP_NAME_SHORT, Consts.APP_VERSION));
+        log_msg ("%s v%s".printf (App.APP_NAME_SHORT, App.APP_VERSION));
 
         init_tmp ("ukuu");
 
@@ -337,9 +346,9 @@ public class App : Gtk.Application {
 
     private static void set_locale () {
         Intl.setlocale (GLib.LocaleCategory.MESSAGES, "ukuu");
-        Intl.textdomain (Consts.GETTEXT_PACKAGE);
-        Intl.bind_textdomain_codeset (Consts.GETTEXT_PACKAGE, "utf-8");
-        Intl.bindtextdomain (Consts.GETTEXT_PACKAGE, Consts.LOCALE_DIR);
+        Intl.textdomain (App.GETTEXT_PACKAGE);
+        Intl.bind_textdomain_codeset (App.GETTEXT_PACKAGE, "utf-8");
+        Intl.bindtextdomain (App.GETTEXT_PACKAGE, App.LOCALE_DIR);
     }
 
     private static void check_if_admin () {
@@ -421,7 +430,7 @@ public class App : Gtk.Application {
     }
 
     public static string help_message () {
-        string msg = "\n" + Consts.APP_NAME + " v" + Consts.APP_VERSION + " by Tony George (teejeetech@gmail.com)" + "\n";
+        string msg = "\n" + App.APP_NAME + " v" + App.APP_VERSION + " by Tony George (teejeetech@gmail.com)" + "\n";
         msg += "\n";
         msg += _("Syntax") + ": ukuu-gtk [options]\n";
         msg += "\n";

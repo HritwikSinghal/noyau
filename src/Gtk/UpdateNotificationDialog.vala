@@ -72,7 +72,7 @@ public class UpdateNotificationDialog : Gtk.Window {
     }
 
     public void init_window () {
-        title = Consts.APP_NAME;
+        title = App.APP_NAME;
         icon = gtk_helper.get_app_icon (16);
         resizable = false;
         deletable = false;

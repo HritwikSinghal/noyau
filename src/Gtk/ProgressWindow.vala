@@ -30,6 +30,7 @@ using TeeJee.System;
 using TeeJee.Misc;
 
 public class ProgressWindow : Gtk.Dialog {
+
     private Gtk.Box vbox_main;
     private Gtk.Spinner spinner;
     private Gtk.Label lbl_msg;
@@ -87,7 +88,7 @@ public class ProgressWindow : Gtk.Dialog {
     }
 
     public void init_window () {
-        this.title = Consts.APP_NAME;
+        this.title = App.APP_NAME;
         this.icon = gtk_helper.get_app_icon (16);
         this.resizable = false;
         this.set_deletable (false);

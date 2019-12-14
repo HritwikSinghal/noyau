@@ -68,7 +68,7 @@ public class GtkHelper : GLib.Object {
     // icon ----------------------------------------------
 
     public Gdk.Pixbuf ? get_app_icon (int icon_size, string format = ".png") {
-        var img_icon = get_shared_icon (Consts.APP_NAME_SHORT, Consts.APP_NAME_SHORT + format, icon_size, "pixmaps");
+        var img_icon = get_shared_icon (App.APP_NAME_SHORT, App.APP_NAME_SHORT + format, icon_size, "pixmaps");
         if (img_icon != null) {
             return img_icon.pixbuf;
         } else {
@@ -80,7 +80,7 @@ public class GtkHelper : GLib.Object {
         string icon_name,
         string fallback_icon_file_name,
         int icon_size,
-        string icon_directory = Consts.APP_NAME_SHORT + "/images") {
+        string icon_directory = App.APP_NAME_SHORT + "/images") {
 
         Gdk.Pixbuf pix_icon = null;
         Gtk.Image img_icon = null;
@@ -116,7 +116,7 @@ public class GtkHelper : GLib.Object {
     public Gdk.Pixbuf ? get_shared_icon_pixbuf (string icon_name,
                                                 string fallback_file_name,
                                                 int icon_size,
-                                                string icon_directory = Consts.APP_NAME_SHORT + "/images") {
+                                                string icon_directory = App.APP_NAME_SHORT + "/images") {
 
         var img = get_shared_icon (icon_name, fallback_file_name, icon_size, icon_directory);
         var pixbuf = (img == null) ? null : img.pixbuf;

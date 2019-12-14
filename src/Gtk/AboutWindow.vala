@@ -29,16 +29,17 @@ using TeeJee.System;
 using TeeJee.Misc;
 
 public class AboutWindow : AboutDialog {
+
     public GtkHelper gtk_helper;
 
     public AboutWindow () {
         gtk_helper = new GtkHelper ();
 
-        this.title = Consts.APP_NAME;
-        this.program_name = Consts.APP_NAME_SHORT;
+        this.title = App.APP_NAME;
+        this.program_name = App.APP_NAME_SHORT;
         this.comments = _("A graphical utility for managing kernels on Ubuntu.");
-        this.version = Consts.APP_VERSION;
-        this.website = Consts.APP_AUTHOR_WEBSITE;
+        this.version = App.APP_VERSION;
+        this.website = App.APP_AUTHOR_WEBSITE;
 
         this.logo = gtk_helper.get_app_icon (64);
         this.modal = true;
@@ -51,7 +52,7 @@ public class AboutWindow : AboutDialog {
 
         this.translator_credits = _("translator-credits");
 
-        this.copyright = "Copyright © 2019 " + Consts.APP_AUTHOR + " (" + Consts.APP_AUTHOR_EMAIL + ")";
+        this.copyright = "Copyright © 2019 " + App.APP_AUTHOR + " (" + App.APP_AUTHOR_EMAIL + ")";
         this.license_type = Gtk.License.GPL_3_0;
         this.wrap_license = true;
 
