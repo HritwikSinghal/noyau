@@ -1,5 +1,12 @@
 project_files = files(
-    'App.vala',
+    'Helpers/MiscHelper.vala',
+    'Helpers/LoggingHelper.vala',
+    'Helpers/GtkHelper.vala',
+    'Helpers/JsonHelper.vala',
+    'Helpers/FileHelper.vala',
+    'Helpers/ProcessHelper.vala',
+    'Helpers/SystemHelper.vala',
+    'Helpers/DownloadHelper.vala',
 
     'Models/DownloadItem.vala',
     'Models/LinuxKernel.vala',
@@ -15,14 +22,7 @@ project_files = files(
     'Views/TerminalWindow.vala',
     'Views/UpdateNotificationDialog.vala',
 
-    'Helpers/GtkHelper.vala',
-    'Helpers/DownloadHelper.vala',
-    'Helpers/JsonHelper.vala',
-    'Helpers/FileHelper.vala',
-    'Helpers/LoggingHelper.vala',
-    'Helpers/MiscHelper.vala',
-    'Helpers/ProcessHelper.vala',
-    'Helpers/SystemHelper.vala'
+    'App.vala'
 )
 
 executable(
@@ -47,4 +47,3 @@ executable(
     ],
     install: true
 )
-

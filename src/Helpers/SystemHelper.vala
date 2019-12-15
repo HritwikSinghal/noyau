@@ -24,14 +24,7 @@ using GLib;
 
 public class SystemHelper : GLib.Object {
 
-    private ProcessHelper process_helper;
-    private FileHelper file_helper;
-    private LoggingHelper logging_helper;
-
     public SystemHelper () {
-        process_helper = new ProcessHelper ();
-        file_helper = new FileHelper ();
-        logging_helper = new LoggingHelper ();
     }
 
     // user ---------------------------------------------------
@@ -61,6 +54,7 @@ public class SystemHelper : GLib.Object {
     }
 
     public int get_user_id_effective () {
+        ProcessHelper process_helper = new ProcessHelper ();
 
         // returns effective user id (0 for applications executed with sudo and pkexec)
 
@@ -92,6 +86,8 @@ public class SystemHelper : GLib.Object {
     }
 
     public int get_user_id_from_username (string username) {
+        FileHelper file_helper = new FileHelper ();
+
         int user_id = -1;
 
         foreach (var line in file_helper.file_read ("/etc/passwd").split ("\n")) {
@@ -109,6 +105,7 @@ public class SystemHelper : GLib.Object {
     }
 
     public string get_username_from_uid (int user_id) {
+        FileHelper file_helper = new FileHelper ();
         string username = "";
 
         foreach (var line in file_helper.file_read ("/etc/passwd").split ("\n")) {
@@ -126,6 +123,7 @@ public class SystemHelper : GLib.Object {
     }
 
     public string get_user_home (string username = get_username ()) {
+        FileHelper file_helper = new FileHelper ();
         string userhome = "";
 
         foreach (var line in file_helper.file_read ("/etc/passwd").split ("\n")) {
@@ -149,6 +147,7 @@ public class SystemHelper : GLib.Object {
     // application -----------------------------------------------
 
     public string get_app_path () {
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         /* Get path of current process */
 
@@ -161,6 +160,7 @@ public class SystemHelper : GLib.Object {
     }
 
     public string get_app_dir () {
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         /* Get parent directory of current process */
 
@@ -176,6 +176,7 @@ public class SystemHelper : GLib.Object {
 
     // dep: cat TODO: rewrite
     public double get_system_uptime_seconds () {
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         /* Returns the system up-time in seconds */
 
@@ -197,6 +198,7 @@ public class SystemHelper : GLib.Object {
     }
 
     public string get_desktop_name () {
+        ProcessHelper process_helper = new ProcessHelper ();
 
         /* Return the names of the current Desktop environment */
 
@@ -241,6 +243,7 @@ public class SystemHelper : GLib.Object {
     }
 
     public Gee.ArrayList<string> list_dir_names (string path) {
+        LoggingHelper logging_helper = new LoggingHelper ();
         var list = new Gee.ArrayList<string>();
 
         try {
@@ -268,6 +271,9 @@ public class SystemHelper : GLib.Object {
     // internet helpers ----------------------
 
     public bool check_internet_connectivity () {
+        ProcessHelper process_helper = new ProcessHelper ();
+        LoggingHelper logging_helper = new LoggingHelper ();
+
         string std_err, std_out;
 
         string cmd = "url='https://www.google.com' \n";
@@ -292,6 +298,7 @@ public class SystemHelper : GLib.Object {
     }
 
     public bool shutdown () {
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         /* Shutdown the system immediately */
 
@@ -307,6 +314,7 @@ public class SystemHelper : GLib.Object {
     }
 
     public bool command_exists (string command) {
+        ProcessHelper process_helper = new ProcessHelper ();
         string path = process_helper.get_cmd_path (command);
         return ((path != null) && (path.length > 0));
     }
@@ -314,6 +322,10 @@ public class SystemHelper : GLib.Object {
     // open -----------------------------
 
     public bool xdg_open (string file, string user = "") {
+        ProcessHelper process_helper = new ProcessHelper ();
+        LoggingHelper logging_helper = new LoggingHelper ();
+        FileHelper file_helper = new FileHelper ();
+
         string path = process_helper.get_cmd_path ("xdg-open");
 
         if ((path != null) && (path != "")) {
@@ -335,6 +347,7 @@ public class SystemHelper : GLib.Object {
     }
 
     public bool using_efi_boot () {
+        FileHelper file_helper = new FileHelper ();
 
         /* Returns true if the system was booted in EFI mode
          * and false for BIOS mode */
@@ -346,6 +359,10 @@ public class SystemHelper : GLib.Object {
                                       string working_dir,
                                       string script_file_to_execute,
                                       bool run_as_admin) {
+
+        ProcessHelper process_helper = new ProcessHelper ();
+        LoggingHelper logging_helper = new LoggingHelper ();
+        FileHelper file_helper = new FileHelper ();
 
         string cmd = "";
         if (run_as_admin) {
@@ -416,9 +433,12 @@ public class SystemHelper : GLib.Object {
     }
 
     public void timer_elapsed_print (GLib.Timer timer, bool stop = true) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+
         ulong microseconds;
         double seconds;
         seconds = timer.elapsed (out microseconds);
+
         if (stop) {
             timer.stop ();
         }

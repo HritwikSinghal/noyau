@@ -28,19 +28,16 @@ public class ProcessHelper : GLib.Object {
 
     public static string TEMP_DIR;
 
-    private MiscHelper misc_helper;
-    private FileHelper file_helper;
-    private LoggingHelper logging_helper;
-
     public ProcessHelper () {
-        misc_helper = new MiscHelper ();
-        file_helper = new FileHelper ();
-        logging_helper = new LoggingHelper ();
     }
 
     // execute process ---------------------------------
 
     public void init_tmp (string subdir_name) {
+        MiscHelper misc_helper = new MiscHelper ();
+        FileHelper file_helper = new FileHelper ();
+        LoggingHelper logging_helper = new LoggingHelper ();
+
         string std_out, std_err;
 
         TEMP_DIR = Environment.get_tmp_dir () + "/" + subdir_name + "/" + misc_helper.random_string ();
@@ -57,6 +54,9 @@ public class ProcessHelper : GLib.Object {
     }
 
     public string create_temp_subdir (string base_dir = "") {
+        MiscHelper misc_helper = new MiscHelper ();
+        FileHelper file_helper = new FileHelper ();
+
         var temp = "%s/%s".printf ((base_dir.length > 0) ? base_dir : TEMP_DIR, misc_helper.random_string ());
         file_helper.dir_create (temp);
         return temp;
@@ -67,6 +67,8 @@ public class ProcessHelper : GLib.Object {
         /* Executes single command synchronously.
          * Pipes and multiple commands are not supported.
          * std_out, std_err can be null. Output will be written to terminal if null. */
+
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         try {
             int status;
@@ -88,6 +90,9 @@ public class ProcessHelper : GLib.Object {
          * Commands are written to a temporary bash script and executed.
          * std_out, std_err can be null. Output will be written to terminal if null.
          * */
+
+        FileHelper file_helper = new FileHelper ();
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         string sh_file = save_bash_script_temp (script, null, true, supress_errors);
         string sh_file_admin = "";
@@ -165,6 +170,8 @@ public class ProcessHelper : GLib.Object {
          * Return value indicates if script was started successfully.
          *  */
 
+        LoggingHelper logging_helper = new LoggingHelper ();
+
         try {
 
             string scriptfile = save_bash_script_temp (script);
@@ -197,6 +204,9 @@ public class ProcessHelper : GLib.Object {
 
         /* Creates a temporary bash script with given commands
          * Returns the script file path */
+
+        FileHelper file_helper = new FileHelper ();
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         var script = new StringBuilder ();
         script.append ("#!/bin/bash\n");
@@ -239,10 +249,9 @@ public class ProcessHelper : GLib.Object {
         return null;
     }
 
+    /* Generates temporary file path */
     public string get_temp_file_path () {
-
-        /* Generates temporary file path */
-
+        MiscHelper misc_helper = new MiscHelper ();
         return TEMP_DIR + "/" + misc_helper.timestamp_numeric () + (new Rand ()).next_int ().to_string ();
     }
 
@@ -256,6 +265,8 @@ public class ProcessHelper : GLib.Object {
     public string get_cmd_path (string cmd_tool) {
 
         /* Returns the full path to a command */
+
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         try {
             int exitCode;
@@ -301,6 +312,8 @@ public class ProcessHelper : GLib.Object {
          * Returns the process id if found.
          * */
 
+        LoggingHelper logging_helper = new LoggingHelper ();
+
         try {
             FileEnumerator enumerator;
             FileInfo info;
@@ -341,6 +354,8 @@ public class ProcessHelper : GLib.Object {
 
         /* Returns the number of bytes read and written by a process to disk */
 
+        LoggingHelper logging_helper = new LoggingHelper ();
+
         string io_stat_file_path = "/proc/%d/io".printf (pid);
         var file = File.new_for_path (io_stat_file_path);
 
@@ -368,6 +383,7 @@ public class ProcessHelper : GLib.Object {
     public bool process_is_running (long pid) {
 
         /* Checks if given process is running */
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         string cmd = "";
         string std_out;
@@ -389,6 +405,8 @@ public class ProcessHelper : GLib.Object {
     public bool process_is_running_by_name (string proc_name) {
 
         /* Checks if given process is running */
+
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         string cmd = "";
         string std_out;
@@ -491,6 +509,7 @@ public class ProcessHelper : GLib.Object {
 
     // dep: ps TODO: Rewrite using /proc
     public void process_quit_by_name (string cmd_name, string cmd_to_match, bool exact_match) {
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         /* Kills a specific command */
 

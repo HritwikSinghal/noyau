@@ -120,6 +120,7 @@ public class App : Gtk.Application {
         // start event loop -------------------------------------
 
         Gtk.main ();
+
         save_app_config ();
     }
 

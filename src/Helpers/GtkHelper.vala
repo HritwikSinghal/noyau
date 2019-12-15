@@ -21,16 +21,14 @@
  */
 
 using Gtk;
+using Gdk;
 using GLib;
 
 public class GtkHelper : GLib.Object {
 
     public static int CSS_AUTO_CLASS_INDEX = 0;
 
-    private LoggingHelper logging_helper;
-
     public GtkHelper () {
-        logging_helper = new LoggingHelper ();
     }
 
     // messages ----------------------------------------
@@ -82,6 +80,8 @@ public class GtkHelper : GLib.Object {
         string fallback_icon_file_name,
         int icon_size,
         string icon_directory = App.APP_NAME_SHORT + "/images") {
+
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         Gdk.Pixbuf pix_icon = null;
         Gtk.Image img_icon = null;

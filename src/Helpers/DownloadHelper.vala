@@ -20,6 +20,8 @@
  * MA 02110-1301, USA.
  */
 
+using Gee;
+
 public class DownloadHelper : AsyncTask {
 
     // settings
@@ -35,18 +37,10 @@ public class DownloadHelper : AsyncTask {
     private Gee.HashMap<string, Regex> regex = null;
     private static Version tool_version = null;
 
-    private LoggingHelper logging_helper;
-    private ProcessHelper process_helper;
-    private FileHelper file_helper;
-    private MiscHelper misc_helper;
-
     public DownloadHelper () {
         base ();
 
-        logging_helper = new LoggingHelper ();
-        process_helper = new ProcessHelper ();
-        file_helper = new FileHelper ();
-        misc_helper = new MiscHelper ();
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         downloads = new Gee.ArrayList<DownloadItem>();
         map = new Gee.HashMap<string, DownloadItem>();
@@ -72,6 +66,9 @@ public class DownloadHelper : AsyncTask {
     }
 
     public void check_tool_version () {
+        LoggingHelper logging_helper = new LoggingHelper ();
+        ProcessHelper process_helper = new ProcessHelper ();
+
         if (tool_version != null) {
             return;
         }
@@ -99,8 +96,9 @@ public class DownloadHelper : AsyncTask {
     // execution ----------------------------
 
     public void add_to_queue (DownloadItem item) {
-        item.task = this;
+        MiscHelper misc_helper = new MiscHelper ();
 
+        item.task = this;
         downloads.add (item);
 
         // set gid - 16 character hex string in lowercase
@@ -126,11 +124,16 @@ public class DownloadHelper : AsyncTask {
     }
 
     public void prepare () {
+        ProcessHelper process_helper = new ProcessHelper ();
         string script_text = build_script ();
         process_helper.save_bash_script_temp (script_text, script_file);
     }
 
     private string build_script () {
+        LoggingHelper logging_helper = new LoggingHelper ();
+        ProcessHelper process_helper = new ProcessHelper ();
+        FileHelper file_helper = new FileHelper ();
+
         string cmd = "";
         var command = "wget";
         var cmd_path = process_helper.get_cmd_path ("aria2c");
@@ -260,11 +263,15 @@ public class DownloadHelper : AsyncTask {
     }
 
     protected override void finish_task () {
+        FileHelper file_helper = new FileHelper ();
         verify ();
         file_helper.dir_delete (working_dir);
     }
 
     private void verify () {
+        LoggingHelper logging_helper = new LoggingHelper ();
+        FileHelper file_helper = new FileHelper ();
+
         logging_helper.log_debug ("verify()");
 
         foreach (var item in downloads) {
@@ -285,6 +292,8 @@ public class DownloadHelper : AsyncTask {
     }
 
     public int read_status () {
+        FileHelper file_helper = new FileHelper ();
+
         var status_file = working_dir + "/status";
         var f = File.new_for_path (status_file);
         if (f.query_exists ()) {

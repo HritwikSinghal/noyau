@@ -33,14 +33,7 @@ public class FileHelper : GLib.Object {
     public const int64 GiB = 1024 * MiB;
     public const int64 TiB = 1024 * GiB;
 
-    private LoggingHelper logging_helper;
-    private ProcessHelper process_helper;
-    private MiscHelper misc_helper;
-
     public FileHelper () {
-        logging_helper = new LoggingHelper ();
-        process_helper = new ProcessHelper ();
-        misc_helper = new MiscHelper ();
     }
 
     // path helpers ----------------------------
@@ -88,6 +81,7 @@ public class FileHelper : GLib.Object {
     }
 
     public bool file_delete (string file_path, bool show_message = false) {
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         /* Check and delete file */
 
@@ -132,6 +126,8 @@ public class FileHelper : GLib.Object {
     }
 
     public int64 file_line_count (string file_path) {
+        ProcessHelper process_helper = new ProcessHelper ();
+
         /* Count number of lines in text file */
         string cmd = "wc -l '%s'".printf (escape_single_quote (file_path));
         string std_out, std_err;
@@ -140,6 +136,7 @@ public class FileHelper : GLib.Object {
     }
 
     public string ? file_read (string file_path, bool show_message = false) {
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         /* Reads text from file */
 
@@ -165,6 +162,7 @@ public class FileHelper : GLib.Object {
     }
 
     public bool file_write (string file_path, string contents, bool show_message = false) {
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         /* Write text to file */
 
@@ -197,6 +195,8 @@ public class FileHelper : GLib.Object {
     }
 
     public bool file_copy (string src_file, string dest_file, bool show_message = false) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+
         try {
             var file_src = File.new_for_path (src_file);
             if (file_src.query_exists ()) {
@@ -220,6 +220,8 @@ public class FileHelper : GLib.Object {
     }
 
     public void file_move (string src_file, string dest_file, bool show_message = false) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+
         try {
             var file_src = File.new_for_path (src_file);
             if (!file_src.query_exists ()) {
@@ -248,6 +250,8 @@ public class FileHelper : GLib.Object {
     }
 
     public bool file_gzip (string src_file) {
+        ProcessHelper process_helper = new ProcessHelper ();
+
         string dst_file = src_file + ".gz";
         file_delete (dst_file);
 
@@ -259,6 +263,8 @@ public class FileHelper : GLib.Object {
     }
 
     public bool file_gunzip (string src_file) {
+        ProcessHelper process_helper = new ProcessHelper ();
+
         string dst_file = src_file;
         file_delete (dst_file);
 
@@ -272,6 +278,8 @@ public class FileHelper : GLib.Object {
     // file info -----------------
 
     public int64 file_get_size (string file_path) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+
         try {
             File file = File.parse_name (file_path);
             if (FileUtils.test (file_path, GLib.FileTest.EXISTS)) {
@@ -288,6 +296,8 @@ public class FileHelper : GLib.Object {
     }
 
     public DateTime file_get_modified_date (string file_path) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+
         try {
             FileInfo info;
             File file = File.parse_name (file_path);
@@ -303,6 +313,8 @@ public class FileHelper : GLib.Object {
     }
 
     public string file_get_symlink_target (string file_path) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+
         try {
             FileInfo info;
             File file = File.parse_name (file_path);
@@ -325,6 +337,7 @@ public class FileHelper : GLib.Object {
     }
 
     public bool dir_create (string dir_path, bool show_message = false) {
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         /* Creates a directory along with parents */
 
@@ -347,6 +360,8 @@ public class FileHelper : GLib.Object {
     }
 
     public bool dir_delete (string dir_path, bool show_message = false) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+        ProcessHelper process_helper = new ProcessHelper ();
 
         /* Recursively deletes directory along with contents */
 
@@ -370,6 +385,7 @@ public class FileHelper : GLib.Object {
     }
 
     public bool dir_is_empty (string dir_path) {
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         /* Check if directory is empty */
 
@@ -392,6 +408,10 @@ public class FileHelper : GLib.Object {
     }
 
     public bool filesystem_supports_hardlinks (string path, out bool is_readonly) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+        ProcessHelper process_helper = new ProcessHelper ();
+        MiscHelper misc_helper = new MiscHelper ();
+
         bool supports_hardlinks = false;
         is_readonly = false;
 
@@ -435,6 +455,7 @@ public class FileHelper : GLib.Object {
 
     public Gee.ArrayList<string> dir_list_names (string path) {
         var list = new Gee.ArrayList<string>();
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         try {
             File f_home = File.new_for_path (path);
@@ -458,6 +479,9 @@ public class FileHelper : GLib.Object {
     }
 
     public bool dir_tar (string src_dir, string tar_file, bool recursion = true) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+        ProcessHelper process_helper = new ProcessHelper ();
+
         if (dir_exists (src_dir)) {
 
             if (file_exists (tar_file)) {
@@ -490,6 +514,9 @@ public class FileHelper : GLib.Object {
     }
 
     public bool dir_untar (string tar_file, string dst_dir) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+        ProcessHelper process_helper = new ProcessHelper ();
+
         if (file_exists (tar_file)) {
 
             if (!dir_exists (dst_dir)) {
@@ -517,6 +544,8 @@ public class FileHelper : GLib.Object {
     }
 
     public bool chown (string dir_path, string user, string group = user) {
+        ProcessHelper process_helper = new ProcessHelper ();
+
         string cmd = "chown %s:%s -R '%s'".printf (user, group, escape_single_quote (dir_path));
         int status = process_helper.exec_sync (cmd, null, null);
         return (status == 0);
@@ -526,6 +555,7 @@ public class FileHelper : GLib.Object {
 
     // dep: find wc    TODO: rewrite
     public long dir_count (string path) {
+        ProcessHelper process_helper = new ProcessHelper ();
 
         /* Return total count of files and directories */
 
@@ -541,6 +571,7 @@ public class FileHelper : GLib.Object {
 
     // dep: du
     public long dir_size (string path) {
+        ProcessHelper process_helper = new ProcessHelper ();
 
         /* Returns size of files and directories in KB*/
 
@@ -562,6 +593,9 @@ public class FileHelper : GLib.Object {
 
     // dep: tar gzip gpg
     public bool file_tar_encrypt (string src_file, string dst_file, string password) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+        ProcessHelper process_helper = new ProcessHelper ();
+
         if (file_exists (src_file)) {
             if (file_exists (dst_file)) {
                 file_delete (dst_file);
@@ -603,6 +637,10 @@ public class FileHelper : GLib.Object {
 
     // dep: tar gzip gpg
     public string file_decrypt_untar_read (string src_file, string password) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+        ProcessHelper process_helper = new ProcessHelper ();
+        MiscHelper misc_helper = new MiscHelper ();
+
         if (file_exists (src_file)) {
 
             // var src_name = file_basename(src_file);
@@ -638,6 +676,9 @@ public class FileHelper : GLib.Object {
 
     // dep: tar gzip gpg
     public bool decrypt_and_untar (string src_file, string dst_file, string password) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+        ProcessHelper process_helper = new ProcessHelper ();
+
         if (file_exists (src_file)) {
             if (file_exists (dst_file)) {
                 file_delete (dst_file);
@@ -731,14 +772,17 @@ public class FileHelper : GLib.Object {
 
     // dep: chmod
     public int chmod (string file, string permission) {
+        ProcessHelper process_helper = new ProcessHelper ();
 
         /* Change file permissions */
+
         string cmd = "chmod %s '%s'".printf (permission, escape_single_quote (file));
         return process_helper.exec_sync (cmd, null, null);
     }
 
     // dep: realpath
     public string resolve_relative_path (string filePath) {
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         /* Resolve the full path of given file using 'realpath' command */
 
@@ -763,6 +807,7 @@ public class FileHelper : GLib.Object {
     }
 
     public int rsync (string sourceDirectory, string destDirectory, bool updateExisting, bool deleteExtra) {
+        ProcessHelper process_helper = new ProcessHelper ();
 
         /* Sync files with rsync */
 

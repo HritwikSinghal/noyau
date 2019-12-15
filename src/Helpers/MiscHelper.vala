@@ -24,10 +24,7 @@ using GLib;
 
 public class MiscHelper : GLib.Object {
 
-    private LoggingHelper logging_helper;
-
     public MiscHelper () {
-        logging_helper = new LoggingHelper ();
     }
 
     /* Various utility functions */
@@ -266,6 +263,7 @@ public class MiscHelper : GLib.Object {
     }
 
     public MatchInfo ? regex_match (string expression, string line) {
+        LoggingHelper logging_helper = new LoggingHelper ();
         Regex regex = null;
 
         try {
@@ -284,8 +282,8 @@ public class MiscHelper : GLib.Object {
     }
 
     public static void print_progress_bar_start (string message) {
-        LoggingHelper _logging_helper = new LoggingHelper ();
-        _logging_helper.log_msg ("\n%s\n".printf (message));
+        LoggingHelper logging_helper = new LoggingHelper ();
+        logging_helper.log_msg ("\n%s\n".printf (message));
     }
 
     public static void print_progress_bar (double fraction) {

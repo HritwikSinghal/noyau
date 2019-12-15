@@ -25,15 +25,14 @@ using Json;
 
 public class JsonHelper : GLib.Object {
 
-    private LoggingHelper logging_helper;
-
     public JsonHelper () {
-        logging_helper = new LoggingHelper ();
     }
 
     /* Convenience functions for reading and writing JSON files */
 
     public string json_get_string (Json.Object jobj, string member, string def_value) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+
         if (jobj.has_member (member)) {
             return jobj.get_string_member (member);
         } else {
@@ -53,6 +52,8 @@ public class JsonHelper : GLib.Object {
     }
 
     public bool json_get_bool (Json.Object jobj, string member, bool def_value) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+
         if (jobj.has_member (member)) {
             return bool.parse (jobj.get_string_member (member));
         } else {
@@ -62,6 +63,8 @@ public class JsonHelper : GLib.Object {
     }
 
     public int json_get_int (Json.Object jobj, string member, int def_value) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+
         if (jobj.has_member (member)) {
             return int.parse (jobj.get_string_member (member));
         } else {
@@ -71,6 +74,8 @@ public class JsonHelper : GLib.Object {
     }
 
     public int64 json_get_int64 (Json.Object jobj, string member, int64 def_value) {
+        LoggingHelper logging_helper = new LoggingHelper ();
+
         if (jobj.has_member (member)) {
             return int64.parse (jobj.get_string_member (member));
         } else {
@@ -82,6 +87,8 @@ public class JsonHelper : GLib.Object {
     public Gee.ArrayList<string> json_get_array (Json.Object jobj,
                                                  string member,
                                                  Gee.ArrayList<string> def_value) {
+
+        LoggingHelper logging_helper = new LoggingHelper ();
 
         if (jobj.has_member (member)) {
             var jarray = jobj.get_array_member (member);

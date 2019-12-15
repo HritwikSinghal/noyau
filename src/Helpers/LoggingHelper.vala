@@ -34,13 +34,12 @@ public class LoggingHelper : GLib.Object {
     public bool LOG_DEBUG = false;
     public bool LOG_COMMANDS = false;
 
-    private MiscHelper misc_helper;
-
     public LoggingHelper () {
-        misc_helper = new MiscHelper ();
     }
 
     public void log_msg (string message, bool highlight = false) {
+        MiscHelper misc_helper = new MiscHelper ();
+
         if (!LOG_ENABLE) {
             return;
         }
@@ -75,8 +74,8 @@ public class LoggingHelper : GLib.Object {
         }
     }
 
-    public void log_error (string message, bool highlight = false,
-                           bool is_warning = false) {
+    public void log_error (string message, bool highlight = false, bool is_warning = false) {
+        MiscHelper misc_helper = new MiscHelper ();
 
         if (!LOG_ENABLE) {
             return;
@@ -121,6 +120,8 @@ public class LoggingHelper : GLib.Object {
     }
 
     public void log_debug (string message) {
+        MiscHelper misc_helper = new MiscHelper ();
+
         if (!LOG_ENABLE) {
             return;
         }
@@ -139,6 +140,8 @@ public class LoggingHelper : GLib.Object {
     }
 
     public void log_to_file (string message, bool highlight = false) {
+        MiscHelper misc_helper = new MiscHelper ();
+
         try {
             if (dos_log != null) {
                 dos_log.put_string ("[%s] %s\n".printf (misc_helper.timestamp (), message));
