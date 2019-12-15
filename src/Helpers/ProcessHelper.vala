@@ -31,35 +31,29 @@ public class ProcessHelper : GLib.Object {
     private MiscHelper misc_helper;
     private FileHelper file_helper;
     private LoggingHelper logging_helper;
-    private ProcessHelper process_helper;
 
     public ProcessHelper () {
         misc_helper = new MiscHelper ();
         file_helper = new FileHelper ();
         logging_helper = new LoggingHelper ();
-        process_helper = new ProcessHelper ();
     }
 
     // execute process ---------------------------------
 
-    public static void init_tmp (string subdir_name) {
-        MiscHelper _misc_helper = new MiscHelper ();
-        FileHelper _file_helper = new FileHelper ();
-        ProcessHelper _process_helper = new ProcessHelper ();
-
+    public void init_tmp (string subdir_name) {
         string std_out, std_err;
 
-        TEMP_DIR = Environment.get_tmp_dir () + "/" + subdir_name + "/" + _misc_helper.random_string ();
-        _file_helper.dir_create (TEMP_DIR);
+        TEMP_DIR = Environment.get_tmp_dir () + "/" + subdir_name + "/" + misc_helper.random_string ();
+        file_helper.dir_create (TEMP_DIR);
 
-        _process_helper.exec_script_sync ("echo 'ok'", out std_out, out std_err, true);
+        exec_script_sync ("echo 'ok'", out std_out, out std_err, true);
         if ((std_out == null) || (std_out.strip () != "ok")) {
-            TEMP_DIR = Environment.get_home_dir () + "/.temp/" + subdir_name + "/" + _misc_helper.random_string ();
-            _process_helper.exec_sync ("rm -rf '%s'".printf (TEMP_DIR), null, null);
-            _file_helper.dir_create (TEMP_DIR);
+            TEMP_DIR = Environment.get_home_dir () + "/.temp/" + subdir_name + "/" + misc_helper.random_string ();
+            exec_sync ("rm -rf '%s'".printf (TEMP_DIR), null, null);
+            file_helper.dir_create (TEMP_DIR);
         }
 
-        // log_debug("TEMP_DIR=" + TEMP_DIR);
+        logging_helper.log_debug ("TEMP_DIR=" + TEMP_DIR);
     }
 
     public string create_temp_subdir (string base_dir = "") {

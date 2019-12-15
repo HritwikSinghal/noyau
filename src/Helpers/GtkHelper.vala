@@ -39,8 +39,9 @@ public class GtkHelper : GLib.Object {
 
         /* Do pending events */
 
-        while (Gtk.events_pending ())
+        while (Gtk.events_pending ()) {
             Gtk.main_iteration ();
+        }
     }
 
     public void gtk_messagebox (string title, string message, Gtk.Window ? parent_win, bool is_error = false) {

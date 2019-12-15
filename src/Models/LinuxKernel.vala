@@ -290,7 +290,6 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         LoggingHelper _logging_helper = new LoggingHelper ();
         SystemHelper _system_helper = new SystemHelper ();
         FileHelper _file_helper = new FileHelper ();
-        MiscHelper _misc_helper = new MiscHelper ();
 
         _logging_helper.log_debug ("query: hide_older: %s".printf (hide_older.to_string ()));
         _logging_helper.log_debug ("query: hide_unstable: %s".printf (hide_unstable.to_string ()));

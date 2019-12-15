@@ -21,8 +21,8 @@
  */
 
 using Gtk;
-using GLib;
 using Gee;
+using GLib;
 using Json;
 
 extern void exit (int exit_code);
@@ -59,41 +59,37 @@ public class App : Gtk.Application {
     public static bool cancelled = false;
     public static string requested_version = "";
 
-    public GtkHelper gtk_helper;
-    public JsonHelper json_helper;
-
+    private GtkHelper gtk_helper;
+    private JsonHelper json_helper;
     private SystemHelper system_helper;
     private LoggingHelper logging_helper;
     private ProcessHelper process_helper;
 
     public App () {
         GLib.Object (
-            application_id: "ukuu",
+            application_id: "com.github.joshuadowding.ukuu",
             flags : ApplicationFlags.FLAGS_NONE
         );
-
-        system_helper = new SystemHelper ();
-        logging_helper = new LoggingHelper ();
-        process_helper = new ProcessHelper ();
     }
 
     protected override void activate () {
         gtk_helper = new GtkHelper ();
         json_helper = new JsonHelper ();
+        system_helper = new SystemHelper ();
+        logging_helper = new LoggingHelper ();
+        process_helper = new ProcessHelper ();
+
+        // check_if_admin ();
 
         Package.initialize ();
         LinuxKernel.initialize ();
 
         init_paths ();
         load_app_config ();
-
         set_locale ();
 
         logging_helper.log_msg ("%s v%s".printf (App.APP_NAME_SHORT, App.APP_VERSION));
-
-        ProcessHelper.init_tmp ("ukuu");
-
-        check_if_admin ();
+        process_helper.init_tmp ("ukuu");
 
         // LOG_TIMESTAMP = false;
 
@@ -119,20 +115,16 @@ public class App : Gtk.Application {
             return true;
         });
 
-        if (command == "list") {
-            window.show_all ();
-        }
+        window.show_all ();
 
         // start event loop -------------------------------------
 
         Gtk.main ();
-
         save_app_config ();
     }
 
     public static int main (string[] args) {
-        parse_arguments (args);
-
+        // parse_arguments (args);
         Gtk.init (ref args);
 
         var app = new App ();
@@ -226,12 +218,12 @@ public class App : Gtk.Application {
         update_notification_files ();
     }
 
-    public static void update_notification_files () {
+    private static void update_notification_files () {
         update_startup_script ();
         update_startup_desktop_file ();
     }
 
-    public void load_app_config () {
+    private void load_app_config () {
         var f = File.new_for_path (APP_CONFIG_FILE);
 
         if (!f.query_exists ()) {
@@ -377,7 +369,7 @@ public class App : Gtk.Application {
         }
     }
 
-    public static bool parse_arguments (string[] args) {
+    private static bool parse_arguments (string[] args) {
         LoggingHelper _logging_helper = new LoggingHelper ();
 
         _logging_helper.log_msg (_("Cache") + ": %s".printf (LinuxKernel.CACHE_DIR));
@@ -443,7 +435,7 @@ public class App : Gtk.Application {
         return true;
     }
 
-    public static string help_message () {
+    private static string help_message () {
         string msg = "\n" + App.APP_NAME + " v" + App.APP_VERSION + " by Tony George (teejeetech@gmail.com)" + "\n";
         msg += "\n";
         msg += _("Syntax") + ": ukuu-gtk [options]\n";

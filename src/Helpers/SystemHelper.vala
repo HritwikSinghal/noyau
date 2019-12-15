@@ -31,6 +31,7 @@ public class SystemHelper : GLib.Object {
     public SystemHelper () {
         process_helper = new ProcessHelper ();
         file_helper = new FileHelper ();
+        logging_helper = new LoggingHelper ();
     }
 
     // user ---------------------------------------------------

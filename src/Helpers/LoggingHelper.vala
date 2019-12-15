@@ -41,7 +41,6 @@ public class LoggingHelper : GLib.Object {
     }
 
     public void log_msg (string message, bool highlight = false) {
-
         if (!LOG_ENABLE) {
             return;
         }
