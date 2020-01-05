@@ -252,13 +252,15 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
     }
 
     public LinuxKernel.from_version (string _version) {
+        process_helper = new ProcessHelper ();
+        logging_helper = new LoggingHelper ();
+        system_helper = new SystemHelper ();
+        misc_helper = new MiscHelper ();
+        file_helper = new FileHelper ();
 
         version = _version;
-
         name = "v" + version;
-
         split_version_string (version, out version_main, out version_extra);
-
         page_uri = "";
     }
 
