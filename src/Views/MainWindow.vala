@@ -64,7 +64,7 @@ public class MainWindow : Gtk.Window {
 
         title = App.APP_NAME; // "%s (Ukuu) v%s".printf(Main.AppName, Main.AppVersion);
         window_position = WindowPosition.CENTER;
-        icon = gtk_helper.get_app_icon (16, ".svg");
+        icon = gtk_helper.get_app_icon (16);
 
         header_bar = new Gtk.HeaderBar ();
         header_bar.show_close_button = true;
@@ -344,27 +344,27 @@ public class MainWindow : Gtk.Window {
 
     private void set_button_state () {
         if (selected_kernels.size == 0) {
-            btn_install.sensitive = false;
+            btn_install.set_sensitive (false);
             menu_install.set_sensitive (false);
 
-            btn_remove.sensitive = false;
-            menu_remove.sensitive = false;
+            btn_remove.set_sensitive (false);
+            menu_remove.set_sensitive (false);
 
-            btn_purge.sensitive = true;
+            btn_purge.set_sensitive (false);
 
-            btn_changes.sensitive = false;
-            menu_changes.sensitive = false;
+            btn_changes.set_sensitive (false);
+            menu_changes.set_sensitive (false);
         } else {
-            btn_install.sensitive = (selected_kernels.size == 1) && !selected_kernels[0].is_installed;
-            menu_install.sensitive = (selected_kernels.size == 1) && !selected_kernels[0].is_installed;
+            btn_install.set_sensitive ((selected_kernels.size == 1) && !selected_kernels[0].is_installed);
+            menu_install.set_sensitive ((selected_kernels.size == 1) && !selected_kernels[0].is_installed);
 
-            btn_remove.sensitive = selected_kernels[0].is_installed && !selected_kernels[0].is_running;
-            menu_remove.sensitive = selected_kernels[0].is_installed && !selected_kernels[0].is_running;
+            btn_remove.set_sensitive (selected_kernels[0].is_installed && !selected_kernels[0].is_running);
+            menu_remove.set_sensitive (selected_kernels[0].is_installed && !selected_kernels[0].is_running);
 
-            btn_purge.sensitive = true;
+            btn_purge.set_sensitive (true);
 
-            btn_changes.sensitive = (selected_kernels.size == 1) && file_helper.file_exists (selected_kernels[0].changes_file);
-            menu_changes.sensitive = (selected_kernels.size == 1) && file_helper.file_exists (selected_kernels[0].changes_file);
+            btn_changes.set_sensitive ((selected_kernels.size == 1) && file_helper.file_exists (selected_kernels[0].changes_file));
+            menu_changes.set_sensitive ((selected_kernels.size == 1) && file_helper.file_exists (selected_kernels[0].changes_file));
         }
     }
 
@@ -398,10 +398,10 @@ public class MainWindow : Gtk.Window {
             sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ";
             sh += "ukuu --user %s".printf (App.user_login);
             /*
-            if (LOG_DEBUG) {
+               if (LOG_DEBUG) {
                 sh += " --debug";
-            }
-            */
+               }
+             */
             string names = "";
             foreach (var kern in selected_kernels) {
                 if (names.length > 0) {
@@ -532,10 +532,10 @@ public class MainWindow : Gtk.Window {
             sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ";
             sh += "ukuu --user %s".printf (App.user_login);
             /*
-            if (LOG_DEBUG) {
+               if (LOG_DEBUG) {
                 sh += " --debug";
-            }
-            */
+               }
+             */
             sh += " --purge-old-kernels\n";
 
             logging_helper.log_debug (sh);
@@ -766,10 +766,10 @@ public class MainWindow : Gtk.Window {
         sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ";
         sh += "ukuu --user %s".printf (App.user_login);
         /*
-        if (LOG_DEBUG) {
+           if (LOG_DEBUG) {
             sh += " --debug";
-        }
-        */
+           }
+         */
         sh += " --install %s\n".printf (kern.name);
 
         sh += "echo ''\n";

@@ -67,7 +67,7 @@ public class GtkHelper : GLib.Object {
     // icon ----------------------------------------------
 
     public Gdk.Pixbuf ? get_app_icon (int icon_size, string format = ".png") {
-        var img_icon = get_shared_icon (App.APP_NAME_SHORT, App.APP_NAME_SHORT + format, icon_size, "pixmaps");
+        var img_icon = get_shared_icon (App.APP_NAME_SHORT, App.APP_NAME_SHORT + format, icon_size, "ukuu/images");
         if (img_icon != null) {
             return img_icon.pixbuf;
         } else {
@@ -75,26 +75,13 @@ public class GtkHelper : GLib.Object {
         }
     }
 
-    public Gtk.Image ? get_shared_icon (
-        string icon_name,
-        string fallback_icon_file_name,
-        int icon_size,
-        string icon_directory = App.APP_NAME_SHORT + "/images") {
-
+    public Gtk.Image ? get_shared_icon (string icon_name, string fallback_icon_file_name, int icon_size, string icon_directory) {
         LoggingHelper logging_helper = new LoggingHelper ();
 
         Gdk.Pixbuf pix_icon = null;
         Gtk.Image img_icon = null;
 
-        try {
-            Gtk.IconTheme icon_theme = Gtk.IconTheme.get_default ();
-            pix_icon = icon_theme.load_icon_for_scale (icon_name, Gtk.IconSize.MENU, icon_size, Gtk.IconLookupFlags.FORCE_SIZE);
-        } catch (Error e) {
-            logging_helper.log_error (e.message);
-        }
-
-        //string fallback_icon_file_path = "/usr/share/%s/%s".printf (icon_directory, fallback_icon_file_name);
-        string fallback_icon_file_path = "/usr/share/ukuu/pixmaps/ukuu.svg";
+        string fallback_icon_file_path = "/usr/share/%s/%s".printf (icon_directory, fallback_icon_file_name);
 
         if (pix_icon == null) {
             try {

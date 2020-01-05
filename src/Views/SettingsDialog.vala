@@ -46,7 +46,7 @@ public class SettingsDialog : Gtk.Dialog {
         deletable = false;
         resizable = false;
 
-        icon = gtk_helper.get_app_icon (16, ".svg");
+        icon = gtk_helper.get_app_icon (16);
 
         title = _("Settings");
 
