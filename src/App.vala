@@ -417,6 +417,7 @@ public class App : Gtk.Application {
                     check_if_internet_is_active (true);
                     LinuxKernel.query (true);
                     LinuxKernel.print_list ();
+                    LinuxKernel.clean_cache ();
                     exit (0);
                     break;
 
@@ -427,11 +428,13 @@ public class App : Gtk.Application {
 
                 case "--check":
                     print_updates ();
+                    LinuxKernel.clean_cache ();
                     exit (0);
                     break;
 
                 case "--notify":
                     notify_user ();
+                    LinuxKernel.clean_cache ();
                     exit (0);
                     break;
 
@@ -439,6 +442,7 @@ public class App : Gtk.Application {
                     check_if_admin ();
                     check_if_internet_is_active (true);
                     LinuxKernel.install_latest (false, true);
+                    LinuxKernel.clean_cache ();
                     exit (0);
                     break;
 
@@ -446,12 +450,14 @@ public class App : Gtk.Application {
                     check_if_admin ();
                     check_if_internet_is_active (true);
                     LinuxKernel.install_latest (true, true);
+                    LinuxKernel.clean_cache ();
                     exit (0);
                     break;
 
                 case "--purge-old-kernels":
                     check_if_admin ();
                     LinuxKernel.purge_old_kernels (true);
+                    LinuxKernel.clean_cache ();
                     exit (0);
                     break;
 
@@ -506,6 +512,7 @@ public class App : Gtk.Application {
                         exit (1);
                     }
 
+                    LinuxKernel.clean_cache ();
                     return list[0].install (true);
 
                 case "--download":
@@ -548,6 +555,7 @@ public class App : Gtk.Application {
                         exit (1);
                     }
 
+                    LinuxKernel.clean_cache ();
                     return LinuxKernel.download_kernels (list);
 
                 case "--remove":
@@ -588,6 +596,7 @@ public class App : Gtk.Application {
                         exit (1);
                     }
 
+                    LinuxKernel.clean_cache ();
                     return LinuxKernel.remove_kernels (list);
 
                 default:
