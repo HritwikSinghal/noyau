@@ -95,29 +95,33 @@ public class MainWindow : Gtk.Window {
         refresh_cache ();
         tv_refresh ();
 
-        switch (App.command) {
-            case "install":
-                LinuxKernel kern_requested = null;
-                foreach (var kern in LinuxKernel.kernel_list) {
-                    if (kern.name == App.requested_version) {
-                        kern_requested = kern;
-                        break;
+        for (int i = 0; i < App.commands.length (); i++) {
+            string command = App.commands.nth_data (i);
+
+            switch (command) {
+                case "install":
+                    LinuxKernel kern_requested = null;
+                    foreach (var kern in LinuxKernel.kernel_list) {
+                        if (kern.name == App.requested_version) {
+                            kern_requested = kern;
+                            break;
+                        }
                     }
-                }
 
-                if (kern_requested == null) {
-                    var msg = _("Could not find requested version");
-                    msg += ": %s".printf (App.requested_version);
-                    logging_helper.log_error (msg);
-                    exit (1);
-                } else {
-                    install (kern_requested);
-                }
-                break;
+                    if (kern_requested == null) {
+                        var msg = _("Could not find requested version");
+                        msg += ": %s".printf (App.requested_version);
+                        logging_helper.log_error (msg);
+                        exit (1);
+                    } else {
+                        install (kern_requested);
+                    }
+                    break;
 
-            case "notify":
-                notify_user ();
-                break;
+                case "notify":
+                    notify_user ();
+                    break;
+            }
         }
 
         return false;
@@ -603,18 +607,20 @@ public class MainWindow : Gtk.Window {
             return;
         }
 
-        if (App.command != "list") {
+        if (App.commands != null) {
+            if (App.commands.find ("list").length () == 0) {
 
-            // refresh without GUI and return -----------------
+                // refresh without GUI and return -----------------
 
-            LinuxKernel.query (false);
+                LinuxKernel.query (false);
 
-            while (LinuxKernel.task_is_running) {
-                system_helper.sleep (200);
-                gtk_helper.gtk_do_events ();
+                while (LinuxKernel.task_is_running) {
+                    system_helper.sleep (200);
+                    gtk_helper.gtk_do_events ();
+                }
+
+                return;
             }
-
-            return;
         }
 
         string message = _("Refreshing.");
@@ -751,14 +757,16 @@ public class MainWindow : Gtk.Window {
         term.destroy.connect (() => {
             show_grub_message ();
 
-            if (App.command == "list") {
-                this.present ();
-                refresh_cache ();
-                tv_refresh ();
-            } else {
-                this.destroy ();
-                Gtk.main_quit ();
-                App.exit_app (0);
+            if (App.commands != null) {
+                if (App.commands.find ("list").length () > 0) {
+                    this.present ();
+                    refresh_cache ();
+                    tv_refresh ();
+                } else {
+                    this.destroy ();
+                    Gtk.main_quit ();
+                    App.exit_app (0);
+                }
             }
         });
 
@@ -850,9 +858,11 @@ public class MainWindow : Gtk.Window {
         string msg = _("Mainline kernels can sometimes cause problems if there are proprietary drivers installed on your system. These issues include:\n\n- WiFi not working\n- Black screen on startup\n- Random system freeze\n\nIf you face any of these issues there is no need to panic.\n\n- Reboot your system\n- Select 'Advanced Boot Options' from the GRUB boot menu\n- Select an older kernel from the list displayed on this screen\n- Your system will boot using the selected kernel\n- You can now uninstall the kernel that is causing issues\n");
         gtk_helper.gtk_messagebox (title, msg, this, false);
 
-        if (App.command != "list") {
-            Gtk.main_quit ();
-            App.exit_app (0);
+        if (App.commands != null) {
+            if (App.commands.find ("list").length () == 0) {
+                Gtk.main_quit ();
+                App.exit_app (0);
+            }
         }
     }
 }

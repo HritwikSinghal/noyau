@@ -44,7 +44,13 @@ public class App : Gtk.Application {
     public static string STARTUP_SCRIPT_FILE = "";
     public static string STARTUP_DESKTOP_FILE = "";
 
-    public static string command = "list";
+    public static bool LOG_DEBUG = false;
+    public static bool LOG_TIMESTAMP = false;
+    public static bool NO_GUI = false;
+
+    public static GLib.List<string> commands;
+    public static string command_versions;
+
     public static bool notify_major = true;
     public static bool notify_minor = true;
     public static bool notify_bubble = true;
@@ -70,16 +76,14 @@ public class App : Gtk.Application {
             application_id: "com.github.joshuadowding.ukuu",
             flags : ApplicationFlags.FLAGS_NONE
         );
-    }
 
-    protected override void activate () {
         gtk_helper = new GtkHelper ();
         json_helper = new JsonHelper ();
         system_helper = new SystemHelper ();
         logging_helper = new LoggingHelper ();
         process_helper = new ProcessHelper ();
 
-        // check_if_admin ();
+        check_if_admin ();
 
         Package.initialize ();
         LinuxKernel.initialize ();
@@ -91,55 +95,58 @@ public class App : Gtk.Application {
         logging_helper.log_msg ("%s v%s".printf (App.APP_NAME_SHORT, App.APP_VERSION));
         process_helper.init_tmp ("ukuu");
 
-        // LOG_TIMESTAMP = false;
-
-        // check dependencies
         string message;
         if (!check_dependencies (out message)) {
             gtk_helper.gtk_messagebox ("", message, null, true);
-            exit (0);
+            exit (1);
         }
 
-        // create main window --------------------------------------
+        print ("Started");
+    }
 
-        var window = new MainWindow ();
+    protected override void activate () {
+        if (NO_GUI == false) {
+            var window = new MainWindow ();
 
-        window.destroy.connect (() => {
-            logging_helper.log_debug ("MainWindow destroyed");
-            Gtk.main_quit ();
-        });
+            window.destroy.connect (() => {
+                logging_helper.log_debug ("MainWindow destroyed");
+                Gtk.main_quit ();
+            });
 
-        window.delete_event.connect ((event) => {
-            logging_helper.log_debug ("MainWindow closed");
-            Gtk.main_quit ();
-            return true;
-        });
+            window.delete_event.connect ((event) => {
+                logging_helper.log_debug ("MainWindow closed");
+                Gtk.main_quit ();
+                return true;
+            });
 
-        window.show_all ();
-
-        // start event loop -------------------------------------
-
-        Gtk.main ();
+            window.show_all ();
+            Gtk.main ();
+        }
 
         save_app_config ();
     }
 
     public static int main (string[] args) {
-        // parse_arguments (args);
-        Gtk.init (ref args);
-
         var app = new App ();
-        return app.run (args);
+
+        if (parse_arguments (args)) {
+            if (NO_GUI == false) {
+                Gtk.init (ref args);
+            }
+
+            return app.run (args);
+        } else {
+            return 0;
+        }
     }
 
     // helpers ------------
 
     private bool check_dependencies (out string msg) {
         string[] dependencies = { "aptitude", "apt-get", "aria2c", "dpkg", "uname", "lsb_release", "ping", "curl" };
-
         msg = "";
-
         string path;
+
         foreach (string cmd_tool in dependencies) {
             path = process_helper.get_cmd_path (cmd_tool);
             if ((path == null) || (path.length == 0)) {
@@ -343,6 +350,382 @@ public class App : Gtk.Application {
             _file_helper.chown (STARTUP_DESKTOP_FILE, user_login, user_login);
         } else {
             _file_helper.file_delete (STARTUP_DESKTOP_FILE);
+        }
+    }
+
+    private static bool parse_arguments (string[] args) {
+        LoggingHelper _logging_helper = new LoggingHelper ();
+
+        _logging_helper.log_msg (_("Cache") + ": %s".printf (LinuxKernel.CACHE_DIR));
+        // _logging_helper.log_msg (_("Temp") + ": %s".printf (TEMP_DIR));
+
+        commands = new GLib.List<string> ();
+        command_versions = "";
+
+        for (int k = 1; k < args.length; k++) {
+            switch (args[k].down ()) {
+                case "--no-gui":
+                    NO_GUI = true;
+                    break;
+
+                case "--debug":
+                    LOG_DEBUG = true;
+                    LOG_TIMESTAMP = true;
+                    break;
+
+                case "--list":
+                case "--list-installed":
+                case "--check":
+                case "--notify":
+                case "--install-latest":
+                case "--install-point":
+                case "--purge-old-kernels":
+                case "--clean-cache":
+                    commands.append (args[k].down ());
+                    break;
+
+                case "--help":
+                case "--h":
+                case "-h":
+                    _logging_helper.log_msg (help_message ());
+                    exit (0);
+                    return true;
+
+                case "--download":
+                case "--install":
+                case "--remove":
+                    commands.append (args[k].down ());
+
+                    if (++k < args.length) {
+                        command_versions = args[k];
+                    }
+                    break;
+
+                default:
+                    _logging_helper.log_error (_("Unknown option") + ": %s".printf (args[k]));
+                    _logging_helper.log_msg (help_message ());
+                    return false;
+            }
+        }
+
+
+        for (int i = 0; i < commands.length (); i++) {
+            string command = commands.nth_data (i);
+
+            switch (command) {
+                case "--list":
+                    // check_if_internet_is_active (false);
+                    LinuxKernel.query (true);
+                    LinuxKernel.print_list ();
+                    exit (0);
+                    break;
+
+                case "--list-installed":
+                    LinuxKernel.check_installed ();
+                    exit (0);
+                    break;
+
+                case "--check":
+                    print_updates ();
+                    exit (0);
+                    break;
+
+                case "--notify":
+                    notify_user ();
+                    exit (0);
+                    break;
+
+                case "--install-latest":
+                    check_if_admin ();
+                    // check_if_internet_is_active(true);
+                    LinuxKernel.install_latest (false, true);
+                    exit (0);
+                    break;
+
+                case "--install-point":
+                    check_if_admin ();
+                    // check_if_internet_is_active (true);
+                    LinuxKernel.install_latest (true, true);
+                    exit (0);
+                    break;
+
+                case "--purge-old-kernels":
+                    check_if_admin ();
+                    LinuxKernel.purge_old_kernels (true);
+                    exit (0);
+                    break;
+
+                case "--clean-cache":
+                    check_if_admin ();
+                    LinuxKernel.clean_cache ();
+                    exit (0);
+                    break;
+
+                case "--install":
+                    check_if_admin ();
+                    // check_if_internet_is_active ();
+
+                    LinuxKernel.query (true);
+
+                    if (command_versions.length == 0) {
+                        _logging_helper.log_error (_("No kernels specified"));
+                        exit (1);
+                    }
+
+                    string[] requested_versions = command_versions.split (",");
+                    if (requested_versions.length > 1) {
+                        _logging_helper.log_error (_("Multiple kernels selected for installation. Select only one."));
+                        exit (1);
+                    }
+
+                    var list = new Gee.ArrayList<LinuxKernel>();
+
+                    foreach (string requested_version in requested_versions) {
+                        LinuxKernel kern_requested = null;
+
+                        foreach (var kern in LinuxKernel.kernel_list) {
+                            if (kern.name == requested_version) {
+                                kern_requested = kern;
+                                break;
+                            }
+                        }
+
+                        if (kern_requested == null) {
+                            var msg = _("Could not find requested version");
+                            msg += ": %s".printf (requested_version);
+                            _logging_helper.log_error (msg);
+                            _logging_helper.log_error (_("Run 'ukuu --list' and use the version string listed in first column"));
+                            exit (1);
+                        }
+
+                        list.add (kern_requested);
+                    }
+
+                    if (list.size == 0) {
+                        _logging_helper.log_error (_("No kernels specified"));
+                        exit (1);
+                    }
+
+                    return list[0].install (true);
+
+                case "--download":
+                    check_if_admin ();
+                    // check_if_internet_is_active ();
+
+                    LinuxKernel.query (true);
+
+                    if (command_versions.length == 0) {
+                        _logging_helper.log_error (_("No kernels specified"));
+                        exit (1);
+                    }
+
+                    var list = new Gee.ArrayList<LinuxKernel>();
+                    string[] requested_versions = command_versions.split (",");
+
+                    foreach (string requested_version in requested_versions) {
+                        LinuxKernel kern_requested = null;
+
+                        foreach (var kern in LinuxKernel.kernel_list) {
+                            if (kern.name == requested_version) {
+                                kern_requested = kern;
+                                break;
+                            }
+                        }
+
+                        if (kern_requested == null) {
+                            var msg = _("Could not find requested version");
+                            msg += ": %s".printf (requested_version);
+                            _logging_helper.log_error (msg);
+                            _logging_helper.log_error (_("Run 'ukuu --list' and use the version string listed in first column"));
+                            exit (1);
+                        }
+
+                        list.add (kern_requested);
+                    }
+
+                    if (list.size == 0) {
+                        _logging_helper.log_error (_("No kernels specified"));
+                        exit (1);
+                    }
+
+                    return LinuxKernel.download_kernels (list);
+
+                case "--remove":
+                    check_if_admin ();
+                    LinuxKernel.query (true);
+
+                    if (command_versions.length == 0) {
+                        _logging_helper.log_error (_("No kernels specified"));
+                        exit (1);
+                    }
+
+                    var list = new Gee.ArrayList<LinuxKernel>();
+                    string[] requested_versions = command_versions.split (",");
+
+                    foreach (string requested_version in requested_versions) {
+                        LinuxKernel kern_requested = null;
+
+                        foreach (var kern in LinuxKernel.kernel_list) {
+                            if (kern.name == requested_version) {
+                                kern_requested = kern;
+                                break;
+                            }
+                        }
+
+                        if (kern_requested == null) {
+                            var msg = _("Could not find requested version");
+                            msg += ": %s".printf (requested_version);
+                            _logging_helper.log_error (msg);
+                            _logging_helper.log_error (_("Run 'ukuu --list' and use the version string listed in first column"));
+                            exit (1);
+                        }
+
+                        list.add (kern_requested);
+                    }
+
+                    if (list.size == 0) {
+                        _logging_helper.log_error (_("No kernels specified"));
+                        exit (1);
+                    }
+
+                    return LinuxKernel.remove_kernels (list);
+
+                default:
+                    _logging_helper.log_error (_("Command not specified"));
+                    _logging_helper.log_error (_("Run 'ukuu --help' to list all commands"));
+                    exit (1);
+                    break;
+            }
+        }
+
+        return true;
+    }
+
+    private static string help_message () {
+        string msg = "\n" + App.APP_NAME + " v" + App.APP_VERSION + " by " + App.APP_AUTHOR + " (" + App.APP_AUTHOR_EMAIL + ") " + "\n";
+        msg += "\n";
+        msg += _("Syntax") + ": ukuu <command> [options]\n";
+        msg += "\n";
+        msg += _("Commands") + ":\n";
+        msg += "\n";
+        msg += "  --debug             " + _("Print debug information") + "\n";
+        msg += "  --h[elp]            " + _("Show all options") + "\n";
+        msg += "  --check             " + _("Check for kernel updates") + "\n";
+        msg += "  --notify            " + _("Check for kernel updates and notify current user") + "\n";
+        msg += "  --list              " + _("List all available mainline kernels") + "\n";
+        msg += "  --list-installed    " + _("List installed kernels") + "\n";
+        msg += "  --install-latest    " + _("Install latest mainline kernel") + "\n";
+        msg += "  --install-point     " + _("Install latest point update for current series") + "\n";
+        msg += "  --install <name>    " + _("Install specified mainline kernel") + "\n";
+        msg += "  --remove <name>     " + _("Remove specified kernel") + "\n";
+        msg += "  --purge-old-kernels " + _("Remove installed kernels older than running kernel") + "\n";
+        msg += "  --download <name>   " + _("Download packages for specified kernel") + "\n";
+        msg += "  --clean-cache       " + _("Remove files from application cache") + "\n";
+        msg += "\n";
+        msg += _("Options") + ":\n";
+        msg += "\n";
+        msg += "  --clean-cache     " + _("Remove files from application cache") + "\n";
+        msg += "\n";
+        msg += "Notes:\n";
+        msg += "1. Comma separated list of version strings can be specified for --remove and --download\n";
+        return msg;
+    }
+
+    private static void check_if_admin () {
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        SystemHelper _system_helper = new SystemHelper ();
+
+        if (_system_helper.get_user_id_effective () != 0) {
+            _logging_helper.log_msg (string.nfill (70, '-'));
+
+            string msg = _("Admin access is required to run this application.");
+            _logging_helper.log_error (msg);
+
+            msg = _("Run the application as admin with pkexec or sudo.");
+            _logging_helper.log_error (msg);
+
+            exit (1);
+        }
+    }
+
+    private static void print_updates () {
+        // check_if_internet_is_active (false);
+        LoggingHelper _logging_helper = new LoggingHelper ();
+
+        LinuxKernel.query (true);
+        LinuxKernel.check_updates ();
+
+        var kern_major = LinuxKernel.kernel_update_major;
+
+        if (kern_major != null) {
+            var message = "%s: %s".printf (_("Latest update"), kern_major.version_main);
+            _logging_helper.log_msg (message);
+        }
+
+        var kern_minor = LinuxKernel.kernel_update_minor;
+
+        if (kern_minor != null) {
+            var message = "%s: %s".printf (_("Latest point update"), kern_minor.version_main);
+            _logging_helper.log_msg (message);
+        }
+
+        if ((kern_major == null) && (kern_minor == null)) {
+            _logging_helper.log_msg (_("No updates found"));
+        }
+
+        _logging_helper.log_msg (string.nfill (70, '-'));
+    }
+
+    private static void notify_user () {
+        // check_if_internet_is_active (false);
+        LoggingHelper _logging_helper = new LoggingHelper ();
+        ProcessHelper _process_helper = new ProcessHelper ();
+
+        LinuxKernel.query (true);
+        LinuxKernel.check_updates ();
+
+        var kern = LinuxKernel.kernel_update_major;
+
+        if ((kern != null) && App.notify_major) {
+
+            var title = "Linux v%s Available".printf (kern.version_main);
+            var message = "Major update available for installation";
+
+            if (App.notify_bubble) {
+                OSDNotify.notify_send (title, message, 3000, "normal", "info");
+            }
+
+            _logging_helper.log_msg (title);
+            _logging_helper.log_msg (message);
+
+            if (App.notify_dialog) {
+                _process_helper.exec_script_async ("ukuu-gtk --notify");
+                exit (0);
+            }
+
+            return;
+        }
+
+        kern = LinuxKernel.kernel_update_minor;
+
+        if ((kern != null) && App.notify_minor) {
+
+            var title = "Linux v%s Available".printf (kern.version_main);
+            var message = "Minor update available for installation";
+
+            if (App.notify_bubble) {
+                OSDNotify.notify_send (title, message, 3000, "normal", "info");
+            }
+
+            _logging_helper.log_msg (title);
+            _logging_helper.log_msg (message);
+
+            if (App.notify_dialog) {
+                _process_helper.exec_script_async ("ukuu-gtk --notify");
+                exit (0);
+            }
+
+            return;
         }
     }
 

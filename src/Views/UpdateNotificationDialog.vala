@@ -160,9 +160,11 @@ public class UpdateNotificationDialog : Gtk.Window {
 
         button.clicked.connect (() => {
             this.destroy ();
-            if (App.command == "notify") {
-                Gtk.main_quit ();
-                App.exit_app (0);
+            if (App.commands != null) {
+                if (App.commands.find ("notify").length () > 0) {
+                    Gtk.main_quit ();
+                    App.exit_app (0);
+                }
             }
         });
     }
