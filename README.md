@@ -29,6 +29,7 @@
     <li>View release changelogs.</li>
 </ul>
 
+
 <h2>Changes Since 18.9.1</h2>
 <h3>18.10 (Upcoming Release)</h3>
 <ul>
@@ -38,6 +39,8 @@
     <li>Download over HTTPS instead of HTTP.</li>
     <li>Serious code refactor and clean-up.</li>
     <li>Fixed numerous build issues.</li>
+    <li>Merge the GUI and CLI interfaces.</li>
+    <li>Removed scripted notifications (because they're annoying).</li>
 </ul>
 
 

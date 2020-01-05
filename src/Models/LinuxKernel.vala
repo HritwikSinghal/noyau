@@ -201,7 +201,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         bool ok = (NATIVE_ARCH.length > 0);
         if (!ok) {
             _logging_helper.log_error ("LinuxKernel: Class should be initialized before use!");
-            exit (1);
+            App.exit_app (1);
         }
         return ok;
     }

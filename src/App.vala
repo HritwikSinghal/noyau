@@ -98,7 +98,7 @@ public class App : Gtk.Application {
         string message;
         if (!check_dependencies (out message)) {
             gtk_helper.gtk_messagebox ("ukuu", message, null, true);
-            exit (1);
+            exit_app (1);
         }
     }
 
@@ -222,13 +222,6 @@ public class App : Gtk.Application {
 
         // change owner to current user so that ukuu can access in normal mode
         _file_helper.chown (APP_CONFIG_FILE, user_login, user_login);
-
-        update_notification_files ();
-    }
-
-    private static void update_notification_files () {
-        update_startup_script ();
-        update_startup_desktop_file ();
     }
 
     private void load_app_config () {
@@ -277,82 +270,6 @@ public class App : Gtk.Application {
         exit (exit_code);
     }
 
-    // begin ------------
-
-    private static void update_startup_script () {
-        FileHelper _file_helper = new FileHelper ();
-
-        int count = notify_interval_value;
-        string suffix = "h";
-
-        switch (notify_interval_unit) {
-            case 0: // hour
-                suffix = "h";
-                break;
-            case 1: // day
-                suffix = "d";
-                break;
-            case 2: // week
-                suffix = "d";
-                count = notify_interval_value * 7;
-                break;
-        }
-
-        // count = 20;
-        // suffix = "s";
-
-        string txt = "";
-        txt += "sleep %ds\n".printf (STARTUP_DELAY);
-        txt += "while true\n";
-        txt += "do\n";
-        txt += "  ukuu --notify ; sleep %d%s \n".printf (count, suffix);
-        txt += "done\n";
-
-        if (_file_helper.file_exists (STARTUP_SCRIPT_FILE)) {
-            _file_helper.file_delete (STARTUP_SCRIPT_FILE);
-        }
-
-        if (notify_minor || notify_major) {
-            _file_helper.file_write (
-                STARTUP_SCRIPT_FILE,
-                txt);
-        } else {
-            _file_helper.file_write (
-                STARTUP_SCRIPT_FILE,
-                "# Notifications are disabled\n\nexit 0"); // write dummy script
-        }
-
-        _file_helper.chown (STARTUP_SCRIPT_FILE, user_login, user_login);
-    }
-
-    private static void update_startup_desktop_file () {
-        FileHelper _file_helper = new FileHelper ();
-
-        if (notify_minor || notify_major) {
-            string txt =
-                """
-                [Desktop Entry]
-                Type=Application
-                Exec={command}
-                Hidden=false
-                NoDisplay=false
-                X-GNOME-Autostart-enabled=true
-                Name[en_IN]=Ukuu Notification
-                Name=Ukuu Notification
-                Comment[en_IN]=Ukuu Notification
-                Comment=Ukuu Notification
-                """;
-
-            txt = txt.replace ("{command}", "sh \"%s\"".printf (STARTUP_SCRIPT_FILE));
-
-            _file_helper.file_write (STARTUP_DESKTOP_FILE, txt);
-
-            _file_helper.chown (STARTUP_DESKTOP_FILE, user_login, user_login);
-        } else {
-            _file_helper.file_delete (STARTUP_DESKTOP_FILE);
-        }
-    }
-
     private static bool parse_arguments (string[] args) {
         LoggingHelper _logging_helper = new LoggingHelper ();
 
@@ -388,7 +305,7 @@ public class App : Gtk.Application {
                 case "--h":
                 case "-h":
                     _logging_helper.log_msg (help_message ());
-                    exit (0);
+                    exit_app (0);
                     return true;
 
                 case "--download":
@@ -418,24 +335,24 @@ public class App : Gtk.Application {
                     LinuxKernel.query (true);
                     LinuxKernel.print_list ();
                     LinuxKernel.clean_cache ();
-                    exit (0);
+                    exit_app (0);
                     break;
 
                 case "--list-installed":
                     LinuxKernel.check_installed ();
-                    exit (0);
+                    exit_app (0);
                     break;
 
                 case "--check":
                     print_updates ();
                     LinuxKernel.clean_cache ();
-                    exit (0);
+                    exit_app (0);
                     break;
 
                 case "--notify":
                     notify_user ();
                     LinuxKernel.clean_cache ();
-                    exit (0);
+                    exit_app (0);
                     break;
 
                 case "--install-latest":
@@ -443,7 +360,7 @@ public class App : Gtk.Application {
                     check_if_internet_is_active (true);
                     LinuxKernel.install_latest (false, true);
                     LinuxKernel.clean_cache ();
-                    exit (0);
+                    exit_app (0);
                     break;
 
                 case "--install-point":
@@ -451,20 +368,20 @@ public class App : Gtk.Application {
                     check_if_internet_is_active (true);
                     LinuxKernel.install_latest (true, true);
                     LinuxKernel.clean_cache ();
-                    exit (0);
+                    exit_app (0);
                     break;
 
                 case "--purge-old-kernels":
                     check_if_admin ();
                     LinuxKernel.purge_old_kernels (true);
                     LinuxKernel.clean_cache ();
-                    exit (0);
+                    exit_app (0);
                     break;
 
                 case "--clean-cache":
                     check_if_admin ();
                     LinuxKernel.clean_cache ();
-                    exit (0);
+                    exit_app (0);
                     break;
 
                 case "--install":
@@ -475,13 +392,13 @@ public class App : Gtk.Application {
 
                     if (command_versions.length == 0) {
                         _logging_helper.log_error (_("No kernels specified"));
-                        exit (1);
+                        exit_app (1);
                     }
 
                     string[] requested_versions = command_versions.split (",");
                     if (requested_versions.length > 1) {
                         _logging_helper.log_error (_("Multiple kernels selected for installation. Select only one."));
-                        exit (1);
+                        exit_app (1);
                     }
 
                     var list = new Gee.ArrayList<LinuxKernel>();
@@ -501,7 +418,7 @@ public class App : Gtk.Application {
                             msg += ": %s".printf (requested_version);
                             _logging_helper.log_error (msg);
                             _logging_helper.log_error (_("Run 'ukuu --list' and use the version string listed in first column"));
-                            exit (1);
+                            exit_app (1);
                         }
 
                         list.add (kern_requested);
@@ -509,7 +426,7 @@ public class App : Gtk.Application {
 
                     if (list.size == 0) {
                         _logging_helper.log_error (_("No kernels specified"));
-                        exit (1);
+                        exit_app (1);
                     }
 
                     LinuxKernel.clean_cache ();
@@ -523,7 +440,7 @@ public class App : Gtk.Application {
 
                     if (command_versions.length == 0) {
                         _logging_helper.log_error (_("No kernels specified"));
-                        exit (1);
+                        exit_app (1);
                     }
 
                     var list = new Gee.ArrayList<LinuxKernel>();
@@ -544,7 +461,7 @@ public class App : Gtk.Application {
                             msg += ": %s".printf (requested_version);
                             _logging_helper.log_error (msg);
                             _logging_helper.log_error (_("Run 'ukuu --list' and use the version string listed in first column"));
-                            exit (1);
+                            exit_app (1);
                         }
 
                         list.add (kern_requested);
@@ -552,7 +469,7 @@ public class App : Gtk.Application {
 
                     if (list.size == 0) {
                         _logging_helper.log_error (_("No kernels specified"));
-                        exit (1);
+                        exit_app (1);
                     }
 
                     LinuxKernel.clean_cache ();
@@ -564,7 +481,7 @@ public class App : Gtk.Application {
 
                     if (command_versions.length == 0) {
                         _logging_helper.log_error (_("No kernels specified"));
-                        exit (1);
+                        exit_app (1);
                     }
 
                     var list = new Gee.ArrayList<LinuxKernel>();
@@ -585,7 +502,7 @@ public class App : Gtk.Application {
                             msg += ": %s".printf (requested_version);
                             _logging_helper.log_error (msg);
                             _logging_helper.log_error (_("Run 'ukuu --list' and use the version string listed in first column"));
-                            exit (1);
+                            exit_app (1);
                         }
 
                         list.add (kern_requested);
@@ -593,7 +510,7 @@ public class App : Gtk.Application {
 
                     if (list.size == 0) {
                         _logging_helper.log_error (_("No kernels specified"));
-                        exit (1);
+                        exit_app (1);
                     }
 
                     LinuxKernel.clean_cache ();
@@ -602,7 +519,7 @@ public class App : Gtk.Application {
                 default:
                     _logging_helper.log_error (_("Command not specified"));
                     _logging_helper.log_error (_("Run 'ukuu --help' to list all commands"));
-                    exit (1);
+                    exit_app (1);
                     break;
             }
         }
@@ -653,14 +570,14 @@ public class App : Gtk.Application {
             msg = _("Run the application as admin with pkexec or sudo.");
             _logging_helper.log_error (msg);
 
-            exit (1);
+            exit_app (1);
         }
     }
 
-    public static void check_if_internet_is_active (bool exit_app = true) {
+    public static void check_if_internet_is_active (bool exit = true) {
         if (!check_internet_connectivity ()) {
-            if (exit_app) {
-                exit (1);
+            if (exit) {
+                exit_app (1);
             }
         }
     }
@@ -742,7 +659,7 @@ public class App : Gtk.Application {
 
             if (App.notify_dialog) {
                 _process_helper.exec_script_async ("ukuu-gtk --notify");
-                exit (0);
+                exit_app (0);
             }
 
             return;
@@ -764,7 +681,7 @@ public class App : Gtk.Application {
 
             if (App.notify_dialog) {
                 _process_helper.exec_script_async ("ukuu-gtk --notify");
-                exit (0);
+                exit_app (0);
             }
 
             return;

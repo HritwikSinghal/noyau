@@ -112,7 +112,7 @@ public class MainWindow : Gtk.Window {
                         var msg = _("Could not find requested version");
                         msg += ": %s".printf (App.requested_version);
                         logging_helper.log_error (msg);
-                        exit (1);
+                        App.exit_app (1);
                     } else {
                         install (kern_requested);
                     }
