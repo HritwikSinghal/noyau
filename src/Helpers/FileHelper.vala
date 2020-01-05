@@ -639,7 +639,6 @@ public class FileHelper : GLib.Object {
     public string file_decrypt_untar_read (string src_file, string password) {
         LoggingHelper logging_helper = new LoggingHelper ();
         ProcessHelper process_helper = new ProcessHelper ();
-        MiscHelper misc_helper = new MiscHelper ();
 
         if (file_exists (src_file)) {
 
