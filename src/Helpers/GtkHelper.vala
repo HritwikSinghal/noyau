@@ -88,14 +88,13 @@ public class GtkHelper : GLib.Object {
 
         try {
             Gtk.IconTheme icon_theme = Gtk.IconTheme.get_default ();
-
-            pix_icon = icon_theme.load_icon_for_scale (
-                icon_name, Gtk.IconSize.MENU, icon_size, Gtk.IconLookupFlags.FORCE_SIZE);
+            pix_icon = icon_theme.load_icon_for_scale (icon_name, Gtk.IconSize.MENU, icon_size, Gtk.IconLookupFlags.FORCE_SIZE);
         } catch (Error e) {
             logging_helper.log_error (e.message);
         }
 
-        string fallback_icon_file_path = "/usr/share/%s/%s".printf (icon_directory, fallback_icon_file_name);
+        //string fallback_icon_file_path = "/usr/share/%s/%s".printf (icon_directory, fallback_icon_file_name);
+        string fallback_icon_file_path = "/usr/share/ukuu/pixmaps/ukuu.svg";
 
         if (pix_icon == null) {
             try {

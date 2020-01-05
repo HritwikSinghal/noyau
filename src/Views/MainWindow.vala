@@ -695,37 +695,37 @@ public class MainWindow : Gtk.Window {
 
     private void set_infobar () {
         if (LinuxKernel.kernel_active != null) {
-            lbl_info.label = "<b>Linux %s".printf (LinuxKernel.kernel_active.version_main);
+            lbl_info.label = "<b>Linux %s</b>".printf (LinuxKernel.kernel_active.version_main);
 
             if (LinuxKernel.kernel_active.is_mainline) {
-                lbl_info.label += " (mainline)</b>";
+                lbl_info.label += " (mainline)";
             } else {
-                lbl_info.label += " (ubuntu)</b>";
+                lbl_info.label += " (ubuntu)";
             }
 
             lbl_info.label += " (running)";
 
             if (LinuxKernel.kernel_latest_stable.compare_to (LinuxKernel.kernel_active) > 0) {
-                lbl_info.label += " - " + "<b>Linux %s".printf (
+                lbl_info.label += " - " + "<b>Linux %s</b>".printf (
                     LinuxKernel.kernel_latest_stable.version_main
                 );
 
                 if (LinuxKernel.kernel_latest_stable.is_mainline) {
-                    lbl_info.label += " (mainline)</b>";
+                    lbl_info.label += " (mainline)";
                 } else {
-                    lbl_info.label += " (ubuntu)</b>";
+                    lbl_info.label += " (ubuntu)";
                 }
 
                 lbl_info.label += " (available)";
             }
         } else {
-            lbl_info.label = "<b>Linux %s".printf (LinuxKernel.RUNNING_KERNEL);
+            lbl_info.label = "<b>Linux %s</b>".printf (LinuxKernel.RUNNING_KERNEL);
             lbl_info.label += " (running)";
 
             if (LinuxKernel.kernel_active.is_mainline) {
-                lbl_info.label += " (mainline)</b>";
+                lbl_info.label += " (mainline)";
             } else {
-                lbl_info.label += " (ubuntu)</b>";
+                lbl_info.label += " (ubuntu)";
             }
         }
     }
