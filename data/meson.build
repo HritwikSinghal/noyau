@@ -12,7 +12,7 @@ install_data(
 
 install_data(
     'ukuu.pkexec.policy',
-    install_dir: '/usr/share/polkit-1/actions/',
+    install_dir: join_paths(get_option('datadir'), 'polkit-1', 'actions'),
     install: true
 )
 

@@ -14,4 +14,3 @@ Categories=System;
 StartupWMClass=ukuu
 X-GNOME-UsesNotifications=true
 StartupNotify=true
-

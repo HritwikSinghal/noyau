@@ -4,3 +4,8 @@ install_data(
     install: true
 )
 
+install_data(
+    'ukuu.svg',
+    install_dir: join_paths(get_option('datadir'), 'icons', 'hicolor', 'scalable', 'apps'),
+    install: true
+)
