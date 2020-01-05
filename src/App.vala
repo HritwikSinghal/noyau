@@ -97,11 +97,9 @@ public class App : Gtk.Application {
 
         string message;
         if (!check_dependencies (out message)) {
-            gtk_helper.gtk_messagebox ("", message, null, true);
+            gtk_helper.gtk_messagebox ("ukuu", message, null, true);
             exit (1);
         }
-
-        print ("Started");
     }
 
     protected override void activate () {
@@ -414,7 +412,7 @@ public class App : Gtk.Application {
 
             switch (command) {
                 case "--list":
-                    // check_if_internet_is_active (false);
+                    check_if_internet_is_active (true);
                     LinuxKernel.query (true);
                     LinuxKernel.print_list ();
                     exit (0);
@@ -437,14 +435,14 @@ public class App : Gtk.Application {
 
                 case "--install-latest":
                     check_if_admin ();
-                    // check_if_internet_is_active(true);
+                    check_if_internet_is_active (true);
                     LinuxKernel.install_latest (false, true);
                     exit (0);
                     break;
 
                 case "--install-point":
                     check_if_admin ();
-                    // check_if_internet_is_active (true);
+                    check_if_internet_is_active (true);
                     LinuxKernel.install_latest (true, true);
                     exit (0);
                     break;
@@ -463,7 +461,7 @@ public class App : Gtk.Application {
 
                 case "--install":
                     check_if_admin ();
-                    // check_if_internet_is_active ();
+                    check_if_internet_is_active (true);
 
                     LinuxKernel.query (true);
 
@@ -510,7 +508,7 @@ public class App : Gtk.Application {
 
                 case "--download":
                     check_if_admin ();
-                    // check_if_internet_is_active ();
+                    check_if_internet_is_active (true);
 
                     LinuxKernel.query (true);
 
@@ -646,6 +644,39 @@ public class App : Gtk.Application {
 
             exit (1);
         }
+    }
+
+    public static void check_if_internet_is_active (bool exit_app = true) {
+        if (!check_internet_connectivity ()) {
+            if (exit_app) {
+                exit (1);
+            }
+        }
+    }
+
+    private static bool check_internet_connectivity () {
+        ProcessHelper _process_helper = new ProcessHelper ();
+        LoggingHelper _logging_helper = new LoggingHelper ();
+
+        string std_err, std_out;
+        string cmd = "url='https://www.google.com' \n";
+
+        // Note: minimum of 3 seconds is required for timeout, to avoid wrong results
+        cmd += "httpCode=$(curl -o /dev/null --silent --max-time 5 --head --write-out '%{http_code}\n' $url) \n";
+        cmd += "test $httpCode -lt 400 -a $httpCode -gt 0 \n";
+        cmd += "exit $?";
+
+        int status = _process_helper.exec_script_sync (cmd, out std_out, out std_err, false);
+
+        if (std_err.length > 0) {
+            _logging_helper.log_error (std_err);
+        }
+
+        if (status != 0) {
+            _logging_helper.log_error (_("Internet connection is not active"));
+        }
+
+        return (status == 0);
     }
 
     private static void print_updates () {
