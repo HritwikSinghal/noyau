@@ -2,7 +2,8 @@ project(
     'ukuu',
     'vala', 'c',
     version: '18.10',
-    meson_version: '>=0.40.1'
+    meson_version: '>=0.40.1',
+    license : 'GPLv2'
 )
 
 add_project_arguments([
