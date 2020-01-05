@@ -2,7 +2,7 @@
  * DownloadItem.vala
  *
  * Copyright 2012-2019 Tony George <teejee2008@gmail.com>
- * Copyright 2019 Joshua Dowding <joshuadowding@outlook.com>
+ * Copyright 2019-2020 Joshua Dowding <joshuadowding@outlook.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
