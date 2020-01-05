@@ -37,10 +37,11 @@
     <li>Transitioned to the meson build system.</li>
     <li>Removed intrusive prompts and nagware.</li>
     <li>Download over HTTPS instead of HTTP.</li>
+    <li>Merge the GUI and CLI entry-points.</li>
+    <li>Split toggles for displaying kernels older than 4.x and 5.x.</li>
+    <li>Removed scripted notifications.</li>
     <li>Serious code refactor and clean-up.</li>
     <li>Fixed numerous build issues.</li>
-    <li>Merge the GUI and CLI interfaces.</li>
-    <li>Removed scripted notifications (because they're annoying).</li>
 </ul>
 
 
