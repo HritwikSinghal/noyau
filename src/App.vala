@@ -108,11 +108,13 @@ public class App : Gtk.Application {
 
             window.destroy.connect (() => {
                 logging_helper.log_debug ("MainWindow destroyed");
+                LinuxKernel.clean_cache ();
                 Gtk.main_quit ();
             });
 
             window.delete_event.connect ((event) => {
                 logging_helper.log_debug ("MainWindow closed");
+                LinuxKernel.clean_cache ();
                 Gtk.main_quit ();
                 return true;
             });
