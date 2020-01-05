@@ -295,6 +295,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         FileHelper _file_helper = new FileHelper ();
 
         _logging_helper.log_debug ("query: hide_older: %s".printf (hide_older.to_string ()));
+        _logging_helper.log_debug ("query: hide older 4: %s".printf (hide_older_4.to_string ()));
         _logging_helper.log_debug ("query: hide_unstable: %s".printf (hide_unstable.to_string ()));
 
         // DownloadManager.reset_counter();
@@ -319,12 +320,17 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         // TODO: Implement locking for multiple download threads
 
         var kern_5 = new LinuxKernel.from_version ("5.0");
+        var kern_4 = new LinuxKernel.from_version ("4.0");
 
         status_line = "";
         progress_total = 0;
         progress_count = 0;
         foreach (var kern in kernel_list) {
             if (hide_older && (kern.compare_to (kern_5) < 0)) {
+                continue;
+            }
+
+            if (hide_older_4 && (kern.compare_to (kern_4) < 0)) {
                 continue;
             }
 
@@ -358,6 +364,11 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
             if (hide_older && (kern.compare_to (kern_5) < 0)) {
                 _logging_helper.log_debug ("older than 5.0: %s".printf (kern.version_main));
+                continue;
+            }
+
+            if (hide_older_4 && (kern.compare_to (kern_4) < 0)) {
+                _logging_helper.log_debug ("older than 4.0: %s".printf (kern.version_main));
                 continue;
             }
 
@@ -1189,14 +1200,22 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         _logging_helper.log_draw_line ();
 
         var kern_5 = new LinuxKernel.from_version ("5.0");
+        var kern_4 = new LinuxKernel.from_version ("4.0");
+
         foreach (var kern in kernel_list) {
             if (!kern.is_valid) {
                 continue;
             }
+
             if (hide_unstable && kern.is_unstable) {
                 continue;
             }
+
             if (hide_older && (kern.compare_to (kern_5) < 0)) {
+                continue;
+            }
+
+            if (hide_older_4 && (kern.compare_to (kern_4) < 0)) {
                 continue;
             }
 

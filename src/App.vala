@@ -197,6 +197,7 @@ public class App : Gtk.Application {
         config.set_string_member ("notify_dialog", notify_dialog.to_string ());
         config.set_string_member ("hide_unstable", LinuxKernel.hide_unstable.to_string ());
         config.set_string_member ("hide_older", LinuxKernel.hide_older.to_string ());
+        config.set_string_member ("hide_older_4", LinuxKernel.hide_older_4.to_string ());
         config.set_string_member ("notify_interval_unit", notify_interval_unit.to_string ());
         config.set_string_member ("notify_interval_value", notify_interval_value.to_string ());
         // config.set_string_member("show_grub_menu", LinuxKernel.show_grub_menu.to_string());
@@ -231,6 +232,7 @@ public class App : Gtk.Application {
             // initialize static
             LinuxKernel.hide_unstable = true;
             LinuxKernel.hide_older = true;
+            LinuxKernel.hide_older_4 = true;
             LinuxKernel.update_grub_timeout = false;
             LinuxKernel.grub_timeout = 2;
             return;
@@ -256,9 +258,14 @@ public class App : Gtk.Application {
 
         LinuxKernel.hide_unstable = json_helper.json_get_bool (config, "hide_unstable", true);
         LinuxKernel.hide_older = json_helper.json_get_bool (config, "hide_older", true);
+        LinuxKernel.hide_older_4 = json_helper.json_get_bool (config, "hide_older_4", true);
         // LinuxKernel.show_grub_menu = json_get_bool(config, "show_grub_menu", true);
         LinuxKernel.grub_timeout = json_helper.json_get_int (config, "grub_timeout", 2);
         LinuxKernel.update_grub_timeout = json_helper.json_get_bool (config, "update_grub_timeout", false);
+
+        if (LinuxKernel.hide_older == true) {
+            LinuxKernel.hide_older_4 = true;
+        }
 
         message_shown = json_helper.json_get_bool (config, "message_shown", false);
 

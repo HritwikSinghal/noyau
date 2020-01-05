@@ -31,6 +31,7 @@ public class SettingsDialog : Gtk.Dialog {
     private Gtk.CheckButton chk_notify_dialog;
     private Gtk.CheckButton chk_hide_unstable;
     private Gtk.CheckButton chk_hide_older;
+    private Gtk.CheckButton chk_hide_older_4;
     private Gtk.CheckButton chk_update_grub_timeout;
 
     public GtkHelper gtk_helper;
@@ -180,6 +181,27 @@ public class SettingsDialog : Gtk.Dialog {
 
         chk.toggled.connect (() => {
             LinuxKernel.hide_older = chk_hide_older.active;
+
+            // also check hide_older_4 since nothing older than 5 will be shown
+            if (chk_hide_older.active) {
+                chk_hide_older_4.active = true;
+                LinuxKernel.hide_older_4 = chk_hide_older_4.active;
+            }
+        });
+
+        // chk_hide_older_4
+        chk = new CheckButton.with_label (_("Hide kernels older than 4.0"));
+        chk.active = LinuxKernel.hide_older_4;
+        chk.margin_left = 6;
+        vbox_main.add (chk);
+        chk_hide_older_4 = chk;
+
+        chk.toggled.connect (() => {
+            if (chk_hide_older.active) {
+                chk_hide_older_4.active = true;
+            }
+
+            LinuxKernel.hide_older_4 = chk_hide_older_4.active;
         });
 
         // grub

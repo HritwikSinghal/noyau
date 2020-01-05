@@ -303,6 +303,7 @@ public class MainWindow : Gtk.Window {
         }
 
         var kern_5 = new LinuxKernel.from_version ("5.0");
+        var kern_4 = new LinuxKernel.from_version ("4.0");
 
         TreeIter iter;
         bool odd_row = false;
@@ -310,10 +311,16 @@ public class MainWindow : Gtk.Window {
             if (!kern.is_valid) {
                 continue;
             }
+
             if (LinuxKernel.hide_unstable && kern.is_unstable) {
                 continue;
             }
+
             if (LinuxKernel.hide_older && (kern.compare_to (kern_5) < 0)) {
+                continue;
+            }
+
+            if (LinuxKernel.hide_older_4 && (kern.compare_to (kern_4) < 0)) {
                 continue;
             }
 
@@ -479,14 +486,18 @@ public class MainWindow : Gtk.Window {
         button_settings.centered = true;
         button_settings.clicked.connect (() => {
             bool prev_hide_older = LinuxKernel.hide_older;
+            bool prev_hide_older_4 = LinuxKernel.hide_older_4;
             bool prev_hide_unstable = LinuxKernel.hide_unstable;
 
             var dlg = new SettingsDialog.with_parent (this);
             dlg.run ();
             dlg.destroy ();
 
-            if (((prev_hide_older == true) && (LinuxKernel.hide_older == false))
-                || ((prev_hide_unstable == true) && (LinuxKernel.hide_unstable == false))) {
+            if (((prev_hide_older == true) && (LinuxKernel.hide_older == false)) || ((prev_hide_unstable == true) && (LinuxKernel.hide_unstable == false))) {
+                refresh_cache ();
+            }
+
+            if (((prev_hide_older_4 == true) && (LinuxKernel.hide_older_4 == false)) || ((prev_hide_unstable == true) && (LinuxKernel.hide_unstable == false))) {
                 refresh_cache ();
             }
 
