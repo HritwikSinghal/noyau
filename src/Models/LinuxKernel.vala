@@ -62,7 +62,8 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
     public static string CURRENT_USER;
     public static string CURRENT_USER_HOME;
 
-    public static bool hide_older;
+    public static bool hide_older; // hides kernels older than 5.x
+    public static bool hide_older_4; // hides kernels older than 4.x
     public static bool hide_unstable;
 
     public static int grub_timeout;
@@ -317,13 +318,13 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
 
         // TODO: Implement locking for multiple download threads
 
-        var kern_4 = new LinuxKernel.from_version ("4.0");
+        var kern_5 = new LinuxKernel.from_version ("5.0");
 
         status_line = "";
         progress_total = 0;
         progress_count = 0;
         foreach (var kern in kernel_list) {
-            if (hide_older && (kern.compare_to (kern_4) < 0)) {
+            if (hide_older && (kern.compare_to (kern_5) < 0)) {
                 continue;
             }
 
@@ -336,7 +337,6 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
             }
         }
 
-
         var downloads = new Gee.ArrayList<DownloadItem>();
         var kernels_to_update = new Gee.ArrayList<LinuxKernel>();
 
@@ -346,28 +346,27 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
             }
 
             if (kern.cached_page_exists) {
-                // log_debug("cached page exists: %s".printf(kern.version_main));
+                _logging_helper.log_debug ("cached page exists: %s".printf (kern.version_main));
                 kern.load_cached_page ();
                 continue;
             }
 
             if (!kern.is_valid) {
-                // log_debug("invalid: %s".printf(kern.version_main));
+                _logging_helper.log_debug ("invalid: %s".printf (kern.version_main));
                 continue;
             }
 
-            if (hide_older && (kern.compare_to (kern_4) < 0)) {
-                // log_debug("older than 4.0: %s".printf(kern.version_main));
+            if (hide_older && (kern.compare_to (kern_5) < 0)) {
+                _logging_helper.log_debug ("older than 5.0: %s".printf (kern.version_main));
                 continue;
             }
 
             if (hide_unstable && kern.is_unstable) {
-                // log_debug("not stable: %s".printf(kern.version_main));
+                _logging_helper.log_debug ("not stable: %s".printf (kern.version_main));
                 continue;
             }
 
             if (!kern.cached_page_exists) {
-
                 var item = new DownloadItem (
                     kern.cached_page_uri,
                     _file_helper.file_parent (kern.cached_page),
@@ -1189,7 +1188,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
         _logging_helper.log_msg (_("Available Kernels"));
         _logging_helper.log_draw_line ();
 
-        var kern_4 = new LinuxKernel.from_version ("4.0");
+        var kern_5 = new LinuxKernel.from_version ("5.0");
         foreach (var kern in kernel_list) {
             if (!kern.is_valid) {
                 continue;
@@ -1197,7 +1196,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
             if (hide_unstable && kern.is_unstable) {
                 continue;
             }
-            if (hide_older && (kern.compare_to (kern_4) < 0)) {
+            if (hide_older && (kern.compare_to (kern_5) < 0)) {
                 continue;
             }
 

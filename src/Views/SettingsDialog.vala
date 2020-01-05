@@ -172,7 +172,7 @@ public class SettingsDialog : Gtk.Dialog {
         });
 
         // chk_hide_older
-        chk = new CheckButton.with_label (_("Hide kernels older than 4.0"));
+        chk = new CheckButton.with_label (_("Hide kernels older than 5.0"));
         chk.active = LinuxKernel.hide_older;
         chk.margin_left = 6;
         vbox_main.add (chk);
