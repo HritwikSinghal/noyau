@@ -407,12 +407,12 @@ public class MainWindow : Gtk.Window {
 
             string sh = "";
             sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ";
-            sh += "ukuu --user %s".printf (App.user_login);
-            /*
-               if (LOG_DEBUG) {
+            sh += "sudo ukuu ";
+
+            if (App.LOG_DEBUG) {
                 sh += " --debug";
-               }
-             */
+            }
+
             string names = "";
             foreach (var kern in selected_kernels) {
                 if (names.length > 0) {
@@ -545,12 +545,12 @@ public class MainWindow : Gtk.Window {
 
             string sh = "";
             sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ";
-            sh += "ukuu --user %s".printf (App.user_login);
-            /*
-               if (LOG_DEBUG) {
+            sh += "sudo ukuu ";
+
+            if (App.LOG_DEBUG) {
                 sh += " --debug";
-               }
-             */
+            }
+
             sh += " --purge-old-kernels\n";
 
             logging_helper.log_debug (sh);
@@ -783,12 +783,12 @@ public class MainWindow : Gtk.Window {
 
         string sh = "";
         sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ";
-        sh += "ukuu --user %s".printf (App.user_login);
-        /*
-           if (LOG_DEBUG) {
+        sh += "sudo ukuu ";
+
+        if (App.LOG_DEBUG) {
             sh += " --debug";
-           }
-         */
+        }
+
         sh += " --install %s\n".printf (kern.name);
 
         sh += "echo ''\n";
