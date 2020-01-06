@@ -45,6 +45,14 @@
 </ul>
 
 
+<h2>Confirmed Compatibility</h2>
+<ul>
+    <li>Ubuntu 19.10</li>
+    <li>Ubuntu 19.04</li>
+    <li>Ubuntu 18.10</li>
+    <li>Ubuntu 18.04 LTS</li>
+</ul>
+
 <h2>Source Code</h2>
 <h3>Build Instructions</h3>
 
