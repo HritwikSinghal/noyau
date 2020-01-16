@@ -59,14 +59,6 @@ public class Package : GLib.Object {
         }
     }
 
-    public bool is_foreign () {
-        if (check_if_foreign (arch)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public static string get_id (string _name, string _arch) {
         string str = "";
         str = "%s".printf (_name);

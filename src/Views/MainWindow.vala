@@ -410,7 +410,7 @@ public class MainWindow : Gtk.Window {
             sh += "sudo ukuu ";
 
             if (App.LOG_DEBUG) {
-                sh += " --debug";
+                sh += "--debug ";
             }
 
             string names = "";
@@ -421,9 +421,9 @@ public class MainWindow : Gtk.Window {
                 names += "%s".printf (kern.name);
             }
 
-            sh += " --remove %s\n".printf (names);
-            sh += "echo ''\n";
-            sh += "echo 'Close window to exit...'\n";
+            sh += "--remove %s\n ".printf (names);
+            sh += "echo ''\n ";
+            sh += "echo 'Close window to exit...'\n ";
 
             this.hide ();
 
@@ -548,15 +548,15 @@ public class MainWindow : Gtk.Window {
             sh += "sudo ukuu ";
 
             if (App.LOG_DEBUG) {
-                sh += " --debug";
+                sh += "--debug ";
             }
 
-            sh += " --purge-old-kernels\n";
+            sh += "--purge-old-kernels\n ";
 
             logging_helper.log_debug (sh);
 
-            sh += "echo ''\n";
-            sh += "echo 'Close window to exit...'\n";
+            sh += "echo ''\n ";
+            sh += "echo 'Close window to exit...'\n ";
 
             this.hide ();
 
@@ -670,16 +670,13 @@ public class MainWindow : Gtk.Window {
             }
 
             if (App.progress_total > 0) {
-
-                dlg.update_message ("%s %lld/%lld (%s)".printf (
-                                        message, App.progress_count, App.progress_total, msg_remaining));
+                dlg.update_message ("%s %lld/%lld (%s)".printf (message, App.progress_count, App.progress_total, msg_remaining));
             }
 
             dlg.update_status_line ();
-
             dlg.update_progressbar ();
-
             dlg.sleep (200);
+
             gtk_helper.gtk_do_events ();
 
             count++;
@@ -687,7 +684,9 @@ public class MainWindow : Gtk.Window {
 
         system_helper.timer_elapsed (timer, true);
 
+        dlg.finish ();
         dlg.destroy ();
+
         gtk_helper.gtk_do_events ();
     }
 
@@ -778,13 +777,13 @@ public class MainWindow : Gtk.Window {
         sh += "sudo ukuu ";
 
         if (App.LOG_DEBUG) {
-            sh += " --debug";
+            sh += "--debug ";
         }
 
-        sh += " --install %s\n".printf (kern.name);
+        sh += "--install %s\n ".printf (kern.name);
 
-        sh += "echo ''\n";
-        sh += "echo 'Close window to exit...'\n";
+        sh += "echo ''\n ";
+        sh += "echo 'Close window to exit...'\n ";
 
         term.execute_script (process_helper.save_bash_script_temp (sh));
     }
@@ -799,7 +798,8 @@ public class MainWindow : Gtk.Window {
             var message = "Major update available for installation";
 
             if (App.notify_bubble) {
-                OSDNotify.notify_send (title, message, 3000, "normal", "info");
+                OSDNotify osd_notify = new OSDNotify ();
+                osd_notify.notify_send (title, message, 3000, "normal", "info");
             }
 
             if (App.notify_dialog) {
@@ -825,12 +825,12 @@ public class MainWindow : Gtk.Window {
         kern = LinuxKernel.kernel_update_minor;
 
         if ((kern != null) && App.notify_minor) {
-
             var title = "Linux v%s Available".printf (kern.version_main);
             var message = "Minor update available for installation";
 
             if (App.notify_bubble) {
-                OSDNotify.notify_send (title, message, 3000, "normal", "info");
+                OSDNotify osd_notify = new OSDNotify ();
+                osd_notify.notify_send (title, message, 3000, "normal", "info");
             }
 
             if (App.notify_dialog) {

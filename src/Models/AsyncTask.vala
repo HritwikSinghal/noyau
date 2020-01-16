@@ -241,19 +241,6 @@ public abstract class AsyncTask : GLib.Object {
         }
     }
 
-    public void write_stdin (string line) {
-        try {
-            if (status == AppStatus.RUNNING) {
-                dos_in.put_string (line + "\n");
-            } else {
-                logging_helper.log_error ("AsyncTask.write_stdin(): NOT RUNNING");
-            }
-        } catch (Error e) {
-            logging_helper.log_error ("AsyncTask.write_stdin(): %s".printf (line));
-            logging_helper.log_error (e.message);
-        }
-    }
-
     protected abstract void parse_stdout_line (string out_line);
 
     protected abstract void parse_stderr_line (string err_line);
@@ -274,8 +261,8 @@ public abstract class AsyncTask : GLib.Object {
             }
         } catch (Error e) {
             // ignore
-            // log_error ("AsyncTask.finish(): dos_in.close()");
-            // log_error (e.message);
+            logging_helper.log_error ("AsyncTask.finish(): dos_in.close()");
+            logging_helper.log_error (e.message);
         }
 
         dos_in = null;
@@ -310,7 +297,7 @@ public abstract class AsyncTask : GLib.Object {
             status = AppStatus.FINISHED;
         }
 
-        // dir_delete(working_dir);
+        // file_helper.dir_delete(working_dir);
 
         task_complete (); // signal
     }
@@ -387,51 +374,6 @@ public abstract class AsyncTask : GLib.Object {
             }
         }
     }
-
-    public string stat_time_elapsed{
-        owned get {
-            long elapsed = (long) system_helper.timer_elapsed (timer);
-            return misc_helper.format_duration (elapsed);
-        }
-    }
-
-    public string stat_time_remaining{
-        owned get {
-            if (progress > 0) {
-                long elapsed = (long) system_helper.timer_elapsed (timer);
-                long remaining = (long) ((elapsed / progress) * (1.0 - progress));
-                if (remaining < 0) {
-                    remaining = 0;
-                }
-                return misc_helper.format_duration (remaining);
-            } else {
-                return "???";
-            }
-        }
-    }
-
-    public void print_app_status () {
-        switch (status) {
-            case AppStatus.NOT_STARTED:
-                logging_helper.log_debug ("status=%s".printf ("NOT_STARTED"));
-                break;
-            case AppStatus.RUNNING:
-                logging_helper.log_debug ("status=%s".printf ("RUNNING"));
-                break;
-            case AppStatus.PAUSED:
-                logging_helper.log_debug ("status=%s".printf ("PAUSED"));
-                break;
-            case AppStatus.FINISHED:
-                logging_helper.log_debug ("status=%s".printf ("FINISHED"));
-                break;
-            case AppStatus.CANCELLED:
-                logging_helper.log_debug ("status=%s".printf ("CANCELLED"));
-                break;
-            case AppStatus.PASSWORD_REQUIRED:
-                logging_helper.log_debug ("status=%s".printf ("PASSWORD_REQUIRED"));
-                break;
-        }
-    }
 }
 
 public enum AppStatus {
@@ -442,119 +384,3 @@ public enum AppStatus {
     CANCELLED,
     PASSWORD_REQUIRED
 }
-
-/* Sample Subclass:
-   public class RsyncTask : AsyncTask{
-
-        public bool delete_extra = true;
-        public string rsync_log_file = "";
-        public string exclude_from_file = "";
-        public string source_path = "";
-        public string dest_path = "";
-        public bool verbose = true;
-
-        public RsyncTask(string _script_file, string _working_dir, string _log_file){
-                working_dir = _working_dir;
-                script_file = _script_file;
-                log_file = _log_file;
-        }
-
-        public void prepare() {
-                string script_text = build_script();
-                save_bash_script_temp(script_text, script_file);
-        }
-
-        private string build_script() {
-                var script = new StringBuilder();
-
-                var cmd = "rsync -ai";
-
-                if (verbose){
-                        cmd += " --verbose";
-                }
-                else{
-                        cmd += " --quiet";
-                }
-
-                if (delete_extra){
-                        cmd += " --delete";
-                }
-
-                cmd += " --numeric-ids --stats --relative --delete-excluded";
-
-                if (rsync_log_file.length > 0){
-                        cmd += " --log-file='%s'".printf(escape_single_quote(rsync_log_file));
-                }
-
-                if (exclude_from_file.length > 0){
-                        cmd += " --exclude-from='%s'".printf(escape_single_quote(exclude_from_file));
-                }
-
-                source_path = remove_trailing_slash(source_path);
-
-                dest_path = remove_trailing_slash(dest_path);
-
-                cmd += " '%s/'".printf(escape_single_quote(source_path));
-
-                cmd += " '%s/'".printf(escape_single_quote(dest_path));
-
-                //cmd += " /. \"%s\"".printf(sync_path + "/localhost/");
-
-                return script.str;
-        }
-
-        // execution ----------------------------
-
-        public void execute() {
-
-                prepare();
-
-                begin();
-
-                if (status == AppStatus.RUNNING){
-
-
-                }
-        }
-
-        public override void parse_stdout_line(string out_line){
-                if (is_terminated) {
-                        return;
-                }
-
-                update_progress_parse_console_output(out_line);
-        }
-
-        public override void parse_stderr_line(string err_line){
-                if (is_terminated) {
-                        return;
-                }
-
-                update_progress_parse_console_output(err_line);
-        }
-
-        public bool update_progress_parse_console_output (string line) {
-                if ((line == null) || (line.length == 0)) {
-                        return true;
-                }
-
-                return true;
-        }
-
-        protected override void finish_task(){
-                if ((status != AppStatus.CANCELLED) && (status != AppStatus.PASSWORD_REQUIRED)) {
-                        status = AppStatus.FINISHED;
-                }
-        }
-
-        public int read_status(){
-                var status_file = working_dir + "/status";
-                var f = File.new_for_path(status_file);
-                if (f.query_exists()){
-                        var txt = file_read(status_file);
-                        return int.parse(txt);
-                }
-                return -1;
-        }
-   }
- */

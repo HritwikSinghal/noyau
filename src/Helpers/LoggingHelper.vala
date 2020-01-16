@@ -139,27 +139,7 @@ public class LoggingHelper : GLib.Object {
         }
     }
 
-    public void log_to_file (string message, bool highlight = false) {
-        MiscHelper misc_helper = new MiscHelper ();
-
-        try {
-            if (dos_log != null) {
-                dos_log.put_string ("[%s] %s\n".printf (misc_helper.timestamp (), message));
-            }
-        } catch (Error e) {
-            stdout.printf (e.message);
-        }
-    }
-
     public void log_draw_line () {
         log_msg (string.nfill (70, '='));
-    }
-
-    public void err_log_clear () {
-        err_log = "";
-    }
-
-    public void err_log_disable () {
-        err_log = null;
     }
 }

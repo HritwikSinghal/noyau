@@ -100,16 +100,6 @@ public class GtkHelper : GLib.Object {
         return img_icon;
     }
 
-    public Gdk.Pixbuf ? get_shared_icon_pixbuf (string icon_name,
-                                                string fallback_file_name,
-                                                int icon_size,
-                                                string icon_directory = App.APP_NAME_SHORT + "/images") {
-
-        var img = get_shared_icon (icon_name, fallback_file_name, icon_size, icon_directory);
-        var pixbuf = (img == null) ? null : img.pixbuf;
-        return pixbuf;
-    }
-
     // treeview -----------------
 
     public int gtk_treeview_model_count (TreeModel model) {

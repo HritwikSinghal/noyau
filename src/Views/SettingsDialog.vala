@@ -265,5 +265,3 @@ public class SettingsDialog : Gtk.Dialog {
         App.save_app_config ();
     }
 }
-
-

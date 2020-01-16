@@ -29,11 +29,6 @@ public class SystemHelper : GLib.Object {
 
     // user ---------------------------------------------------
 
-    public bool user_is_admin () {
-
-        return (get_user_id_effective () == 0);
-    }
-
     public int get_user_id () {
 
         // returns actual user id of current user (even for applications executed with sudo and pkexec)
@@ -140,38 +135,6 @@ public class SystemHelper : GLib.Object {
         return userhome;
     }
 
-    public string get_user_home_effective () {
-        return get_user_home (get_username_effective ());
-    }
-
-    // application -----------------------------------------------
-
-    public string get_app_path () {
-        LoggingHelper logging_helper = new LoggingHelper ();
-
-        /* Get path of current process */
-
-        try {
-            return GLib.FileUtils.read_link ("/proc/self/exe");
-        } catch (Error e) {
-            logging_helper.log_error (e.message);
-            return "";
-        }
-    }
-
-    public string get_app_dir () {
-        LoggingHelper logging_helper = new LoggingHelper ();
-
-        /* Get parent directory of current process */
-
-        try {
-            return (File.new_for_path (GLib.FileUtils.read_link ("/proc/self/exe"))).get_parent ().get_path ();
-        } catch (Error e) {
-            logging_helper.log_error (e.message);
-            return "";
-        }
-    }
-
     // system ------------------------------------
 
     // dep: cat TODO: rewrite
@@ -195,77 +158,6 @@ public class SystemHelper : GLib.Object {
             logging_helper.log_error (e.message);
             return 0;
         }
-    }
-
-    public string get_desktop_name () {
-        ProcessHelper process_helper = new ProcessHelper ();
-
-        /* Return the names of the current Desktop environment */
-
-        int pid = -1;
-
-        pid = process_helper.get_pid_by_name ("cinnamon");
-        if (pid > 0) {
-            return "Cinnamon";
-        }
-
-        pid = process_helper.get_pid_by_name ("xfdesktop");
-        if (pid > 0) {
-            return "Xfce";
-        }
-
-        pid = process_helper.get_pid_by_name ("lxsession");
-        if (pid > 0) {
-            return "LXDE";
-        }
-
-        pid = process_helper.get_pid_by_name ("gnome-shell");
-        if (pid > 0) {
-            return "Gnome";
-        }
-
-        pid = process_helper.get_pid_by_name ("wingpanel");
-        if (pid > 0) {
-            return "Elementary";
-        }
-
-        pid = process_helper.get_pid_by_name ("unity-panel-service");
-        if (pid > 0) {
-            return "Unity";
-        }
-
-        pid = process_helper.get_pid_by_name ("plasma-desktop");
-        if (pid > 0) {
-            return "KDE";
-        }
-
-        return "Unknown";
-    }
-
-    public Gee.ArrayList<string> list_dir_names (string path) {
-        LoggingHelper logging_helper = new LoggingHelper ();
-        var list = new Gee.ArrayList<string>();
-
-        try {
-            File f_home = File.new_for_path (path);
-            FileEnumerator enumerator = f_home.enumerate_children ("%s".printf (FileAttribute.STANDARD_NAME), 0);
-            FileInfo file;
-            while ((file = enumerator.next_file ()) != null) {
-                string name = file.get_name ();
-                // string item = path + "/" + name;
-                list.add (name);
-            }
-        } catch (Error e) {
-            logging_helper.log_error (e.message);
-        }
-
-        // sort the list
-        CompareDataFunc<string> entry_compare = (a, b) => {
-            return strcmp (a, b);
-        };
-        list.sort ((owned) entry_compare);
-
-        return list;
     }
 
     // internet helpers ----------------------
@@ -295,22 +187,6 @@ public class SystemHelper : GLib.Object {
         }
 
         return (status == 0);
-    }
-
-    public bool shutdown () {
-        LoggingHelper logging_helper = new LoggingHelper ();
-
-        /* Shutdown the system immediately */
-
-        try {
-            string[] argv = { "shutdown", "-h", "now" };
-            Pid procId;
-            Process.spawn_async (null, argv, null, SpawnFlags.SEARCH_PATH, null, out procId);
-            return true;
-        } catch (Error e) {
-            logging_helper.log_error (e.message);
-            return false;
-        }
     }
 
     public bool command_exists (string command) {
@@ -344,55 +220,6 @@ public class SystemHelper : GLib.Object {
         }
 
         return false;
-    }
-
-    public bool using_efi_boot () {
-        FileHelper file_helper = new FileHelper ();
-
-        /* Returns true if the system was booted in EFI mode
-         * and false for BIOS mode */
-
-        return file_helper.dir_exists ("/sys/firmware/efi");
-    }
-
-    public void open_terminal_window (string terminal_emulator,
-                                      string working_dir,
-                                      string script_file_to_execute,
-                                      bool run_as_admin) {
-
-        ProcessHelper process_helper = new ProcessHelper ();
-        LoggingHelper logging_helper = new LoggingHelper ();
-        FileHelper file_helper = new FileHelper ();
-
-        string cmd = "";
-        if (run_as_admin) {
-            cmd += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ";
-        }
-
-        string term = terminal_emulator;
-        if (!command_exists (term)) {
-            term = "gnome-terminal";
-            if (!command_exists (term)) {
-                term = "xfce4-terminal";
-            }
-        }
-
-        cmd += term;
-
-        switch (term) {
-            case "gnome-terminal":
-            case "xfce4-terminal":
-                if (working_dir.length > 0) {
-                    cmd += " --working-directory='%s'".printf (file_helper.escape_single_quote (working_dir));
-                }
-                if (script_file_to_execute.length > 0) {
-                    cmd += " -e '%s\n; echo Press ENTER to exit... ; read dummy;'".printf (file_helper.escape_single_quote (script_file_to_execute));
-                }
-                break;
-        }
-
-        logging_helper.log_debug (cmd);
-        process_helper.exec_script_async (cmd);
     }
 
     // timers --------------------------------------------------

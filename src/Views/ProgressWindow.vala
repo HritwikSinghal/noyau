@@ -176,7 +176,6 @@ public class ProgressWindow : Gtk.Dialog {
     public void finish (string message = "") {
         btn_cancel.sensitive = false;
 
-        // pulse_stop();
         progressbar.fraction = 1.0;
 
         lbl_msg.label = message;
@@ -206,4 +205,3 @@ public class ProgressWindow : Gtk.Dialog {
         gtk_helper.gtk_do_events ();
     }
 }
-

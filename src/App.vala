@@ -38,7 +38,6 @@ public class App : Gtk.Application {
 
     public const string GETTEXT_PACKAGE = @"";
     public const string LOCALE_DIR = @"/usr/share/locale";
-    public const int STARTUP_DELAY = 300;
 
     public static string APP_CONFIG_FILE = "";
 
@@ -205,6 +204,7 @@ public class App : Gtk.Application {
         var json = new Json.Generator ();
         json.pretty = true;
         json.indent = 2;
+
         var node = new Json.Node (NodeType.OBJECT);
         node.set_object (config);
         json.set_root (node);
@@ -275,9 +275,7 @@ public class App : Gtk.Application {
 
     private static bool parse_arguments (string[] args) {
         LoggingHelper _logging_helper = new LoggingHelper ();
-
         _logging_helper.log_msg (_("Cache") + ": %s".printf (LinuxKernel.CACHE_DIR));
-        // _logging_helper.log_msg (_("Temp") + ": %s".printf (TEMP_DIR));
 
         commands = new GLib.List<string> ();
         command_versions = "";
@@ -328,7 +326,6 @@ public class App : Gtk.Application {
             }
         }
 
-
         for (int i = 0; i < commands.length (); i++) {
             string command = commands.nth_data (i);
 
@@ -347,12 +344,14 @@ public class App : Gtk.Application {
                     break;
 
                 case "--check":
+                    check_if_internet_is_active (true);
                     print_updates ();
                     LinuxKernel.clean_cache ();
                     exit_app (0);
                     break;
 
                 case "--notify":
+                    check_if_internet_is_active (true);
                     notify_user ();
                     LinuxKernel.clean_cache ();
                     exit_app (0);
@@ -611,7 +610,6 @@ public class App : Gtk.Application {
     }
 
     private static void print_updates () {
-        // check_if_internet_is_active (false);
         LoggingHelper _logging_helper = new LoggingHelper ();
 
         LinuxKernel.query (true);
@@ -639,7 +637,6 @@ public class App : Gtk.Application {
     }
 
     private static void notify_user () {
-        // check_if_internet_is_active (false);
         LoggingHelper _logging_helper = new LoggingHelper ();
         ProcessHelper _process_helper = new ProcessHelper ();
 
@@ -654,7 +651,8 @@ public class App : Gtk.Application {
             var message = "Major update available for installation";
 
             if (App.notify_bubble) {
-                OSDNotify.notify_send (title, message, 3000, "normal", "info");
+                OSDNotify osd_notify = new OSDNotify ();
+                osd_notify.notify_send (title, message, 3000, "normal", "info");
             }
 
             _logging_helper.log_msg (title);
@@ -676,7 +674,8 @@ public class App : Gtk.Application {
             var message = "Minor update available for installation";
 
             if (App.notify_bubble) {
-                OSDNotify.notify_send (title, message, 3000, "normal", "info");
+                OSDNotify osd_notify = new OSDNotify ();
+                osd_notify.notify_send (title, message, 3000, "normal", "info");
             }
 
             _logging_helper.log_msg (title);

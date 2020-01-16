@@ -24,6 +24,7 @@ using GLib;
 
 // dep: notify-send
 public class OSDNotify : GLib.Object {
+
     private static DateTime dt_last_notification = null;
     public const int NOTIFICATION_INTERVAL = 3;
 
@@ -33,12 +34,10 @@ public class OSDNotify : GLib.Object {
         process_helper = new ProcessHelper ();
     }
 
-    public static int notify_send (string title, string message, int durationMillis,
-                                   string urgency = "low", // low, normal, critical
-                                   string dialog_type = "info" // error, info, warning
+    public int notify_send (string title, string message, int durationMillis,
+                            string urgency = "low",        // low, normal, critical
+                            string dialog_type = "info"        // error, info, warning
     ) {
-
-        ProcessHelper _process_helper = new ProcessHelper ();
 
         /* Displays notification bubble on the desktop */
 
@@ -50,6 +49,7 @@ public class OSDNotify : GLib.Object {
             case "warning":
                 // ok
                 break;
+
             default:
                 dialog_type = "info";
                 break;
@@ -64,21 +64,10 @@ public class OSDNotify : GLib.Object {
 
         if (seconds > NOTIFICATION_INTERVAL) {
             string s = "notify-send -t %d -u %s -i %s \"%s\" \"%s\"".printf (durationMillis, urgency, "gtk-dialog-" + dialog_type, title, message);
-            retVal = _process_helper.exec_sync (s, null, null);
+            retVal = process_helper.exec_sync (s, null, null);
             dt_last_notification = new DateTime.now_local ();
         }
 
         return retVal;
-    }
-
-    public static bool is_supported () {
-        ProcessHelper _process_helper = new ProcessHelper ();
-        string path = _process_helper.get_cmd_path ("notify-send");
-
-        if ((path != null) && (path.length > 0)) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }

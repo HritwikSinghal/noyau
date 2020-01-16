@@ -46,7 +46,7 @@ public class AboutWindow : AboutDialog {
 
         this.translator_credits = _("translator-credits");
 
-        this.copyright = "Copyright © 2019 " + App.APP_AUTHOR + " (" + App.APP_AUTHOR_EMAIL + ")";
+        this.copyright = "Copyright © 2020 " + App.APP_AUTHOR + " (" + App.APP_AUTHOR_EMAIL + ")";
         this.license_type = Gtk.License.GPL_3_0;
         this.wrap_license = true;
 

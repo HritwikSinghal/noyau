@@ -114,7 +114,7 @@ public class TerminalWindow : Gtk.Window {
         term.backspace_binding = Vte.EraseBinding.AUTO;
         term.cursor_blink_mode = Vte.CursorBlinkMode.SYSTEM;
         term.cursor_shape = Vte.CursorShape.UNDERLINE;
-        term.rewrap_on_resize = true;
+        // term.rewrap_on_resize = true;
 
         term.scroll_on_keystroke = true;
         term.scroll_on_output = true;
@@ -173,41 +173,9 @@ public class TerminalWindow : Gtk.Window {
         hbox.pack_start (label, true, true, 0);
     }
 
-    public void start_shell () {
-        string[] argv = new string[1];
-        argv[0] = "/bin/sh";
-
-        string[] env = Environ.get ();
-
-        try {
-            is_running = true;
-
-            term.spawn_sync (
-                Vte.PtyFlags.DEFAULT, // pty_flags
-                process_helper.get_temp_file_path (), // working_directory
-                argv, // argv
-                env, // env
-                GLib.SpawnFlags.SEARCH_PATH, // spawn_flags
-                null, // child_setup
-                out child_pid,
-                null
-            );
-        } catch (Error e) {
-            logging_helper.log_error (e.message);
-        }
-    }
-
     public void terminate_child () {
         btn_cancel.sensitive = false;
         process_helper.process_quit (child_pid);
-    }
-
-    public void execute_command (string command) {
-#if VALA_0_44
-        term.feed_child (string_to_char_array (command));
-#elif VALA_0_40
-        term.feed_child (command, command.length);
-#endif
     }
 
     public void execute_script (string script_path, bool wait = false) {
@@ -274,16 +242,4 @@ public class TerminalWindow : Gtk.Window {
             vbox_main.margin = 3;
         }
     }
-
-    // Adapted from: https://kuikie.com/snippet/85-8/vala/strings/vala-convert-string-to-char-array/
-    private char[] string_to_char_array (string str) {
-        char[] char_array = new char[str.length];
-
-        for (int i = 0; i < str.length; i++) {
-            char_array[i] = (char) str.get_char (str.index_of_nth_char (i));
-        }
-
-        return char_array;
-    }
 }
-
