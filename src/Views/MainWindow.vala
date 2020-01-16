@@ -636,9 +636,10 @@ public class MainWindow : Gtk.Window {
             }
         }
 
-        string message = _("Refreshing.");
+        string message = _("Refreshing");
         var dlg = new ProgressWindow.with_parent (this, message, true);
         dlg.show_all ();
+
         gtk_helper.gtk_do_events ();
 
         // TODO: Check if kernel.ubuntu.com is down
@@ -654,7 +655,6 @@ public class MainWindow : Gtk.Window {
         long count = 0;
 
         while (LinuxKernel.task_is_running) {
-
             if (App.cancelled) {
                 App.exit_app (1);
             }
@@ -677,7 +677,6 @@ public class MainWindow : Gtk.Window {
 
             dlg.update_status_line ();
             dlg.update_progressbar ();
-            dlg.sleep (200);
 
             gtk_helper.gtk_do_events ();
 

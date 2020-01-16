@@ -66,9 +66,9 @@ public class ProgressWindow : Gtk.Dialog {
 
         App.cancelled = false;
 
-        init_window ();
-
         this.delete_event.connect (close_window);
+
+        init_window ();
     }
 
     private bool close_window () {
@@ -94,36 +94,39 @@ public class ProgressWindow : Gtk.Dialog {
         vbox_main.margin = 12;
         content_area.add (vbox_main);
 
-        var hbox_status = new Gtk.Box (Orientation.HORIZONTAL, 6);
-        vbox_main.add (hbox_status);
+        var hbox_msg = new Gtk.Box (Orientation.HORIZONTAL, 6);
+        vbox_main.add (hbox_msg);
 
         spinner = new Gtk.Spinner ();
         spinner.active = true;
-        hbox_status.add (spinner);
+        hbox_msg.add (spinner);
 
         // lbl_msg
         lbl_msg = new Gtk.Label (status_message);
         lbl_msg.halign = Align.START;
         lbl_msg.ellipsize = Pango.EllipsizeMode.END;
         lbl_msg.max_width_chars = 40;
-        hbox_status.add (lbl_msg);
+        hbox_msg.add (lbl_msg);
 
         var hbox = new Gtk.Box (Orientation.HORIZONTAL, 6);
         vbox_main.add (hbox);
 
         // progressbar
         progressbar = new Gtk.ProgressBar ();
-        progressbar.set_size_request (300, -1);
+        progressbar.width_request = 300;
         progressbar.hexpand = true;
-        // progressbar.pulse_step = 0.1;
+        progressbar.fraction = 0.1;
         hbox.add (progressbar);
+
+        var hbox_status = new Gtk.Box (Orientation.HORIZONTAL, 6);
+        vbox_main.add (hbox_status);
 
         // lbl_status
         lbl_status = new Gtk.Label ("");
         lbl_status.halign = Align.START;
         lbl_status.ellipsize = Pango.EllipsizeMode.END;
         lbl_status.max_width_chars = 40;
-        vbox_main.add (lbl_status);
+        hbox_status.add (lbl_status);
 
         // box
         var box = new Gtk.Box (Orientation.HORIZONTAL, 6);
@@ -170,7 +173,6 @@ public class ProgressWindow : Gtk.Dialog {
         }
 
         progressbar.fraction = fraction;
-        // gtk_helper.gtk_do_events();
     }
 
     public void finish (string message = "") {
@@ -198,10 +200,5 @@ public class ProgressWindow : Gtk.Dialog {
             this.close ();
             return false;
         });
-    }
-
-    public void sleep (int ms) {
-        Thread.usleep ((ulong) ms * 1000);
-        gtk_helper.gtk_do_events ();
     }
 }
