@@ -41,8 +41,6 @@ public class App : Gtk.Application {
     public const int STARTUP_DELAY = 300;
 
     public static string APP_CONFIG_FILE = "";
-    public static string STARTUP_SCRIPT_FILE = "";
-    public static string STARTUP_DESKTOP_FILE = "";
 
     public static bool LOG_DEBUG = false;
     public static bool LOG_TIMESTAMP = false;
@@ -178,8 +176,6 @@ public class App : Gtk.Application {
 
         // app config files
         APP_CONFIG_FILE = user_home + "/.config/ukuu.json";
-        STARTUP_SCRIPT_FILE = user_home + "/.config/ukuu-notify.sh";
-        STARTUP_DESKTOP_FILE = user_home + "/.config/autostart/ukuu.desktop";
 
         LinuxKernel.CACHE_DIR = user_home + "/.cache/ukuu";
         LinuxKernel.CURRENT_USER = user_login;

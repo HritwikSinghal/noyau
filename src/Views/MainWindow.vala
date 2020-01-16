@@ -768,17 +768,9 @@ public class MainWindow : Gtk.Window {
         term.destroy.connect (() => {
             show_grub_message ();
 
-            if (App.commands != null) {
-                if (App.commands.find ("list").length () > 0) {
-                    this.present ();
-                    refresh_cache ();
-                    tv_refresh ();
-                } else {
-                    this.destroy ();
-                    Gtk.main_quit ();
-                    App.exit_app (0);
-                }
-            }
+            this.present ();
+            refresh_cache ();
+            tv_refresh ();
         });
 
         string sh = "";
