@@ -18,4 +18,3 @@ install_data(
 
 subdir('images')
 subdir('pixmaps')
-
