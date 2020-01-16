@@ -73,7 +73,7 @@ public abstract class AsyncTask : GLib.Object {
     public signal void stderr_line_read (string line);
     public signal void task_complete ();
 
-    public AsyncTask () {
+    protected AsyncTask () {
         misc_helper = new MiscHelper ();
         file_helper = new FileHelper ();
         system_helper = new SystemHelper ();

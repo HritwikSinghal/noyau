@@ -47,9 +47,8 @@
 
 <h2>Confirmed Compatibility</h2>
 <ul>
+    <li>Ubuntu 20.04 LTS</li>
     <li>Ubuntu 19.10</li>
-    <li>Ubuntu 19.04</li>
-    <li>Ubuntu 18.10</li>
     <li>Ubuntu 18.04.x LTS</li>
 </ul>
 
