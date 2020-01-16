@@ -55,8 +55,8 @@ public class SettingsDialog : Gtk.Dialog {
         var vbox_main = get_content_area ();
         vbox_main.spacing = 6;
         vbox_main.margin = 12;
-        // vbox_main.margin_bottom = 12;
-        vbox_main.set_size_request (400, 500);
+        vbox_main.width_request = 400;
+        vbox_main.height_request = -1;
 
         // notification
         var label = new Label ("<b>" + _("Notification") + "</b>");
@@ -68,7 +68,6 @@ public class SettingsDialog : Gtk.Dialog {
         // chk_notify_major
         var chk = new Gtk.CheckButton.with_label (_("Notify if a major release is available"));
         chk.active = App.notify_major;
-        chk.margin_left = 6;
         vbox_main.add (chk);
         chk_notify_major = chk;
 
@@ -79,7 +78,6 @@ public class SettingsDialog : Gtk.Dialog {
         // chk_notify_minor
         chk = new Gtk.CheckButton.with_label (_("Notify if a point release is available"));
         chk.active = App.notify_minor;
-        chk.margin_left = 6;
         vbox_main.add (chk);
         chk_notify_minor = chk;
 
@@ -90,7 +88,6 @@ public class SettingsDialog : Gtk.Dialog {
         // show bubble
         chk = new Gtk.CheckButton.with_label (_("Show notification bubble on desktop"));
         chk.active = App.notify_bubble;
-        chk.margin_left = 6;
         vbox_main.add (chk);
         chk_notify_bubble = chk;
 
@@ -101,7 +98,6 @@ public class SettingsDialog : Gtk.Dialog {
         // show window
         chk = new Gtk.CheckButton.with_label (_("Show notification dialog"));
         chk.active = App.notify_dialog;
-        chk.margin_left = 6;
         chk.margin_bottom = 6;
         vbox_main.add (chk);
         chk_notify_dialog = chk;
@@ -116,7 +112,6 @@ public class SettingsDialog : Gtk.Dialog {
 
         label = new Label (_("Check every"));
         label.xalign = (float) 0.0;
-        label.margin_left = 6;
         hbox.add (label);
 
         var adjustment = new Gtk.Adjustment (App.notify_interval_value, 1, 52, 1, 1, 0);
@@ -164,7 +159,6 @@ public class SettingsDialog : Gtk.Dialog {
         // chk_hide_unstable
         chk = new CheckButton.with_label (_("Hide unstable and RC releases"));
         chk.active = LinuxKernel.hide_unstable;
-        chk.margin_left = 6;
         vbox_main.add (chk);
         chk_hide_unstable = chk;
 
@@ -175,7 +169,6 @@ public class SettingsDialog : Gtk.Dialog {
         // chk_hide_older
         chk = new CheckButton.with_label (_("Hide kernels older than 5.0"));
         chk.active = LinuxKernel.hide_older;
-        chk.margin_left = 6;
         vbox_main.add (chk);
         chk_hide_older = chk;
 
@@ -192,7 +185,6 @@ public class SettingsDialog : Gtk.Dialog {
         // chk_hide_older_4
         chk = new CheckButton.with_label (_("Hide kernels older than 4.0"));
         chk.active = LinuxKernel.hide_older_4;
-        chk.margin_left = 6;
         vbox_main.add (chk);
         chk_hide_older_4 = chk;
 
@@ -213,12 +205,12 @@ public class SettingsDialog : Gtk.Dialog {
         vbox_main.add (label);
 
         hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
+        hbox.margin_bottom = 6;
         vbox_main.add (hbox);
 
         // chk_update_grub_timeout
         chk = new CheckButton.with_label (_("Set GRUB menu timeout"));
         chk.active = LinuxKernel.update_grub_timeout;
-        chk.margin_left = 6;
         chk.hexpand = true;
         hbox.add (chk);
         chk_update_grub_timeout = chk;
@@ -232,7 +224,6 @@ public class SettingsDialog : Gtk.Dialog {
         adjustment = new Gtk.Adjustment (LinuxKernel.grub_timeout, 1, 9999, 1, 1, 0);
         spin = new Gtk.SpinButton (adjustment, 1, 0);
         spin.xalign = (float) 0.5;
-        spin.margin_right = 6;
         hbox.add (spin);
         var spin_grub = spin;
 
@@ -251,13 +242,15 @@ public class SettingsDialog : Gtk.Dialog {
         // actions -------------------------
 
         // ok
-        var button = (Button) add_button ("gtk-ok", Gtk.ResponseType.ACCEPT);
+        var button = new Gtk.Button.with_label (_("Ok"));
+        button.width_request = 64;
+        button.set_halign (Gtk.Align.END);
         button.clicked.connect (() => {
             this.close ();
         });
 
+        vbox_main.add (button);
         this.destroy.connect (btn_ok_click);
-
         show_all ();
     }
 
