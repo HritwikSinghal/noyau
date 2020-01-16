@@ -471,7 +471,6 @@ public class MainWindow : Gtk.Window {
         var button_refresh = new Gtk.ModelButton ();
         button_refresh.role = Gtk.ButtonRole.NORMAL;
         button_refresh.text = "Refresh List";
-        // button_refresh.centered = true;
         button_refresh.clicked.connect (() => {
             if (!system_helper.check_internet_connectivity ()) {
                 gtk_helper.gtk_messagebox (_("No Internet"), _("Internet connection is not active"), this, true);
@@ -485,7 +484,6 @@ public class MainWindow : Gtk.Window {
         var button_settings = new Gtk.ModelButton ();
         button_settings.role = Gtk.ButtonRole.NORMAL;
         button_settings.text = "Settings";
-        // button_settings.centered = true;
         button_settings.clicked.connect (() => {
             bool prev_hide_older = LinuxKernel.hide_older;
             bool prev_hide_older_4 = LinuxKernel.hide_older_4;
@@ -509,7 +507,6 @@ public class MainWindow : Gtk.Window {
         var button_about = new Gtk.ModelButton ();
         button_about.role = Gtk.ButtonRole.NORMAL;
         button_about.text = "About";
-        // button_about.centered = true;
         button_about.clicked.connect (btn_about_clicked);
 
         var menu_separator = new Gtk.Separator (Orientation.HORIZONTAL);

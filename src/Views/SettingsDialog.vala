@@ -243,7 +243,7 @@ public class SettingsDialog : Gtk.Dialog {
 
         // ok
         var button = new Gtk.Button.with_label (_("Ok"));
-        button.width_request = 64;
+        button.width_request = 92;
         button.set_halign (Gtk.Align.END);
         button.clicked.connect (() => {
             this.close ();
