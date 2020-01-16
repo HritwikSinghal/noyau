@@ -54,7 +54,7 @@
 
 <h2>Confirmed Incompatibility</h2>
 <ul>
-    <li>Ubuntu 16.04.x LTS</li>
+    <li>Ubuntu 16.04.x LTS (due to the meson package being too old)</li>
 </ul>
 
 <h2>Source Code</h2>
