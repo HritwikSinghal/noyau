@@ -458,18 +458,20 @@ public class MainWindow : Gtk.Window {
         header_bar.pack_start (button_changes);
         btn_changes = button_changes;
 
+        // menu
         var button_menu = new Gtk.MenuButton ();
         button_menu.set_image (new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR));
 
         var menu_popover = new Gtk.Popover (button_menu);
         menu_popover.position = Gtk.PositionType.BOTTOM;
-        menu_popover.width_request = 128;
+        menu_popover.width_request = 192;
+        menu_popover.height_request = -1;
         menu_popover.modal = false;
 
         var button_refresh = new Gtk.ModelButton ();
         button_refresh.role = Gtk.ButtonRole.NORMAL;
-        button_refresh.text = "Refresh";
-        button_refresh.centered = true;
+        button_refresh.text = "Refresh List";
+        // button_refresh.centered = true;
         button_refresh.clicked.connect (() => {
             if (!system_helper.check_internet_connectivity ()) {
                 gtk_helper.gtk_messagebox (_("No Internet"), _("Internet connection is not active"), this, true);
@@ -483,7 +485,7 @@ public class MainWindow : Gtk.Window {
         var button_settings = new Gtk.ModelButton ();
         button_settings.role = Gtk.ButtonRole.NORMAL;
         button_settings.text = "Settings";
-        button_settings.centered = true;
+        // button_settings.centered = true;
         button_settings.clicked.connect (() => {
             bool prev_hide_older = LinuxKernel.hide_older;
             bool prev_hide_older_4 = LinuxKernel.hide_older_4;
@@ -507,16 +509,19 @@ public class MainWindow : Gtk.Window {
         var button_about = new Gtk.ModelButton ();
         button_about.role = Gtk.ButtonRole.NORMAL;
         button_about.text = "About";
-        button_about.centered = true;
+        // button_about.centered = true;
         button_about.clicked.connect (btn_about_clicked);
+
+        var menu_separator = new Gtk.Separator (Orientation.HORIZONTAL);
 
         var popover_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 4);
         popover_box.set_border_width (8);
         popover_box.pack_start (button_refresh);
+        popover_box.pack_start (menu_separator);
         popover_box.pack_start (button_settings);
         popover_box.pack_start (button_about);
-        menu_popover.add (popover_box);
 
+        menu_popover.add (popover_box);
         menu_popover.set_relative_to (button_menu);
 
         button_menu.set_popover (menu_popover);

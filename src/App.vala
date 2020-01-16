@@ -70,7 +70,7 @@ public class App : Gtk.Application {
 
     public App () {
         GLib.Object (
-            application_id: "com.github.joshuadowding.ukuu",
+            application_id: "ukuu",
             flags : ApplicationFlags.FLAGS_NONE
         );
 
