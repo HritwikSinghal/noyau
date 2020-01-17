@@ -62,17 +62,19 @@ build_deb_for_dist() {
 
 mkdir release
 
-build_deb_for_dist xenial i386 18.10
-build_deb_for_dist xenial amd64 18.10
+#build_deb_for_dist xenial i386 18.10  #16.04.x LTS (not supported)
+#build_deb_for_dist xenial amd64 18.10 #16.04.x LTS (not supported)
 
-build_deb_for_dist bionic i386 18.10
-build_deb_for_dist bionic amd64 18.10
+build_deb_for_dist bionic i386 18.10  #18.04.x LTS
+build_deb_for_dist bionic amd64 18.10 #18.04.x LTS
 
-build_deb_for_dist disco i386 18.10
-build_deb_for_dist disco amd64 18.10
+build_deb_for_dist disco i386 18.10  #19.04
+build_deb_for_dist disco amd64 18.10 #19.04
 
-#build_deb_for_dist eoan i386 18.10
-#build_deb_for_dist eoan amd64 18.10
+build_deb_for_dist eoan i386 18.10  #19.10
+build_deb_for_dist eoan amd64 18.10 #19.10
+
+#build_deb_for_dist focal i386 18.10 #20.04.x LTS
+build_deb_for_dist focal amd64 18.10 #20.04.x LTS
 
 cd "$backup"
-
