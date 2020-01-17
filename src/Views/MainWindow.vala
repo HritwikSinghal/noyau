@@ -62,7 +62,7 @@ public class MainWindow : Gtk.Window {
         logging_helper = new LoggingHelper ();
         process_helper = new ProcessHelper ();
 
-        title = App.APP_NAME; // "%s (Ukuu) v%s".printf(Main.AppName, Main.AppVersion);
+        title = App.APP_NAME; // "%s (noyau) v%s".printf(Main.AppName, Main.AppVersion);
         window_position = WindowPosition.CENTER;
         icon = gtk_helper.get_app_icon (16);
 
@@ -295,9 +295,9 @@ public class MainWindow : Gtk.Window {
         Gdk.Pixbuf pix_mainline_rc = null;
 
         try {
-            pix_ubuntu = new Gdk.Pixbuf.from_file ("/usr/share/ukuu/images/ubuntu-logo.png");
-            pix_mainline = new Gdk.Pixbuf.from_file ("/usr/share/ukuu/images/tux.png");
-            pix_mainline_rc = new Gdk.Pixbuf.from_file ("/usr/share/ukuu/images/tux-red.png");
+            pix_ubuntu = new Gdk.Pixbuf.from_file ("/usr/share/noyau/images/ubuntu-logo.png");
+            pix_mainline = new Gdk.Pixbuf.from_file ("/usr/share/noyau/images/tux.png");
+            pix_mainline_rc = new Gdk.Pixbuf.from_file ("/usr/share/noyau/images/tux-red.png");
         } catch (Error e) {
             logging_helper.log_error (e.message);
         }
@@ -407,7 +407,7 @@ public class MainWindow : Gtk.Window {
 
             string sh = "";
             sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ";
-            sh += "sudo ukuu ";
+            sh += "sudo noyau ";
 
             if (App.LOG_DEBUG) {
                 sh += "--debug ";
@@ -547,7 +547,7 @@ public class MainWindow : Gtk.Window {
 
             string sh = "";
             sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ";
-            sh += "sudo ukuu ";
+            sh += "sudo noyau ";
 
             if (App.LOG_DEBUG) {
                 sh += "--debug ";
@@ -775,7 +775,7 @@ public class MainWindow : Gtk.Window {
 
         string sh = "";
         sh += "pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY ";
-        sh += "sudo ukuu ";
+        sh += "sudo noyau ";
 
         if (App.LOG_DEBUG) {
             sh += "--debug ";

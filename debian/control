@@ -1,4 +1,4 @@
-Source: ukuu
+Source: noyau
 Maintainer: Joshua Dowding <joshuadowding@outlook.com>
 Uploaders: 
 Section: utils
@@ -7,7 +7,7 @@ Build-Depends: valac, meson, pbuilder, debhelper, dh-make, autotools-dev, libgtk
 Standards-Version: 3.9.3
 Homepage: https://joshuadowding.github.io/
 
-Package: ukuu
+Package: noyau
 Architecture: any
 Section: utils
 Priority: extra

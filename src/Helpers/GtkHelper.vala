@@ -64,7 +64,7 @@ public class GtkHelper : GLib.Object {
     // icon ----------------------------------------------
 
     public Gdk.Pixbuf ? get_app_icon (int icon_size, string format = ".png") {
-        var img_icon = get_shared_icon (App.APP_NAME_SHORT, App.APP_NAME_SHORT + format, icon_size, "ukuu/images");
+        var img_icon = get_shared_icon (App.APP_NAME_SHORT, App.APP_NAME_SHORT + format, icon_size, "noyau/images");
         if (img_icon != null) {
             return img_icon.pixbuf;
         } else {

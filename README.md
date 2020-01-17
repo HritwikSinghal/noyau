@@ -1,9 +1,9 @@
 <p align="center">
-    <img width="64" height="64" src="data/images/ukuu.png">
+    <img width="64" height="64" src="data/images/noyau.png">
 </p>
 
 <h1 align="center">
-    <b>Ubuntu Kernel Update Utility</b>
+    <b>Noyau</b>
 </h1>
 
 <p align="center">
@@ -13,12 +13,12 @@
 <br />
 
 <p align="center">
-    <img width="720" height="580" src="data/screenshots/main-ubuntu.png">
+    <img width="720" height="570" src="data/screenshots/main-ubuntu.png">
 </p>
 
 <br />
 
-[![CodeFactor](https://www.codefactor.io/repository/github/joshuadowding/ukuu/badge)](https://www.codefactor.io/repository/github/joshuadowding/ukuu)
+[![CodeFactor](https://www.codefactor.io/repository/github/joshuadowding/noyau/badge)](https://www.codefactor.io/repository/github/joshuadowding/noyau)
 
 
 <h2>Features</h2>
@@ -61,7 +61,7 @@
 <h3>Build Instructions</h3>
 
     sudo apt install valac meson libgtk-3-dev libgee-0.8-dev libjson-glib-dev libvte-2.91-dev libsoup2.4-dev
-    git clone https://github.com/joshuadowding/ukuu.git && cd ukuu
+    git clone https://github.com/joshuadowding/noyau.git && cd noyau
     meson build --prefix=/usr
     cd build && ninja
     sudo ninja install

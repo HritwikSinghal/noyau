@@ -1,17 +1,17 @@
 install_data(
-    'ukuu.desktop',
+    'noyau.desktop',
     install_dir: join_paths(get_option('datadir'), 'applications'),
     install: true
 )
 
 install_data(
-    'ukuu.appdata.xml',
+    'noyau.appdata.xml',
     install_dir: join_paths(get_option('datadir'), 'metainfo'),
     install: true
 )
 
 install_data(
-    'ukuu.pkexec.policy',
+    'noyau.pkexec.policy',
     install_dir: join_paths(get_option('datadir'), 'polkit-1', 'actions'),
     install: true
 )

@@ -56,7 +56,7 @@ public class LinuxKernel : GLib.Object, Gee.Comparable<LinuxKernel> {
     // static
 
     public static string URI_KERNEL_UBUNTU_MAINLINE = "https://kernel.ubuntu.com/~kernel-ppa/mainline/";
-    public static string CACHE_DIR = "/var/cache/ukuu";
+    public static string CACHE_DIR = "/var/cache/noyau";
     public static string NATIVE_ARCH;
     public static string LINUX_DISTRO;
     public static string RUNNING_KERNEL;

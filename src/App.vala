@@ -29,8 +29,8 @@ extern void exit (int exit_code);
 
 public class App : Gtk.Application {
 
-    public const string APP_NAME = @"Ubuntu Kernel Update Utility";
-    public const string APP_NAME_SHORT = @"ukuu";
+    public const string APP_NAME = @"Noyau";
+    public const string APP_NAME_SHORT = @"Noyau";
     public const string APP_VERSION = @"18.10";
     public const string APP_AUTHOR = @"Joshua Dowding";
     public const string APP_AUTHOR_EMAIL = @"joshuadowding@outlook.com";
@@ -70,7 +70,7 @@ public class App : Gtk.Application {
 
     public App () {
         GLib.Object (
-            application_id: "ukuu",
+            application_id: "noyau",
             flags : ApplicationFlags.FLAGS_NONE
         );
 
@@ -90,11 +90,11 @@ public class App : Gtk.Application {
         set_locale ();
 
         logging_helper.log_msg ("%s v%s".printf (App.APP_NAME_SHORT, App.APP_VERSION));
-        process_helper.init_tmp ("ukuu");
+        process_helper.init_tmp ("noyau");
 
         string message;
         if (!check_dependencies (out message)) {
-            gtk_helper.gtk_messagebox ("ukuu", message, null, true);
+            gtk_helper.gtk_messagebox ("noyau", message, null, true);
             exit_app (1);
         }
     }
@@ -174,9 +174,9 @@ public class App : Gtk.Application {
         user_home = system_helper.get_user_home (user_login);
 
         // app config files
-        APP_CONFIG_FILE = user_home + "/.config/ukuu.json";
+        APP_CONFIG_FILE = user_home + "/.config/noyau.json";
 
-        LinuxKernel.CACHE_DIR = user_home + "/.cache/ukuu";
+        LinuxKernel.CACHE_DIR = user_home + "/.cache/noyau";
         LinuxKernel.CURRENT_USER = user_login;
         LinuxKernel.CURRENT_USER_HOME = user_home;
     }
@@ -217,7 +217,7 @@ public class App : Gtk.Application {
 
         _logging_helper.log_debug ("Saved config file: %s".printf (APP_CONFIG_FILE));
 
-        // change owner to current user so that ukuu can access in normal mode
+        // change owner to current user so that noyau can access in normal mode
         _file_helper.chown (APP_CONFIG_FILE, user_login, user_login);
     }
 
@@ -419,7 +419,7 @@ public class App : Gtk.Application {
                             var msg = _("Could not find requested version");
                             msg += ": %s".printf (requested_version);
                             _logging_helper.log_error (msg);
-                            _logging_helper.log_error (_("Run 'ukuu --list' and use the version string listed in first column"));
+                            _logging_helper.log_error (_("Run 'noyau --list' and use the version string listed in first column"));
                             exit_app (1);
                         }
 
@@ -462,7 +462,7 @@ public class App : Gtk.Application {
                             var msg = _("Could not find requested version");
                             msg += ": %s".printf (requested_version);
                             _logging_helper.log_error (msg);
-                            _logging_helper.log_error (_("Run 'ukuu --list' and use the version string listed in first column"));
+                            _logging_helper.log_error (_("Run 'noyau --list' and use the version string listed in first column"));
                             exit_app (1);
                         }
 
@@ -503,7 +503,7 @@ public class App : Gtk.Application {
                             var msg = _("Could not find requested version");
                             msg += ": %s".printf (requested_version);
                             _logging_helper.log_error (msg);
-                            _logging_helper.log_error (_("Run 'ukuu --list' and use the version string listed in first column"));
+                            _logging_helper.log_error (_("Run 'noyau --list' and use the version string listed in first column"));
                             exit_app (1);
                         }
 
@@ -520,7 +520,7 @@ public class App : Gtk.Application {
 
                 default:
                     _logging_helper.log_error (_("Command not specified"));
-                    _logging_helper.log_error (_("Run 'ukuu --help' to list all commands"));
+                    _logging_helper.log_error (_("Run 'noyau --help' to list all commands"));
                     exit_app (1);
                     break;
             }
@@ -532,7 +532,7 @@ public class App : Gtk.Application {
     private static string help_message () {
         string msg = "\n" + App.APP_NAME + " v" + App.APP_VERSION + " by " + App.APP_AUTHOR + " (" + App.APP_AUTHOR_EMAIL + ") " + "\n";
         msg += "\n";
-        msg += _("Syntax") + ": ukuu <command> [options]\n";
+        msg += _("Syntax") + ": noyau <command> [options]\n";
         msg += "\n";
         msg += _("Commands") + ":\n";
         msg += "\n";
@@ -659,7 +659,7 @@ public class App : Gtk.Application {
             _logging_helper.log_msg (message);
 
             if (App.notify_dialog) {
-                _process_helper.exec_script_async ("ukuu-gtk --notify");
+                _process_helper.exec_script_async ("noyau-gtk --notify");
                 exit_app (0);
             }
 
@@ -682,7 +682,7 @@ public class App : Gtk.Application {
             _logging_helper.log_msg (message);
 
             if (App.notify_dialog) {
-                _process_helper.exec_script_async ("ukuu-gtk --notify");
+                _process_helper.exec_script_async ("noyau-gtk --notify");
                 exit_app (0);
             }
 
@@ -691,7 +691,7 @@ public class App : Gtk.Application {
     }
 
     private static void set_locale () {
-        Intl.setlocale (GLib.LocaleCategory.MESSAGES, "ukuu");
+        Intl.setlocale (GLib.LocaleCategory.MESSAGES, "noyau");
         Intl.textdomain (App.GETTEXT_PACKAGE);
         Intl.bind_textdomain_codeset (App.GETTEXT_PACKAGE, "utf-8");
         Intl.bindtextdomain (App.GETTEXT_PACKAGE, App.LOCALE_DIR);

@@ -143,7 +143,7 @@ public class UpdateNotificationDialog : Gtk.Window {
             main_window.install (kern_update);
         });
 
-        // open ukuu
+        // open noyau
         button = new Gtk.Button.with_label ("    " + _("Show") + "    ");
         button.set_tooltip_text (_("List available kernels"));
         hbox_actions.add (button);

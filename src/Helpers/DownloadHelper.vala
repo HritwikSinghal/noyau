@@ -52,11 +52,11 @@ public class DownloadHelper : AsyncTask {
             // [#4df0c7 19283968B/45095814B(42%) CN:1 DL:105404B ETA:4m4s]
             regex["file-progress"] = new Regex ("""^\[#([^ \t]+)[ \t]+([0-9]+)B\/([0-9]+)B\(([0-9]+)%\)[ \t]+[^ \t]+[ \t]+DL\:([0-9]+)B[ \t]+ETA\:([^ \]]+)\]""");
 
-            // 12/03 21:15:33 [NOTICE] Download complete: /home/teejee/.cache/ukuu/v4.7.8/CHANGES
+            // 12/03 21:15:33 [NOTICE] Download complete: /home/teejee/.cache/noyau/v4.7.8/CHANGES
             regex["file-complete"] = new Regex ("""[0-9A-Z\/: ]*\[NOTICE\] Download complete\: (.*)""");
 
-            // 8ae3a3|OK  |    16KiB/s|/home/teejee/.cache/ukuu/v4.0.7-wily/index.html
-            // bea740|OK  |        n/a|/home/teejee/.cache/ukuu/v4.0.9-wily/CHANGES
+            // 8ae3a3|OK  |    16KiB/s|/home/teejee/.cache/noyau/v4.0.7-wily/index.html
+            // bea740|OK  |        n/a|/home/teejee/.cache/noyau/v4.0.9-wily/CHANGES
             regex["file-status"] = new Regex ("""^([0-9A-Za-z]+)\|(OK|ERR)[ ]*\|[ ]*(n\/a|[0-9.]+[A-Za-z\/]+)\|(.*)""");
         } catch (Error e) {
             logging_helper.log_error (e.message);
@@ -212,7 +212,7 @@ public class DownloadHelper : AsyncTask {
             prg_count++;
         } else if (regex["file-status"].match (line, 0, out match)) {
 
-            // 8ae3a3|OK  |    16KiB/s|/home/teejee/.cache/ukuu/v4.0.7-wily/index.html
+            // 8ae3a3|OK  |    16KiB/s|/home/teejee/.cache/noyau/v4.0.7-wily/index.html
 
             // log_debug("match: file-status: " + line);
 

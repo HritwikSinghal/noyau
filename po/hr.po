@@ -1,11 +1,11 @@
-# Croatian translations for ukuu package.
-# Copyright (C) 2019 THE ukuu'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the ukuu package.
+# Croatian translations for noyau package.
+# Copyright (C) 2019 THE noyau'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the noyau package.
 # Automatically generated, 2019.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ukuu\n"
+"Project-Id-Version: noyau\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-20 23:35+0100\n"
 "PO-Revision-Date: 2019-09-17 17:10+0100\n"
@@ -259,7 +259,7 @@ msgid "Unknown option"
 msgstr "Nepoznata mogućnost"
 
 #: src/Console/AppConsole.vala:192
-msgid "Run 'ukuu --help' to list all options"
+msgid "Run 'noyau --help' to list all options"
 msgstr ""
 
 #: src/Console/AppConsole.vala:197 src/Gtk/AppGtk.vala:99
@@ -283,15 +283,15 @@ msgid "Could not find requested version"
 msgstr "Nemoguće je pronaći zatraženu inačicu"
 
 #: src/Console/AppConsole.vala:281
-msgid "Run 'ukuu --list' and use the version string listed in first column"
-msgstr "Pokrenite 'ukuu --list' i koristite izraz inačice u prvom stupcu"
+msgid "Run 'noyau --list' and use the version string listed in first column"
+msgstr "Pokrenite 'noyau --list' i koristite izraz inačice u prvom stupcu"
 
 #: src/Console/AppConsole.vala:308
 msgid "Command not specified"
 msgstr ""
 
 #: src/Console/AppConsole.vala:309
-msgid "Run 'ukuu --help' to list all commands"
+msgid "Run 'noyau --help' to list all commands"
 msgstr ""
 
 #: src/Gtk/AboutWindow.vala:37
@@ -546,7 +546,7 @@ msgstr "Zatvori"
 msgid "Install this kernel"
 msgstr "Instaliraj ovaj kernel"
 
-#. open ukuu
+#. open noyau
 #: src/Gtk/UpdateNotificationDialog.vala:151
 msgid "Show"
 msgstr "Prikaži"
@@ -700,7 +700,7 @@ msgstr "Zaustavljeno"
 #~ msgstr "Ukloni određeni mainline kernel"
 
 #, fuzzy
-#~ msgid "About ukuu."
+#~ msgid "About noyau."
 #~ msgstr "O programu"
 
 #, fuzzy
@@ -811,8 +811,8 @@ msgstr "Zaustavljeno"
 #~ msgid "Open"
 #~ msgstr "Otvori"
 
-#~ msgid "Open Ukuu"
-#~ msgstr "Otvori Ukuu"
+#~ msgid "Open noyau"
+#~ msgstr "Otvori noyau"
 
 #~ msgid "Root Access Required"
 #~ msgstr "Potreban je korijenski pristup"

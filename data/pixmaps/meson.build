@@ -1,11 +1,11 @@
 install_data(
-    'ukuu.svg',
-    install_dir: join_paths(get_option('datadir'), 'ukuu', 'pixmaps'),
+    'noyau.svg',
+    install_dir: join_paths(get_option('datadir'), 'noyau', 'pixmaps'),
     install: true
 )
 
 install_data(
-    'ukuu.svg',
+    'noyau.svg',
     install_dir: join_paths(get_option('datadir'), 'icons', 'hicolor', 'scalable', 'apps'),
     install: true
 )

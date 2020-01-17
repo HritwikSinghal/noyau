@@ -1,5 +1,5 @@
 project(
-    'ukuu',
+    'noyau',
     'vala', 'c',
     version: '18.10',
     meson_version: '>=0.40.1',
@@ -7,7 +7,7 @@ project(
 )
 
 add_project_arguments([
-        '-DGETTEXT_PACKAGE="ukuu"',
+        '-DGETTEXT_PACKAGE="noyau"',
         '-D VTE_291'
     ],
     language: 'c'
@@ -18,7 +18,7 @@ config_data.set('EXEC_NAME', meson.project_name())
 config_data.set_quoted('PROJECT_NAME', meson.project_name())
 config_data.set_quoted('GETTEXT_PACKAGE', meson.project_name())
 config_data.set_quoted('VERSION', meson.project_version())
-config_data.set_quoted('PACKAGE_DATADIR', join_paths(get_option('prefix'), join_paths(get_option('datadir'), 'ukuu')))
+config_data.set_quoted('PACKAGE_DATADIR', join_paths(get_option('prefix'), join_paths(get_option('datadir'), 'noyau')))
 
 config_header = configure_file(
     output : 'config.h',

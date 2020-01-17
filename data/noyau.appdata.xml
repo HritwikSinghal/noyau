@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2019 Joshua Dowding <joshuadowding@outlook.com> -->
 <component type="desktop">
-  <id>ukuu</id>
+  <id>noyau</id>
   <metadata_license>CC0</metadata_license>
-  <name>Ukuu</name>
+  <name>noyau</name>
   <summary>Ubuntu Kernel Update Utility</summary>
   <description>
     <p>A graphical utility built for managing installed kernels on Ubuntu.</p>

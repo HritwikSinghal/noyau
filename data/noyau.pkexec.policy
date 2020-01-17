@@ -3,16 +3,16 @@
 <policyconfig>
   <vendor>Joshua Dowding</vendor>
   <vendor_url>https://github.com/joshuadowding/</vendor_url>
-  <action id="polkit.pkexec.ukuu">
-    <description>Run ukuu</description>
+  <action id="polkit.pkexec.noyau">
+    <description>Run noyau</description>
     <message>Authentication is required to manage kernel packages</message>
-    <icon_name>ukuu</icon_name>
+    <icon_name>noyau</icon_name>
     <defaults>
       <allow_any>auth_admin</allow_any>
       <allow_inactive>auth_admin</allow_inactive>
       <allow_active>auth_admin</allow_active>
     </defaults>
-    <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/ukuu</annotate>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/noyau</annotate>
     <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
   </action>
 </policyconfig>

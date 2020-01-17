@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the com.github.joshuadowding.ukuu package.
+# This file is distributed under the same license as the com.github.joshuadowding.noyau package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: com.github.joshuadowding.ukuu\n"
+"Project-Id-Version: com.github.joshuadowding.noyau\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-20 23:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -244,7 +244,7 @@ msgid "Unknown option"
 msgstr ""
 
 #: src/Console/AppConsole.vala:192
-msgid "Run 'ukuu --help' to list all options"
+msgid "Run 'noyau --help' to list all options"
 msgstr ""
 
 #: src/Console/AppConsole.vala:197 src/Gtk/AppGtk.vala:99
@@ -268,7 +268,7 @@ msgid "Could not find requested version"
 msgstr ""
 
 #: src/Console/AppConsole.vala:281
-msgid "Run 'ukuu --list' and use the version string listed in first column"
+msgid "Run 'noyau --list' and use the version string listed in first column"
 msgstr ""
 
 #: src/Console/AppConsole.vala:308
@@ -276,7 +276,7 @@ msgid "Command not specified"
 msgstr ""
 
 #: src/Console/AppConsole.vala:309
-msgid "Run 'ukuu --help' to list all commands"
+msgid "Run 'noyau --help' to list all commands"
 msgstr ""
 
 #: src/Gtk/AboutWindow.vala:37
@@ -502,7 +502,7 @@ msgstr ""
 msgid "Install this kernel"
 msgstr ""
 
-#. open ukuu
+#. open noyau
 #: src/Gtk/UpdateNotificationDialog.vala:151
 msgid "Show"
 msgstr ""

@@ -1,11 +1,11 @@
-# French translations for ukuu package.
-# Copyright (C) 2019 THE ukuu'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the ukuu package.
+# French translations for noyau package.
+# Copyright (C) 2019 THE noyau'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the noyau package.
 # Automatically generated, 2019.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ukuu\n"
+"Project-Id-Version: noyau\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-20 23:35+0100\n"
 "PO-Revision-Date: 2019-09-17 17:10+0100\n"
@@ -258,7 +258,7 @@ msgid "Unknown option"
 msgstr "Option inconnue"
 
 #: src/Console/AppConsole.vala:192
-msgid "Run 'ukuu --help' to list all options"
+msgid "Run 'noyau --help' to list all options"
 msgstr ""
 
 #: src/Console/AppConsole.vala:197 src/Gtk/AppGtk.vala:99
@@ -284,9 +284,9 @@ msgid "Could not find requested version"
 msgstr "Impossible de trouver la version demandée"
 
 #: src/Console/AppConsole.vala:281
-msgid "Run 'ukuu --list' and use the version string listed in first column"
+msgid "Run 'noyau --list' and use the version string listed in first column"
 msgstr ""
-"Exécutez 'ukuu --list' et utilisez la chaîne de la version indiquée dans la "
+"Exécutez 'noyau --list' et utilisez la chaîne de la version indiquée dans la "
 "première colonne"
 
 #: src/Console/AppConsole.vala:308
@@ -295,7 +295,7 @@ msgid "Command not specified"
 msgstr "Impossible de trouver le fichier"
 
 #: src/Console/AppConsole.vala:309
-msgid "Run 'ukuu --help' to list all commands"
+msgid "Run 'noyau --help' to list all commands"
 msgstr ""
 
 #: src/Gtk/AboutWindow.vala:37
@@ -550,7 +550,7 @@ msgstr "Fermer"
 msgid "Install this kernel"
 msgstr "Installer ce noyau"
 
-#. open ukuu
+#. open noyau
 #: src/Gtk/UpdateNotificationDialog.vala:151
 msgid "Show"
 msgstr "Afficher"
@@ -706,7 +706,7 @@ msgstr "Arrêté"
 #~ msgstr "Supprimer le noyau mainline sélectionné"
 
 #, fuzzy
-#~ msgid "About ukuu."
+#~ msgid "About noyau."
 #~ msgstr "À propos"
 
 #, fuzzy
@@ -778,8 +778,8 @@ msgstr "Arrêté"
 #~ msgid "Visit Website"
 #~ msgstr "Visiter mon site"
 
-#~ msgid "Open Ukuu"
-#~ msgstr "Lancer Ukuu"
+#~ msgid "Open noyau"
+#~ msgstr "Lancer noyau"
 
 #~ msgid "Cron job added"
 #~ msgstr "Cron ajouter"
