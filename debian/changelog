@@ -1,4 +1,4 @@
-ukuu (18.10) disco; urgency=medium
+noyau (18.10) disco; urgency=medium
 
   * UI: Implement a headerbar to replace the button spread
   * UI: Remove the big, obnoxious tux logo in the status bar
@@ -9,28 +9,28 @@ ukuu (18.10) disco; urgency=medium
 
  -- Joshua Dowding <joshuadowding@outlook.com>  Sun, 3 Feb 2019 10:00:00 +0530
 
-ukuu (18.9.3) xenial; urgency=medium
+noyau (18.9.3) xenial; urgency=medium
 
   * Fix build issue
 
  -- Tony George <tony.george.kol@gmail.com>  Sun, 3 Feb 2019 10:00:00 +0530
 
 
-ukuu (18.9.1) xenial; urgency=medium
+noyau (18.9.1) xenial; urgency=medium
 
   * Added message for new version
 
  -- Tony George <tony.george.kol@gmail.com>  Sat, 26 Jan 2019 10:00:00 +0530
 
 
-ukuu (18.9) xenial; urgency=medium
+noyau (18.9) xenial; urgency=medium
 
   * Updated donation window
 
  -- Tony George <tony.george.kol@gmail.com>  Wed, 05 Sep 2018 10:00:00 +0530
 
 
-ukuu (18.5.1) xenial; urgency=medium
+noyau (18.5.1) xenial; urgency=medium
 
   * Fixed: Install linux-modules package if available
 
@@ -39,7 +39,7 @@ ukuu (18.5.1) xenial; urgency=medium
  -- Tony George <tony.george.kol@gmail.com>  Sat, 12 May 2018 10:00:00 +0530
 
 
-ukuu (18.1) xenial; urgency=medium
+noyau (18.1) xenial; urgency=medium
 
   * Console: Added command: --install-latest
 
@@ -62,14 +62,14 @@ ukuu (18.1) xenial; urgency=medium
  -- Tony George <tony.george.kol@gmail.com>  Fri, 12 Jan 2018 10:00:00 +0530
 
 
-ukuu (17.12.1) xenial; urgency=medium
+noyau (17.12.1) xenial; urgency=medium
 
-  * Added support for running ukuu in Wayland session
+  * Added support for running noyau in Wayland session
 
-  * Removed Gtk and Gdk dependencies for console version ('ukuu').
+  * Removed Gtk and Gdk dependencies for console version ('noyau').
   It can now be used on systems where display server is not available.
 
-  * Added --notify action for GTK version ('ukuu-gtk')
+  * Added --notify action for GTK version ('noyau-gtk')
 
   * Code for checking internet connectivity now uses 'curl'
   instead of 'ping'. This supports systems where ping
@@ -80,7 +80,7 @@ ukuu (17.12.1) xenial; urgency=medium
  -- Tony George <tony.george.kol@gmail.com>  Sat, 23 Dec 2017 10:00:00 +0530
 
 
-ukuu (17.12) xenial; urgency=medium
+noyau (17.12) xenial; urgency=medium
 
   * Fixed: Use xdg-open to open CHANGES file instead of exo-open
   * Fixed: User's home directory was not detected correctly
@@ -91,21 +91,21 @@ ukuu (17.12) xenial; urgency=medium
  -- Tony George <tony.george.kol@gmail.com>  Sat, 09 Dec 2017 14:00:00 +0530
 
 
-ukuu (17.2.3) trusty; urgency=medium
+noyau (17.2.3) trusty; urgency=medium
 
   * Fixed an issue with previous update
 
  -- Tony George <tony.george.kol@gmail.com>  Mon, 20 Feb 2017 14:00:00 +0530
 
 
-ukuu (17.2.2) trusty; urgency=medium
+noyau (17.2.2) trusty; urgency=medium
 
   * Show a message after install for booting previous kernels
 
  -- Tony George <tony.george.kol@gmail.com>  Mon, 20 Feb 2017 10:00:00 +0530
 
 
-ukuu (17.2.1) trusty; urgency=medium
+noyau (17.2.1) trusty; urgency=medium
 
   * Added option to set the timeout interval for GRUB menu
 
@@ -122,14 +122,14 @@ ukuu (17.2.1) trusty; urgency=medium
  -- Tony George <tony.george.kol@gmail.com>  Mon, 06 Feb 2017 10:00:00 +0530
 
  
-ukuu (17.2) trusty; urgency=medium
+noyau (17.2) trusty; urgency=medium
 
   * Fixed some minor issues
 
  -- Tony George <tony.george.kol@gmail.com>  Sat, 28 Jan 2017 14:00:00 +0530
 
 
-ukuu (17.1) trusty; urgency=medium
+noyau (17.1) trusty; urgency=medium
 
   * Added option to display GRUB menu at boot time
 
@@ -138,7 +138,7 @@ ukuu (17.1) trusty; urgency=medium
  -- Tony George <tony.george.kol@gmail.com>  Sat, 28 Jan 2017 10:00:00 +0530
 
 
-ukuu (16.12.1) trusty; urgency=medium
+noyau (16.12.1) trusty; urgency=medium
 
   * Fixed: Notification options for bubble and dialog were not saved
   to config file
@@ -151,7 +151,7 @@ ukuu (16.12.1) trusty; urgency=medium
  -- Tony George <tony.george.kol@gmail.com>  Sun, 25 Dec 2016 10:00:00 +0530
 
 
-ukuu (16.12) trusty; urgency=medium
+noyau (16.12) trusty; urgency=medium
 
   * Fixed an issue with update check. User would sometimes be prompted
   to install an older version.
@@ -172,14 +172,14 @@ ukuu (16.12) trusty; urgency=medium
  -- Tony George <tony.george.kol@gmail.com>  Wed, 7 Dec 2016 10:00:00 +0530
  
  
-ukuu (16.11.1) trusty; urgency=medium
+noyau (16.11.1) trusty; urgency=medium
 
   * Fixed build for xenial: Added dependency for 'valac'
 
  -- Tony George <tony.george.kol@gmail.com>  Sun, 27 Nov 2016 10:00:00 +0530
 
  
-ukuu (16.11) trusty; urgency=medium
+noyau (16.11) trusty; urgency=medium
 
   * Changed main window layout
 
@@ -191,7 +191,7 @@ ukuu (16.11) trusty; urgency=medium
  -- Tony George <tony.george.kol@gmail.com>  Tue, 15 Nov 2016 10:00:00 +0530
 
 
-ukuu (16.7.2) trusty; urgency=medium
+noyau (16.7.2) trusty; urgency=medium
 
   * Fixed: Download progress status line is not refreshed correctly
   in terminal window
@@ -199,7 +199,7 @@ ukuu (16.7.2) trusty; urgency=medium
  -- Tony George <tony.george.kol@gmail.com>  Wed, 13 Jul 2016 10:00:00 +0530
 
 
-ukuu (16.7.1) trusty; urgency=medium
+noyau (16.7.1) trusty; urgency=medium
 
   * Fixed: Update notification is not diplayed for minor update if the
   'notify major' option is selected in settings dialog
@@ -209,12 +209,12 @@ ukuu (16.7.1) trusty; urgency=medium
 
   * Fixed parsing of version string in format like '#40~14.04.1'(trusty)
 
-  * Moved cache directory to ~/.cache/ukuu
+  * Moved cache directory to ~/.cache/noyau
 
  -- Tony George <tony.george.kol@gmail.com>  Tue, 12 Jul 2016 10:00:00 +0530
 
 
-ukuu (16.7) trusty; urgency=medium
+noyau (16.7) trusty; urgency=medium
 
   * Fixed notifications
 
@@ -239,12 +239,12 @@ ukuu (16.7) trusty; urgency=medium
   * Fixed: Reduced aria2 timeout to 10sec to avoid freezes while
   downloading index files
 
-  * Added option to clean cache 'sudo ukuu --clean-cache
+  * Added option to clean cache 'sudo noyau --clean-cache
 
  -- Tony George <tony.george.kol@gmail.com>  Fri, 08 Jul 2016 10:00:00 +0530
 
 
-ukuu (16.4.2) trusty; urgency=medium
+noyau (16.4.2) trusty; urgency=medium
 
   * Initial release
 
