@@ -30,7 +30,7 @@ public class AboutWindow : AboutDialog {
         gtk_helper = new GtkHelper ();
 
         this.title = App.APP_NAME;
-        this.program_name = App.APP_NAME_SHORT;
+        this.program_name = App.APP_NAME;
         this.comments = _("A graphical utility for managing kernels on Ubuntu.");
         this.version = App.APP_VERSION;
         this.website = App.APP_AUTHOR_WEBSITE;

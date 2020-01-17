@@ -30,7 +30,7 @@ extern void exit (int exit_code);
 public class App : Gtk.Application {
 
     public const string APP_NAME = @"Noyau";
-    public const string APP_NAME_SHORT = @"Noyau";
+    public const string APP_NAME_SHORT = @"noyau";
     public const string APP_VERSION = @"18.10";
     public const string APP_AUTHOR = @"Joshua Dowding";
     public const string APP_AUTHOR_EMAIL = @"joshuadowding@outlook.com";
