@@ -31,7 +31,7 @@ public class App : Gtk.Application {
 
     public const string APP_NAME = @"Noyau";
     public const string APP_NAME_SHORT = @"noyau";
-    public const string APP_VERSION = @"18.10";
+    public const string APP_VERSION = @"19.10";
     public const string APP_AUTHOR = @"Joshua Dowding";
     public const string APP_AUTHOR_EMAIL = @"joshuadowding@outlook.com";
     public const string APP_AUTHOR_WEBSITE = @"https://joshuadowding.github.io";
