@@ -1,11 +1,14 @@
-noyau (18.10) focal; urgency=low
+noyau (19.10) focal; urgency=low
 
-  * UI: Implement a headerbar to replace the button spread
-  * UI: Remove the big, obnoxious tux logo in the status bar
-  * UI: Implement a right-click menu in the treeview
-  * Project: Fix a build issue
-  * Project: Fix several packaging issues
-  * Project: Migrate to a uniform licence (GPL2)
+  * Refreshed user interface using the Gtk.HeaderBar
+  * Transitioned to the meson build system
+  * Merge the GUI and CLI program entry-points into one unified entry-point
+  * Download over HTTPS instead of plain HTTP
+  * Split toggles for displaying kernels older than 4.x and 5.x
+  * Removed intrusive prompts and donation links
+  * Removed scripted notifications
+  * Serious code refactoring and clean-up
+  * Fixed numerous build issues
 
- -- Joshua Dowding <joshuadowding@outlook.com>  Sun, 3 Feb 2019 10:00:00 +0530
+ -- Joshua Dowding <joshuadowding@outlook.com>  Sat, 18 Jan 2020 17:00:00 +0000
 
