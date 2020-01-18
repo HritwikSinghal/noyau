@@ -7,6 +7,12 @@ cd "$DIR"
 build_source_for_dist() {
     version=$1
 
+    echo ""
+    echo "======================================================="
+    echo "build-deb.sh - build source - ${version}"
+    echo "======================================================="
+    echo ""
+
     debuild -i -us -uc -S
 
     cd ..
@@ -26,6 +32,12 @@ build_deb_for_dist() {
     dist=$1
     arch=$2
     version=$3
+
+    echo ""
+    echo "======================================================="
+    echo "build-deb.sh - build deb - ${dist}, ${arch}, ${version}"
+    echo "======================================================="
+    echo ""
 
     cd noyau
 
@@ -51,15 +63,15 @@ build_deb_for_dist() {
 
     if [ $? -ne 0 ]; then cd "$backup"; echo "Failure, again!"; exit 1; fi
 
-    echo "--------------------------------------------------------------------------"
-
     sudo rm -r /var/cache/pbuilder/result/*
+
+    echo "--------------------------------------------------------------------------"
 }
 
 echo ""
-echo "============"
-echo "build-deb.sh"
-echo "============"
+echo "======================================================="
+echo "build-deb.sh - begin build"
+echo "======================================================="
 echo ""
 
 mkdir release
