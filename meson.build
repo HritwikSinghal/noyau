@@ -1,7 +1,7 @@
 project(
     'noyau',
     'vala', 'c',
-    version: '18.10',
+    version: '19.10',
     meson_version: '>=0.40.1',
     license : 'GPLv2'
 )
