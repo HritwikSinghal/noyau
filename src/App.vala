@@ -80,7 +80,7 @@ public class App : Gtk.Application {
         logging_helper = new LoggingHelper ();
         process_helper = new ProcessHelper ();
 
-        check_if_admin ();
+        // check_if_admin ();
 
         Package.initialize ();
         LinuxKernel.initialize ();

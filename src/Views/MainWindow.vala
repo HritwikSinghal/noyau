@@ -758,8 +758,6 @@ public class MainWindow : Gtk.Window {
             return;
         }
 
-        this.hide ();
-
         var term = new TerminalWindow.with_parent (this, false, true);
         term.script_complete.connect (() => {
             term.allow_window_close ();
@@ -785,6 +783,8 @@ public class MainWindow : Gtk.Window {
 
         sh += "echo ''\n ";
         sh += "echo 'Close window to exit...'\n ";
+
+        this.hide ();
 
         term.execute_script (process_helper.save_bash_script_temp (sh));
     }

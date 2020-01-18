@@ -1,14 +1,14 @@
 [Desktop Entry]
 Name=Noyau
 MimeType=
-Exec=pkexec noyau %U
+Exec=noyau %U
 Type=Application
 GenericName=Noyau
 Terminal=false
 Icon=noyau
-Comment=Graphical utility for managing kernels on Ubuntu-based platforms
+Comment=A graphical utility for managing kernels on Ubuntu-based platforms
 X-KDE-StartupNotify=false
-Categories=System;
+Categories=System;Utility;
 StartupWMClass=noyau
 X-GNOME-UsesNotifications=true
 StartupNotify=true
