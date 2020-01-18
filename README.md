@@ -24,38 +24,39 @@
 <h2>Features</h2>
 <ul>
     <li>Download and install kernel packages automatically.</li>
-    <li>Notifies when new kernel releases are available.</li>
-    <li>Purge all-but the (current) running kernel.</li>
-    <li>View release changelogs.</li>
+    <li>Purge all installed kernels except the running kernel.</li>
+    <li>View kernel release changelogs with your default text editor.</li>
 </ul>
 
 
 <h2>Changes Since 18.9.1</h2>
-<h3>18.10 (Upcoming Release)</h3>
+<h3>19.10</h3>
 <ul>
-    <li>Refreshed user interface.</li>
+    <li>Refreshed user interface using the Gtk.HeaderBar.</li>
     <li>Transitioned to the meson build system.</li>
-    <li>Removed intrusive prompts and nagware.</li>
-    <li>Download over HTTPS instead of HTTP.</li>
-    <li>Merge the GUI and CLI entry-points.</li>
+    <li>Merge the GUI and CLI program entry-points into one unified entry-point.</li>
+    <li>Download over HTTPS instead of plain HTTP.</li>
     <li>Split toggles for displaying kernels older than 4.x and 5.x.</li>
+    <li>Removed intrusive prompts and donation links.</li>
     <li>Removed scripted notifications.</li>
-    <li>Serious code refactor and clean-up.</li>
+    <li>Serious code refactoring and clean-up.</li>
     <li>Fixed numerous build issues.</li>
 </ul>
 
 
 <h2>Confirmed Compatibility</h2>
 <ul>
-    <li>Ubuntu 20.04 LTS</li>
+    <li>Ubuntu 20.04.x LTS</li>
     <li>Ubuntu 19.10</li>
-    <li>Ubuntu 18.04.x LTS</li>
+    <li>Ubuntu 19.04</li>
+    <li>Ubuntu 18.04.x LTS (inc. elementary OS 5.x)</li>
 </ul>
 
 <h2>Confirmed Incompatibility</h2>
 <ul>
-    <li>Ubuntu 16.04.x LTS (due to the meson package being too old)</li>
+    <li>Ubuntu 16.04.x LTS</li>
 </ul>
+
 
 <h2>Source Code</h2>
 <h3>Build Instructions</h3>
@@ -68,7 +69,7 @@
 
 <h3>Packaging Dependencies</h3>
 
-    sudo apt install pbuilder debhelper dh-make autotools-dev
+    sudo apt install pbuilder debootstrap devscripts debhelper dh-make autotools-dev
 
 <h3>Runtime Dependencies</h3>
 
