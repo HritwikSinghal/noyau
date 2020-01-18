@@ -41,6 +41,11 @@ build_deb_for_dist() {
 
     cd noyau
 
+    cd release
+    mkdir -pv ${dist}/${arch}
+
+    cd ..
+
     ls -l release/${dist}/${arch}
 
     mkdir -pv release/${dist}/${arch}
@@ -75,27 +80,22 @@ echo "======================================================="
 echo ""
 
 mkdir release
-cd release
 
-mkdir -pv ${dist}/${arch}
+build_source_for_dist 19.10-beta~ppa
 
-cd ..
+#build_deb_for_dist xenial i386 19.10-beta~ppa  #16.04.x LTS (not supported)
+#build_deb_for_dist xenial amd64 19.10-beta~ppa #16.04.x LTS (not supported)
 
-build_source_for_dist 18.10
+build_deb_for_dist bionic i386 19.10-beta~ppa #18.04.x LTS
+build_deb_for_dist bionic amd64 19.10-beta~ppa #18.04.x LTS
 
-#build_deb_for_dist xenial i386 18.10  #16.04.x LTS (not supported)
-#build_deb_for_dist xenial amd64 18.10 #16.04.x LTS (not supported)
+build_deb_for_dist disco i386 19.10-beta~ppa #19.04
+build_deb_for_dist disco amd64 19.10-beta~ppa #19.04
 
-build_deb_for_dist bionic i386 18.10 #18.04.x LTS
-build_deb_for_dist bionic amd64 18.10 #18.04.x LTS
+build_deb_for_dist eoan i386 19.10-beta~ppa #19.10
+build_deb_for_dist eoan amd64 19.10-beta~ppa #19.10
 
-build_deb_for_dist disco i386 18.10 #19.04
-build_deb_for_dist disco amd64 18.10 #19.04
-
-build_deb_for_dist eoan i386 18.10 #19.10
-build_deb_for_dist eoan amd64 18.10 #19.10
-
-#build_deb_for_dist focal i386 18.10 #20.04.x LTS
-build_deb_for_dist focal amd64 18.10 #20.04.x LTS
+#build_deb_for_dist focal i386 19.10-beta~ppa #20.04.x LTS
+build_deb_for_dist focal amd64 19.10-beta~ppa #20.04.x LTS
 
 cd "$backup"

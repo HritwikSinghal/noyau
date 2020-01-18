@@ -61,7 +61,7 @@
 <h2>Source Code</h2>
 <h3>Build Instructions</h3>
 
-    sudo apt install valac meson libgtk-3-dev libgee-0.8-dev libjson-glib-dev libvte-2.91-dev libsoup2.4-dev
+    sudo apt install valac meson libgtk-3-dev libgee-0.8-dev libjson-glib-dev libvte-2.91-dev libsoup2.4-dev libnotify-dev
     git clone https://github.com/joshuadowding/noyau.git && cd noyau
     meson build --prefix=/usr
     cd build && ninja
