@@ -470,7 +470,7 @@ public class MainWindow : Gtk.Window {
 
         var button_refresh = new Gtk.ModelButton ();
         button_refresh.role = Gtk.ButtonRole.NORMAL;
-        button_refresh.text = "Refresh List";
+        button_refresh.text = "Refresh";
         button_refresh.clicked.connect (() => {
             if (!system_helper.check_internet_connectivity ()) {
                 gtk_helper.gtk_messagebox (_("No Internet"), _("Internet connection is not active"), this, true);
@@ -483,7 +483,7 @@ public class MainWindow : Gtk.Window {
 
         var button_settings = new Gtk.ModelButton ();
         button_settings.role = Gtk.ButtonRole.NORMAL;
-        button_settings.text = "Settings";
+        button_settings.text = "Preferences";
         button_settings.clicked.connect (() => {
             bool prev_hide_older = LinuxKernel.hide_older;
             bool prev_hide_older_4 = LinuxKernel.hide_older_4;
@@ -506,17 +506,22 @@ public class MainWindow : Gtk.Window {
 
         var button_about = new Gtk.ModelButton ();
         button_about.role = Gtk.ButtonRole.NORMAL;
-        button_about.text = "About";
+        button_about.text = "About Noyau";
         button_about.clicked.connect (btn_about_clicked);
 
-        var menu_separator = new Gtk.Separator (Orientation.HORIZONTAL);
+        var button_exit = new Gtk.ModelButton ();
+        button_exit.role = Gtk.ButtonRole.NORMAL;
+        button_exit.text = "Quit";
+        button_exit.clicked.connect (btn_exit_clicked);
 
         var popover_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 4);
         popover_box.set_border_width (8);
         popover_box.pack_start (button_refresh);
-        popover_box.pack_start (menu_separator);
+        popover_box.pack_start (new Gtk.Separator (Orientation.HORIZONTAL));
         popover_box.pack_start (button_settings);
         popover_box.pack_start (button_about);
+        popover_box.pack_start (new Gtk.Separator (Orientation.HORIZONTAL));
+        popover_box.pack_start (button_exit);
 
         menu_popover.add (popover_box);
         menu_popover.set_relative_to (button_menu);
@@ -612,6 +617,10 @@ public class MainWindow : Gtk.Window {
         var dialog = new AboutWindow ();
         dialog.set_transient_for (this);
         dialog.show_all ();
+    }
+
+    private void btn_exit_clicked () {
+        App.exit_app (1);
     }
 
     private void refresh_cache (bool download_index = true) {
