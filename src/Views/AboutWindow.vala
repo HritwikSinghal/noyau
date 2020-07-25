@@ -31,7 +31,7 @@ public class AboutWindow : AboutDialog {
 
         this.title = App.APP_NAME;
         this.program_name = App.APP_NAME;
-        this.comments = _("A graphical utility for managing kernels on Ubuntu.");
+        this.comments = _("A graphical utility for managing kernels on Ubuntu-based platforms.");
         this.version = App.APP_VERSION;
         this.website = App.APP_AUTHOR_WEBSITE;
 
@@ -40,13 +40,13 @@ public class AboutWindow : AboutDialog {
         this.destroy_with_parent = true;
 
         this.authors = {
-            "Joshua Dowding (joshuadowding@outlook.com)",
-            "Tony George (teejeetech@gmail.com)"
+            "Joshua Dowding",
+            "Tony George"
         };
 
         this.translator_credits = _("translator-credits");
 
-        this.copyright = "Copyright © 2020 " + App.APP_AUTHOR + " (" + App.APP_AUTHOR_EMAIL + ")";
+        this.copyright = "Copyright © 2020 " + App.APP_AUTHOR;
         this.license_type = Gtk.License.GPL_2_0;
         this.wrap_license = true;
 
