@@ -1,9 +1,10 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: noyau
-Source: <https://joshuadowding.github.io>
+Format: https://dep.debian.net/deps/dep5
+Upstream-Name: com.github.joshuadowding.noyau
+Source: https://github.com/joshuadowding/noyau
 
-Files: *
+Files: src/* data/* debian/*
 Copyright: 2020 Joshua Dowding <joshuadowding@outlook.com>
+
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

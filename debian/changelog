@@ -1,4 +1,4 @@
-noyau (19.10-beta~ppa) focal; urgency=low
+com.github.joshuadowding.noyau (19.10) focal; urgency=low
 
   * Refreshed user interface using the Gtk.HeaderBar
   * Transitioned to the meson build system

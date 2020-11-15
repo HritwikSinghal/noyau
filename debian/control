@@ -1,19 +1,22 @@
-Source: noyau
+Source: com.github.joshuadowding.noyau
+Section: x11
+Priority: optional
 Maintainer: Joshua Dowding <joshuadowding@outlook.com>
-Uploaders: 
-Section: utils
-Priority: extra
-Build-Depends: valac, meson, pbuilder, debootstrap, devscripts, debhelper, dh-make, autotools-dev, libgtk-3-dev, libgee-0.8-dev, libjson-glib-dev, libvte-2.91-dev, libsoup2.4-dev, libnotify-dev
-Standards-Version: 3.9.3
-Homepage: https://joshuadowding.github.io/
+Build-Depends: cmake (>= 2.8),
+               debhelper (>= 9),
+               gettext,
+               libgtk-3-dev,
+               libgee-0.8-dev,
+               libjson-glib-dev,
+               libvte-2.91-dev,
+               libsoup2.4-dev,
+               libnotify-dev,
+               meson,
+               valac (>= 0.40.0)
+Standards-Version: 4.1.1
 
-Package: noyau
+Package: com.github.joshuadowding.noyau
 Architecture: any
-Section: utils
-Priority: extra
-Essential: no
-Depends: rsync, aptitude, aria2, curl, dpkg, gzip, gpg, lsb-release, libnotify-bin
-Recommends: 
-Description: A graphical utility for managing kernels on Ubuntu-based platforms.
-Homepage: https://joshuadowding.github.io/
-
+Priority: optional
+Depends: rsync, aptitude, aria2, curl
+Description: A graphical utility for managing kernels on Ubuntu.
