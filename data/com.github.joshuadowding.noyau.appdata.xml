@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="desktop">
+  <id>com.github.joshuadowding.noyau</id>
+  <metadata_license>GPLv2</metadata_license>
+  <name>Noyau</name>
+  <description>
+    <p>A graphical utility for managing kernels on Ubuntu.</p>
+  </description>
+</component>
+

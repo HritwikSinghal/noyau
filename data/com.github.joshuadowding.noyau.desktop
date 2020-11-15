@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Noyau
+GenericName=Ubuntu Kernel Updater
+Comment=A graphical utility for managing kernels on Ubuntu.
+Exec=noyau %U
+Icon=noyau
+Type=Application
+Categories=System;
+Keywords=Noyau;noyau;
+StartupNotify=true
+X-KDE-StartupNotify=false
+StartupWMClass=noyau
+MimeType=text/plain;
+X-GNOME-UsesNotifications=true
