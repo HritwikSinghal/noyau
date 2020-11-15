@@ -1,14 +1,24 @@
-src/noyau
-designs/
-release/
+# build files
 build/
-*.geany
-*.mo
-*.c
-*.o
-*~
-*.buildinfo
+release/
+builddir/
+.buildconfig
 *.changes
+*.buildinfo
+debhelper-build-stamp
+*.dsc
+*.tar.gz
+*.tar.xz
 
+# beautifier files
+.beautifier/
+
+# backup files
+*~
+
+#editor files
+.editorconfig
+
+# version control files
 .git
 .bzr
