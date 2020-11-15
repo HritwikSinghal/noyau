@@ -1,20 +1,18 @@
 install_data(
-    'noyau.desktop',
-    install_dir: join_paths(get_option('datadir'), 'applications'),
-    install: true
+    join_paths(meson.project_name() + '.desktop'),
+    install_dir: join_paths(get_option('datadir'), 'applications')
 )
 
 install_data(
-    'noyau.appdata.xml',
-    install_dir: join_paths(get_option('datadir'), 'metainfo'),
-    install: true
+    join_paths(meson.project_name() + '.appdata.xml'),
+    install_dir: join_paths(get_option('datadir'), 'metainfo')
 )
 
 install_data(
-    'noyau.pkexec.policy',
-    install_dir: join_paths(get_option('datadir'), 'polkit-1', 'actions'),
-    install: true
+    join_paths(meson.project_name() + '.pkexec.policy'),
+    install_dir: join_paths(get_option('datadir'), 'polkit-1', 'actions')
 )
 
 subdir('images')
 subdir('pixmaps')
+

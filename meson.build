@@ -1,10 +1,12 @@
 project(
-    'noyau',
-    'vala', 'c',
+    'com.github.joshuadowding.noyau',
+    ['c', 'vala'],
     version: '19.10',
-    meson_version: '>=0.40.1',
+    meson_version: '>=0.40.0',
     license : 'GPLv2'
 )
+
+binary = 'noyau'
 
 add_project_arguments([
         '-DGETTEXT_PACKAGE="noyau"',
@@ -25,8 +27,10 @@ config_header = configure_file(
     configuration : config_data
 )
 
-subdir('data')
+
 subdir('po')
 subdir('src')
+subdir('data')
 
 meson.add_install_script('meson/post_install.py')
+

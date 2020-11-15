@@ -1,4 +1,4 @@
-project_files = files(
+sources = [
     'Helpers/MiscHelper.vala',
     'Helpers/LoggingHelper.vala',
     'Helpers/GtkHelper.vala',
@@ -23,11 +23,11 @@ project_files = files(
     'Views/UpdateNotificationDialog.vala',
 
     'App.vala'
-)
+]
 
 executable(
-    meson.project_name(),
-    project_files,
+    binary,
+    sources,
     dependencies: [
         dependency('gtk+-3.0'),
         dependency('gio-unix-2.0'),
@@ -47,3 +47,4 @@ executable(
     ],
     install: true
 )
+
